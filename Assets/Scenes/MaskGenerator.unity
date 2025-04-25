@@ -151,7 +151,7 @@ MonoBehaviour:
   maskCamera: {fileID: 1428787248}
   maskRT: {fileID: 8400000, guid: c618bda3366ec448c9ef5fe611e63499, type: 2}
   outputFolder: StageData
-  baseFileName: Stage1Mask
+  baseFileName: StageDemoMask
 --- !u!4 &77276911
 Transform:
   m_ObjectHideFlags: 0

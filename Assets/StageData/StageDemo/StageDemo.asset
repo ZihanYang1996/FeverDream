@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83d3034ad797470e9e66b08afae8153, type: 3}
   m_Name: StageDemo
   m_EditorClassIdentifier: 
-  outlineSprite: {fileID: 0}
-  maskTexture: {fileID: 0}
+  outlineSprite: {fileID: -1070875165216424666, guid: 6c9d200bcbbe04133b6afd8955c755dd, type: 3}
+  maskTexture: {fileID: 2800000, guid: 87c5fc00f80d5453dba6107dd0e9bd0b, type: 3}
   iouThreshold: 0.9

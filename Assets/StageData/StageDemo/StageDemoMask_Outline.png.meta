@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 539320ab9a9364e35824f260171f50e4
+guid: 6c9d200bcbbe04133b6afd8955c755dd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 99878055583386719
-    second: Stage1Mask_Outline_0
+      213: -1070875165216424666
+    second: StageDemoMask_Outline_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stage1Mask_Outline_0
+      name: StageDemoMask_Outline_0
       rect:
         serializedVersion: 2
         x: 146
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f5c87e7ff86d26100800000000000000
-      internalID: 99878055583386719
+      spriteID: 62dbc7206bc7321f0800000000000000
+      internalID: -1070875165216424666
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      StageDemoMask_Outline_0: -1070875165216424666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
