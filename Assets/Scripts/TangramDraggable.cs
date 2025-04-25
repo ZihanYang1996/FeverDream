@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
     private Canvas canvas;
     private RectTransform rectTransform;
@@ -14,6 +14,8 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     private Camera worldCamera;
 
     private float dragZ;
+
+    private bool isPointerDown = false;
 
     void Awake()
     {
@@ -31,7 +33,7 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     void Update()
     {
-        if (isDragging)
+        if (isPointerDown)
         {
             float scroll = Input.mouseScrollDelta.y;
             if (Mathf.Abs(scroll) > 0.01f)
@@ -74,6 +76,22 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             transform.SetParent(workspaceRect, true);
         }
         else
+        {
+            ReturnToOriginalPosition();
+        }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        isPointerDown = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isPointerDown = false;
+
+        // If no drag occurred (only rotation), return to original position and rotation
+        if (!isDragging && transform.parent == originalParent)
         {
             ReturnToOriginalPosition();
         }
