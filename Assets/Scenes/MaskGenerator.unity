@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskCamera: {fileID: 1428787248}
   maskRT: {fileID: 8400000, guid: c618bda3366ec448c9ef5fe611e63499, type: 2}
-  outputFolder: RenderTextures
+  outputFolder: StageData
   baseFileName: Stage1Mask
 --- !u!4 &77276911
 Transform:

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7c334ca5067bb4e18be0851cea8639f2
+guid: 539320ab9a9364e35824f260171f50e4
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -116,10 +116,10 @@ TextureImporter:
       name: Stage1Mask_Outline_0
       rect:
         serializedVersion: 2
-        x: 126
-        y: 190
-        width: 260
-        height: 132
+        x: 146
+        y: 146
+        width: 220
+        height: 220
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Stage1Mask_Outline_0: 99878055583386719
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

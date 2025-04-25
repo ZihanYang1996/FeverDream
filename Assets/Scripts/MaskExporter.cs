@@ -11,7 +11,7 @@ public class MaskExporter : MonoBehaviour
     public RenderTexture maskRT;   // The RenderTexture target for mask rendering
 
     [Header("Export Settings (relative to Assets folder)")]
-    public string outputFolder = "RenderTextures";  // Folder under Assets to save PNGs
+    public string outputFolder = "StageData";  // Folder under Assets to save PNGs
     public string baseFileName = "Stage1Mask";      // Base name for output files
 
     /// <summary>
