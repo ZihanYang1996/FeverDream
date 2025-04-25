@@ -25,7 +25,9 @@ public class StageManager : MonoBehaviour
         // hide puzzle at start
         puzzlePanel.SetActive(false);
         // bind validate
-        //validateButton.onClick.AddListener(ValidatePuzzle);
+        validateButton.onClick.AddListener(ValidatePuzzle);
+        // Permanently direct captureCamera to render into captureRT
+        captureCamera.targetTexture = captureRT;
     }
 
     /// <summary>
@@ -38,7 +40,7 @@ public class StageManager : MonoBehaviour
         outlineArea.sprite = stage.outlineSprite;
         outlineArea.color = Color.white;
         // clear previous pieces
-        //foreach (Transform t in workspaceArea) Destroy(t.gameObject);
+        foreach (Transform t in workspaceArea) Destroy(t.gameObject);
         // show panel
         puzzlePanel.SetActive(true);
     }
@@ -48,7 +50,35 @@ public class StageManager : MonoBehaviour
     /// </summary>
     public void ValidatePuzzle()
     {
-        // Validation temporarily disabled for outline test
+        Debug.Log("[StageManager] ValidatePuzzle called");
+        // Manually render to the (permanently attached) captureRT
+        captureCamera.Render();
+        RenderTexture.active = captureRT;
+
+        // Read pixels into Texture2D
+        if (playerMask == null ||
+            playerMask.width != captureRT.width ||
+            playerMask.height != captureRT.height)
+        {
+            playerMask = new Texture2D(captureRT.width, captureRT.height, TextureFormat.RGBA32, false);
+        }
+        playerMask.ReadPixels(new Rect(0, 0, captureRT.width, captureRT.height), 0, 0);
+        playerMask.Apply();
+
+        // Cleanup
+        RenderTexture.active = null;
+
+        // Compute centroids for alignment
+        Vector2 targetCentroid = ComputeCentroid(currentStage.maskTexture);
+        Vector2 playerCentroid = ComputeCentroid(playerMask);
+        Vector2 offset = targetCentroid - playerCentroid;
+        int dx = Mathf.RoundToInt(offset.x);
+        int dy = Mathf.RoundToInt(offset.y);
+
+        // Compute IoU and check threshold
+        float iou = ComputeTranslatedIoU(currentStage.maskTexture, playerMask, dx, dy);
+        bool success = iou >= currentStage.iouThreshold;
+        Debug.Log($"[Validate] IoU = {iou:F2} => {(success ? "Success" : "Fail")}");
     }
 
     /// <summary>
