@@ -72,7 +72,6 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         rectTransform.rotation = Quaternion.identity;
     }
 
-    // 修正后的精确检测方法
     // uiCamera: null for Screen Space - Overlay, use the camera for Screen Space - Camera
     private bool IsRectTransformFullyInside(RectTransform child, RectTransform parent, Camera uiCamera)
     {
