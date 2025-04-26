@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler, ICanvasRaycastFilter
 {
     private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    private Image image;
 
     private Vector2 originalPosition;
     private Transform originalParent;
@@ -18,6 +20,7 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         canvas = GetComponentInParent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        image = GetComponent<Image>();
 
         originalPosition = rectTransform.anchoredPosition;
         originalParent = transform.parent;
@@ -104,5 +107,32 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             }
         }
         return true;
+    }
+    public bool IsRaycastLocationValid(Vector2 screenPoint, Camera eventCamera)
+    {
+        if (!image || !image.sprite || !image.sprite.texture)
+            return true;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, eventCamera, out Vector2 localPos);
+        Rect rect = rectTransform.rect;
+
+        float normalizedX = (localPos.x - rect.x) / rect.width;
+        float normalizedY = (localPos.y - rect.y) / rect.height;
+
+        if (normalizedX < 0 || normalizedX > 1 || normalizedY < 0 || normalizedY > 1)
+            return false;
+
+        Sprite sprite = image.sprite;
+        Texture2D texture = sprite.texture;
+        Rect spriteRect = sprite.rect;
+
+        int texX = Mathf.FloorToInt(spriteRect.x + spriteRect.width * normalizedX);
+        int texY = Mathf.FloorToInt(spriteRect.y + spriteRect.height * normalizedY);
+
+        if (texX < 0 || texX >= texture.width || texY < 0 || texY >= texture.height)
+            return false;
+
+        Color pixel = texture.GetPixel(texX, texY);
+        return pixel.a > 0.1f;
     }
 }
