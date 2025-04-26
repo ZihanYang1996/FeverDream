@@ -7,13 +7,9 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
-    // Removed dragOffset; now using screen delta for movement.
-    private Vector3 originalPosition;
+    private Vector2 originalPosition;
     private Transform originalParent;
     private bool isDragging = false;
-    private Camera worldCamera;
-
-    private float dragZ;
 
     private bool isPointerDown = false;
 
@@ -23,11 +19,7 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = gameObject.AddComponent<CanvasGroup>();
 
-        worldCamera = canvas.renderMode == RenderMode.ScreenSpaceCamera 
-            ? canvas.worldCamera 
-            : Camera.main;
-
-        originalPosition = rectTransform.position;
+        originalPosition = rectTransform.anchoredPosition;
         originalParent = transform.parent;
     }
 
@@ -50,17 +42,11 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         canvasGroup.blocksRaycasts = false;
 
         transform.SetParent(canvas.transform, true);
-        // store Z distance for world-to-screen conversion
-        dragZ = worldCamera.WorldToScreenPoint(rectTransform.position).z;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // convert screen drag delta to world movement
-        Vector3 deltaScreen = new Vector3(eventData.delta.x, eventData.delta.y, dragZ);
-        Vector3 worldDelta = worldCamera.ScreenToWorldPoint(deltaScreen)
-            - worldCamera.ScreenToWorldPoint(new Vector3(0f, 0f, dragZ));
-        rectTransform.position += worldDelta;
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -71,7 +57,7 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
         RectTransform workspaceRect = GameObject.Find("WorkspaceArea").GetComponent<RectTransform>();
 
-        if (IsRectTransformFullyInside(rectTransform, workspaceRect))
+        if (IsRectTransformFullyInside(rectTransform, workspaceRect, eventData.pressEventCamera))
         {
             transform.SetParent(workspaceRect, true);
         }
@@ -100,20 +86,22 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     private void ReturnToOriginalPosition()
     {
         transform.SetParent(originalParent, true);
-        rectTransform.position = originalPosition;
+        rectTransform.anchoredPosition = originalPosition;
         rectTransform.rotation = Quaternion.identity;
     }
 
-    // Returns true if all corners of 'child' are inside 'parent' using the worldCamera.
-    private bool IsRectTransformFullyInside(RectTransform child, RectTransform parent)
+    // uiCamera: null for Screen Space - Overlay, use the camera for Screen Space - Camera
+    private bool IsRectTransformFullyInside(RectTransform child, RectTransform parent, Camera uiCamera)
     {
         Vector3[] childCorners = new Vector3[4];
         child.GetWorldCorners(childCorners);
+
         foreach (Vector3 corner in childCorners)
         {
-            Vector2 screenPoint = worldCamera.WorldToScreenPoint(corner);
-            if (!RectTransformUtility.RectangleContainsScreenPoint(parent, screenPoint, worldCamera))
+            if (!RectTransformUtility.RectangleContainsScreenPoint(parent, corner, uiCamera))
+            {
                 return false;
+            }
         }
         return true;
     }
