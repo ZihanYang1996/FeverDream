@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -27,6 +28,9 @@ public class StageManager : MonoBehaviour
     [Header("Export Settings")]
     [SerializeField] private string exportFolderName = "Temp";    // Folder under Assets
     [SerializeField] private string exportFileName = "playerMask";// PNG file name without extension
+
+    [Header("Normalization Settings")]
+    [SerializeField] private int normalizationResolution = 256;
 
     private Texture2D playerMask;
 
@@ -106,15 +110,12 @@ public class StageManager : MonoBehaviour
         // Disable capture canvas so it doesn’t display in main UI
         captureCanvas.gameObject.SetActive(false);
 
-        // Compute centroids for alignment
-        Vector2 targetCentroid = ComputeCentroid(currentStage.maskTexture);
-        Vector2 playerCentroid = ComputeCentroid(playerMask);
-        Vector2 offset = targetCentroid - playerCentroid;
-        int dx = Mathf.RoundToInt(offset.x);
-        int dy = Mathf.RoundToInt(offset.y);
+        // Normalize and align both masks
+        Texture2D normTarget = NormalizeAndAlignMask(currentStage.maskTexture);
+        Texture2D normPlayer = NormalizeAndAlignMask(playerMask);
 
-        // Compute IoU and check threshold
-        float iou = ComputeTranslatedIoU(currentStage.maskTexture, playerMask, dx, dy);
+        // Compute IoU on normalized masks (no translation needed)
+        float iou = ComputeTranslatedIoU(normTarget, normPlayer, 0, 0);
         bool success = iou >= currentStage.iouThreshold;
         Debug.Log($"[Validate] IoU = {iou:F2} => {(success ? "Success" : "Fail")}");
 
@@ -214,5 +215,100 @@ public class StageManager : MonoBehaviour
         mask.SetPixels32(dst);
         mask.Apply();
         return mask;
+    }
+
+
+    /// <summary>
+    /// Normalizes a binary mask by cropping to its bounding box, scaling to a fixed resolution,
+    /// centering its centroid, and rotating to align principal axis.
+    /// </summary>
+    private Texture2D NormalizeAndAlignMask(Texture2D mask)
+    {
+        int w = mask.width, h = mask.height;
+        Color32[] pixels = mask.GetPixels32();
+
+        // 1) Find bounding box of white pixels
+        int minX = w, minY = h, maxX = 0, maxY = 0;
+        for (int y = 0; y < h; y++)
+        {
+            for (int x = 0; x < w; x++)
+            {
+                if (pixels[y * w + x].r > 128)
+                {
+                    minX = Math.Min(minX, x);
+                    maxX = Math.Max(maxX, x);
+                    minY = Math.Min(minY, y);
+                    maxY = Math.Max(maxY, y);
+                }
+            }
+        }
+        if (maxX < minX || maxY < minY)
+        {
+            // empty mask -> return blank
+            return new Texture2D(normalizationResolution, normalizationResolution, TextureFormat.RGBA32, false);
+        }
+
+        // 2) Crop and scale to normalizationResolution
+        int cropW = maxX - minX + 1, cropH = maxY - minY + 1;
+        Texture2D scaled = new Texture2D(normalizationResolution, normalizationResolution, TextureFormat.RGBA32, false);
+        for (int ny = 0; ny < normalizationResolution; ny++)
+        {
+            for (int nx = 0; nx < normalizationResolution; nx++)
+            {
+                float u = nx / (float)(normalizationResolution - 1);
+                float v = ny / (float)(normalizationResolution - 1);
+                int sx = minX + Mathf.RoundToInt(u * (cropW - 1));
+                int sy = minY + Mathf.RoundToInt(v * (cropH - 1));
+                Color32 c = pixels[sy * w + sx];
+                scaled.SetPixel(nx, ny, c.r > 128 ? Color.white : Color.black);
+            }
+        }
+        scaled.Apply();
+
+        // 3) Compute centroid of scaled mask
+        Vector2 centroid = ComputeCentroid(scaled);
+
+        // 4) Compute PCA orientation (variance covariance)
+        float meanX = 0, meanY = 0, count = 0;
+        for (int y = 0; y < normalizationResolution; y++)
+            for (int x = 0; x < normalizationResolution; x++)
+                if (scaled.GetPixel(x, y).r > 0.5f)
+                {
+                    meanX += x; meanY += y; count++;
+                }
+        meanX /= count; meanY /= count;
+        float covXX = 0, covYY = 0, covXY = 0;
+        for (int y = 0; y < normalizationResolution; y++)
+            for (int x = 0; x < normalizationResolution; x++)
+                if (scaled.GetPixel(x, y).r > 0.5f)
+                {
+                    float dx = x - meanX, dy = y - meanY;
+                    covXX += dx * dx;
+                    covYY += dy * dy;
+                    covXY += dx * dy;
+                }
+        // principal angle
+        float theta = 0.5f * Mathf.Atan2(2 * covXY, covXX - covYY) * Mathf.Rad2Deg;
+
+        // 5) Rotate the scaled mask around its center by -theta
+        Texture2D rotated = new Texture2D(normalizationResolution, normalizationResolution, TextureFormat.RGBA32, false);
+        Vector2 center = new Vector2(normalizationResolution / 2f, normalizationResolution / 2f);
+        for (int y = 0; y < normalizationResolution; y++)
+        {
+            for (int x = 0; x < normalizationResolution; x++)
+            {
+                // inverse rotate pixel
+                float dx = x - center.x, dy = y - center.y;
+                float rad = -theta * Mathf.Deg2Rad;
+                int sx = Mathf.RoundToInt(center.x + dx * Mathf.Cos(rad) - dy * Mathf.Sin(rad));
+                int sy = Mathf.RoundToInt(center.y + dx * Mathf.Sin(rad) + dy * Mathf.Cos(rad));
+                Color c = (sx >= 0 && sx < normalizationResolution && sy >= 0 && sy < normalizationResolution && 
+                           scaled.GetPixel(sx, sy).r > 0.5f) ? Color.white : Color.black;
+                rotated.SetPixel(x, y, c);
+            }
+        }
+        rotated.Apply();
+
+        return rotated;
     }
 }
