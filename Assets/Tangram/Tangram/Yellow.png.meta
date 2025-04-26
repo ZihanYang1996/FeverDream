@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9873cbb33da5d483f927a5b6eac81c28
+guid: 7ff805b99937d42ebbb0831730fb8d11
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 686292790741111165
-    second: StageDemoMask_0
+      213: 6358040702757662528
+    second: Yellow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StageDemoMask_0
+      name: Yellow_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 184
+        y: 176
+        width: 668
+        height: 246
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d71190438a3368900800000000000000
-      internalID: 686292790741111165
+      spriteID: 04f6853355c4c3850800000000000000
+      internalID: 6358040702757662528
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StageDemoMask_0: 686292790741111165
+      Yellow_0: 6358040702757662528
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

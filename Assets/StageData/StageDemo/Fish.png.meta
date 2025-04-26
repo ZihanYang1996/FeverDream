@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9873cbb33da5d483f927a5b6eac81c28
+guid: 9625064da2ab042d99e458282d9a6680
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 686292790741111165
-    second: StageDemoMask_0
+      213: -1915776564401465818
+    second: Fish_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StageDemoMask_0
+      name: Fish_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 74
+        y: 18
+        width: 1275
+        height: 1273
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d71190438a3368900800000000000000
-      internalID: 686292790741111165
+      spriteID: 62615d96d5bc965e0800000000000000
+      internalID: -1915776564401465818
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      StageDemoMask_0: 686292790741111165
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

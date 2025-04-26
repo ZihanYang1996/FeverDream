@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9873cbb33da5d483f927a5b6eac81c28
+guid: 0ecaedb8802fa4ab096148dbe801cbcd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 686292790741111165
-    second: StageDemoMask_0
+      213: 6415347130838620665
+    second: playerMask_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StageDemoMask_0
+      name: playerMask_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d71190438a3368900800000000000000
-      internalID: 686292790741111165
+      spriteID: 9f9157cb934e70950800000000000000
+      internalID: 6415347130838620665
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StageDemoMask_0: 686292790741111165
+      playerMask_0: 6415347130838620665
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

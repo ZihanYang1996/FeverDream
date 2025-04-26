@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.IO;
 
 public class StageManager : MonoBehaviour
 {
@@ -17,6 +19,14 @@ public class StageManager : MonoBehaviour
 
     [Header("Stage Data")]
     public StageData currentStage;    // Your StageData asset
+
+    [Header("Clone Capture Config")]
+    public Canvas captureCanvas;          // Off-screen canvas for clone capture
+    public Transform captureWorkspaceArea; // Parent in captureCanvas to clone pieces under
+
+    [Header("Export Settings")]
+    [SerializeField] private string exportFolderName = "Temp";    // Folder under Assets
+    [SerializeField] private string exportFileName = "playerMask";// PNG file name without extension
 
     private Texture2D playerMask;
 
@@ -50,8 +60,20 @@ public class StageManager : MonoBehaviour
     /// </summary>
     public void ValidatePuzzle()
     {
+        // Clone workspace pieces into off-screen capture canvas
+        List<GameObject> clones = new List<GameObject>();
+        foreach (Transform orig in workspaceArea)
+        {
+            // Instantiate clone under captureWorkspaceArea, preserving world position
+            GameObject clone = Instantiate(orig.gameObject, captureWorkspaceArea, worldPositionStays: true);
+            clones.Add(clone);
+        }
+
         Debug.Log("[StageManager] ValidatePuzzle called");
-        // Manually render to the (permanently attached) captureRT
+        // Enable capture canvas so captureCamera sees clones
+        captureCanvas.gameObject.SetActive(true);
+        
+        // Render clones into the RenderTexture
         captureCamera.Render();
         RenderTexture.active = captureRT;
 
@@ -65,8 +87,24 @@ public class StageManager : MonoBehaviour
         playerMask.ReadPixels(new Rect(0, 0, captureRT.width, captureRT.height), 0, 0);
         playerMask.Apply();
 
-        // Cleanup
+        // Convert captured mask to pure black and white
+        playerMask = BinarizeMask(playerMask);
+
+        // Export captured mask to Assets folder
+        string folderPath = Path.Combine(Application.dataPath, exportFolderName);
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+        string filePath = Path.Combine(folderPath, exportFileName + ".png");
+        File.WriteAllBytes(filePath, playerMask.EncodeToPNG());
+        Debug.Log($"Player mask exported to: {filePath}");
+
+        // Cleanup RenderTexture binding
         RenderTexture.active = null;
+
+        // Disable capture canvas so it doesn’t display in main UI
+        captureCanvas.gameObject.SetActive(false);
 
         // Compute centroids for alignment
         Vector2 targetCentroid = ComputeCentroid(currentStage.maskTexture);
@@ -79,6 +117,12 @@ public class StageManager : MonoBehaviour
         float iou = ComputeTranslatedIoU(currentStage.maskTexture, playerMask, dx, dy);
         bool success = iou >= currentStage.iouThreshold;
         Debug.Log($"[Validate] IoU = {iou:F2} => {(success ? "Success" : "Fail")}");
+
+        // Destroy clones
+        foreach (var c in clones)
+        {
+            Destroy(c);
+        }
     }
 
     /// <summary>
@@ -145,5 +189,30 @@ public class StageManager : MonoBehaviour
         }
 
         return union > 0 ? overlap / (float)union : 0f;
+    }
+
+    /// <summary>
+    /// Convert any source texture into a pure black/white mask.
+    /// White = shape (any non-black pixel), Black = background.
+    /// </summary>
+    private Texture2D BinarizeMask(Texture2D source)
+    {
+        int width = source.width;
+        int height = source.height;
+        Color32[] src = source.GetPixels32();
+        Color32[] dst = new Color32[src.Length];
+
+        for (int i = 0; i < src.Length; i++)
+        {
+            bool isShape = (src[i].r + src[i].g + src[i].b) > 0;
+            dst[i] = isShape
+                ? new Color32(255, 255, 255, 255)
+                : new Color32(0,   0,   0,   255);
+        }
+
+        Texture2D mask = new Texture2D(width, height, TextureFormat.RGBA32, false);
+        mask.SetPixels32(dst);
+        mask.Apply();
+        return mask;
     }
 }
