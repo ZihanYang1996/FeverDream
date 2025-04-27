@@ -1,29 +1,34 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.Serialization;
 
 public class StageManager : MonoBehaviour
 {
     [Header("UI References")]
     public GameObject puzzlePanel;    // PuzzlePanel object
-    [FormerlySerializedAs("outlineImage")] 
-    public Image outlineArea;        // OutlineArea's Image
+    public Image workspaceOutlineImage; // Image in WorkspaceArea to display selected outline
     public Transform workspaceArea;   // WorkspaceArea container
     public Button validateButton;     // ValidateButton
+    public Button startPuzzleButton;  // Start Demo button to open puzzle panel
 
     [Header("Render Config")]
     public Camera captureCamera;      // MaskCamera
     public RenderTexture captureRT;   // Mask_RT
 
-    [Header("Stage Data")]
+    [Header("Stage Data (Don't modify)")]
     public StageData currentStage;    // Your StageData asset
 
     [Header("Clone Capture Config")]
     public Canvas captureCanvas;          // Off-screen canvas for clone capture
     public Transform captureWorkspaceArea; // Parent in captureCanvas to clone pieces under
+
+    [Header("Pattern Selector Config")]
+    public Transform patternSelectorContainer;  // Container for pattern buttons
+    public GameObject patternButtonPrefab;      // Prefab for pattern button
+    public List<StageData> allStages;           // List of all stages to generate buttons
 
     [Header("Export Settings")]
     [SerializeField] private string exportFolderName = "Temp";    // Folder under Assets
@@ -38,10 +43,26 @@ public class StageManager : MonoBehaviour
     {
         // hide puzzle at start
         puzzlePanel.SetActive(false);
+        // bind Start Demo to show puzzle panel
+        startPuzzleButton.onClick.AddListener(ShowPuzzlePanel);
         // bind validate
         validateButton.onClick.AddListener(ValidatePuzzle);
         // Permanently direct captureCamera to render into captureRT
         captureCamera.targetTexture = captureRT;
+
+        // Generate pattern selector buttons
+        for (int i = 0; i < allStages.Count; i++)
+        {
+            int idx = i;
+            StageData sd = allStages[i];
+            GameObject btnGO = Instantiate(patternButtonPrefab, patternSelectorContainer);
+            btnGO.name = "PatternBtn_" + sd.name;
+            Image img = btnGO.GetComponent<Image>();
+            img.sprite = sd.outlineSprite;
+            img.preserveAspect = true;
+            Button btn = btnGO.GetComponent<Button>();
+            btn.onClick.AddListener(() => SelectStage(idx));
+        }
     }
 
     /// <summary>
@@ -51,11 +72,38 @@ public class StageManager : MonoBehaviour
     {
         currentStage = stage;
         // set outline sprite
-        outlineArea.sprite = stage.outlineSprite;
-        outlineArea.color = Color.white;
+        workspaceOutlineImage.sprite = stage.outlineSprite;
+        workspaceOutlineImage.color = Color.white;
         // clear previous pieces
         foreach (Transform t in workspaceArea) Destroy(t.gameObject);
         // show panel
+        puzzlePanel.SetActive(true);
+    }
+
+    /// <summary>
+    /// Switch to selected stage, update workspace outline and reset workspace.
+    /// </summary>
+    public void SelectStage(int index)
+    {
+        // ensure panel is visible when selecting a pattern
+        puzzlePanel.SetActive(true);
+        // Set current stage
+        currentStage = allStages[index];
+        // Update workspace outline image
+        workspaceOutlineImage.sprite = currentStage.outlineSprite;
+        workspaceOutlineImage.color = Color.white;
+        // Clear workspace pieces
+        foreach (Transform t in workspaceArea)
+        {
+            Destroy(t.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Displays the puzzle panel without loading a stage.
+    /// </summary>
+    public void ShowPuzzlePanel()
+    {
         puzzlePanel.SetActive(true);
     }
 
