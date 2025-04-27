@@ -75,3 +75,6 @@ crashlytics-build.properties
 
 # Use cloud drive for sharing large files
 Assets/ExternalAssets
+
+# Ignore temp folder
+Assets/Temp/
