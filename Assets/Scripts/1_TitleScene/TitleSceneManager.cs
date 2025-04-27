@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class TitleSceneManager : MonoBehaviour
 {
-    [SerializeField] private string nextSceneName = "IntroScene"; // 这里填下一个Scene的名字
+    [SerializeField] private string nextSceneName = "IntroScene"; // Name of the next scene to load
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) // 按回车键
+        if (Input.GetKeyDown(KeyCode.Return)) // Press Enter to proceed
         {
             SceneManager.LoadScene(nextSceneName);
         }

@@ -1,0 +1,42 @@
+using System;
+using System.Collections;
+using UnityEngine;
+using TMPro;
+
+public class TypingEffect : MonoBehaviour
+{
+    [Header("Typing Machine")]
+    [SerializeField] private TextMeshProUGUI storyText;
+    [TextArea(3, 10)]
+    [SerializeField] private string fullText;
+    [SerializeField] private float typingSpeed = 0.05f; // Typing speed in seconds
+
+    public Action OnTypingComplete; // Event to notify when typing is complete
+
+    private bool isTyping = true;
+
+    void Start()
+    {
+        storyText.text = "";
+        StartCoroutine(TypeText());
+    }
+
+    private IEnumerator TypeText()
+    {
+        foreach (char c in fullText)
+        {
+            storyText.text += c;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        yield return new WaitForSeconds(typingSpeed * 3);
+
+        isTyping = false;
+        OnTypingComplete?.Invoke(); // Invoke the event when typing is complete
+    }
+
+    public bool IsTyping()
+    {
+        return isTyping;
+    }
+}
