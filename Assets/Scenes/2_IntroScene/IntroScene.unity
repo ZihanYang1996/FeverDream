@@ -722,6 +722,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2023735574}
     m_Modifications:
     - target: {fileID: 2685335891234061895, guid: 6a1497f785c82451dbedee05cbfe2795, type: 3}
+      propertyPath: m_text
+      value: "\u6309\u56DE\u8F66\u7EE7\u7EED\u6E38\u620F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685335891234061895, guid: 6a1497f785c82451dbedee05cbfe2795, type: 3}
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}

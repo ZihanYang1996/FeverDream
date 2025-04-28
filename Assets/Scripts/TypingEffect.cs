@@ -7,8 +7,10 @@ public class TypingEffect : MonoBehaviour
 {
     [Header("Typing Machine")]
     [SerializeField] private TextMeshProUGUI storyText;
+
     [TextArea(3, 10)]
     [SerializeField] private string fullText;
+
     [SerializeField] private float typingSpeed = 0.05f; // Typing speed in seconds
 
     public Action OnTypingComplete; // Event to notify when typing is complete
@@ -38,5 +40,23 @@ public class TypingEffect : MonoBehaviour
     public bool IsTyping()
     {
         return isTyping;
+    }
+
+    public void ForceComplete()
+    {
+        StopAllCoroutines();
+        storyText.text = fullText;
+        isTyping = false;
+        OnTypingComplete?.Invoke();
+    }
+
+    public void Play(string newText, Action onComplete)
+    {
+        StopAllCoroutines();
+        storyText.text = "";
+        fullText = newText;
+        OnTypingComplete = onComplete;
+        isTyping = true;
+        StartCoroutine(TypeText());
     }
 }
