@@ -135,4 +135,9 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         Color pixel = texture.GetPixel(texX, texY);
         return pixel.a > 0.1f;
     }
+
+    public void Reset()
+    {
+        ReturnToOriginalPosition();
+    }
 }

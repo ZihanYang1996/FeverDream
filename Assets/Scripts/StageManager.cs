@@ -8,31 +8,36 @@ using UnityEngine.Serialization;
 public class StageManager : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject puzzlePanel;    // PuzzlePanel object
+    public GameObject puzzlePanel; // PuzzlePanel object
+
     public Image workspaceOutlineImage; // Image in WorkspaceArea to display selected outline
-    public Transform workspaceArea;   // WorkspaceArea container
-    public Button validateButton;     // ValidateButton
-    public Button startPuzzleButton;  // Start Demo button to open puzzle panel
+    public Transform workspaceArea; // WorkspaceArea container
+    public Button validateButton; // ValidateButton
+    public Button startPuzzleButton; // Start Demo button to open puzzle panel
 
     [Header("Render Config")]
-    public Camera captureCamera;      // MaskCamera
-    public RenderTexture captureRT;   // Mask_RT
+    public Camera captureCamera; // MaskCamera
+
+    public RenderTexture captureRT; // Mask_RT
 
     [Header("Stage Data (Don't modify)")]
-    public StageData currentStage;    // Your StageData asset
+    public StageData currentStage; // Your StageData asset
 
     [Header("Clone Capture Config")]
-    public Canvas captureCanvas;          // Off-screen canvas for clone capture
+    public Canvas captureCanvas; // Off-screen canvas for clone capture
+
     public Transform captureWorkspaceArea; // Parent in captureCanvas to clone pieces under
 
     [Header("Pattern Selector Config")]
-    public Transform patternSelectorContainer;  // Container for pattern buttons
-    public GameObject patternButtonPrefab;      // Prefab for pattern button
-    public List<StageData> allStages;           // List of all stages to generate buttons
+    public Transform patternSelectorContainer; // Container for pattern buttons
+
+    public GameObject patternButtonPrefab; // Prefab for pattern button
+    public List<StageData> allStages; // List of all stages to generate buttons
 
     [Header("Export Settings")]
-    [SerializeField] private string exportFolderName = "Temp";    // Folder under Assets
-    [SerializeField] private string exportFileName = "playerMask";// PNG file name without extension
+    [SerializeField] private string exportFolderName = "Temp"; // Folder under Assets
+
+    [SerializeField] private string exportFileName = "playerMask"; // PNG file name without extension
 
     [Header("Normalization Settings")]
     [SerializeField] private int normalizationResolution = 256;
@@ -75,7 +80,17 @@ public class StageManager : MonoBehaviour
         workspaceOutlineImage.sprite = stage.outlineSprite;
         workspaceOutlineImage.color = Color.white;
         // clear previous pieces
-        foreach (Transform t in workspaceArea) Destroy(t.gameObject);
+        // Return all pieces to their original positions and parents
+        for (int i = workspaceArea.childCount - 1; i >= 0; i--)
+        {
+            Transform piece = workspaceArea.GetChild(i);
+            TangramDraggable draggable = piece.GetComponent<TangramDraggable>();
+            if (draggable != null)
+            {
+                draggable.Reset();
+            }
+        }
+
         // show panel
         puzzlePanel.SetActive(true);
     }
@@ -92,10 +107,16 @@ public class StageManager : MonoBehaviour
         // Update workspace outline image
         workspaceOutlineImage.sprite = currentStage.outlineSprite;
         workspaceOutlineImage.color = Color.white;
-        // Clear workspace pieces
-        foreach (Transform t in workspaceArea)
+        // clear previous pieces
+        // Return all pieces to their original positions and parents
+        for (int i = workspaceArea.childCount - 1; i >= 0; i--)
         {
-            Destroy(t.gameObject);
+            Transform piece = workspaceArea.GetChild(i);
+            TangramDraggable draggable = piece.GetComponent<TangramDraggable>();
+            if (draggable != null)
+            {
+                draggable.Reset();
+            }
         }
     }
 
@@ -124,7 +145,7 @@ public class StageManager : MonoBehaviour
         Debug.Log("[StageManager] ValidatePuzzle called");
         // Enable capture canvas so captureCamera sees clones
         captureCanvas.gameObject.SetActive(true);
-        
+
         // Render clones into the RenderTexture
         captureCamera.Render();
         RenderTexture.active = captureRT;
@@ -136,6 +157,7 @@ public class StageManager : MonoBehaviour
         {
             playerMask = new Texture2D(captureRT.width, captureRT.height, TextureFormat.RGBA32, false);
         }
+
         playerMask.ReadPixels(new Rect(0, 0, captureRT.width, captureRT.height), 0, 0);
         playerMask.Apply();
 
@@ -148,6 +170,7 @@ public class StageManager : MonoBehaviour
         {
             Directory.CreateDirectory(folderPath);
         }
+
         string filePath = Path.Combine(folderPath, exportFileName + ".png");
         File.WriteAllBytes(filePath, playerMask.EncodeToPNG());
         Debug.Log($"Player mask exported to: {filePath}");
@@ -203,6 +226,7 @@ public class StageManager : MonoBehaviour
             // No shape pixels: default to center
             return new Vector2(width / 2f, height / 2f);
         }
+
         // Return average position
         return new Vector2(sumX / (float)count, sumY / (float)count);
     }
@@ -256,7 +280,7 @@ public class StageManager : MonoBehaviour
             bool isShape = (src[i].r + src[i].g + src[i].b) > 0;
             dst[i] = isShape
                 ? new Color32(255, 255, 255, 255)
-                : new Color32(0,   0,   0,   255);
+                : new Color32(0, 0, 0, 255);
         }
 
         Texture2D mask = new Texture2D(width, height, TextureFormat.RGBA32, false);
@@ -290,6 +314,7 @@ public class StageManager : MonoBehaviour
                 }
             }
         }
+
         if (maxX < minX || maxY < minY)
         {
             // empty mask -> return blank
@@ -311,6 +336,7 @@ public class StageManager : MonoBehaviour
                 scaled.SetPixel(nx, ny, c.r > 128 ? Color.white : Color.black);
             }
         }
+
         scaled.Apply();
 
         // 3) Compute centroid of scaled mask
@@ -319,27 +345,33 @@ public class StageManager : MonoBehaviour
         // 4) Compute PCA orientation (variance covariance)
         float meanX = 0, meanY = 0, count = 0;
         for (int y = 0; y < normalizationResolution; y++)
-            for (int x = 0; x < normalizationResolution; x++)
-                if (scaled.GetPixel(x, y).r > 0.5f)
-                {
-                    meanX += x; meanY += y; count++;
-                }
-        meanX /= count; meanY /= count;
+        for (int x = 0; x < normalizationResolution; x++)
+            if (scaled.GetPixel(x, y).r > 0.5f)
+            {
+                meanX += x;
+                meanY += y;
+                count++;
+            }
+
+        meanX /= count;
+        meanY /= count;
         float covXX = 0, covYY = 0, covXY = 0;
         for (int y = 0; y < normalizationResolution; y++)
-            for (int x = 0; x < normalizationResolution; x++)
-                if (scaled.GetPixel(x, y).r > 0.5f)
-                {
-                    float dx = x - meanX, dy = y - meanY;
-                    covXX += dx * dx;
-                    covYY += dy * dy;
-                    covXY += dx * dy;
-                }
+        for (int x = 0; x < normalizationResolution; x++)
+            if (scaled.GetPixel(x, y).r > 0.5f)
+            {
+                float dx = x - meanX, dy = y - meanY;
+                covXX += dx * dx;
+                covYY += dy * dy;
+                covXY += dx * dy;
+            }
+
         // principal angle
         float theta = 0.5f * Mathf.Atan2(2 * covXY, covXX - covYY) * Mathf.Rad2Deg;
 
         // 5) Rotate the scaled mask around its center by -theta
-        Texture2D rotated = new Texture2D(normalizationResolution, normalizationResolution, TextureFormat.RGBA32, false);
+        Texture2D rotated =
+            new Texture2D(normalizationResolution, normalizationResolution, TextureFormat.RGBA32, false);
         Vector2 center = new Vector2(normalizationResolution / 2f, normalizationResolution / 2f);
         for (int y = 0; y < normalizationResolution; y++)
         {
@@ -350,11 +382,14 @@ public class StageManager : MonoBehaviour
                 float rad = -theta * Mathf.Deg2Rad;
                 int sx = Mathf.RoundToInt(center.x + dx * Mathf.Cos(rad) - dy * Mathf.Sin(rad));
                 int sy = Mathf.RoundToInt(center.y + dx * Mathf.Sin(rad) + dy * Mathf.Cos(rad));
-                Color c = (sx >= 0 && sx < normalizationResolution && sy >= 0 && sy < normalizationResolution && 
-                           scaled.GetPixel(sx, sy).r > 0.5f) ? Color.white : Color.black;
+                Color c = (sx >= 0 && sx < normalizationResolution && sy >= 0 && sy < normalizationResolution &&
+                           scaled.GetPixel(sx, sy).r > 0.5f)
+                    ? Color.white
+                    : Color.black;
                 rotated.SetPixel(x, y, c);
             }
         }
+
         rotated.Apply();
 
         return rotated;

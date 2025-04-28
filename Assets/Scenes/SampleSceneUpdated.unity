@@ -2677,6 +2677,7 @@ MonoBehaviour:
   patternButtonPrefab: {fileID: 4417169227313504642, guid: 9ba6a4e85797344a4be2d4e282b8f0a4, type: 3}
   allStages:
   - {fileID: 11400000, guid: 2a2aaff86b0da475e9fb4639a16f4cbf, type: 2}
+  - {fileID: 11400000, guid: 5dca0085a4e63487e81b714d254949da, type: 2}
   exportFolderName: Temp
   exportFileName: playerMask
   normalizationResolution: 256
