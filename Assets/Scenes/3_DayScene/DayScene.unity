@@ -239,11 +239,13 @@ MonoBehaviour:
   backgroundImage: {fileID: 442599854}
   videoBackground: {fileID: 31199486}
   videoPlayer: {fileID: 2053818738}
+  dialoguePanel: {fileID: 1676559746}
   dialogueText: {fileID: 878540566}
   pressEnterText: {fileID: 858215573}
   storySteps:
   - {fileID: 11400000, guid: a9caf6f5bc5a74a50973a36dc10281ff, type: 2}
   frameRate: 10
+  delayBetweenBackgroundAndDialogue: 1
 --- !u!1 &442599852
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253522c97245e4c6e808d458d5b5cbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnStart: 0
   storyText: {fileID: 878540566}
   fullText: 
   typingSpeed: 0.05
