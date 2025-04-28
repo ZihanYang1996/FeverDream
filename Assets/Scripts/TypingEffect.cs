@@ -6,6 +6,8 @@ using TMPro;
 public class TypingEffect : MonoBehaviour
 {
     [Header("Typing Machine")]
+    [SerializeField] private bool playOnStart = true;
+
     [SerializeField] private TextMeshProUGUI storyText;
 
     [TextArea(3, 10)]
@@ -17,10 +19,13 @@ public class TypingEffect : MonoBehaviour
 
     private bool isTyping = true;
 
-    void Start()
+    private void Start()
     {
-        storyText.text = "";
-        StartCoroutine(TypeText());
+        if (playOnStart)
+        {
+            storyText.text = "";
+            StartCoroutine(TypeText());
+        }
     }
 
     private IEnumerator TypeText()
