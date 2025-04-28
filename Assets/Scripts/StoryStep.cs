@@ -4,7 +4,8 @@ using UnityEngine.Video;
 public enum BackgroundType
 {
     Image,
-    Video
+    Video,
+    Unchanged
 }
 
 [CreateAssetMenu(fileName = "New StoryStep", menuName = "Story/StoryStep")]

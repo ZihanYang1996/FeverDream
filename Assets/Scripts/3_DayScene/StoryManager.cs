@@ -11,6 +11,7 @@ public class StoryManager : MonoBehaviour
 
     [SerializeField] private RawImage videoBackground;
     [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject pressEnterText;
 
@@ -18,6 +19,7 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private StoryStep[] storySteps;
 
     [SerializeField] private float frameRate = 10f; // 帧动画播放速度
+    [SerializeField] private float delayBetweenBackgroundAndDialogue = 1.0f; // 背景和对话之间的间隔时间
 
     private int storyIndex = 0;
     private int dialogueIndex = 0;
@@ -31,7 +33,11 @@ public class StoryManager : MonoBehaviour
     {
         typingEffect = dialogueText.GetComponent<TypingEffect>();
         blinkingText = pressEnterText.GetComponent<BlinkingText>();
+
+        dialoguePanel.SetActive(false); // 一开始隐藏对话框
         pressEnterText.SetActive(false);
+        
+        videoPlayer.loopPointReached += OnVideoFinished;
 
         LoadCurrentStory();
     }
@@ -49,6 +55,12 @@ public class StoryManager : MonoBehaviour
                 NextDialogueOrStory();
             }
         }
+    }
+
+    private IEnumerator WaitAndShowDialogue()
+    {
+        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue); // 这里可以调整延迟时间，比如1秒、2秒
+        ShowDialogue();
     }
 
     private void LoadCurrentStory()
@@ -77,13 +89,19 @@ public class StoryManager : MonoBehaviour
             videoPlayer.clip = step.backgroundVideo;
             videoPlayer.Play();
         }
+        else if (step.backgroundType == BackgroundType.Unchanged)
+        {
+            // Keep the current background, so do nothing except for showing the dialogue
+            StartCoroutine(WaitAndShowDialogue());
+        }
 
         dialogueIndex = 0;
-        ShowDialogue();
     }
 
     private void ShowDialogue()
     {
+        dialoguePanel.SetActive(true); //  显示对话框
+
         StoryStep step = storySteps[storyIndex];
 
         typingEffect.Play(step.dialogues[dialogueIndex], () => { pressEnterText.SetActive(true); });
@@ -119,12 +137,23 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator PlayFrameAnimation(Sprite[] frames)
     {
-        int frame = 0;
-        while (true)
+        // Loop through the frames, and stop at the last frame
+        for (int frame = 0; frame < frames.Length; frame++)
         {
             backgroundImage.sprite = frames[frame];
-            frame = (frame + 1) % frames.Length;
             yield return new WaitForSeconds(1f / frameRate);
         }
+        // Wait for a short time before showing the dialogue
+        StartCoroutine(WaitAndShowDialogue());
+    }
+    
+    private void OnVideoFinished(VideoPlayer vp)
+    {
+        vp.Pause(); // 确保播放完后停在最后一帧
+        // 以后这里可以选择是否要显示最后一帧的图片
+        // backgroundImage.sprite = ...; // 设置最后一帧的图片
+        
+        // Wait for a short time before showing the dialogue
+        StartCoroutine(WaitAndShowDialogue());
     }
 }
