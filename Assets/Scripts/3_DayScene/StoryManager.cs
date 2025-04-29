@@ -29,6 +29,8 @@ public class StoryManager : MonoBehaviour
 
     private Action onStoryFinished; // 外部播放完成回调
 
+    private DialogueAsset currentDialogueAsset;
+
     private void Start()
     {
         // 初始化内部引用，不触发播放逻辑
@@ -109,6 +111,19 @@ public class StoryManager : MonoBehaviour
             StartCoroutine(WaitAndShowDialogue());
         }
 
+        if (!string.IsNullOrEmpty(step.dialogueFileName))
+        {
+            currentDialogueAsset = DialogueLoader.LoadFromResources("Dialogue/" + step.dialogueFileName);
+            if (currentDialogueAsset == null)
+            {
+                Debug.LogError($"Failed to load dialogue for {step.dialogueFileName}");
+            }
+        }
+        else
+        {
+            currentDialogueAsset = null;
+        }
+
         dialogueIndex = 0;
     }
 
@@ -116,11 +131,18 @@ public class StoryManager : MonoBehaviour
     {
         dialoguePanel.SetActive(true); //  显示对话框
 
-        StoryStep step = storySteps[storyIndex];
-        typingEffect.Play(step.dialogues[dialogueIndex], () =>
+        if (currentDialogueAsset != null && dialogueIndex < currentDialogueAsset.lines.Count)
         {
-            pressEnterText.SetActive(true);
-        });
+            string textToShow = currentDialogueAsset.lines[dialogueIndex].zh; // 目前默认中文
+            typingEffect.Play(textToShow, () =>
+            {
+                pressEnterText.SetActive(true);
+            });
+        }
+        else
+        {
+            Debug.LogWarning("No dialogue available to show.");
+        }
     }
 
     private void NextDialogueOrStory()
@@ -131,7 +153,7 @@ public class StoryManager : MonoBehaviour
 
         dialogueIndex++;
 
-        if (dialogueIndex < step.dialogues.Length)
+        if (currentDialogueAsset != null && dialogueIndex < currentDialogueAsset.lines.Count)
         {
             ShowDialogue();
         }

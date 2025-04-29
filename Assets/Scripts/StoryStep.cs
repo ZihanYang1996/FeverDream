@@ -16,8 +16,7 @@ public class StoryStep : ScriptableObject
     public Sprite[] animationFrames;   // 支持单图/帧动画
     public VideoClip backgroundVideo;  // 支持背景视频
 
-    [TextArea(3, 10)]
-    public string[] dialogues;          // 支持多句对话
+    public string dialogueFileName;    // 对应 Resources/Dialogue/下的 JSON 文件名（不包括.json）
 
     // 未来扩展（可以留空）
     // public AudioClip voiceClip;
