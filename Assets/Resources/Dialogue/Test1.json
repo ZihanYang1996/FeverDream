@@ -1,0 +1,20 @@
+{
+  "dialogueId": "intro_scene_001",
+  "lines": [
+    {
+      "speaker": "Narrator",
+      "zh": "你好，欢迎来到折纸世界。",
+      "en": "Hello, welcome to the world of origami."
+    },
+    {
+      "speaker": "Mentor",
+      "zh": "你将学习如何掌控风的力量。",
+      "en": "You will learn to master the power of the wind."
+    },
+    {
+      "speaker": "Narrator",
+      "zh": "准备好了吗？",
+      "en": "Are you ready?"
+    }
+  ]
+}
