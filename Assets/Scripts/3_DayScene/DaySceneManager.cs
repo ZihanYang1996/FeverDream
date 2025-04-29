@@ -55,6 +55,15 @@ public class DaySceneManager : MonoBehaviour
 
     private void PlayRemainingPart()
     {
-        storyManager.Play(part2Steps);
+        storyManager.Play(part2Steps, onComplete: () =>
+        {
+            GoToFirstLevel();
+        });
+    }
+    
+    // This method is called when the story is finished, to load the first level
+    private void GoToFirstLevel()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameLevel1Scene");
     }
 }
