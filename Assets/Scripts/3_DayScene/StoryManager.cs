@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,38 +9,36 @@ public class StoryManager : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private Image backgroundImage;
-
     [SerializeField] private RawImage videoBackground;
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject pressEnterText;
 
-    [Header("Story Content")]
-    [SerializeField] private StoryStep[] storySteps;
-
+    [Header("Story Settings")]
     [SerializeField] private float frameRate = 10f; // 帧动画播放速度
     [SerializeField] private float delayBetweenBackgroundAndDialogue = 1.0f; // 背景和对话之间的间隔时间
 
+    private StoryStep[] storySteps;
     private int storyIndex = 0;
     private int dialogueIndex = 0;
 
     private TypingEffect typingEffect;
     private BlinkingText blinkingText;
-
     private Coroutine frameAnimationCoroutine;
+
+    private Action onStoryFinished; // 外部播放完成回调
 
     private void Start()
     {
+        // 初始化内部引用，不触发播放逻辑
         typingEffect = dialogueText.GetComponent<TypingEffect>();
         blinkingText = pressEnterText.GetComponent<BlinkingText>();
 
         dialoguePanel.SetActive(false); // 一开始隐藏对话框
         pressEnterText.SetActive(false);
-        
-        videoPlayer.loopPointReached += OnVideoFinished;
 
-        LoadCurrentStory();
+        videoPlayer.loopPointReached += OnVideoFinished;
     }
 
     private void Update()
@@ -57,18 +56,33 @@ public class StoryManager : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitAndShowDialogue()
+    public void Play(StoryStep[] steps, Action onComplete = null)
     {
-        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue); // 这里可以调整延迟时间，比如1秒、2秒
-        ShowDialogue();
+        StopAllCoroutines(); // 清理旧协程
+        storySteps = steps;
+        storyIndex = 0;
+        dialogueIndex = 0;
+        onStoryFinished = onComplete;
+
+        LoadCurrentStory();
     }
 
     private void LoadCurrentStory()
     {
+        if (storySteps == null || storySteps.Length == 0)
+        {
+            Debug.LogWarning("No story steps to play!");
+            onStoryFinished?.Invoke();
+            return;
+        }
+
         StoryStep step = storySteps[storyIndex];
 
         if (frameAnimationCoroutine != null)
+        {
             StopCoroutine(frameAnimationCoroutine);
+            frameAnimationCoroutine = null;
+        }
 
         // 切换背景
         if (step.backgroundType == BackgroundType.Image)
@@ -103,8 +117,10 @@ public class StoryManager : MonoBehaviour
         dialoguePanel.SetActive(true); //  显示对话框
 
         StoryStep step = storySteps[storyIndex];
-
-        typingEffect.Play(step.dialogues[dialogueIndex], () => { pressEnterText.SetActive(true); });
+        typingEffect.Play(step.dialogues[dialogueIndex], () =>
+        {
+            pressEnterText.SetActive(true);
+        });
     }
 
     private void NextDialogueOrStory()
@@ -129,24 +145,42 @@ public class StoryManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Story Finished!");
-                // TODO: 进入Puzzle或下一幕
+                onStoryFinished?.Invoke();
             }
         }
     }
 
-    private IEnumerator PlayFrameAnimation(Sprite[] frames)
+    private IEnumerator WaitAndShowDialogue()
     {
-        // Loop through the frames, and stop at the last frame
-        for (int frame = 0; frame < frames.Length; frame++)
-        {
-            backgroundImage.sprite = frames[frame];
-            yield return new WaitForSeconds(1f / frameRate);
-        }
-        // Wait for a short time before showing the dialogue
-        StartCoroutine(WaitAndShowDialogue());
+        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue); // 这里可以调整延迟时间，比如1秒、2秒
+        ShowDialogue();
     }
-    
+
+ private IEnumerator PlayFrameAnimation(Sprite[] frames)
+{
+    if (frames == null || frames.Length == 0)
+    {
+        Debug.LogWarning("No frames provided for frame animation.");
+        yield return StartCoroutine(WaitAndShowDialogue());
+        yield break;
+    }
+
+    if (frames.Length == 1)
+    {
+        backgroundImage.sprite = frames[0];
+        yield return StartCoroutine(WaitAndShowDialogue());
+        yield break;
+    }
+
+    for (int frame = 0; frame < frames.Length; frame++)
+    {
+        backgroundImage.sprite = frames[frame];
+        yield return new WaitForSeconds(1f / frameRate);
+    }
+
+    yield return StartCoroutine(WaitAndShowDialogue());
+}
+
     private void OnVideoFinished(VideoPlayer vp)
     {
         vp.Pause(); // 确保播放完后停在最后一帧

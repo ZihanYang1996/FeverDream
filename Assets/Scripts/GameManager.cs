@@ -4,6 +4,11 @@ public class GameManager : MonoBehaviour
 {
     // 单例
     private static GameManager _instance;
+    // Whether the game is in a tutorial state
+    public bool hasSeenTutorial = false;
+    public bool justFinishedTutorial = false;  // Whether the game just finished the tutorial (used in DayScene)
+    
+    
 
     public static GameManager Instance
     {
@@ -35,12 +40,13 @@ public class GameManager : MonoBehaviour
     // Some logic to handle game state
     public void ResetForNewLoop()
     {
+        hasSeenTutorial = false;
 
     }
     
     private static void SetupInstance()
     {
-        _instance = FindObjectOfType<GameManager>();
+        _instance = Object.FindFirstObjectByType<GameManager>();
         if (_instance == null)
         {
             GameObject gameObj = new GameObject("GameManager (Generated)");
