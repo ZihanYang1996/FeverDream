@@ -13,7 +13,7 @@ public class StageManager : MonoBehaviour
     public Image workspaceOutlineImage; // Image in WorkspaceArea to display selected outline
     public Transform workspaceArea; // WorkspaceArea container
     public Button validateButton; // ValidateButton
-    public Button startPuzzleButton; // Start Demo button to open puzzle panel
+    public Button startPuzzleButton; // Start button to open puzzle panel
 
     [Header("Render Config")]
     public Camera captureCamera; // MaskCamera
