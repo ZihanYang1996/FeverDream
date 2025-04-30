@@ -4,9 +4,12 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine.Serialization;
+using System.Collections;
 
 public class StageManager : MonoBehaviour
 {
+    public Action<bool, StageData> OnPuzzleComplete;
+
     [Header("UI References")]
     public GameObject puzzlePanel; // PuzzlePanel object
 
@@ -42,12 +45,24 @@ public class StageManager : MonoBehaviour
     [Header("Normalization Settings")]
     [SerializeField] private int normalizationResolution = 256;
 
+    [Header("Gameplay Timing")]
+    [SerializeField] private float countdownDuration = 30f;
+
+    private float countdownTimer;
+    private bool puzzleCompleted = false;
+    [SerializeField] private TMPro.TextMeshProUGUI countdownText;
+
+    [SerializeField] private Image screenFlashImage;
+    [SerializeField] private float flashDuration = 0.2f;
+
     private Texture2D playerMask;
 
     void Start()
     {
         // hide puzzle at start
         puzzlePanel.SetActive(false);
+        // hide screen flash image
+        screenFlashImage.gameObject.SetActive(false);
         // bind Start Demo to show puzzle panel
         startPuzzleButton.onClick.AddListener(ShowPuzzlePanel);
         // bind validate
@@ -68,6 +83,8 @@ public class StageManager : MonoBehaviour
             Button btn = btnGO.GetComponent<Button>();
             btn.onClick.AddListener(() => SelectStage(idx));
         }
+
+        countdownTimer = countdownDuration;
     }
 
     /// <summary>
@@ -126,6 +143,7 @@ public class StageManager : MonoBehaviour
     public void ShowPuzzlePanel()
     {
         puzzlePanel.SetActive(true);
+        BeginCountdown();
     }
 
     /// <summary>
@@ -189,6 +207,16 @@ public class StageManager : MonoBehaviour
         float iou = ComputeTranslatedIoU(normTarget, normPlayer, 0, 0);
         bool success = iou >= currentStage.iouThreshold;
         Debug.Log($"[Validate] IoU = {iou:F2} => {(success ? "Success" : "Fail")}");
+
+        if (success && !puzzleCompleted)
+        {
+            HandlePuzzleSuccess();
+        }
+        else if (!success)
+        {
+            // If not successful, flash red, but player can still retry
+            StartCoroutine(FlashRedEffect());
+        }
 
         // Destroy clones
         foreach (var c in clones)
@@ -393,5 +421,79 @@ public class StageManager : MonoBehaviour
         rotated.Apply();
 
         return rotated;
+    }
+
+    private IEnumerator CountdownTimer()
+    {
+        int secondsLeft = Mathf.CeilToInt(countdownDuration);
+
+        while (secondsLeft > 0)
+        {
+            countdownTimer = secondsLeft;
+
+            if (countdownText != null)
+            {
+                countdownText.text = secondsLeft.ToString();
+            }
+
+            yield return new WaitForSeconds(1f);
+            if (puzzleCompleted) yield break;
+
+            secondsLeft--;
+        }
+
+        countdownTimer = 0;
+        if (countdownText != null)
+        {
+            countdownText.text = "";
+        }
+
+        if (!puzzleCompleted)
+        {
+            Debug.Log("[StageManager] Countdown expired. Puzzle failed.");
+            HandlePuzzleFailure();
+        }
+    }
+
+    private void HandlePuzzleSuccess()
+    {
+        puzzleCompleted = true;
+        OnPuzzleComplete?.Invoke(true, currentStage);
+    }
+
+    private void HandlePuzzleFailure()
+    {
+        StartCoroutine(FlashRedEffect());
+        OnPuzzleComplete?.Invoke(false, currentStage);
+    }
+
+    private IEnumerator FlashRedEffect()
+    {
+        if (screenFlashImage == null) yield break;
+
+        Color originalColor = screenFlashImage.color;
+        screenFlashImage.color = new Color(1f, 0f, 0f, 0.5f);
+        screenFlashImage.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(flashDuration);
+
+        screenFlashImage.gameObject.SetActive(false);
+        screenFlashImage.color = originalColor;
+    }
+
+
+    /// <summary>
+    /// Manually begins the countdown timer, resetting it and updating the display.
+    /// </summary>
+    public void BeginCountdown()
+    {
+        countdownTimer = countdownDuration;
+
+        if (countdownText != null)
+        {
+            countdownText.text = Mathf.CeilToInt(countdownTimer).ToString();
+        }
+
+        StartCoroutine(CountdownTimer());
     }
 }
