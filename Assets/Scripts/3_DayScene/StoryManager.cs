@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
+// using DialogueSystem;
 
 public class StoryManager : MonoBehaviour
 {
@@ -11,9 +12,7 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private Image backgroundImage;
     [SerializeField] private RawImage videoBackground;
     [SerializeField] private VideoPlayer videoPlayer;
-    [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private GameObject pressEnterText;
+    [SerializeField] private DialogueManager dialogueManager;
 
     [Header("Story Settings")]
     [SerializeField] private float frameRate = 10f; // 帧动画播放速度
@@ -21,41 +20,15 @@ public class StoryManager : MonoBehaviour
 
     private StoryStep[] storySteps;
     private int storyIndex = 0;
-    private int dialogueIndex = 0;
 
-    private TypingEffect typingEffect;
-    private BlinkingText blinkingText;
     private Coroutine frameAnimationCoroutine;
 
     private Action onStoryFinished; // 外部播放完成回调
 
-    private DialogueAsset currentDialogueAsset;
 
     private void Start()
     {
-        // 初始化内部引用，不触发播放逻辑
-        typingEffect = dialogueText.GetComponent<TypingEffect>();
-        blinkingText = pressEnterText.GetComponent<BlinkingText>();
-
-        dialoguePanel.SetActive(false); // 一开始隐藏对话框
-        pressEnterText.SetActive(false);
-
         videoPlayer.loopPointReached += OnVideoFinished;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            if (typingEffect.IsTyping())
-            {
-                typingEffect.ForceComplete();
-            }
-            else
-            {
-                NextDialogueOrStory();
-            }
-        }
     }
 
     public void Play(StoryStep[] steps, Action onComplete = null)
@@ -63,7 +36,6 @@ public class StoryManager : MonoBehaviour
         StopAllCoroutines(); // 清理旧协程
         storySteps = steps;
         storyIndex = 0;
-        dialogueIndex = 0;
         onStoryFinished = onComplete;
 
         LoadCurrentStory();
@@ -110,57 +82,38 @@ public class StoryManager : MonoBehaviour
             // Keep the current background, so do nothing except for showing the dialogue
             StartCoroutine(WaitAndShowDialogue());
         }
-
-        if (!string.IsNullOrEmpty(step.dialogueFileName))
-        {
-            currentDialogueAsset = DialogueLoader.LoadFromResources("Dialogue/" + step.dialogueFileName);
-            if (currentDialogueAsset == null)
-            {
-                Debug.LogError($"Failed to load dialogue for {step.dialogueFileName}");
-            }
-        }
-        else
-        {
-            currentDialogueAsset = null;
-        }
-
-        dialogueIndex = 0;
     }
 
-    private void ShowDialogue()
-    {
-        dialoguePanel.SetActive(true); //  显示对话框
+    // No longer used; logic handled in WaitAndShowDialogue completion callback
 
-        if (currentDialogueAsset != null && dialogueIndex < currentDialogueAsset.lines.Count)
+    private IEnumerator WaitAndShowDialogue()
+    {
+        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue); // 这里可以调整延迟时间，比如1秒、2秒
+        if (!string.IsNullOrEmpty(storySteps[storyIndex].dialogueFileName))
         {
-            string textToShow = currentDialogueAsset.lines[dialogueIndex].zh; // 目前默认中文
-            typingEffect.Play(textToShow, () =>
+            var dialogueAsset = DialogueLoader.LoadFromResources("Dialogue/" + storySteps[storyIndex].dialogueFileName);
+            if (dialogueAsset == null)
             {
-                pressEnterText.SetActive(true);
+                Debug.LogError($"Failed to load dialogue: {storySteps[storyIndex].dialogueFileName}");
+                yield break;
+            }
+
+            dialogueManager.PlayDialogue(dialogueAsset, Language.ZH, () =>
+            {
+                storyIndex++;
+                if (storyIndex < storySteps.Length)
+                {
+                    LoadCurrentStory();
+                }
+                else
+                {
+                    onStoryFinished?.Invoke();
+                }
             });
         }
         else
         {
-            Debug.LogWarning("No dialogue available to show.");
-        }
-    }
-
-    private void NextDialogueOrStory()
-    {
-        pressEnterText.SetActive(false);
-
-        StoryStep step = storySteps[storyIndex];
-
-        dialogueIndex++;
-
-        if (currentDialogueAsset != null && dialogueIndex < currentDialogueAsset.lines.Count)
-        {
-            ShowDialogue();
-        }
-        else
-        {
             storyIndex++;
-
             if (storyIndex < storySteps.Length)
             {
                 LoadCurrentStory();
@@ -170,12 +123,6 @@ public class StoryManager : MonoBehaviour
                 onStoryFinished?.Invoke();
             }
         }
-    }
-
-    private IEnumerator WaitAndShowDialogue()
-    {
-        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue); // 这里可以调整延迟时间，比如1秒、2秒
-        ShowDialogue();
     }
 
  private IEnumerator PlayFrameAnimation(Sprite[] frames)
