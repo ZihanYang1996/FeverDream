@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public static class DialogueLoader
+namespace DialogueSystem
 {
-    public static DialogueAsset LoadFromResources(string fileName)
+    public static class DialogueLoader
     {
-        // Resources.Load 不需要加 .json 后缀，只要传入相对路径
-        TextAsset jsonFile = Resources.Load<TextAsset>(fileName);
-        if (jsonFile == null)
+        public static DialogueAsset LoadFromResources(string fileName)
         {
-            Debug.LogError($"[DialogueLoader] Failed to load: Resources/{fileName}.json");
-            return null;
-        }
+            // Resources.Load 不需要加 .json 后缀，只要传入相对路径
+            TextAsset jsonFile = Resources.Load<TextAsset>(fileName);
+            if (jsonFile == null)
+            {
+                Debug.LogError($"[DialogueLoader] Failed to load: Resources/{fileName}.json");
+                return null;
+            }
 
-        DialogueAsset dialogue = JsonUtility.FromJson<DialogueAsset>(jsonFile.text);
-        return dialogue;
+            DialogueAsset dialogue = JsonUtility.FromJson<DialogueAsset>(jsonFile.text);
+            return dialogue;
+        }
     }
 }

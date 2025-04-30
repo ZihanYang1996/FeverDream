@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
-// using DialogueSystem;
+using DialogueSystem;
 
 public class StoryManager : MonoBehaviour
 {
