@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<StageData> mainStages;
     private HashSet<string> completedStageIds = new HashSet<string>();
 
+    [Header("Scene Management")]
+    [SerializeField] private SceneFlowController sceneFlowController;
+    
     public StageData GetTutorialStage() => tutorialStage;
     public List<StageData> GetMainStages() => mainStages;
 
@@ -70,5 +74,12 @@ public class GameManager : MonoBehaviour
             _instance = gameObj.AddComponent<GameManager>();
             DontDestroyOnLoad(gameObj);
         }
+    }
+    
+    public void GoToNextScene(string condition)
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        string nextScene = sceneFlowController.ResolveNextScene(currentScene, condition);
+        SceneManager.LoadScene(nextScene);
     }
 }
