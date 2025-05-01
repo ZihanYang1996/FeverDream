@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,8 +8,24 @@ public class GameManager : MonoBehaviour
     // Whether the game is in a tutorial state
     public bool hasSeenTutorial = false;
     public bool justFinishedTutorial = false;  // Whether the game just finished the tutorial (used in DayScene)
-    
-    
+
+    [Header("Stage Management")]
+    [SerializeField] private StageData tutorialStage;
+    [SerializeField] private List<StageData> mainStages;
+    private HashSet<string> completedStageIds = new HashSet<string>();
+
+    public StageData GetTutorialStage() => tutorialStage;
+    public List<StageData> GetMainStages() => mainStages;
+
+    public void RegisterCompletedStage(StageData stage)
+    {
+        if (!string.IsNullOrEmpty(stage.id))
+        {
+            completedStageIds.Add(stage.id);
+        }
+    }
+
+    public bool HasCompletedStage(string id) => completedStageIds.Contains(id);
 
     public static GameManager Instance
     {
@@ -41,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void ResetForNewLoop()
     {
         hasSeenTutorial = false;
-
+        completedStageIds.Clear();
     }
     
     private static void SetupInstance()

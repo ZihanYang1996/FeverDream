@@ -35,7 +35,11 @@ public class StageManager : MonoBehaviour
     public Transform patternSelectorContainer; // Container for pattern buttons
 
     public GameObject patternButtonPrefab; // Prefab for pattern button
-    public List<StageData> allStages; // List of all stages to generate buttons
+    // public List<StageData> allStages; // List of all stages to generate buttons
+
+    // Holds all stage data references
+    private List<StageData> allStages;
+    private Dictionary<string, StageData> stageDict = new Dictionary<string, StageData>();
 
     [Header("Export Settings")]
     [SerializeField] private string exportFolderName = "Temp"; // Folder under Assets
@@ -69,22 +73,57 @@ public class StageManager : MonoBehaviour
         validateButton.onClick.AddListener(ValidatePuzzle);
         // Permanently direct captureCamera to render into captureRT
         captureCamera.targetTexture = captureRT;
+        countdownTimer = countdownDuration;
+    }
 
-        // Generate pattern selector buttons
+    /// <summary>
+    /// Injects the list of stages to be used by this manager.
+    /// </summary>
+    public void SetupStages(List<StageData> stages)
+    {
+        allStages = stages;
+        stageDict.Clear();
+
+        foreach (var s in allStages)
+        {
+            if (!string.IsNullOrEmpty(s.id))
+            {
+                stageDict[s.id] = s;
+            }
+        }
+
+        GeneratePatternButtons();
+    }
+
+    /// <summary>
+    /// Generates pattern selector buttons for each stage.
+    /// </summary>
+    public void GeneratePatternButtons()
+    {
+        if (allStages == null) return;
+
+        foreach (Transform child in patternSelectorContainer)
+        {
+            Destroy(child.gameObject); // Clear previous
+        }
+
         for (int i = 0; i < allStages.Count; i++)
         {
-            int idx = i;
             StageData sd = allStages[i];
             GameObject btnGO = Instantiate(patternButtonPrefab, patternSelectorContainer);
             btnGO.name = "PatternBtn_" + sd.name;
             Image img = btnGO.GetComponent<Image>();
             img.sprite = sd.outlineSprite;
             img.preserveAspect = true;
+            // If completed and answerSprite is available, show answerSprite
+            if (GameManager.Instance.HasCompletedStage(sd.id) && sd.solutionSprite != null)
+            {
+                img.sprite = sd.solutionSprite;
+            }
             Button btn = btnGO.GetComponent<Button>();
-            btn.onClick.AddListener(() => SelectStage(idx));
+            string stageId = sd.id;
+            btn.onClick.AddListener(() => SelectStageById(stageId));
         }
-
-        countdownTimer = countdownDuration;
     }
 
     /// <summary>
@@ -96,6 +135,11 @@ public class StageManager : MonoBehaviour
         // set outline sprite
         workspaceOutlineImage.sprite = stage.outlineSprite;
         workspaceOutlineImage.color = Color.white;
+        // If completed and answerSprite is available, show answerSprite
+        if (GameManager.Instance.HasCompletedStage(stage.id) && stage.solutionSprite != null)
+        {
+            workspaceOutlineImage.sprite = stage.solutionSprite;
+        }
         // clear previous pieces
         // Return all pieces to their original positions and parents
         for (int i = workspaceArea.childCount - 1; i >= 0; i--)
@@ -112,28 +156,17 @@ public class StageManager : MonoBehaviour
         puzzlePanel.SetActive(true);
     }
 
-    /// <summary>
-    /// Switch to selected stage, update workspace outline and reset workspace.
-    /// </summary>
-    public void SelectStage(int index)
+
+    public void SelectStageById(string id)
     {
-        // ensure panel is visible when selecting a pattern
-        puzzlePanel.SetActive(true);
-        // Set current stage
-        currentStage = allStages[index];
-        // Update workspace outline image
-        workspaceOutlineImage.sprite = currentStage.outlineSprite;
-        workspaceOutlineImage.color = Color.white;
-        // clear previous pieces
-        // Return all pieces to their original positions and parents
-        for (int i = workspaceArea.childCount - 1; i >= 0; i--)
+        if (stageDict != null && stageDict.TryGetValue(id, out StageData stage))
         {
-            Transform piece = workspaceArea.GetChild(i);
-            TangramDraggable draggable = piece.GetComponent<TangramDraggable>();
-            if (draggable != null)
-            {
-                draggable.Reset();
-            }
+            currentStage = stage;
+            LoadStage(stage);
+        }
+        else
+        {
+            Debug.LogWarning($"Stage with ID '{id}' not found.");
         }
     }
 
