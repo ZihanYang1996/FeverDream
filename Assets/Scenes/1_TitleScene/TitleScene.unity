@@ -472,6 +472,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8af7ccd44ca415cb26351daa38e820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasSeenTutorial: 0
+  justFinishedTutorial: 0
+  tutorialStage: {fileID: 11400000, guid: 2a2aaff86b0da475e9fb4639a16f4cbf, type: 2}
+  mainStages:
+  - {fileID: 11400000, guid: 2a2aaff86b0da475e9fb4639a16f4cbf, type: 2}
+  - {fileID: 11400000, guid: 5dca0085a4e63487e81b714d254949da, type: 2}
 --- !u!4 &1580722507
 Transform:
   m_ObjectHideFlags: 0
