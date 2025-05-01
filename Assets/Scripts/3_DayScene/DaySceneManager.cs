@@ -7,27 +7,31 @@ public class DaySceneManager : MonoBehaviour
 
     [Header("Story Parts")]
     [SerializeField] private StoryStep[] part1Steps; // 第三幕前半段
-    [SerializeField] private string tutorialScene = "TutorialScene"; // 新手教学
+
     [SerializeField] private StoryStep[] part2Steps; // 第三幕后半段
 
-
-    private bool tutorialCompleted = false;
+    private string sceneTransitionCondition = "FirstTime"; // 过渡条件
 
     private void Start()
     {
         if (!GameManager.Instance.hasSeenTutorial)
         {
+            sceneTransitionCondition = "FirstTime"; // It's the first time playing, so we need to show the tutorial
             PlayPart1ThenTutorial();
         }
         else if (GameManager.Instance.justFinishedTutorial)
         {
+            sceneTransitionCondition = "Normal"; // Tutorial has been completed, so we can proceed normally
             PlayRemainingPart();
             GameManager.Instance.justFinishedTutorial = false; // Reset the flag
         }
         else
         {
+            sceneTransitionCondition = "Normal"; // No tutorial needed, proceed normally
             PlayWholePartDirectly();
         }
+
+        // Decide
     }
 
     private void PlayPart1ThenTutorial()
@@ -41,7 +45,7 @@ public class DaySceneManager : MonoBehaviour
 
     private void OpenTutorial()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(tutorialScene);
+        GameManager.Instance.GoToNextScene(sceneTransitionCondition);
     }
 
     private void PlayWholePartDirectly()
@@ -55,15 +59,12 @@ public class DaySceneManager : MonoBehaviour
 
     private void PlayRemainingPart()
     {
-        storyManager.Play(part2Steps, onComplete: () =>
-        {
-            GoToFirstLevel();
-        });
+        storyManager.Play(part2Steps, onComplete: () => { GoToFirstLevel(); });
     }
-    
+
     // This method is called when the story is finished, to load the first level
     private void GoToFirstLevel()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameLevel1Scene");
+        GameManager.Instance.GoToNextScene(sceneTransitionCondition);
     }
 }

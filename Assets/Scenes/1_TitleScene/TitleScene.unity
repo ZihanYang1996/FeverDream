@@ -453,6 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580722507}
   - component: {fileID: 1580722506}
+  - component: {fileID: 1580722508}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -478,6 +479,7 @@ MonoBehaviour:
   mainStages:
   - {fileID: 11400000, guid: 2a2aaff86b0da475e9fb4639a16f4cbf, type: 2}
   - {fileID: 11400000, guid: 5dca0085a4e63487e81b714d254949da, type: 2}
+  sceneFlowController: {fileID: 1580722508}
 --- !u!4 &1580722507
 Transform:
   m_ObjectHideFlags: 0
@@ -493,6 +495,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580722508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580722505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a204a3b739b65487cb6d17d01f805913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionRules:
+  - {fileID: 11400000, guid: 95240f18279404336b20e33f89d2cb3b, type: 2}
+  - {fileID: 11400000, guid: 32d97ea0fd7974bdc9c362ed9a18aa88, type: 2}
+  - {fileID: 11400000, guid: 9fca957caf060438ab6cd4f54c6e6eb0, type: 2}
 --- !u!1 &1653875069
 GameObject:
   m_ObjectHideFlags: 0

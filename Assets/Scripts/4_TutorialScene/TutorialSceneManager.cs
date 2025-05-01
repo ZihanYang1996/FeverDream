@@ -12,6 +12,7 @@ public class TutorialSceneManager : MonoBehaviour
         {
             showPuzzleButton.SetActive(false); // hide initially
         }
+
         StartPuzzle();
 
         if (stageManager != null)
@@ -27,7 +28,6 @@ public class TutorialSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void ReturnToDayScene()
@@ -48,7 +48,7 @@ public class TutorialSceneManager : MonoBehaviour
             Debug.LogWarning("ShowPuzzleButton is not assigned in the inspector.");
         }
 
-        StageManager stageManager = FindObjectOfType<StageManager>();
+        StageManager stageManager = FindAnyObjectByType<StageManager>();
         if (stageManager != null)
         {
             var tutorialStage = GameManager.Instance.GetTutorialStage();
@@ -66,7 +66,8 @@ public class TutorialSceneManager : MonoBehaviour
         {
             Debug.Log($"[Tutorial] Puzzle '{stage.id}' completed!");
             GameManager.Instance.RegisterCompletedStage(stage);
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name); // Reload current scene for testing
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
+                .name); // Reload current scene for testing
         }
         else
         {
