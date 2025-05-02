@@ -259,8 +259,6 @@ MonoBehaviour:
   storyManager: {fileID: 105814560}
   part1Steps:
   - {fileID: 11400000, guid: a9caf6f5bc5a74a50973a36dc10281ff, type: 2}
-  - {fileID: 11400000, guid: a9caf6f5bc5a74a50973a36dc10281ff, type: 2}
-  tutorialScene: TutorialScene
   part2Steps:
   - {fileID: 11400000, guid: b0e59530843fa47f3960e95f6213a009, type: 2}
 --- !u!114 &105814562

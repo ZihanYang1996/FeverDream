@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dca244e4c993541b39d2689ebf7a7611, type: 3}
-  m_Name: Test2
+  m_Script: {fileID: 11500000, guid: 4a2eb64070fc448a68a4e1a0825f337b, type: 3}
+  m_Name: 4_TutorialSceneTransitionRule
   m_EditorClassIdentifier: 
-  backgroundType: 0
-  animationFrames:
-  - {fileID: 703109354269225772, guid: 0ba2bf11c9da9403f897b2c7828679e4, type: 3}
-  backgroundVideo: {fileID: 0}
-  dialogueFileName: 3_DayScene/Test2
+  currentScene: TutorialScene
+  transitions:
+  - condition: __DEFAULT__
+    nextSceneName: DayScene

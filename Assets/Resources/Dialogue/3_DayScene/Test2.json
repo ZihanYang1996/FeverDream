@@ -1,0 +1,15 @@
+{
+  "dialogueId": "intro_scene_002",
+  "lines": [
+    {
+      "speaker": "Narrator",
+      "zh": "要去睡觉了！",
+      "en": ""
+    },
+    {
+      "speaker": "Mentor",
+      "zh": "晚安。",
+      "en": "Good night."
+    }
+  ]
+}

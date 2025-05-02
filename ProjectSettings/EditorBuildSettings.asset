@@ -23,6 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/5_GameLevel1Scene/GameLevel1Scene.unity
     guid: 39556daf90c774f959d2ecd500ce2e66
+  - enabled: 1
+    path: Assets/Scenes/6_GameLevel1HiddenScene/GameLevel1HiddenScene.unity
+    guid: 2ef2992f3572e4071ad7a59fff26193c
+  - enabled: 1
+    path: Assets/Scenes/7_WakeUpScene/WakeUpScene.unity
+    guid: ffac375622f7d4b4ea0841ee5457b07b
+  - enabled: 1
+    path: Assets/Scenes/8_GameLevel2Scene/GameLevel2Scene.unity
+    guid: d423992cbbdf44203acf9d24f995dfd4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

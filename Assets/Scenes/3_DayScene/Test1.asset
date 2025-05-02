@@ -16,4 +16,4 @@ MonoBehaviour:
   animationFrames:
   - {fileID: 703109354269225772, guid: 0ba2bf11c9da9403f897b2c7828679e4, type: 3}
   backgroundVideo: {fileID: 0}
-  dialogueFileName: Test1
+  dialogueFileName: 3_DayScene/Test1

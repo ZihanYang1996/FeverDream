@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83d3034ad797470e9e66b08afae8153, type: 3}
+  m_Name: HorseStage
+  m_EditorClassIdentifier: 
+  id: Horse
+  outlineSprite: {fileID: 8021567129952725160, guid: f5463e4d7c95e47f9bff9eeb2c4f826f, type: 3}
+  maskTexture: {fileID: 2800000, guid: 4478ce6bde1bc43338ce4002da9e9ac4, type: 3}
+  solutionSprite: {fileID: 7672759098259192623, guid: aa13dbb40a5c64db6b3b9f03a0d13444, type: 3}
+  iouThreshold: 0.9
