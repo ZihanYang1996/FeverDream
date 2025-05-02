@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,28 @@ public class GameManager : MonoBehaviour
 
     [Header("Scene Management")]
     [SerializeField] private SceneFlowController sceneFlowController;
+    public int totalNumberOfLevel { get; private set;  } = 2; // Total number of level in the game
+    public int totalNumberOfHiddenLevel { get; private set;  } = 2; // Total number of hidden level in the game
+
+    public int currentLevelIndex { get; private set;  } = 0; // Current level index, used by Wake Up Scene
+    public int numOfCompletedLevel { get; private set; } = 0; // Number of completed level in the current loop
+    public int numofCompletedHiddenLevel { get; private set; } = 0; // Number of completed hidden level in the current loop
+
+    public int numOfCompletedLevelLastLoop { get; private set; } = 0; // Number of completed level in the last loop
+    public int numOfCompletedHiddenLevel { get; private set; } = 0; // Number of completed hidden level in the last loop
+    public void IncrementCompletedLevel()
+    {
+        numOfCompletedLevel++;
+    }
+    public void IncrementCompletedHiddenLevel()
+    {
+        numofCompletedHiddenLevel++;
+    }
+    
+    public void IncrementCurrentLevelIndex()
+    {
+        currentLevelIndex++;
+    }
     
     public StageData GetTutorialStage() => tutorialStage;
     public List<StageData> GetMainStages() => mainStages;
@@ -61,8 +84,16 @@ public class GameManager : MonoBehaviour
     // Some logic to handle game state
     public void ResetForNewLoop()
     {
-        hasSeenTutorial = false;
-        completedStageIds.Clear();
+        // Reset the completed stages for the next loop
+        numOfCompletedLevelLastLoop = numOfCompletedLevel;
+        numOfCompletedLevel = 0;
+        
+        // Reset the completed hidden stages for the next loop
+        numOfCompletedHiddenLevel = numofCompletedHiddenLevel;
+        numofCompletedHiddenLevel = 0;
+        
+        // Reset the current scene index
+        currentLevelIndex = 0;
     }
     
     private static void SetupInstance()
