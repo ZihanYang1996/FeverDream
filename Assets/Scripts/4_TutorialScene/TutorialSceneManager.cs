@@ -34,7 +34,7 @@ public class TutorialSceneManager : MonoBehaviour
     {
         GameManager.Instance.hasSeenTutorial = true;
         GameManager.Instance.justFinishedTutorial = true;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DayScene");
+        GameManager.Instance.GoToNextScene(SceneTransitionConditions.Default);
     }
 
     public void StartPuzzle()
@@ -64,15 +64,22 @@ public class TutorialSceneManager : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log($"[Tutorial] Puzzle '{stage.id}' completed!");
+            if (stage)
+            {
+                Debug.Log($"[Tutorial] Puzzle '{stage.id}' completed!");
+            }
+            else
+            {
+                Debug.LogError("[Tutorial] Stage is null.");
+            }
+            
             GameManager.Instance.RegisterCompletedStage(stage);
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
-                .name); // Reload current scene for testing
+            ReturnToDayScene();
         }
         else
         {
-            Debug.Log("[Tutorial] Puzzle failed. You can retry.");
-            // You may show a retry UI here later
+            Debug.Log("[Tutorial] Puzzle failed. But it's fine.");
+            ReturnToDayScene();
         }
     }
 }
