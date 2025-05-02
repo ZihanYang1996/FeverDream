@@ -60,6 +60,10 @@ public class StageManager : MonoBehaviour
     [SerializeField] private float flashDuration = 0.2f;
 
     private Texture2D playerMask;
+    
+    [Header("Testing")]
+    [SerializeField] private Button testSuccessButton;
+    [SerializeField] private Button testFailButton;
 
     void Start()
     {
@@ -74,6 +78,16 @@ public class StageManager : MonoBehaviour
         // Permanently direct captureCamera to render into captureRT
         captureCamera.targetTexture = captureRT;
         countdownTimer = countdownDuration;
+        
+        // Test buttons for success/fail
+        testSuccessButton.onClick.AddListener(() =>
+        {
+            HandlePuzzleSuccess();
+        });
+        testFailButton.onClick.AddListener(() =>
+        {
+            HandlePuzzleFailure();
+        });
     }
 
     /// <summary>
@@ -496,6 +510,7 @@ public class StageManager : MonoBehaviour
 
     private void HandlePuzzleFailure()
     {
+        // Failure due to timeout
         StartCoroutine(FlashRedEffect());
         OnPuzzleComplete?.Invoke(false, currentStage);
     }
