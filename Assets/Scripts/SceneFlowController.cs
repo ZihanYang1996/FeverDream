@@ -34,6 +34,7 @@ public class SceneFlowController : MonoBehaviour
 
         foreach (var t in rule.transitions)
         {
+            Debug.LogWarning($"Checking transition: {t.condition} against {condition}");
             if (t.condition == condition)
             {
                 return t.nextSceneName;
