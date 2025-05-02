@@ -54,7 +54,7 @@ public class DaySceneManager : MonoBehaviour
         part1Steps.CopyTo(combined, 0);
         part2Steps.CopyTo(combined, part1Steps.Length);
 
-        storyManager.Play(combined);
+        storyManager.Play(combined, onComplete: () => { GoToFirstLevel(); });
     }
 
     private void PlayRemainingPart()
