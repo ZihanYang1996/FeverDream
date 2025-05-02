@@ -14,6 +14,12 @@ public class DaySceneManager : MonoBehaviour
 
     private void Start()
     {
+        // Log the game state (for debugging purposes)
+        Debug.Log($"Current Level Index: {GameManager.Instance.currentLevelIndex}");
+        Debug.Log($"Completed Levels: {GameManager.Instance.numOfCompletedLevel}");
+        Debug.Log($"Completed Hidden Levels: {GameManager.Instance.numofCompletedHiddenLevel}");
+        Debug.Log($"Last Loop Completed Levels: {GameManager.Instance.numOfCompletedLevelLastLoop}");
+        Debug.Log($"Last Loop Completed Hidden Levels: {GameManager.Instance.numOfCompletedHiddenLevel}");
         if (!GameManager.Instance.hasSeenTutorial)
         {
             sceneTransitionCondition = "FirstTime"; // It's the first time playing, so we need to show the tutorial

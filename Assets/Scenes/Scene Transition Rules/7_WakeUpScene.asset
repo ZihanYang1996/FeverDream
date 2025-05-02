@@ -10,15 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a2eb64070fc448a68a4e1a0825f337b, type: 3}
-  m_Name: 8_GameLevel2SceneTransitionRule
+  m_Name: 7_WakeUpScene
   m_EditorClassIdentifier: 
-  currentScene: GameLevel2Scene
+  currentScene: WakeUpScene
   transitions:
-  - condition: TimeOut
-    nextSceneName: WakeUpScene
-  - condition: NormalSolved
-    nextSceneName: WakeUpScene
-  - condition: SecretSolved
-    nextSceneName: WakeUpScene
-  - condition: WrongSolved
-    nextSceneName: WakeUpScene
+  - condition: AtLevel1
+    nextSceneName: GameLevel2Scene
+  - condition: AtLevel2
+    nextSceneName: DayScene

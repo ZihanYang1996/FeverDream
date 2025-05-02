@@ -11,6 +11,9 @@ public class GameLevel1SceneManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Increment the current level index
+        GameManager.Instance.IncrementCurrentLevelIndex();
+        
         if (showPuzzleButton != null)
         {
             showPuzzleButton.SetActive(false); // hide initially
@@ -71,10 +74,14 @@ public class GameLevel1SceneManager : MonoBehaviour
             // Determine the scene transition condition based on the stage ID
             if (stage.id == NormalStageId)
             {
+                // Increment the completed level count
+                GameManager.Instance.IncrementCompletedLevel();
                 GoToNextScene("NormalSolved");
             }
             else if (stage.id == SecretStageId)
             {
+                // Increment the completed level count
+                GameManager.Instance.IncrementCompletedLevel();
                 GoToNextScene("SecretSolved");
             }
             else

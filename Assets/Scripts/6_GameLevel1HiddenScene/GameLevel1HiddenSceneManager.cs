@@ -70,6 +70,9 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             // Determine the scene transition condition based on the stage ID
             if (stage.id == CorrectStageId)
             {
+                // Increment the number of completed hidden levels
+                GameManager.Instance.IncrementCompletedHiddenLevel();
+                
                 GoToNextScene("CorrectSolved");
             }
             else
