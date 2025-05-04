@@ -101,7 +101,7 @@ namespace DialogueSystem
             }
             
             dialogueText.text = speakerPrefix;  // 立即显示说话人
-            typingEffect.Play(text, () => { pressEnterText.SetActive(true); }, append: true, delayBeforeTyping: delayBetweenSpeakerAndDialogueText);
+            typingEffect.Play(text, () => { pressEnterText.SetActive(true); }, append:true, speakerPrefix, delayBeforeTyping: delayBetweenSpeakerAndDialogueText);
         }
     }
 }

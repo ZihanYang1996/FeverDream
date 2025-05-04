@@ -19,6 +19,8 @@ public class TypingEffect : MonoBehaviour
 
     private bool isTyping = true;
 
+    private string prefixText = ""; // 例如 "我："
+
     private void Start()
     {
         if (playOnStart)
@@ -31,6 +33,7 @@ public class TypingEffect : MonoBehaviour
     private IEnumerator TypeText(float delay)
     {
         yield return new WaitForSeconds(delay); // 先等一段时间
+        storyText.text = prefixText;
         foreach (char c in fullText)
         {
             storyText.text += c;
@@ -51,15 +54,16 @@ public class TypingEffect : MonoBehaviour
     public void ForceComplete()
     {
         StopAllCoroutines();
-        storyText.text = fullText;
+        storyText.text = prefixText + fullText;
         isTyping = false;
         OnTypingComplete?.Invoke();
     }
 
-    public void Play(string newText, Action onComplete, bool append = false, float delayBeforeTyping = 0f)
+    public void Play(string newText, Action onComplete, bool append = false, string speakerPrefix = "", float delayBeforeTyping = 0f)
     {
         StopAllCoroutines();
         fullText = newText;
+        prefixText = speakerPrefix;
         OnTypingComplete = onComplete;
         isTyping = true;
 
