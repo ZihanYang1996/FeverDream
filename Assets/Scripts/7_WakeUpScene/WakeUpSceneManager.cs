@@ -16,7 +16,7 @@ public class WakeUpSceneManager : MonoBehaviour
         numOfCompletedLevel = GameManager.Instance.numOfCompletedLevel;
         Debug.Log($"Completed {numOfCompletedLevel} levels");
         
-        numOfCompletedHiddenLevel = GameManager.Instance.numofCompletedHiddenLevel;
+        numOfCompletedHiddenLevel = GameManager.Instance.numOfCompletedHiddenLevel;
         Debug.Log($"Completed {numOfCompletedHiddenLevel} hidden levels");
 
         // Bind the continue button to the ContinueGame method

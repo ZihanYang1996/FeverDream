@@ -23,17 +23,17 @@ public class GameManager : MonoBehaviour
 
     public int currentLevelIndex { get; private set;  } = 0; // Current level index, used by Wake Up Scene
     public int numOfCompletedLevel { get; private set; } = 0; // Number of completed level in the current loop
-    public int numofCompletedHiddenLevel { get; private set; } = 0; // Number of completed hidden level in the current loop
+    public int numOfCompletedHiddenLevel { get; private set; } = 0; // Number of completed hidden level in the current loop
 
     public int numOfCompletedLevelLastLoop { get; private set; } = 0; // Number of completed level in the last loop
-    public int numOfCompletedHiddenLevel { get; private set; } = 0; // Number of completed hidden level in the last loop
+    public int numOfCompletedHiddenLevelLastLoop { get; private set; } = 0; // Number of completed hidden level in the last loop
     public void IncrementCompletedLevel()
     {
         numOfCompletedLevel++;
     }
     public void IncrementCompletedHiddenLevel()
     {
-        numofCompletedHiddenLevel++;
+        numOfCompletedHiddenLevel++;
     }
     
     public void IncrementCurrentLevelIndex()
@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour
         numOfCompletedLevel = 0;
         
         // Reset the completed hidden stages for the next loop
-        numOfCompletedHiddenLevel = numofCompletedHiddenLevel;
-        numofCompletedHiddenLevel = 0;
+        numOfCompletedHiddenLevelLastLoop = numOfCompletedHiddenLevel;
+        numOfCompletedHiddenLevel = 0;
         
         // Reset the current scene index
         currentLevelIndex = 0;
