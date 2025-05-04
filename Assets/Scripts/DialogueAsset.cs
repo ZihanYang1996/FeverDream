@@ -16,6 +16,7 @@ namespace DialogueSystem
         public string speaker;
         public string zh;
         public string en;
+        public bool isThought;
 
         // 如果未来加语言，只需要加字段：public string ja; public string fr; 等等
     }

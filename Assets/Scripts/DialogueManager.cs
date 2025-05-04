@@ -18,6 +18,7 @@ namespace DialogueSystem
 
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private GameObject pressEnterText;
+        [SerializeField] private float delayBetweenSpeakerAndDialogueText = 0.3f;
 
         private TypingEffect typingEffect;
         private BlinkingText blinkingText;
@@ -83,8 +84,24 @@ namespace DialogueSystem
 
         private void ShowLine()
         {
-            string text = currentLanguage == Language.ZH ? lines[index].zh : lines[index].en;
-            typingEffect.Play(text, () => { pressEnterText.SetActive(true); });
+            DialogueLine line = lines[index];
+            string speakerPrefix = string.IsNullOrEmpty(line.speaker) ? "" : line.speaker + "：";
+            string text = currentLanguage == Language.ZH ? line.zh : line.en;
+
+            // Set the text color and style based on if the line is a thought
+            if (line.isThought)
+            {
+                dialogueText.fontStyle = FontStyles.Italic;
+                dialogueText.color = new Color(1f, 1f, 1f, 0.6f);
+            }
+            else
+            {
+                dialogueText.fontStyle = FontStyles.Normal;
+                dialogueText.color = Color.white;
+            }
+            
+            dialogueText.text = speakerPrefix;  // 立即显示说话人
+            typingEffect.Play(text, () => { pressEnterText.SetActive(true); }, append: true, delayBeforeTyping: delayBetweenSpeakerAndDialogueText);
         }
     }
 }

@@ -24,12 +24,13 @@ public class TypingEffect : MonoBehaviour
         if (playOnStart)
         {
             storyText.text = "";
-            StartCoroutine(TypeText());
+            StartCoroutine(TypeText(0f)); // Start typing immediately
         }
     }
 
-    private IEnumerator TypeText()
+    private IEnumerator TypeText(float delay)
     {
+        yield return new WaitForSeconds(delay); // 先等一段时间
         foreach (char c in fullText)
         {
             storyText.text += c;
@@ -55,13 +56,16 @@ public class TypingEffect : MonoBehaviour
         OnTypingComplete?.Invoke();
     }
 
-    public void Play(string newText, Action onComplete)
+    public void Play(string newText, Action onComplete, bool append = false, float delayBeforeTyping = 0f)
     {
         StopAllCoroutines();
-        storyText.text = "";
         fullText = newText;
         OnTypingComplete = onComplete;
         isTyping = true;
-        StartCoroutine(TypeText());
+
+        if (!append)
+            storyText.text = "";
+
+        StartCoroutine(TypeText(delayBeforeTyping));
     }
 }
