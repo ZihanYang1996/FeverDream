@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     public int numOfCompletedLevelLastLoop { get; private set; } = 0; // Number of completed level in the last loop
     public int numOfCompletedHiddenLevelLastLoop { get; private set; } = 0; // Number of completed hidden level in the last loop
+    
+    [SerializeField] public Vector3 defaultStartPuzzelButtonPosition = new Vector3(750f, -350f, 0f); // Start puzzle button position in the scene
+    
     public void IncrementCompletedLevel()
     {
         numOfCompletedLevel++;
