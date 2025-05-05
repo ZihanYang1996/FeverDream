@@ -1,19 +1,76 @@
+using System.Collections;
 using UnityEngine;
+using DialogueSystem;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class TutorialSceneManager : MonoBehaviour
 {
-    public GameObject showPuzzleButton;
+    [Header("UI Setup")]
+    [SerializeField] public SpriteRenderer backgroundImage;
+
+    [SerializeField] public GameObject startPuzzleButton;
+    [SerializeField] private float moveButtonDuration = 1.5f;
+    [SerializeField] private float buttonPulseCount = 3;
+    [SerializeField] private float buttonPulseScale = 1.2f;
+    [SerializeField] private float buttonPulseDuration = 0.2f;
     [SerializeField] private StageManager stageManager;
+
+    [Header("Background Images")]
+    [SerializeField] public Sprite backgroundImage2;
+
+    [SerializeField] public Sprite backgroundImage3;
+    [SerializeField] public Sprite[] backgroundImage4;
+
+    [Header("Dialogue")]
+    [SerializeField] private float delayBetweenBackgroundAndDialogue = 1.0f;
+
+    [SerializeField] private string dialogueFileName1;
+    [SerializeField] private string dialogueFileName2;
+    [SerializeField] private string dialogueFileName3;
+    [SerializeField] private string[] dialogueFileName4;
+    [SerializeField] private string dialogueFileName5;
+    [SerializeField] private DialogueManager dialogueManager;
+
+    private Coroutine animationCoroutine;
+    private Vector3 originalStartPuzzleButtonPosition;
+    private Vector3 targetStartPuzzleButtonPosition;
+    private RectTransform startPuzzleButtonRect;
+    private Button startPuzzleButtonComponent;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (showPuzzleButton != null)
+        if (startPuzzleButton != null)
         {
-            showPuzzleButton.SetActive(false); // hide initially
+            startPuzzleButton.SetActive(false); // hide initially
+            startPuzzleButtonRect = startPuzzleButton.GetComponent<RectTransform>(); // Get the RectTransform component
+            originalStartPuzzleButtonPosition = startPuzzleButtonRect.anchoredPosition3D; // Store the original position
+            startPuzzleButtonComponent = startPuzzleButton.GetComponent<Button>();
+            startPuzzleButtonComponent.interactable = false;
+            targetStartPuzzleButtonPosition = GameManager.Instance.defaultStartPuzzelButtonPosition;
         }
 
-        StartPuzzle();
+        if (backgroundImage != null)
+        {
+            backgroundImage.sprite = null; // Set to a default sprite or null
+        }
+        else
+        {
+            Debug.LogError("BackgroundImage reference not assigned in the inspector.");
+        }
+
+        // Stop any previous animation coroutine
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+            animationCoroutine = null;
+        }
+
+        // Start the pre-puzzle animation
+        animationCoroutine = StartCoroutine(PlayPrePuzzleAnimation1());
+
 
         if (stageManager != null)
         {
@@ -39,9 +96,9 @@ public class TutorialSceneManager : MonoBehaviour
 
     public void StartPuzzle()
     {
-        if (showPuzzleButton != null)
+        if (startPuzzleButton != null)
         {
-            showPuzzleButton.SetActive(true);
+            startPuzzleButton.SetActive(true);
         }
         else
         {
@@ -62,6 +119,9 @@ public class TutorialSceneManager : MonoBehaviour
 
     private void HandlePuzzleResult(bool success, StageData stage)
     {
+        // Disable the button after the puzzle is completed
+        startPuzzleButton.SetActive(false);
+        
         if (success)
         {
             if (stage)
@@ -72,14 +132,195 @@ public class TutorialSceneManager : MonoBehaviour
             {
                 Debug.LogError("[Tutorial] Stage is null.");
             }
-            
+
             GameManager.Instance.RegisterCompletedStage(stage);
-            ReturnToDayScene();
         }
         else
         {
             Debug.Log("[Tutorial] Puzzle failed. But it's fine.");
-            ReturnToDayScene();
         }
+
+        StartCoroutine(PlayPostPuzzleAnimation1(success));
+    }
+
+    private IEnumerator PlayPrePuzzleAnimation1()
+    {
+        // Small delay before starting the animation
+        yield return new WaitForSeconds(0.5f);
+        // Play the first background image (Black screen)
+        backgroundImage.sprite = null;
+        // Wait for a moment before dialogue
+        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
+        // Play Dialogue
+        var dialogueAsset1 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName1);
+        if (dialogueAsset1 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName1}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset1, Language.ZH, () =>
+        {
+            if (animationCoroutine != null)
+            {
+                StopCoroutine(animationCoroutine);
+                animationCoroutine = null;
+            }
+
+            // Start the second animation
+            animationCoroutine = StartCoroutine(PlayPrePuzzleAnimation2());
+        });
+    }
+
+    private IEnumerator PlayPrePuzzleAnimation2()
+    {
+        // Small delay before starting the animation
+        yield return new WaitForSeconds(0.5f);
+        // Play the first background image
+        backgroundImage.sprite = backgroundImage2;
+        // Wait for a moment before dialogue
+        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
+        // Play Dialogue
+        var dialogueAsset2 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName2);
+        if (dialogueAsset2 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName2}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset2, Language.ZH, () =>
+        {
+            if (animationCoroutine != null)
+            {
+                StopCoroutine(animationCoroutine);
+                animationCoroutine = null;
+            }
+
+            // Start the second animation
+            animationCoroutine = StartCoroutine(PlayPrePuzzleAnimation3());
+        });
+    }
+
+    private IEnumerator PlayPrePuzzleAnimation3()
+    {
+        // Small delay before starting the animation
+        yield return new WaitForSeconds(0.5f);
+        // Play the first background image
+        backgroundImage.sprite = backgroundImage3;
+        // Wait for a moment before dialogue
+        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
+        // Play Dialogue
+        var dialogueAsset3 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName3);
+        if (dialogueAsset3 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName3}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset3, Language.ZH, () =>
+        {
+            // Show the puzzle button
+            StartPuzzle();
+            if (animationCoroutine != null)
+            {
+                StopCoroutine(animationCoroutine);
+                animationCoroutine = null;
+            }
+
+            // Start the button move animation
+            animationCoroutine = StartCoroutine(MoveButton());
+        });
+    }
+
+    private IEnumerator MoveButton()
+    {
+        float elapsed = 0f;
+        while (elapsed < moveButtonDuration)
+        {
+            float t = elapsed / moveButtonDuration;
+            startPuzzleButtonRect.anchoredPosition =
+                Vector3.Lerp(originalStartPuzzleButtonPosition, targetStartPuzzleButtonPosition, t);
+            elapsed += Time.deltaTime;
+            // Logging for debugging
+            Debug.Log($"[Tutorial] Moving button: {startPuzzleButton.transform.position}");
+            yield return null;
+        }
+        // Ensure final position is set
+        startPuzzleButtonRect.anchoredPosition = targetStartPuzzleButtonPosition;
+        
+        // Flash the button
+        for (int i = 0; i < buttonPulseCount; i++)
+        {
+            // 缩放放大
+            float timer = 0f;
+            while (timer < buttonPulseDuration)
+            {
+                timer += Time.deltaTime;
+                float t = timer / buttonPulseDuration;
+                float scale = Mathf.Lerp(1f, buttonPulseScale, Mathf.SmoothStep(0f, 1f, t));
+                startPuzzleButtonRect.localScale = new Vector3(scale, scale, 1f);
+                yield return null;
+            }
+
+            // 缩放缩小
+            timer = 0f;
+            while (timer < buttonPulseDuration)
+            {
+                timer += Time.deltaTime;
+                float t = timer / buttonPulseDuration;
+                float scale = Mathf.Lerp(buttonPulseScale, 1f, Mathf.SmoothStep(0f, 1f, t));
+                startPuzzleButtonRect.localScale = new Vector3(scale, scale, 1f);
+                yield return null;
+            }
+        }
+        
+        // Enable the button after the animation
+        startPuzzleButtonComponent.interactable = true;
+    }
+
+    private IEnumerator PlayPostPuzzleAnimation1(bool success)
+    {
+        // Small delay before starting the animation
+        yield return new WaitForSeconds(0.5f);
+        // Play the first background image (Black screen for now)
+        backgroundImage.sprite = null;
+        // Wait for a moment before dialogue
+        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
+        // Play Dialogue
+        string currentDialogueFileName = success ? dialogueFileName4[0] : dialogueFileName4[1];
+        var dialogueAsset4 = DialogueLoader.LoadFromResources("Dialogue/" + currentDialogueFileName);
+        if (dialogueAsset4 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName4}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset4, Language.ZH, () =>
+        {
+            StartCoroutine(PlayPostPuzzleAnimation2());
+        });
+    }
+    
+    private IEnumerator PlayPostPuzzleAnimation2()
+    {
+        // Small delay before starting the animation
+        yield return new WaitForSeconds(0.5f);
+        // Play the first background image (Black screen)
+        backgroundImage.sprite = null;
+        // Wait for a moment before dialogue
+        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
+        // Play Dialogue
+        var dialogueAsset5 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName5);
+        if (dialogueAsset5 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset5, Language.ZH, () =>
+        {
+            // Return to the day scene
+            ReturnToDayScene();
+        });
     }
 }
