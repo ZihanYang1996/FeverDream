@@ -1,0 +1,16 @@
+{
+  "dialogueId": "Day_Scene_005",
+  "lines": [
+    {
+      "speaker": "",
+      "zh": "（晚安了，这个世界。）",
+      "en": "(Good night, world.)",
+      "isThought": true
+    },
+    {
+      "speaker": "我",
+      "zh": "呼噜呼噜呼噜。。。。",
+      "en": "Snore... snore... snore..."
+    }
+  ]
+}

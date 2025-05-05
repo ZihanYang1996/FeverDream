@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca244e4c993541b39d2689ebf7a7611, type: 3}
+  m_Name: Day_Scene_005
+  m_EditorClassIdentifier: 
+  backgroundType: 0
+  animationFrames:
+  - {fileID: 9010660111070102008, guid: 8f36e9ad3ac574ef9900b1be02f4e963, type: 3}
+  - {fileID: -3069409909581144159, guid: 4c917264c19374311917f3c52a400f16, type: 3}
+  - {fileID: -4512183803653256658, guid: 111c0112908ce4e4e8731486b4d8cd9b, type: 3}
+  - {fileID: -7978906965011544721, guid: e7ba69f2c8b304904af7dea08a3c990d, type: 3}
+  - {fileID: 447421012146115000, guid: 1d369be8fe193468cb779bcbf78b4794, type: 3}
+  - {fileID: -1677774476393309200, guid: e07f2c475366447d9a65d6bff5de8d40, type: 3}
+  backgroundVideo: {fileID: 0}
+  dialogueFileName: 3_DayScene/Day_Scene_005

@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Tutorial_Scene_003",
+  "lines": [
+    {
+      "speaker": "",
+      "zh": "（东西也太多了。。。下回得跟她说少寄点东西了，根本吃不完啊）",
+      "en": "(That's way too much stuff... I really need to tell her to send less next time—there's no way I can finish all this.)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（诶？这是什么？）",
+      "en": "(Huh? What’s this?)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（她咋把这个七巧板寄来了，在家里找个地方摆着就好了嘛！）",
+      "en": "(Why did she send this tangram board? Wouldn’t it have been fine just sitting at home?)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（不过好久没玩了，拼个什么试试吧）",
+      "en": "(But it *has* been a while… maybe I’ll try piecing something together.)",
+      "isThought": true
+    }
+  ]
+}

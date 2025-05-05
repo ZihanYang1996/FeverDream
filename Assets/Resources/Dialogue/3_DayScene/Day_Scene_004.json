@@ -1,0 +1,22 @@
+{
+  "dialogueId": "Day_Scene_004",
+  "lines": [
+    {
+      "speaker": "火车",
+      "zh": "轰隆隆，轰隆隆，轰隆隆",
+      "en": "Rumble, rumble, rumble"
+    },
+    {
+      "speaker": "",
+      "zh": "（终于下班了，又度过了一天。今天回去要早点休息。）",
+      "en": "(Finally off work. Another day done. I should try to get some rest tonight.)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（可是，这样的日子，真的是我想要的吗？）",
+      "en": "(But… is this really the kind of life I want?)",
+      "isThought": true
+    }
+  ]
+}

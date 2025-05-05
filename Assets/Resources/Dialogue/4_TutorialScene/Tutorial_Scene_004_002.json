@@ -1,0 +1,11 @@
+{
+  "dialogueId": "Tutorial_Scene_004_002",
+  "lines": [
+    {
+      "speaker": "",
+      "zh": "（哎呀，不应该啊，怎么会拼不出来呢，一定是我饿了，那今晚就吃鱼吧）",
+      "en": "(Ugh, that can’t be right—why can’t I solve it? I must be hungry. Alright, fish for dinner it is.)",
+      "isThought": true
+    }
+  ]
+}

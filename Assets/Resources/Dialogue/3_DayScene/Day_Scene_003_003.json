@@ -1,0 +1,20 @@
+{
+  "dialogueId": "Day_Scene_003_003",
+  "lines": [
+    {
+      "speaker": "Winston",
+      "zh": "小A啊，今天会上的提案讲的很棒啊，细节考虑的很全面，非常精彩。而且今天感觉你精神状态也很好啊，看来昨晚睡得不错啊。",
+      "en": "Xiao A, your presentation in the meeting today was excellent—the details were well thought out and very impressive. You also seemed in great shape today, looks like you slept well last night!"
+    },
+    {
+      "speaker": "我",
+      "zh": "谢谢，谢谢。确实昨晚睡得不错，虽然一直在做梦，但是早上起来莫名的很精神。哈哈<3",
+      "en": "Thanks, thanks. I actually did sleep pretty well last night. I kept dreaming, but somehow still woke up feeling really refreshed. Haha <3"
+    },
+    {
+      "speaker": "Winston",
+      "zh": "哈哈，看来是做了美梦啊，真好。那就继续保持这个状态吧，今天晚上早点休息哦。",
+      "en": "Haha, sounds like you had some sweet dreams—nice! Keep that energy up, and get to bed early tonight too."
+    }
+  ]
+}

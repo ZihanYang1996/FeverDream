@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Day_Scene_001_003",
+  "lines": [
+    {
+      "speaker": "火车",
+      "zh": "轰隆隆，轰隆隆，轰隆隆",
+      "en": "Rumble, rumble, rumble"
+    },
+    {
+      "speaker": "",
+      "zh": "（昨晚总算是睡的不错，今天还挺精神的）",
+      "en": "(Finally got a decent sleep. Feeling pretty refreshed today.)",
+      "isThought": true
+    },
+    {
+      "speaker": "火车",
+      "zh": "轰隆隆，轰隆隆，轰隆隆",
+      "en": "Rumble, rumble, rumble"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Day_Scene_001_001",
+  "lines": [
+    {
+      "speaker": "火车",
+      "zh": "轰隆隆，轰隆隆，轰隆隆",
+      "en": "Rumble, rumble, rumble"
+    },
+    {
+      "speaker": "",
+      "zh": "（昨晚又没咋睡，今天开会可千万别睡着了！）",
+      "en": "(I didn’t sleep much last night. I really can’t afford to doze off in the meeting today!)",
+      "isThought": true
+    },
+    {
+      "speaker": "火车",
+      "zh": "轰隆隆，轰隆隆，轰隆隆",
+      "en": "Rumble, rumble, rumble"
+    }
+  ]
+}
