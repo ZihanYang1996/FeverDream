@@ -505,6 +505,7 @@ public class StageManager : MonoBehaviour
     private void HandlePuzzleSuccess()
     {
         puzzleCompleted = true;
+        puzzlePanel.SetActive(false);
         OnPuzzleComplete?.Invoke(true, currentStage);
     }
 
@@ -512,6 +513,7 @@ public class StageManager : MonoBehaviour
     {
         // Failure due to timeout
         StartCoroutine(FlashRedEffect());
+        puzzlePanel.SetActive(false);
         OnPuzzleComplete?.Invoke(false, currentStage);
     }
 
