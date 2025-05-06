@@ -9,6 +9,8 @@ public class TutorialSceneManager : MonoBehaviour
     [Header("UI Setup")]
     [SerializeField] public SpriteRenderer backgroundImage;
 
+    [SerializeField] public GameObject balckScreenImage;
+
     [SerializeField] public GameObject startPuzzleButton;
     [SerializeField] private float moveButtonDuration = 1.5f;
     [SerializeField] private float buttonPulseCount = 3;
@@ -50,6 +52,11 @@ public class TutorialSceneManager : MonoBehaviour
             startPuzzleButtonComponent = startPuzzleButton.GetComponent<Button>();
             startPuzzleButtonComponent.interactable = false;
             targetStartPuzzleButtonPosition = GameManager.Instance.defaultStartPuzzelButtonPosition;
+        }
+
+        if (balckScreenImage != null)
+        {
+            balckScreenImage.SetActive(false);  // hide initially
         }
 
         if (backgroundImage != null)
@@ -119,9 +126,6 @@ public class TutorialSceneManager : MonoBehaviour
 
     private void HandlePuzzleResult(bool success, StageData stage)
     {
-        // Disable the button after the puzzle is completed
-        startPuzzleButton.SetActive(false);
-        
         if (success)
         {
             if (stage)
@@ -245,9 +249,10 @@ public class TutorialSceneManager : MonoBehaviour
             Debug.Log($"[Tutorial] Moving button: {startPuzzleButton.transform.position}");
             yield return null;
         }
+
         // Ensure final position is set
         startPuzzleButtonRect.anchoredPosition = targetStartPuzzleButtonPosition;
-        
+
         // Flash the button
         for (int i = 0; i < buttonPulseCount; i++)
         {
@@ -273,13 +278,41 @@ public class TutorialSceneManager : MonoBehaviour
                 yield return null;
             }
         }
-        
+
         // Enable the button after the animation
         startPuzzleButtonComponent.interactable = true;
     }
 
     private IEnumerator PlayPostPuzzleAnimation1(bool success)
     {
+        // Fade in the black screen
+        if (balckScreenImage != null)
+        {
+            balckScreenImage.SetActive(true);
+            var spriteRenderer = balckScreenImage.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                Color color = spriteRenderer.color;
+                float duration = 1.0f;
+                float elapsed = 0f;
+                float startAlpha = color.a;
+                float endAlpha = 1f;
+
+                while (elapsed < duration)
+                {
+                    elapsed += Time.deltaTime;
+                    float t = Mathf.Clamp01(elapsed / duration);
+                    color.a = Mathf.Lerp(startAlpha, endAlpha, t);
+                    spriteRenderer.color = color;
+                    yield return null;
+                }
+
+                // Ensure final alpha is set
+                color.a = endAlpha;
+                spriteRenderer.color = color;
+            }
+        }
+
         // Small delay before starting the animation
         yield return new WaitForSeconds(0.5f);
         // Play the first background image (Black screen for now)
@@ -295,12 +328,10 @@ public class TutorialSceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset4, Language.ZH, () =>
-        {
-            StartCoroutine(PlayPostPuzzleAnimation2());
-        });
+        dialogueManager.PlayDialogue(dialogueAsset4, Language.ZH,
+            () => { StartCoroutine(PlayPostPuzzleAnimation2()); });
     }
-    
+
     private IEnumerator PlayPostPuzzleAnimation2()
     {
         // Small delay before starting the animation
