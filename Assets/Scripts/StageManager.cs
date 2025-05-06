@@ -12,16 +12,18 @@ public class StageManager : MonoBehaviour
 
     [Header("UI References")]
     public GameObject puzzlePanel; // PuzzlePanel object
+    [SerializeField] private GameObject blackScreenGameObject;
 
     public Image workspaceOutlineImage; // Image in WorkspaceArea to display selected outline
     public Transform workspaceArea; // WorkspaceArea container
     public Button validateButton; // ValidateButton
     public Button startPuzzleButton; // Start button to open puzzle panel
+    [FormerlySerializedAs("generatedTangramParent")] [SerializeField] private Transform generatedTangramHolder;
 
     [Header("Render Config")]
     public Camera captureCamera; // MaskCamera
-
     public RenderTexture captureRT; // Mask_RT
+    
 
     [Header("Stage Data (Don't modify)")]
     public StageData currentStage; // Your StageData asset
@@ -71,6 +73,7 @@ public class StageManager : MonoBehaviour
         puzzlePanel.SetActive(false);
         // hide screen flash image
         screenFlashImage.gameObject.SetActive(false);
+        // hide black screen image
         // bind Start Demo to show puzzle panel
         startPuzzleButton.onClick.AddListener(ShowPuzzlePanel);
         // bind validate
@@ -82,11 +85,11 @@ public class StageManager : MonoBehaviour
         // Test buttons for success/fail
         testSuccessButton.onClick.AddListener(() =>
         {
-            HandlePuzzleSuccess();
+            HandlePuzzleResult(true);
         });
         testFailButton.onClick.AddListener(() =>
         {
-            HandlePuzzleFailure();
+            HandlePuzzleResult(false);
         });
     }
 
@@ -189,7 +192,19 @@ public class StageManager : MonoBehaviour
     /// </summary>
     public void ShowPuzzlePanel()
     {
+        // Activate the black screen
+        if (blackScreenGameObject != null)
+        {
+            blackScreenGameObject.SetActive(true);
+        }
+        // Show the puzzle panel
         puzzlePanel.SetActive(true);
+        
+        // Hide the start button
+        if (startPuzzleButton != null)
+        {
+            startPuzzleButton.gameObject.SetActive(false);
+        }
         BeginCountdown();
     }
 
@@ -257,7 +272,7 @@ public class StageManager : MonoBehaviour
 
         if (success && !puzzleCompleted)
         {
-            HandlePuzzleSuccess();
+            HandlePuzzleResult(true);
         }
         else if (!success)
         {
@@ -498,23 +513,21 @@ public class StageManager : MonoBehaviour
         if (!puzzleCompleted)
         {
             Debug.Log("[StageManager] Countdown expired. Puzzle failed.");
-            HandlePuzzleFailure();
+            HandlePuzzleResult(false);
         }
     }
 
-    private void HandlePuzzleSuccess()
+    private void HandlePuzzleResult(bool success)
     {
-        puzzleCompleted = true;
-        puzzlePanel.SetActive(false);
-        OnPuzzleComplete?.Invoke(true, currentStage);
-    }
-
-    private void HandlePuzzleFailure()
-    {
-        // Failure due to timeout
-        StartCoroutine(FlashRedEffect());
-        puzzlePanel.SetActive(false);
-        OnPuzzleComplete?.Invoke(false, currentStage);
+        if (!success)
+        {
+            StartCoroutine(FlashRedEffect());
+        }
+        puzzleCompleted = success;
+        StartCoroutine(PlayPuzzleSuccessVisualEffect(() =>
+        {
+            OnPuzzleComplete?.Invoke(success, currentStage);
+        }));
     }
 
     private IEnumerator FlashRedEffect()
@@ -531,6 +544,156 @@ public class StageManager : MonoBehaviour
         screenFlashImage.color = originalColor;
     }
 
+    
+        /// <summary>
+    /// Plays a synchronized visual effect: fade in black screen, fade out outline, flicker workspaceArea children, then fade out them.
+    /// </summary>
+    public IEnumerator PlayPuzzleSuccessVisualEffect(Action onComplete = null)
+    {
+        // Step 1: Fade out all puzzlePanel children except workspaceArea's children
+        List<Graphic> graphicsToFade = new List<Graphic>();
+        foreach (Graphic g in puzzlePanel.GetComponentsInChildren<Graphic>(true))
+        {
+            if (g.transform.IsChildOf(workspaceArea)) continue;
+            Debug.Log(g.name);
+            graphicsToFade.Add(g);
+        }
+        // Also add workspaceArea's own Graphic if present
+        Graphic workspaceGraphic = workspaceArea.GetComponent<Graphic>();
+        if (workspaceGraphic != null)
+        {
+            graphicsToFade.Add(workspaceGraphic);
+        }
+
+        float duration = 1.5f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            float alpha = Mathf.Lerp(1f, 0f, t);
+            foreach (var g in graphicsToFade)
+            {
+                Color c = g.color;
+                c.a = alpha;
+                g.color = c;
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        foreach (var g in graphicsToFade)
+        {
+            Color c = g.color;
+            c.a = 0f;
+            g.color = c;
+        }
+
+        // Step 2: Flicker all workspaceArea children (2 full flickers, then one fade out)
+        int flickerCount = 2;
+        float flickerDuration = 2.0f;
+        float minAlpha = 0.0f;
+
+        // Prepare canvas groups
+        for (int i = 0; i < workspaceArea.childCount; i++)
+        {
+            CanvasGroup group = workspaceArea.GetChild(i).GetComponent<CanvasGroup>();
+            if (group == null)
+            {
+                group = workspaceArea.GetChild(i).gameObject.AddComponent<CanvasGroup>();
+            }
+            group.alpha = 1f;
+        }
+
+        // Perform 2 flickers (fade out then in, twice) using Mathf.Sin for smoother flicker
+        for (int flick = 0; flick < flickerCount; flick++)
+        {
+            // Fade out
+            float fadeOutElapsed = 0f;
+            float halfFlicker = flickerDuration / 2f;
+            while (fadeOutElapsed < halfFlicker)
+            {
+                float t = fadeOutElapsed / halfFlicker;
+                float alpha = Mathf.Sin((1f - t) * Mathf.PI * 0.5f); // 1→0, sin(π/2→0): 1→0
+                alpha = Mathf.Lerp(minAlpha, 1f, alpha); // ensure minAlpha support
+                foreach (Transform child in workspaceArea)
+                {
+                    child.GetComponent<CanvasGroup>().alpha = alpha;
+                }
+                fadeOutElapsed += Time.deltaTime;
+                yield return null;
+            }
+            // Fade in
+            float fadeInElapsed = 0f;
+            while (fadeInElapsed < halfFlicker)
+            {
+                float t = fadeInElapsed / halfFlicker;
+                float alpha = Mathf.Sin(t * Mathf.PI * 0.5f); // 0→1, sin(0→π/2): 0→1
+                alpha = Mathf.Lerp(minAlpha, 1f, alpha);
+                foreach (Transform child in workspaceArea)
+                {
+                    child.GetComponent<CanvasGroup>().alpha = alpha;
+                }
+                fadeInElapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
+        // Third flicker: fade out only, do not fade back in, use Mathf.Sin for smooth fade
+        float finalFadeDuration = flickerDuration / 2f;
+        float finalFadeElapsed = 0f;
+        while (finalFadeElapsed < finalFadeDuration)
+        {
+            float t = finalFadeElapsed / finalFadeDuration;
+            float alpha = Mathf.Sin((1f - t) * Mathf.PI * 0.5f); // 1→0, sin(π/2→0): 1→0
+            foreach (Transform child in workspaceArea)
+            {
+                child.GetComponent<CanvasGroup>().alpha = alpha;
+            }
+            finalFadeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        foreach (Transform child in workspaceArea)
+        {
+            child.GetComponent<CanvasGroup>().alpha = 0f;
+        }
+        // Disable workspaceArea
+        workspaceArea.gameObject.SetActive(false);
+
+        // Step 3: Create new solution sprite as a child of generatedTangramHolder and center it
+        if (currentStage != null && currentStage.solutionSprite != null && generatedTangramHolder != null)
+        {
+            GameObject solutionGO = new GameObject("GeneratedTangram");
+            SpriteRenderer sr = solutionGO.AddComponent<SpriteRenderer>();
+            sr.sprite = currentStage.solutionSprite;
+            sr.color = new Color(1f, 1f, 1f, 0f); // Start transparent
+            solutionGO.transform.SetParent(generatedTangramHolder, false);
+            solutionGO.transform.localPosition = Vector3.zero;
+            solutionGO.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            // Set the sorting layer
+            sr.sortingLayerName = "AboveCurtain";
+
+            // Fade in the sprite using Mathf.Sin for a smooth ease
+            float fadeInDuration = flickerDuration / 2f;
+            float fadeElapsed = 0f;
+            while (fadeElapsed < fadeInDuration)
+            {
+                float t = fadeElapsed / fadeInDuration;
+                float alpha = Mathf.Sin(t * Mathf.PI * 0.5f); // 0→1, sin(0→π/2): 0→1
+                Color newColor = sr.color;
+                newColor.a = alpha;
+                sr.color = newColor;
+                fadeElapsed += Time.deltaTime;
+                yield return null;
+            }
+            sr.color = new Color(1f, 1f, 1f, 1f); // Ensure fully opaque
+        }
+        // Step 4: Disable puzzle panel
+        puzzlePanel.SetActive(false);
+        
+        // Step 5: Invoke completion callback
+        onComplete?.Invoke();
+    }
 
     /// <summary>
     /// Manually begins the countdown timer, resetting it and updating the display.
