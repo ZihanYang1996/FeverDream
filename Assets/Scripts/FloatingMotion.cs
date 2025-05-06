@@ -47,5 +47,13 @@ public class FloatingMotion : MonoBehaviour
     public void SetInitialPosition(Vector3 newInitialLocalPos)
     {
         initialPosition = newInitialLocalPos;
+
+        // 更新 randomPhaseOffset 使得当前 offset 为 0，从而无“跳跃”
+        float time = Time.time;
+        randomPhaseOffset = new Vector3(
+            -time * frequency.x,
+            -time * frequency.y,
+            -time * frequency.z
+        );
     }
 }
