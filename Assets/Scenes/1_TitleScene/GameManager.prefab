@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1019706281879445842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4721664735935209725}
+  - component: {fileID: 3332327428737157248}
+  - component: {fileID: 7859278791685369596}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4721664735935209725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019706281879445842}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 643.7757, y: 552.52325, z: -16.03404}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3332327428737157248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019706281879445842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8af7ccd44ca415cb26351daa38e820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasSeenTutorial: 0
+  justFinishedTutorial: 0
+  tutorialStage: {fileID: 11400000, guid: 2a2aaff86b0da475e9fb4639a16f4cbf, type: 2}
+  mainStages:
+  - {fileID: 11400000, guid: 17873fe9826284a2f9c938cdbd4b8e47, type: 2}
+  - {fileID: 11400000, guid: 4f9225f634bf04f9abe2ce2797342054, type: 2}
+  - {fileID: 11400000, guid: c0bb8d585653d46158978e019f35d7ef, type: 2}
+  - {fileID: 11400000, guid: dbbc02ef914774b73bb3f3a20b5f5c00, type: 2}
+  - {fileID: 11400000, guid: 1ee36aa6c27a24241b56185f31f2753b, type: 2}
+  sceneFlowController: {fileID: 7859278791685369596}
+  defaultStartPuzzelButtonPosition: {x: 750, y: -350, z: 0}
+--- !u!114 &7859278791685369596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019706281879445842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a204a3b739b65487cb6d17d01f805913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionRules:
+  - {fileID: 11400000, guid: 95240f18279404336b20e33f89d2cb3b, type: 2}
+  - {fileID: 11400000, guid: 32d97ea0fd7974bdc9c362ed9a18aa88, type: 2}
+  - {fileID: 11400000, guid: 9fca957caf060438ab6cd4f54c6e6eb0, type: 2}
+  - {fileID: 11400000, guid: aebaf8ac7933841169e6610e14a0bed8, type: 2}
+  - {fileID: 11400000, guid: f8b09665a136547fc8d2778c1137d2e9, type: 2}
+  - {fileID: 11400000, guid: 8236e29a8f5f1445fb03586fcc4c4345, type: 2}
+  - {fileID: 11400000, guid: 9b4d0f7197c3144cc9fb36c70dfa0a60, type: 2}
+  - {fileID: 11400000, guid: 9e1ccdbe15caa4c64a0f5ecf5d60b917, type: 2}

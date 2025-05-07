@@ -1,0 +1,27 @@
+{
+  "dialogueId": "Game_Level_1_Scene_004",
+  "lines": [
+    {
+      "speaker": "",
+      "zh": "（可是接下来该怎么办呢？）",
+      "en": "(But what do I do now?)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "。。。。。。",
+      "en": "......"
+    },
+    {
+      "speaker": "",
+      "zh": "。。。。。。",
+      "en": "......"
+    },
+    {
+      "speaker": "",
+      "zh": "（奇怪？！这是什么？）",
+      "en": "(Weird?! What’s that?)",
+      "isThought": true
+    }
+  ]
+}

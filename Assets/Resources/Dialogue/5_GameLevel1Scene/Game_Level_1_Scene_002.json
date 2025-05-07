@@ -1,0 +1,20 @@
+{
+  "dialogueId": "Game_Level_1_Scene_002",
+  "lines": [
+    {
+      "speaker": "我",
+      "zh": "诶，诶，救命，救。。。",
+      "en": "Hey—hey! Help! He—"
+    },
+    {
+      "speaker": "我",
+      "zh": "咕噜咕噜咕噜。。。",
+      "en": "Glug... glug... glug..."
+    },
+    {
+      "speaker": "我",
+      "zh": "谁来。。。咕噜咕噜咕噜。。。",
+      "en": "Someone... glug... glug..."
+    }
+  ]
+}

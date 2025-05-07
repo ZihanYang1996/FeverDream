@@ -1,0 +1,25 @@
+{
+  "dialogueId": "Game_Level_1_Scene_001",
+  "lines": [
+    {
+      "speaker": "船",
+      "zh": "咔嚓。。。咔嚓。。。咔嚓。。。",
+      "en": "Crack... crack... crack..."
+    },
+    {
+      "speaker": "船",
+      "zh": "咔嚓。。。咔嚓。。。咔嚓。。。",
+      "en": "Crack... crack... crack..."
+    },
+    {
+      "speaker": "我",
+      "zh": "怎么漏水了！",
+      "en": "Why is it leaking?! Hey—hey! Help! He—"
+    },
+    {
+      "speaker": "我",
+      "zh": "等等！再这么下去。。。",
+      "en": "Wait! If this goes on...!"
+    }
+  ]
+}

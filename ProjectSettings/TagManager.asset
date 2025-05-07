@@ -41,5 +41,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 880701975
+    locked: 0
+  - name: Backstage
+    uniqueID: 363350551
+    locked: 0
+  - name: Actors
+    uniqueID: 1141977631
+    locked: 0
+  - name: Curtain
+    uniqueID: 2603300275
+    locked: 0
+  - name: AboveCurtain
+    uniqueID: 2671099753
+    locked: 0
   m_RenderingLayers:
   - Default
