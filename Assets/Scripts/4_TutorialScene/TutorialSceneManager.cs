@@ -9,7 +9,7 @@ public class TutorialSceneManager : MonoBehaviour
     [Header("UI Setup")]
     [SerializeField] public SpriteRenderer backgroundImage;
 
-    [SerializeField] public GameObject balckScreenImage;
+    [SerializeField] public GameObject blackScreenImage;
 
     [SerializeField] public GameObject startPuzzleButton;
     [SerializeField] private float moveButtonDuration = 1.5f;
@@ -54,9 +54,9 @@ public class TutorialSceneManager : MonoBehaviour
             targetStartPuzzleButtonPosition = GameManager.Instance.defaultStartPuzzelButtonPosition;
         }
 
-        if (balckScreenImage != null)
+        if (blackScreenImage != null)
         {
-            balckScreenImage.SetActive(false);  // hide initially
+            blackScreenImage.SetActive(false); // hide initially
         }
 
         if (backgroundImage != null)
@@ -286,33 +286,15 @@ public class TutorialSceneManager : MonoBehaviour
     private IEnumerator PlayPostPuzzleAnimation1(bool success)
     {
         // Fade in the black screen
-        if (balckScreenImage != null)
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
         {
-            balckScreenImage.SetActive(true);
-            var spriteRenderer = balckScreenImage.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                Color color = spriteRenderer.color;
-                float duration = 1.0f;
-                float elapsed = 0f;
-                float startAlpha = color.a;
-                float endAlpha = 1f;
-
-                while (elapsed < duration)
-                {
-                    elapsed += Time.deltaTime;
-                    float t = Mathf.Clamp01(elapsed / duration);
-                    color.a = Mathf.Lerp(startAlpha, endAlpha, t);
-                    spriteRenderer.color = color;
-                    yield return null;
-                }
-
-                // Ensure final alpha is set
-                color.a = endAlpha;
-                spriteRenderer.color = color;
-            }
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()?.StartFadeIn((() => { isFadeInComplete = true; }));
         }
-
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+        
         // Small delay before starting the animation
         yield return new WaitForSeconds(0.5f);
         // Play the first background image (Black screen for now)
