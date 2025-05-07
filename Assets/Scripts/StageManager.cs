@@ -554,6 +554,7 @@ public class StageManager : MonoBehaviour
         List<Graphic> graphicsToFade = new List<Graphic>();
         foreach (Graphic g in puzzlePanel.GetComponentsInChildren<Graphic>(true))
         {
+            if (g.transform == puzzlePanel.transform) continue;
             if (g.transform.IsChildOf(workspaceArea)) continue;
             Debug.Log(g.name);
             graphicsToFade.Add(g);
