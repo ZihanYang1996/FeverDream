@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class BlackScreenFader : MonoBehaviour
+public class BlackScreenController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
@@ -24,17 +24,17 @@ public class BlackScreenFader : MonoBehaviour
         }
     }
 
-    public IEnumerator FadeIn(System.Action onComplete = null)
+    private IEnumerator FadeIn(System.Action onComplete = null)
     {
         yield return FadeToAlpha(1f, fadeDuration, onComplete);
     }
 
-    public IEnumerator FadeOut(System.Action onComplete = null)
+    private IEnumerator FadeOut(System.Action onComplete = null)
     {
         yield return FadeToAlpha(0f, fadeDuration, onComplete);
     }
 
-    public IEnumerator FadeToAlpha(float alpha, float duration, System.Action onComplete = null)
+    private IEnumerator FadeToAlpha(float alpha, float duration, System.Action onComplete = null)
     {
         Color color = spriteRenderer.color;
         float startAlpha = color.a;
