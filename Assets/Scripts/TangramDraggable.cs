@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.U2D;
+using System.Collections.Generic;
 
 public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler, ICanvasRaycastFilter
 {
@@ -62,7 +64,7 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
         RectTransform workspaceRect = GameObject.Find("WorkspaceArea").GetComponent<RectTransform>();
 
-        if (IsRectTransformFullyInside(rectTransform, workspaceRect, eventData.pressEventCamera))
+        if (IsSpriteFullyInsideWorkspace(rectTransform, workspaceRect, null))
         {
             transform.SetParent(workspaceRect, true);
         }
@@ -106,6 +108,36 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             if (!RectTransformUtility.RectangleContainsScreenPoint(parent, corner, uiCamera))
             {
                 return false;
+            }
+        }
+        return true;
+    }
+    private bool IsSpriteFullyInsideWorkspace(RectTransform child, RectTransform parent, Camera uiCamera)
+    {
+        if (image == null || image.sprite == null)
+            return false;
+
+        Sprite sprite = image.sprite;
+        // Use the sprite's custom physics shape(s) to get actual polygon vertices
+        int shapeCount = sprite.GetPhysicsShapeCount();
+        List<Vector2> shape = new List<Vector2>();
+
+        for (int i = 0; i < shapeCount; i++)
+        {
+            shape.Clear();
+            sprite.GetPhysicsShape(i, shape);
+            foreach (var vert in shape)
+            {
+                // Convert physics-shape vertex (in sprite pixels) to local UI space
+                Vector2 localPos = vert / sprite.pixelsPerUnit;
+                // Transform to world space
+                Vector3 worldPos = child.TransformPoint(localPos);
+                // Convert to screen space
+                Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(uiCamera, worldPos);
+
+                // 1) Must lie within workspace rectangle
+                if (!RectTransformUtility.RectangleContainsScreenPoint(parent, screenPoint, uiCamera))
+                    return false;
             }
         }
         return true;
