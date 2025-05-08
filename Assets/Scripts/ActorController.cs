@@ -31,12 +31,12 @@ public class ActorController : MonoBehaviour
     /// <summary>
     /// 缩放到目标大小（局部缩放）。
     /// </summary>
-    public void ScaleTo(Vector3 targetScale, float duration = -1f, System.Action onComplete = null)
+    public void ScaleTo(Vector3 targetScale, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null)
     {
         if (currentScaleCoroutine != null)
             StopCoroutine(currentScaleCoroutine);
 
-        currentScaleCoroutine = StartCoroutine(ScaleRoutine(targetScale, duration < 0 ? defaultMoveDuration : duration, onComplete));
+        currentScaleCoroutine = StartCoroutine(ScaleRoutine(targetScale, duration < 0 ? defaultMoveDuration : duration, onComplete, curve));
     }
 
     private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete = null, AnimationCurve curve = null)
@@ -72,7 +72,7 @@ public class ActorController : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    private IEnumerator ScaleRoutine(Vector3 targetScale, float duration, System.Action onComplete)
+    private IEnumerator ScaleRoutine(Vector3 targetScale, float duration, System.Action onComplete, AnimationCurve curve = null)
     {
         Vector3 startScale = transform.localScale;
         float elapsed = 0f;
@@ -80,7 +80,8 @@ public class ActorController : MonoBehaviour
         while (elapsed < duration)
         {
             float t = elapsed / duration;
-            transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            float curvedT = curve != null ? curve.Evaluate(t) : t;
+            transform.localScale = Vector3.Lerp(startScale, targetScale, curvedT);
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -90,7 +91,7 @@ public class ActorController : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    private IEnumerator FadeToAlphaRoutine(float targetAlpha, float duration, System.Action onComplete = null)
+    private IEnumerator FadeToAlphaRoutine(float targetAlpha, float duration, System.Action onComplete = null, AnimationCurve curve = null)
     {
         var renderers = GetComponentsInChildren<Renderer>();
         var spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
@@ -116,17 +117,18 @@ public class ActorController : MonoBehaviour
         while (elapsed < duration)
         {
             float t = elapsed / duration;
+            float curvedT = curve != null ? curve.Evaluate(t) : t;
             // Lerp alpha from original to target
             foreach (var (mat, original) in materialColors)
             {
                 Color c = original;
-                c.a = Mathf.Lerp(original.a, targetAlpha, t);
+                c.a = Mathf.Lerp(original.a, targetAlpha, curvedT);
                 mat.color = c;
             }
             foreach (var (sr, original) in spriteColors)
             {
                 Color c = original;
-                c.a = Mathf.Lerp(original.a, targetAlpha, t);
+                c.a = Mathf.Lerp(original.a, targetAlpha, curvedT);
                 sr.color = c;
             }
             elapsed += Time.deltaTime;
@@ -169,8 +171,8 @@ public class ActorController : MonoBehaviour
         }
     }
 
-    public void FadeToAlpha(float targetAlpha, float duration, System.Action onComplete = null)
+    public void FadeToAlpha(float targetAlpha, float duration, System.Action onComplete = null, AnimationCurve curve = null)
     {
-        StartCoroutine(FadeToAlphaRoutine(targetAlpha, duration, onComplete));
+        StartCoroutine(FadeToAlphaRoutine(targetAlpha, duration, onComplete, curve));
     }
 }
