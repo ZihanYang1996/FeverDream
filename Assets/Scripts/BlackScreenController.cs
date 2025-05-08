@@ -64,4 +64,12 @@ public class BlackScreenController : MonoBehaviour
     {
         StartCoroutine(FadeOut(onComplete));
     }
+
+    public void SetAlphaInstantly(float alpha)
+    {
+        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        Color color = spriteRenderer.color;
+        color.a = Mathf.Clamp01(alpha);
+        spriteRenderer.color = color;
+    }
 }
