@@ -11,21 +11,21 @@ public class ActorController : MonoBehaviour
     /// <summary>
     /// 移动到目标世界坐标位置。
     /// </summary>
-    public void MoveToPosition(Vector3 targetPosition, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null)
+    public void MoveToPosition(Vector3 targetPosition, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false)
     {
         if (currentMoveCoroutine != null)
             StopCoroutine(currentMoveCoroutine);
 
-        currentMoveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration < 0 ? defaultMoveDuration : duration, onComplete, curve));
+        currentMoveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration < 0 ? defaultMoveDuration : duration, onComplete, curve, usePathOffset));
     }
 
     /// <summary>
     /// 相对当前位置移动一定的偏移。
     /// </summary>
-    public void MoveByDelta(Vector3 delta, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null)
+    public void MoveByDelta(Vector3 delta, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false)
     {
         Vector3 targetPosition = transform.position + delta;
-        MoveToPosition(targetPosition, duration, onComplete, curve);
+        MoveToPosition(targetPosition, duration, onComplete, curve, usePathOffset);
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class ActorController : MonoBehaviour
         currentScaleCoroutine = StartCoroutine(ScaleRoutine(targetScale, duration < 0 ? defaultMoveDuration : duration, onComplete, curve));
     }
 
-    private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete = null, AnimationCurve curve = null)
+    private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false)
     {
         // 如果有 motion，就停止 motion
         var motion = GetComponent<IActorMotion>();
@@ -47,6 +47,8 @@ public class ActorController : MonoBehaviour
         {
             motion.StopMotion();
         }
+
+        IPathOffsetProvider pathOffsetProvider = usePathOffset ? GetComponent<IPathOffsetProvider>() : null;
         
         Vector3 startPosition = transform.position;
         float elapsed = 0f;
@@ -55,7 +57,9 @@ public class ActorController : MonoBehaviour
         {
             float t = elapsed / duration;
             float curvedT = curve != null ? curve.Evaluate(t) : t;
-            transform.position = Vector3.Lerp(startPosition, targetPosition, curvedT);
+            Vector3 basePos = Vector3.Lerp(startPosition, targetPosition, curvedT);
+            Vector3 offset = pathOffsetProvider != null ? pathOffsetProvider.GetOffset(curvedT) : Vector3.zero;
+            transform.position = basePos + offset;
             elapsed += Time.deltaTime;
             yield return null;
         }
