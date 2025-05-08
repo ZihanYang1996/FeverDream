@@ -12,6 +12,7 @@ public class FloatingMotion : MonoBehaviour
 
     private Vector3 initialPosition;
     private Vector3 randomPhaseOffset;
+    private bool _isActive = true;
 
     void Start()
     {
@@ -30,10 +31,13 @@ public class FloatingMotion : MonoBehaviour
         {
             randomPhaseOffset = Vector3.zero;
         }
+        _isActive = true;
     }
 
     void Update()
     {
+        if (!_isActive) return;
+
         float time = Time.time;
         Vector3 offset = new Vector3(
             amplitude.x * Mathf.Sin(time * frequency.x + randomPhaseOffset.x),
@@ -55,5 +59,23 @@ public class FloatingMotion : MonoBehaviour
             -time * frequency.y,
             -time * frequency.z
         );
+    }
+
+    public void StartMotion(Vector3? newInitialLocalPos = null)
+    {
+        _isActive = true;
+        if (newInitialLocalPos.HasValue)
+        {
+            SetInitialPosition(newInitialLocalPos.Value);
+        }
+        else
+        {
+            SetInitialPosition(transform.localPosition);
+        }
+    }
+
+    public void StopMotion()
+    {
+        _isActive = false;
     }
 }
