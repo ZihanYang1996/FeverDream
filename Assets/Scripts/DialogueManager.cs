@@ -5,6 +5,14 @@ using TMPro;
 
 namespace DialogueSystem
 {
+    [Serializable]
+    public class StyleSettings
+    {
+        public FontStyles fontStyle = FontStyles.Normal;
+        public Color fontColor = Color.white;
+        public float fontSize = 36f;
+    }
+
     public enum Language
     {
         ZH,
@@ -20,6 +28,11 @@ namespace DialogueSystem
         [SerializeField] private GameObject pressEnterText;
         [SerializeField] private float delayBetweenSpeakerAndDialogueText = 0.3f;
 
+
+        private StyleSettings defaultStyle;
+        private StyleSettings thoughtStyle;
+        private StyleSettings narratorStyle;
+
         private TypingEffect typingEffect;
         private BlinkingText blinkingText;
 
@@ -34,6 +47,11 @@ namespace DialogueSystem
             blinkingText = pressEnterText.GetComponent<BlinkingText>();
             dialoguePanel.SetActive(false); // 一开始隐藏对话框
             pressEnterText.SetActive(false);
+            
+            // Get the font style settings from the GameManager
+            defaultStyle = GameManager.Instance.defaultStyle;
+            thoughtStyle = GameManager.Instance.thoughtStyle;
+            narratorStyle = GameManager.Instance.narratorStyle;
         }
 
         private void Update()
@@ -85,23 +103,32 @@ namespace DialogueSystem
         private void ShowLine()
         {
             DialogueLine line = lines[index];
-            string speakerPrefix = string.IsNullOrEmpty(line.speaker) ? "" : line.speaker + "：";
+            string speakerPrefix =
+                (string.IsNullOrEmpty(line.speaker) || line.speaker == "旁白") ? "" : line.speaker + "：";
             string text = currentLanguage == Language.ZH ? line.zh : line.en;
 
-            // Set the text color and style based on if the line is a thought
+            StyleSettings currentStyle;
+
             if (line.isThought)
             {
-                dialogueText.fontStyle = FontStyles.Italic;
-                dialogueText.color = new Color(1f, 1f, 1f, 0.6f);
+                currentStyle = thoughtStyle;
+            }
+            else if (line.speaker == "旁白")
+            {
+                currentStyle = narratorStyle;
             }
             else
             {
-                dialogueText.fontStyle = FontStyles.Normal;
-                dialogueText.color = Color.white;
+                currentStyle = defaultStyle;
             }
-            
-            dialogueText.text = speakerPrefix;  // 立即显示说话人
-            typingEffect.Play(text, () => { pressEnterText.SetActive(true); }, append:true, speakerPrefix, delayBeforeTyping: delayBetweenSpeakerAndDialogueText);
+
+            dialogueText.fontStyle = currentStyle.fontStyle;
+            dialogueText.color = currentStyle.fontColor;
+            dialogueText.fontSize = currentStyle.fontSize;
+
+            dialogueText.text = speakerPrefix; // 立即显示说话人
+            typingEffect.Play(text, () => { pressEnterText.SetActive(true); }, append: true, speakerPrefix,
+                delayBeforeTyping: delayBetweenSpeakerAndDialogueText);
         }
     }
 }
