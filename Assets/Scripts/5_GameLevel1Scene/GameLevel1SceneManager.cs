@@ -483,7 +483,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         
         // Fade away the sprout
         isFadeInComplete = false;
-        duration = GameManager.Instance.blackScreenFadeDuration;
+        duration = 1.0f;
         sprout.GetComponent<ActorController>().FadeToAlpha(0, duration, () => { isFadeInComplete = true; });
         
         // Wait until the fade is finished and the dialogue is finished
