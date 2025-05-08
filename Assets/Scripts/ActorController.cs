@@ -41,10 +41,11 @@ public class ActorController : MonoBehaviour
 
     private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete)
     {
-        var floating = GetComponent<FloatingMotion>();
-        if (floating != null)
+        // 如果有 motion，就停止 motion
+        var motion = GetComponent<IActorMotion>();
+        if (motion != null)
         {
-            floating.StopMotion();
+            motion.StopMotion();
         }
         
         Vector3 startPosition = transform.position;
@@ -60,10 +61,10 @@ public class ActorController : MonoBehaviour
 
         transform.position = targetPosition;
         
-        // 如果有 FloatingMotion，就更新它的基准点
-        if (floating != null)
+        // 如果有 motion，就恢复 motion
+        if (motion != null)
         {
-            floating.StartMotion(transform.localPosition);
+            motion.StartMotion(transform.localPosition);
         }
         
         currentMoveCoroutine = null;

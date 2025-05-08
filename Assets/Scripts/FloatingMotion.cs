@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FloatingMotion : MonoBehaviour
+public class FloatingMotion : MonoBehaviour, IActorMotion
 {
     [Header("Motion Settings")]
     public Vector3 amplitude = new Vector3(0f, 0.5f, 0f);   // 漂浮的最大偏移
