@@ -211,6 +211,8 @@ public class TutorialSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         // Play the first background image
         backgroundImage.sprite = backgroundImage3;
+        // Activate the button
+        startPuzzleButton.SetActive(true);
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
         // Play Dialogue
