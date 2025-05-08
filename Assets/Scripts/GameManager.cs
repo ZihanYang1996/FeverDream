@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using DialogueSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private StageData tutorialStage;
     [SerializeField] private List<StageData> mainStages;
     private HashSet<string> completedStageIds = new HashSet<string>();
+    
+    [Header("Dialogue Settings")]
+    public Language currentLanguage = Language.ZH;
+
+    [SerializeField] public StyleSettings defaultStyle;
+    [SerializeField] public StyleSettings thoughtStyle;
+    [SerializeField] public  StyleSettings narratorStyle;
 
     [Header("Scene Management")]
     [SerializeField] private SceneFlowController sceneFlowController;
