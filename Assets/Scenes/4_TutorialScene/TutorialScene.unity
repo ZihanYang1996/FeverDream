@@ -1305,6 +1305,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartPuzzleButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5033133523498511779, guid: f14970696f55244f09787da21f463601, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146450338227711276, guid: f14970696f55244f09787da21f463601, type: 3}
+      propertyPath: startWithDefaultPosition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5871004543008523716, guid: f14970696f55244f09787da21f463601, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

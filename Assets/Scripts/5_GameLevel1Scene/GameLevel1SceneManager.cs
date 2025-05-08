@@ -34,7 +34,7 @@ public class GameLevel1SceneManager : MonoBehaviour
     [SerializeField] private string dialogueFileName8;
 
     [SerializeField] private DialogueManager dialogueManager;
-    
+
     [Header("AnimationCurves")]
     [SerializeField] private AnimationCurve sproutMoveCurve;
 
@@ -50,17 +50,6 @@ public class GameLevel1SceneManager : MonoBehaviour
         whale.SetActive(false);
         sprout.SetActive(false);
 
-        // Start with black screen fade out
-        if (blackScreenImage != null)
-        {
-            blackScreenImage.SetActive(true);
-            blackScreenImage.GetComponent<BlackScreenController>()?.SetAlphaInstantly(1f);
-            blackScreenImage.GetComponent<BlackScreenController>()?.StartFadeOut();
-        }
-        else
-        {
-            Debug.LogError("Black screen image not assigned in the inspector.");
-        }
 
         // Increment the current level index
         GameManager.Instance.IncrementCurrentLevelIndex();
@@ -168,6 +157,19 @@ public class GameLevel1SceneManager : MonoBehaviour
 
     private IEnumerator PlayPrePuzzleAnimationCoroutine()
     {
+        // Start with black screen fade out
+        if (blackScreenImage != null)
+        {
+            bool isSceneTransitionComplete = false;
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneStartFadeOut((() => { isSceneTransitionComplete = true; }));
+            yield return new WaitUntil(() => isSceneTransitionComplete);
+        }
+        else
+        {
+            Debug.LogError("Black screen image not assigned in the inspector.");
+        }
+
         // Delay before starting the animation
         yield return new WaitForSeconds(2.0f);
 
@@ -316,10 +318,12 @@ public class GameLevel1SceneManager : MonoBehaviour
 
         // Fade out the black screen
         bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
         if (blackScreenImage != null)
         {
             blackScreenImage.SetActive(true);
-            blackScreenImage.GetComponent<BlackScreenController>()?.StartFadeOut((() => { isFadeOutComplete = true; }));
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
         }
 
         // Wait for the fade-out to complete
@@ -441,10 +445,10 @@ public class GameLevel1SceneManager : MonoBehaviour
         whale.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; });
         // Wait until both fade and move are finished
         yield return new WaitUntil(() => isMoveComplete && isFadeInComplete);
-        
+
         // Wait a short time before starting the next animation
         yield return new WaitForSeconds(1.0f);
-        
+
         // Start the sprout animation (moving up and alpha from 0 to 1)
         isMoveComplete = false;
         isFadeInComplete = false;
@@ -452,22 +456,25 @@ public class GameLevel1SceneManager : MonoBehaviour
         deltaPosition = new Vector3(0.0f, 11.0f, 0.0f);
         sprout.SetActive(true);
         sprout.GetComponent<ActorController>().SetAlphaInstantly(0f); // Set the alpha to 0
-        sprout.GetComponent<ActorController>().FadeToAlpha(1, duration, () => { isFadeInComplete = true; }, sproutMoveCurve);
-        sprout.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; }, sproutMoveCurve);
-        
+        sprout.GetComponent<ActorController>()
+            .FadeToAlpha(1, duration, () => { isFadeInComplete = true; }, sproutMoveCurve);
+        sprout.GetComponent<ActorController>()
+            .MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; }, sproutMoveCurve);
+
         // Wait for a period of time before starting the tangram animation
-        yield return new WaitForSeconds(duration/6.0f);
-        
+        yield return new WaitForSeconds(duration / 6.0f);
+
         // Start the tangram animation move
         bool isTangramMoveComplete = false;
         deltaPosition = new Vector3(0.0f, 12.0f, 0.0f);
-        generatedTangramHolder.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration, () => { isTangramMoveComplete = true; }, sproutMoveCurve);
-        
+        generatedTangramHolder.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration,
+            () => { isTangramMoveComplete = true; }, sproutMoveCurve);
+
         // Wait until both fade and move are finished
         yield return new WaitUntil(() => isMoveComplete && isFadeInComplete && isTangramMoveComplete);
         // Disable the tangram holder
         generatedTangramHolder.SetActive(false);
-        
+
         // Play Dialogue 8
         isDialogueFinished = false;
         var dialogueAsset8 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName8);
@@ -476,33 +483,34 @@ public class GameLevel1SceneManager : MonoBehaviour
             Debug.LogError($"Failed to load dialogue: {dialogueFileName8}");
             yield break;
         }
+
         dialogueManager.PlayDialogue(dialogueAsset8, Language.ZH, () => { isDialogueFinished = true; });
-        
+
         // Wait for a short time before starting the next animation
         yield return new WaitForSeconds(1.0f);
-        
+
         // Fade away the sprout
         isFadeInComplete = false;
         duration = 1.0f;
         sprout.GetComponent<ActorController>().FadeToAlpha(0, duration, () => { isFadeInComplete = true; });
-        
+
         // Wait until the fade is finished and the dialogue is finished
         yield return new WaitUntil(() => isDialogueFinished && isFadeInComplete);
-        
+
         // Fade in the black screen
         isFadeInComplete = false;
         if (blackScreenImage != null)
         {
-            blackScreenImage.SetActive(true);
-            blackScreenImage.GetComponent<BlackScreenController>()?.StartFadeIn((() => { isFadeInComplete = true; }));
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
         }
-        
+
         // Wait for the fade-in to complete
         yield return new WaitUntil(() => isFadeInComplete);
-        
+
         // Wait for a short time before going to the next scene
         yield return new WaitForSeconds(GameManager.Instance.blackScreenStayDuration);
-        
+
         // Call the onComplete action after the animation is finished
         onFinish?.Invoke();
     }

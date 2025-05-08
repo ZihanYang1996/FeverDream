@@ -149,8 +149,13 @@ public class TutorialSceneManager : MonoBehaviour
 
     private IEnumerator PlayPrePuzzleAnimation1()
     {
-        // Small delay before starting the animation
-        yield return new WaitForSeconds(0.5f);
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()?.SceneStartFadeOut();
+        }
+
         // Play the first background image (Black screen)
         backgroundImage.sprite = null;
         // Wait for a moment before dialogue
@@ -289,14 +294,17 @@ public class TutorialSceneManager : MonoBehaviour
     {
         // Fade in the black screen
         bool isFadeInComplete = false;
+        float fadeOutDuration = 0.5f;
         if (blackScreenImage != null)
         {
             blackScreenImage.SetActive(true);
-            blackScreenImage.GetComponent<BlackScreenController>()?.StartFadeIn((() => { isFadeInComplete = true; }));
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeIn(fadeOutDuration, (() => { isFadeInComplete = true; }));
         }
+
         // Wait for the fade-in to complete
         yield return new WaitUntil(() => isFadeInComplete);
-        
+
         // Small delay before starting the animation
         yield return new WaitForSeconds(0.5f);
         // Play the first background image (Black screen for now)
@@ -332,10 +340,24 @@ public class TutorialSceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset5, Language.ZH, () =>
+        bool isDialogueComplete = false;
+        dialogueManager.PlayDialogue(dialogueAsset5, Language.ZH, () => { isDialogueComplete = true; });
+        yield return new WaitUntil(() => isDialogueComplete);
+        
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
         {
-            // Return to the day scene
-            ReturnToDayScene();
-        });
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        yield return new WaitUntil(() => isFadeInComplete);
+        
+        // Small delay before starting the transition
+        yield return new WaitForSeconds(GameManager.Instance.blackScreenStayDuration);
+        
+        // Return to the day scene
+        ReturnToDayScene();
     }
 }

@@ -7,6 +7,7 @@ public class GameLevel2SceneManager : MonoBehaviour
 
     [SerializeField] private string NormalStageId = "Rocket";
     [SerializeField] private string SecretStageId = "Horse";
+    [SerializeField] private GameObject testingGameObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +20,7 @@ public class GameLevel2SceneManager : MonoBehaviour
             showPuzzleButton.SetActive(false); // hide initially
         }
 
-        StartPuzzle();
+        testingGameObject.GetComponent<ActorController>().MoveByDelta(new Vector3(20, 0, 0), 5, null, null, true);
 
         if (stageManager != null)
         {

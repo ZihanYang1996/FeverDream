@@ -197,7 +197,7 @@ public class StageManager : MonoBehaviour
         {
             blackScreenGameObject.SetActive(true);
             // Get and set the alpha to the desired value for the puzzle from GameManager
-            blackScreenGameObject.GetComponent<BlackScreenController>().SetAlphaInstantly(GameManager.Instance.blackScreenAlphaForPuzzle);
+            blackScreenGameObject.GetComponent<BlackScreenController>().SetAlphaInstantly(GameManager.Instance.blackScreenAlphaForPuzzle/255f);
         }
         // Show the puzzle panel
         puzzlePanel.SetActive(true);

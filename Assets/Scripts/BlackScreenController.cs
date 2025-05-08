@@ -1,15 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class BlackScreenController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
+    [FormerlySerializedAs("sceneStartFadeDuration")]
     [Header("Fade Settings")]
-    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private float sceneTransitionFadeDuration = 1f;
+
     [SerializeField] private float targetAlpha = 1f; // Default target for FadeIn
-    [SerializeField] private bool autoFadeInOnStart = false;
 
     private void Awake()
     {
@@ -18,20 +20,17 @@ public class BlackScreenController : MonoBehaviour
 
     private void Start()
     {
-        if (autoFadeInOnStart)
-        {
-            StartCoroutine(FadeToAlpha(targetAlpha, fadeDuration));
-        }
+
     }
 
-    private IEnumerator FadeIn(System.Action onComplete = null)
+    private IEnumerator FadeIn(float duration, System.Action onComplete = null)
     {
-        yield return FadeToAlpha(1f, fadeDuration, onComplete);
+        yield return FadeToAlpha(1f, duration, onComplete);
     }
 
-    private IEnumerator FadeOut(System.Action onComplete = null)
+    private IEnumerator FadeOut(float duration, System.Action onComplete = null)
     {
-        yield return FadeToAlpha(0f, fadeDuration, onComplete);
+        yield return FadeToAlpha(0f, duration, onComplete);
     }
 
     private IEnumerator FadeToAlpha(float alpha, float duration, System.Action onComplete = null)
@@ -55,14 +54,14 @@ public class BlackScreenController : MonoBehaviour
     }
 
     // Optional: Call externally with custom values
-    public void StartFadeIn(System.Action onComplete = null)
+    public void StartFadeIn(float duration, System.Action onComplete = null)
     {
-        StartCoroutine(FadeIn(onComplete));
+        StartCoroutine(FadeIn(duration, onComplete));
     }
 
-    public void StartFadeOut(System.Action onComplete = null)
+    public void StartFadeOut(float duration, System.Action onComplete = null)
     {
-        StartCoroutine(FadeOut(onComplete));
+        StartCoroutine(FadeOut(duration, onComplete));
     }
 
     public void SetAlphaInstantly(float alpha)
@@ -71,5 +70,19 @@ public class BlackScreenController : MonoBehaviour
         Color color = spriteRenderer.color;
         color.a = Mathf.Clamp01(alpha);
         spriteRenderer.color = color;
+    }
+
+    public void SceneStartFadeOut( System.Action onComplete = null)
+    {
+        gameObject.SetActive(true);
+        SetAlphaInstantly(1.0f);
+        StartCoroutine(FadeOut(sceneTransitionFadeDuration, onComplete));
+    }
+
+    public void SceneEndFadeIn(System.Action onComplete = null)
+    {
+        gameObject.SetActive(true);
+        SetAlphaInstantly(0.0f);
+        StartCoroutine(FadeIn(sceneTransitionFadeDuration, onComplete));
     }
 }
