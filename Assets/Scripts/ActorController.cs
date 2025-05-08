@@ -125,6 +125,29 @@ public class ActorController : MonoBehaviour
             yield return null;
         }
 
+        Vector3 finalOffset = pathOffsetProvider != null ? pathOffsetProvider.GetOffset(1f) : Vector3.zero;
+        if (useLocalSpace)
+            transform.localPosition = targetPosition + finalOffset;
+        else
+            transform.position = targetPosition + finalOffset;
+
+        // Settle motion back to exact targetPosition
+        float settleDuration = 0.2f;
+        float settleElapsed = 0f;
+        Vector3 settleStart = useLocalSpace ? transform.localPosition : transform.position;
+        while (settleElapsed < settleDuration)
+        {
+            float t = settleElapsed / settleDuration;
+            Vector3 settlePos = Vector3.Lerp(settleStart, targetPosition, t);
+            if (useLocalSpace)
+                transform.localPosition = settlePos;
+            else
+                transform.position = settlePos;
+
+            settleElapsed += Time.deltaTime;
+            yield return null;
+        }
+
         if (useLocalSpace)
             transform.localPosition = targetPosition;
         else
