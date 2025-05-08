@@ -41,6 +41,12 @@ public class ActorController : MonoBehaviour
 
     private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete)
     {
+        var floating = GetComponent<FloatingMotion>();
+        if (floating != null)
+        {
+            floating.StopMotion();
+        }
+        
         Vector3 startPosition = transform.position;
         float elapsed = 0f;
 
@@ -55,10 +61,9 @@ public class ActorController : MonoBehaviour
         transform.position = targetPosition;
         
         // 如果有 FloatingMotion，就更新它的基准点
-        var floating = GetComponent<FloatingMotion>();
         if (floating != null)
         {
-            floating.SetInitialPosition(transform.localPosition);
+            floating.StartMotion(transform.localPosition);
         }
         
         currentMoveCoroutine = null;
