@@ -11,21 +11,21 @@ public class ActorController : MonoBehaviour
     /// <summary>
     /// 移动到目标世界坐标位置。
     /// </summary>
-    public void MoveToPosition(Vector3 targetPosition, float duration = -1f, System.Action onComplete = null)
+    public void MoveToPosition(Vector3 targetPosition, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null)
     {
         if (currentMoveCoroutine != null)
             StopCoroutine(currentMoveCoroutine);
 
-        currentMoveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration < 0 ? defaultMoveDuration : duration, onComplete));
+        currentMoveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration < 0 ? defaultMoveDuration : duration, onComplete, curve));
     }
 
     /// <summary>
     /// 相对当前位置移动一定的偏移。
     /// </summary>
-    public void MoveByDelta(Vector3 delta, float duration = -1f, System.Action onComplete = null)
+    public void MoveByDelta(Vector3 delta, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null)
     {
         Vector3 targetPosition = transform.position + delta;
-        MoveToPosition(targetPosition, duration, onComplete);
+        MoveToPosition(targetPosition, duration, onComplete, curve);
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class ActorController : MonoBehaviour
         currentScaleCoroutine = StartCoroutine(ScaleRoutine(targetScale, duration < 0 ? defaultMoveDuration : duration, onComplete));
     }
 
-    private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete)
+    private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete = null, AnimationCurve curve = null)
     {
         // 如果有 motion，就停止 motion
         var motion = GetComponent<IActorMotion>();
@@ -54,7 +54,8 @@ public class ActorController : MonoBehaviour
         while (elapsed < duration)
         {
             float t = elapsed / duration;
-            transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            float curvedT = curve != null ? curve.Evaluate(t) : t;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, curvedT);
             elapsed += Time.deltaTime;
             yield return null;
         }
