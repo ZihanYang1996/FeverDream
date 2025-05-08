@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("Stage Management")]
     [SerializeField] private StageData tutorialStage;
     [SerializeField] private List<StageData> mainStages;
+    [SerializeField] public int blackScreenAlphaForPuzzle = 245; // Alpha value for the black screen when playing the puzzle
     private HashSet<string> completedStageIds = new HashSet<string>();
     
     [Header("Dialogue Settings")]
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Scene Management")]
     [SerializeField] private SceneFlowController sceneFlowController;
+    [SerializeField] public float blackScreenFadeDuration = 1f; // Duration for black screen fade in/out between scenes
+    [SerializeField] public float blackScreenStayDuration = 1f; // Duration for black screen to stay before fading out
     public int totalNumberOfLevel { get; private set;  } = 2; // Total number of level in the game
     public int totalNumberOfHiddenLevel { get; private set;  } = 2; // Total number of hidden level in the game
 
