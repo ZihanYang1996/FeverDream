@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 3147640613861116565}
   - component: {fileID: 239679676970267310}
   - component: {fileID: 3103714017623236833}
+  - component: {fileID: 5146450338227711276}
   m_Layer: 5
   m_Name: StartPuzzleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5871004543008523716
 RectTransform:
   m_ObjectHideFlags: 0
@@ -133,6 +134,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5146450338227711276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5033133523498511779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e85f3dab7e8463bbbd790838ff0e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInDuration: 1
+  pulseScale: 1.2
+  pulseDuration: 0.3
+  pulseCount: 2
 --- !u!1 &7999111147235620473
 GameObject:
   m_ObjectHideFlags: 0

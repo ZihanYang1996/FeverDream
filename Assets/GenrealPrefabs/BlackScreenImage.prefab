@@ -100,3 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4e846c010ff43c2b7918f055fbd7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 1
+  targetAlpha: 1
+  autoFadeInOnStart: 0

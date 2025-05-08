@@ -214,10 +214,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzlePanel: {fileID: 1577141417}
+  blackScreenGameObject: {fileID: 0}
   workspaceOutlineImage: {fileID: 1577141416}
   workspaceArea: {fileID: 1577141415}
   validateButton: {fileID: 1577141414}
   startPuzzleButton: {fileID: 1559676717}
+  generatedTangramHolder: {fileID: 0}
   captureCamera: {fileID: 1039867755}
   captureRT: {fileID: 8400000, guid: c618bda3366ec448c9ef5fe611e63499, type: 2}
   currentStage: {fileID: 0}
@@ -452,7 +454,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
