@@ -7,6 +7,7 @@ public class ActorController : MonoBehaviour
 
     private Coroutine currentMoveCoroutine;
     private Coroutine currentScaleCoroutine;
+    private Coroutine currentRotateCoroutine;
 
     /// <summary>
     /// 移动到目标世界坐标位置。
@@ -37,6 +38,54 @@ public class ActorController : MonoBehaviour
             StopCoroutine(currentScaleCoroutine);
 
         currentScaleCoroutine = StartCoroutine(ScaleRoutine(targetScale, duration < 0 ? defaultMoveDuration : duration, onComplete, curve));
+    }
+
+    /// <summary>
+    /// 原地旋转到目标角度（世界旋转）。
+    /// </summary>
+    public void RotateInPlace(float targetAngle, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, Vector3 axis = default)
+    {
+        if (currentRotateCoroutine != null)
+            StopCoroutine(currentRotateCoroutine);
+
+        if (axis == default)
+            axis = Vector3.forward; // 默认绕 Z 轴旋转
+
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = Quaternion.AngleAxis(targetAngle, axis);
+        currentRotateCoroutine = StartCoroutine(RotateRoutine(startRotation, endRotation, duration < 0 ? defaultMoveDuration : duration, onComplete, curve));
+    }
+
+    /// <summary>
+    /// 相对当前角度旋转一定的角度。
+    /// </summary>
+    public void RotateByDelta(float deltaAngle, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, Vector3 axis = default)
+    {
+        if (axis == default)
+            axis = Vector3.forward;
+
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = startRotation * Quaternion.AngleAxis(deltaAngle, axis);
+        if (currentRotateCoroutine != null)
+            StopCoroutine(currentRotateCoroutine);
+
+        currentRotateCoroutine = StartCoroutine(RotateRoutine(startRotation, endRotation, duration < 0 ? defaultMoveDuration : duration, onComplete, curve));
+    }
+
+    private IEnumerator RotateRoutine(Quaternion startRotation, Quaternion endRotation, float duration, System.Action onComplete, AnimationCurve curve = null)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            float curvedT = curve != null ? curve.Evaluate(t) : t;
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, curvedT);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = endRotation;
+        currentRotateCoroutine = null;
+        onComplete?.Invoke();
     }
 
     private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false)
