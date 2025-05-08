@@ -50,6 +50,17 @@ public class GameLevel1SceneManager : MonoBehaviour
         whale.SetActive(false);
         sprout.SetActive(false);
 
+        // Start with black screen fade out
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()?.SetAlphaInstantly(1f);
+            blackScreenImage.GetComponent<BlackScreenController>()?.StartFadeOut();
+        }
+        else
+        {
+            Debug.LogError("Black screen image not assigned in the inspector.");
+        }
 
         // Increment the current level index
         GameManager.Instance.IncrementCurrentLevelIndex();
@@ -472,7 +483,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         
         // Fade away the sprout
         isFadeInComplete = false;
-        duration = 1.0f;
+        duration = GameManager.Instance.blackScreenFadeDuration;
         sprout.GetComponent<ActorController>().FadeToAlpha(0, duration, () => { isFadeInComplete = true; });
         
         // Wait until the fade is finished and the dialogue is finished
@@ -488,6 +499,9 @@ public class GameLevel1SceneManager : MonoBehaviour
         
         // Wait for the fade-in to complete
         yield return new WaitUntil(() => isFadeInComplete);
+        
+        // Wait for a short time before going to the next scene
+        yield return new WaitForSeconds(GameManager.Instance.blackScreenStayDuration);
         
         // Call the onComplete action after the animation is finished
         onFinish?.Invoke();
