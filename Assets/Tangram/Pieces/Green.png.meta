@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 33296e106e10c40b58e5a68b44d2347b
+guid: 14ee60779cc0546589b7753bcc71062d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4121880872312635667
-    second: Orange_0
+      213: -4987337320017983735
+    second: Green_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,23 +113,26 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Orange_0
+      name: Green_0
       rect:
         serializedVersion: 2
-        x: 181
-        y: 178
-        width: 445
-        height: 907
+        x: 755
+        y: 796
+        width: 466
+        height: 466
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -233, y: -233}
+        - {x: 233, y: -233}
+        - {x: 233, y: 233}
+      tessellationDetail: 0
       bones: []
-      spriteID: 3110ca090dcd33930800000000000000
-      internalID: 4121880872312635667
+      spriteID: 9078749a12b69cab0800000000000000
+      internalID: -4987337320017983735
       vertices: []
       indices: 
       edges: []
@@ -138,7 +141,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a111cad9ebf124cc28bf92015a9a7756
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +151,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Orange_0: 4121880872312635667
+      Green_0: -4987337320017983735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

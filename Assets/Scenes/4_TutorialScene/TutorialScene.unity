@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 827929519}
-  balckScreenImage: {fileID: 2028644223}
+  blackScreenImage: {fileID: 2028644223}
   startPuzzleButton: {fileID: 1559676715}
   moveButtonDuration: 1.5
   buttonPulseCount: 3
