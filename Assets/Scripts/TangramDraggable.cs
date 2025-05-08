@@ -11,6 +11,7 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     private Vector2 originalPosition;
     private Transform originalParent;
+    private Quaternion originalRotation;
     private bool isDragging = false;
 
     private bool isPointerDown = false;
@@ -24,6 +25,7 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
         originalPosition = rectTransform.anchoredPosition;
         originalParent = transform.parent;
+        originalRotation = rectTransform.localRotation;
     }
 
     void Update()
@@ -90,7 +92,7 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         transform.SetParent(originalParent, true);
         rectTransform.anchoredPosition = originalPosition;
-        rectTransform.rotation = Quaternion.identity;
+        rectTransform.localRotation = originalRotation;
     }
 
     // uiCamera: null for Screen Space - Overlay, use the camera for Screen Space - Camera
