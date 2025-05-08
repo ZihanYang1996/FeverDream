@@ -18,20 +18,20 @@ public class ButtonEntranceEffect : MonoBehaviour
     {
         button = GetComponent<Button>();
         rectTransform = GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = GameManager.Instance.defaultStartPuzzelButtonPosition;
         canvasGroup = GetComponent<CanvasGroup>();
 
         if (canvasGroup == null)
         {
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
-
-        canvasGroup.alpha = 0f; // Start fully transparent
         button.interactable = false;
     }
 
     public void PlayEntranceAnimation()
     {
+
+        rectTransform.anchoredPosition = GameManager.Instance.defaultStartPuzzelButtonPosition;
+        canvasGroup.alpha = 0f; // Start fully transparent
         StartCoroutine(AnimateEntrance());
     }
 
