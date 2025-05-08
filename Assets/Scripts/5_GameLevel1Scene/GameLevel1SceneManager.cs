@@ -180,8 +180,8 @@ public class GameLevel1SceneManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         // Move the boat to the upper right corner (using ActorController)
-        Vector3 targetPosition = new Vector3(4.0f, 0.7f, 0.0f);
-        float moveAndScaleDuration = 3.0f;
+        Vector3 targetPosition = new Vector3(6.0f, -1.0f, 0.0f);
+        float moveAndScaleDuration = 2.5f;
         bool isBoatMovementFinished = false;
         var boatController = largeBoat.GetComponent<ActorController>();
         if (boatController == null)
@@ -193,12 +193,12 @@ public class GameLevel1SceneManager : MonoBehaviour
         boatController.MoveToPosition(targetPosition, moveAndScaleDuration, () => { isBoatMovementFinished = true; });
 
         // Scale down the boat at the same time
-        Vector3 targetScale = new Vector3(0.25f, 0.25f, 1.0f);
+        Vector3 targetScale = new Vector3(0.45f, 0.45f, 1.0f);
         bool isBoatScaleFinished = false;
         boatController.ScaleTo(targetScale, moveAndScaleDuration, () => { isBoatScaleFinished = true; });
 
-        // Wait until 1/3 of the boat movement is finished
-        yield return new WaitForSeconds(moveAndScaleDuration / 3.0f);
+        // Wait until 1/4 of the boat movement is finished
+        yield return new WaitForSeconds(moveAndScaleDuration / 4.0f);
 
         // Set the character with wood to active
         characterWithWood.SetActive(true);
@@ -235,7 +235,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         float fadeAndMoveDuration = 2.0f;
         bool isBoatFadeFinished = false;
         bool isBoatMoveFinished = false;
-        targetPosition = new Vector3(4.0f, -4.0f, 0.0f);
+        targetPosition = new Vector3(6.0f, -6.0f, 0.0f);
         largeBoat.GetComponent<ActorController>().FadeToAlpha(0f, fadeAndMoveDuration, () => { isBoatFadeFinished = true; });
         // Move the large boat to the bottom of the screen
         largeBoat.GetComponent<ActorController>().MoveToPosition(targetPosition, fadeAndMoveDuration, () => { isBoatMoveFinished = true; });
