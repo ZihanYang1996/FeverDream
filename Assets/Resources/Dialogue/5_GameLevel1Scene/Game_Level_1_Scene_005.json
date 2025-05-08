@@ -1,0 +1,23 @@
+{
+  "dialogueId": "Game_Level_1_Scene_005",
+  "lines": [
+    {
+      "speaker": "",
+      "zh": "（啊？！）",
+      "en": "(Huh?!)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（竟然变成了真的船！看来有救了！）",
+      "en": "(It actually turned into a real boat! Looks like I’m saved!)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（得赶快爬上去）",
+      "en": "(I need to climb on—fast!)",
+      "isThought": true
+    }
+  ]
+}

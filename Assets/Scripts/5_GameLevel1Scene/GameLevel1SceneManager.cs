@@ -19,6 +19,8 @@ public class GameLevel1SceneManager : MonoBehaviour
     [SerializeField] private GameObject characterWithWood;
     [SerializeField] private GameObject generatedTangramHolder;
     [SerializeField] private GameObject blackScreenImage;
+    [SerializeField] private GameObject whale;
+    [SerializeField] private GameObject sprout;
 
     [Header("Dialogue")]
     [SerializeField] private string dialogueFileName1;
@@ -26,8 +28,15 @@ public class GameLevel1SceneManager : MonoBehaviour
     [SerializeField] private string dialogueFileName2;
     [SerializeField] private string dialogueFileName3;
     [SerializeField] private string dialogueFileName4;
+    [SerializeField] private string dialogueFileName5;
+    [SerializeField] private string dialogueFileName6;
+    [SerializeField] private string dialogueFileName7;
+    [SerializeField] private string dialogueFileName8;
 
     [SerializeField] private DialogueManager dialogueManager;
+    
+    [Header("AnimationCurves")]
+    [SerializeField] private AnimationCurve sproutMoveCurve;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +47,8 @@ public class GameLevel1SceneManager : MonoBehaviour
         sea.SetActive(true);
         largeBoat.SetActive(true);
         characterWithWood.SetActive(false);
+        whale.SetActive(false);
+        sprout.SetActive(false);
 
 
         // Increment the current level index
@@ -236,14 +247,16 @@ public class GameLevel1SceneManager : MonoBehaviour
         bool isBoatFadeFinished = false;
         bool isBoatMoveFinished = false;
         targetPosition = new Vector3(6.0f, -6.0f, 0.0f);
-        largeBoat.GetComponent<ActorController>().FadeToAlpha(0f, fadeAndMoveDuration, () => { isBoatFadeFinished = true; });
+        largeBoat.GetComponent<ActorController>()
+            .FadeToAlpha(0f, fadeAndMoveDuration, () => { isBoatFadeFinished = true; });
         // Move the large boat to the bottom of the screen
-        largeBoat.GetComponent<ActorController>().MoveToPosition(targetPosition, fadeAndMoveDuration, () => { isBoatMoveFinished = true; });
+        largeBoat.GetComponent<ActorController>()
+            .MoveToPosition(targetPosition, fadeAndMoveDuration, () => { isBoatMoveFinished = true; });
         // Wait until both fade and move are finished
         yield return new WaitUntil(() => isBoatFadeFinished && isBoatMoveFinished);
         // Disable the large boat
         largeBoat.SetActive(false);
-        
+
         // Wait a short time before starting the next dialogue
         yield return new WaitForSeconds(1.0f);
 
@@ -290,22 +303,193 @@ public class GameLevel1SceneManager : MonoBehaviour
         // Wait for a short time before starting the animation
         yield return new WaitForSeconds(1.0f);
 
-        // Fade in the black screen
+        // Fade out the black screen
         bool isFadeOutComplete = false;
         if (blackScreenImage != null)
         {
             blackScreenImage.SetActive(true);
             blackScreenImage.GetComponent<BlackScreenController>()?.StartFadeOut((() => { isFadeOutComplete = true; }));
         }
-        // Wait for the fade-in to complete
+
+        // Wait for the fade-out to complete
         yield return new WaitUntil(() => isFadeOutComplete);
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
-        
-        
 
+        // Add ActorController component to the generated tangram holder
+        var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
+
+        // Add FloatingMotion component to the generated tangram holder, so it do the floating animation
+        var tangramHolderFloatingMotion = generatedTangramHolder.AddComponent<FloatingMotion>();
+        tangramHolderFloatingMotion.seed = 65;
+        tangramHolderFloatingMotion.amplitude = new Vector3(1.5f, 0.2f, 0f);
+        tangramHolderFloatingMotion.frequency = new Vector3(0.5f, 2f, 0f);
+        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 1
+        var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
+        if (tangramHolderSpriteRenderer != null)
+        {
+            tangramHolderSpriteRenderer.sortingLayerName = "Actors";
+            tangramHolderSpriteRenderer.sortingOrder = 7;
+        }
+        else
+        {
+            Debug.LogError("Tangram holder does not have a child with a SpriteRenderer component.");
+        }
+
+        // Move the generated tangram holder near the character
+        bool isMoveComplete = false;
+        Vector3 deltaPosition = new Vector3(-10.0f, 2.0f, 0.0f);
+        float duration = 2.0f;
+        tangramHolderActorController.MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; });
+        yield return new WaitUntil(() => isMoveComplete);
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(2.0f);
+
+        // Play Dialogue 5
+        bool isDialogueFinished = false;
+        var dialogueAsset5 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName5);
+        if (dialogueAsset5 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset5, Language.ZH, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished);
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+        // Move the character with wood to the up, and make it fade out.
+        isFadeOutComplete = false;
+        isMoveComplete = false;
+        deltaPosition = new Vector3(0.0f, 2.0f, 0.0f);
+        duration = 2.0f;
+        characterWithWood.GetComponent<ActorController>()
+            .MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; });
+        characterWithWood.GetComponent<ActorController>().FadeToAlpha(0, duration, () => { isFadeOutComplete = true; });
+
+        // Wait until both fade and move are finished
+        yield return new WaitUntil(() => isMoveComplete && isFadeOutComplete);
+
+        // Disable the character with wood
+        characterWithWood.SetActive(false);
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+
+        // Move the generated tangram holder to the center of the screen
+        isMoveComplete = false;
+        deltaPosition = new Vector3(3.0f, -1.0f, 0.0f);
+        duration = 1.0f;
+        tangramHolderActorController.MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; });
+
+        // Wait until the move is finished
+        yield return new WaitUntil(() => isMoveComplete);
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+
+        // Play Dialogue 6
+        isDialogueFinished = false;
+        var dialogueAsset6 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName6);
+        if (dialogueAsset6 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName6}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset6, Language.ZH, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished);
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+
+        // Play Dialogue 7
+        isDialogueFinished = false;
+        var dialogueAsset7 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName7);
+        if (dialogueAsset7 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName7}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset7, Language.ZH, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished);
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+
+        // Whale appears from the bottom of the screen and alpha from 0 to 1
+        isMoveComplete = false;
+        bool isFadeInComplete = false;
+        duration = 3.0f;
+        deltaPosition = new Vector3(0.0f, 6.5f, 0.0f);
+        whale.SetActive(true);
+        whale.GetComponent<ActorController>().SetAlphaInstantly(0f); // Set the alpha to 0
+        whale.GetComponent<ActorController>().FadeToAlpha(1, duration, () => { isFadeInComplete = true; });
+        whale.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; });
+        // Wait until both fade and move are finished
+        yield return new WaitUntil(() => isMoveComplete && isFadeInComplete);
+        
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+        
+        // Start the sprout animation (moving up and alpha from 0 to 1)
+        isMoveComplete = false;
+        isFadeInComplete = false;
+        duration = 3.0f;
+        deltaPosition = new Vector3(0.0f, 11.0f, 0.0f);
+        sprout.SetActive(true);
+        sprout.GetComponent<ActorController>().SetAlphaInstantly(0f); // Set the alpha to 0
+        sprout.GetComponent<ActorController>().FadeToAlpha(1, duration, () => { isFadeInComplete = true; }, sproutMoveCurve);
+        sprout.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; }, sproutMoveCurve);
+        
+        // Wait for a period of time before starting the tangram animation
+        yield return new WaitForSeconds(duration/6.0f);
+        
+        // Start the tangram animation move
+        bool isTangramMoveComplete = false;
+        deltaPosition = new Vector3(0.0f, 12.0f, 0.0f);
+        generatedTangramHolder.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration, () => { isTangramMoveComplete = true; }, sproutMoveCurve);
+        
+        // Wait until both fade and move are finished
+        yield return new WaitUntil(() => isMoveComplete && isFadeInComplete && isTangramMoveComplete);
+        // Disable the tangram holder
+        generatedTangramHolder.SetActive(false);
+        
+        // Play Dialogue 8
+        isDialogueFinished = false;
+        var dialogueAsset8 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName8);
+        if (dialogueAsset8 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName8}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset8, Language.ZH, () => { isDialogueFinished = true; });
+        
+        // Wait for a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+        
+        // Fade away the sprout
+        isFadeInComplete = false;
+        duration = 1.0f;
+        sprout.GetComponent<ActorController>().FadeToAlpha(0, duration, () => { isFadeInComplete = true; });
+        
+        // Wait until the fade is finished and the dialogue is finished
+        yield return new WaitUntil(() => isDialogueFinished && isFadeInComplete);
+        
+        // Fade in the black screen
+        isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()?.StartFadeIn((() => { isFadeInComplete = true; }));
+        }
+        
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+        
         // Call the onComplete action after the animation is finished
-        // onFinish?.Invoke();
-        // yield return new WaitForSeconds(1.0f);
+        onFinish?.Invoke();
     }
 }

@@ -54,6 +54,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c0bb8d585653d46158978e019f35d7ef, type: 2}
   - {fileID: 11400000, guid: dbbc02ef914774b73bb3f3a20b5f5c00, type: 2}
   - {fileID: 11400000, guid: 1ee36aa6c27a24241b56185f31f2753b, type: 2}
+  currentLanguage: 0
+  defaultStyle:
+    fontStyle: 0
+    fontColor: {r: 1, g: 1, b: 1, a: 1}
+    fontSize: 36
+  thoughtStyle:
+    fontStyle: 2
+    fontColor: {r: 1, g: 1, b: 1, a: 0.6}
+    fontSize: 36
+  narratorStyle:
+    fontStyle: 0
+    fontColor: {r: 1, g: 0.95, b: 0.8, a: 1}
+    fontSize: 36
   sceneFlowController: {fileID: 7859278791685369596}
   defaultStartPuzzelButtonPosition: {x: 750, y: -350, z: 0}
 --- !u!114 &7859278791685369596
