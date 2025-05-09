@@ -7,9 +7,10 @@ public class BlackScreenController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
-    [FormerlySerializedAs("sceneStartFadeDuration")]
     [Header("Fade Settings")]
     [SerializeField] private float sceneTransitionFadeDuration = 1f;
+
+    [SerializeField] private float blackScreenStayDuration = 2f; // The duration to stay black
 
     [SerializeField] private float targetAlpha = 1f; // Default target for FadeIn
 
@@ -20,7 +21,6 @@ public class BlackScreenController : MonoBehaviour
 
     private void Start()
     {
-
     }
 
     private IEnumerator FadeIn(float duration, System.Action onComplete = null)
@@ -72,17 +72,32 @@ public class BlackScreenController : MonoBehaviour
         spriteRenderer.color = color;
     }
 
-    public void SceneStartFadeOut( System.Action onComplete = null)
+    private IEnumerator SceneStartFadeOutCoroutine(System.Action onComplete = null)
+    {
+        yield return new WaitForSeconds(blackScreenStayDuration);
+        StartCoroutine(FadeOut(sceneTransitionFadeDuration, onComplete));
+    }
+
+    private IEnumerator SceneEndFadeInCoroutine(System.Action onComplete = null)
+    {
+        bool isFadeInComplete = false;
+        StartCoroutine(FadeIn(sceneTransitionFadeDuration, (() => { isFadeInComplete = true; })));
+        yield return new WaitUntil(() => isFadeInComplete);
+        yield return new WaitForSeconds(blackScreenStayDuration);
+        onComplete?.Invoke();
+    }
+
+    public void SceneStartFadeOut(System.Action onComplete = null)
     {
         gameObject.SetActive(true);
         SetAlphaInstantly(1.0f);
-        StartCoroutine(FadeOut(sceneTransitionFadeDuration, onComplete));
+        StartCoroutine(SceneStartFadeOutCoroutine(onComplete));
     }
 
     public void SceneEndFadeIn(System.Action onComplete = null)
     {
         gameObject.SetActive(true);
         SetAlphaInstantly(0.0f);
-        StartCoroutine(FadeIn(sceneTransitionFadeDuration, onComplete));
+        StartCoroutine(SceneEndFadeInCoroutine(onComplete));
     }
 }
