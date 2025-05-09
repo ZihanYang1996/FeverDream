@@ -17,7 +17,8 @@ public class TutorialSceneManager : MonoBehaviour
     [SerializeField] private float buttonPulseScale = 1.2f;
     [SerializeField] private float buttonPulseDuration = 0.2f;
     [SerializeField] private StageManager stageManager;
-
+    [SerializeField] private GameObject generatedTangramHolder;
+    
     [Header("Background Images")]
     [SerializeField] public Sprite backgroundImage2;
 
@@ -292,6 +293,19 @@ public class TutorialSceneManager : MonoBehaviour
 
     private IEnumerator PlayPostPuzzleAnimation1(bool success)
     {
+        // Set the Tangram holder's position
+        generatedTangramHolder.transform.position = new Vector3(4.5f,-1.48000002f,-5.06389952f);
+        // Add ActorController component to the generated tangram holder
+        var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
+        
+        // Fade in the generated tangram holder
+        bool isFadeComplete = false;
+        tangramHolderActorController.FadeToAlpha(1f, stageManager.generatedTangramFlickerDuration,
+            (() => isFadeComplete = true));
+        
+        // Wait until the fade is finished
+        yield return new WaitUntil(() => isFadeComplete);
+
         // Fade in the black screen
         bool isFadeInComplete = false;
         float fadeOutDuration = 0.5f;
@@ -327,7 +341,8 @@ public class TutorialSceneManager : MonoBehaviour
     private IEnumerator PlayPostPuzzleAnimation2()
     {
         // Small delay before starting the animation
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
+        
         // Play the first background image (Black screen)
         backgroundImage.sprite = null;
         // Wait for a moment before dialogue
