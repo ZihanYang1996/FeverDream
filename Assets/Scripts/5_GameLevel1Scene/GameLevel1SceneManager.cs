@@ -530,9 +530,6 @@ public class GameLevel1SceneManager : MonoBehaviour
         // Wait for the fade-in to complete
         yield return new WaitUntil(() => isFadeInComplete);
 
-        // Wait for a short time before going to the next scene
-        yield return new WaitForSeconds(GameManager.Instance.blackScreenStayDuration);
-
         // Call the onComplete action after the animation is finished
         onFinish?.Invoke();
     }
@@ -658,7 +655,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         {
             sea.GetComponent<ActorController>()
                 .MoveByDelta(deltaSeaPosition, duration, () => { isSeaMoveComplete = true; });
-        
+
             characterWithWood.GetComponent<ActorController>()
                 .MoveByDelta(deltaSeaPosition, duration, () => { isCharacterMoveComplete = true; });
             yield return new WaitUntil(() => isSeaMoveComplete && isCharacterMoveComplete);
@@ -668,7 +665,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             repeatCount--;
         }
-        
+
         // Fade in the black screen
         bool isFadeInComplete = false;
         if (blackScreenImage != null)
@@ -680,12 +677,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         // Wait for the fade-in to complete
         yield return new WaitUntil(() => isFadeInComplete);
 
-        // Wait for a short time before going to the next scene
-        yield return new WaitForSeconds(GameManager.Instance.blackScreenStayDuration);
-
         // Call the onComplete action after the animation is finished
         onFinish?.Invoke();
-
-        
     }
 }
