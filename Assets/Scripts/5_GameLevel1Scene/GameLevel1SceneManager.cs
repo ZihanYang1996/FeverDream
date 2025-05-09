@@ -293,18 +293,19 @@ public class GameLevel1SceneManager : MonoBehaviour
     private void PlayPostPuzzleAnimation(string stageID, System.Action onComplete)
     {
         // Play the post-puzzle animation based on the stage ID
-        if (stageID == "Boat")
+        if (stageID == NormalStageId)
         {
             // Play the normal stage post-puzzle animation
             Debug.Log($"Playing post-puzzle animation for Normal Stage: {stageID}");
             // Add your animation logic here
             StartCoroutine(PlayBoatAnimationCoroutine((() => { onComplete?.Invoke(); })));
         }
-        else if (stageID == "Cat")
+        else if (stageID == SecretStageId)
         {
             // Play the secret stage post-puzzle animation
             Debug.Log($"Playing post-puzzle animation for Secret Stage: {stageID}");
             // Add your animation logic here
+            StartCoroutine(PlayCatAnimationCoroutine((() => { onComplete?.Invoke(); })));
         }
         else
         {
@@ -314,6 +315,23 @@ public class GameLevel1SceneManager : MonoBehaviour
 
     private IEnumerator PlayBoatAnimationCoroutine(System.Action onFinish)
     {
+        // Set the Tangram holder's position
+        generatedTangramHolder.transform.position = new Vector3(4.44000006f, -2.24000001f, -5.06389952f);
+        // Add ActorController component to the generated tangram holder
+        var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
+        
+        // Add FloatingPathOffset component to the generated tangram holder
+        var tangramHolderFloatingPathOffset = generatedTangramHolder.AddComponent<FloatingPathOffset>();
+        tangramHolderFloatingPathOffset.amplitude = new Vector3(0.2f, 0.2f, 0f);
+        tangramHolderFloatingPathOffset.frequency = new Vector3(4f, 4f, 0f);
+
+        // Fade in the generated tangram holder
+        bool isFadeComplete = false;
+        tangramHolderActorController.FadeToAlpha(1f, stageManager.generatedTangramFlickerDuration,
+            (() => isFadeComplete = true));
+        // Wait until the fade is finished
+        yield return new WaitUntil(() => isFadeComplete);
+
         // Wait for a short time before starting the animation
         yield return new WaitForSeconds(1.0f);
 
@@ -331,19 +349,13 @@ public class GameLevel1SceneManager : MonoBehaviour
         yield return new WaitUntil(() => isFadeOutComplete);
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
-
-        // Add ActorController component to the generated tangram holder
-        var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
-
+        
         // Add FloatingMotion component to the generated tangram holder, so it do the floating animation
         var tangramHolderFloatingMotion = generatedTangramHolder.AddComponent<FloatingMotion>();
         tangramHolderFloatingMotion.seed = 65;
         tangramHolderFloatingMotion.amplitude = new Vector3(1.5f, 0.2f, 0f);
         tangramHolderFloatingMotion.frequency = new Vector3(0.5f, 2f, 0f);
-        // Add FloatingPathOffset component to the generated tangram holder
-        var tangramHolderFloatingPathOffset = generatedTangramHolder.AddComponent<FloatingPathOffset>();
-        tangramHolderFloatingPathOffset.amplitude = new Vector3(0.2f, 0.2f, 0f);
-        tangramHolderFloatingPathOffset.frequency = new Vector3(4f, 4f, 0f);
+        
         // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 1
         var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
         if (tangramHolderSpriteRenderer != null)
@@ -520,5 +532,73 @@ public class GameLevel1SceneManager : MonoBehaviour
 
         // Call the onComplete action after the animation is finished
         onFinish?.Invoke();
+    }
+
+
+    private IEnumerator PlayCatAnimationCoroutine(System.Action onFinish)
+    {
+        // Set the Tangram holder's position
+        generatedTangramHolder.transform.position = new Vector3(4.51000023f,-1.47000003f,-5.06389952f);
+        // Add ActorController component to the generated tangram holder
+        var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
+        
+        // Add FloatingPathOffset component to the generated tangram holder
+        var tangramHolderFloatingPathOffset = generatedTangramHolder.AddComponent<FloatingPathOffset>();
+        tangramHolderFloatingPathOffset.amplitude = new Vector3(0.2f, 0.2f, 0f);
+        tangramHolderFloatingPathOffset.frequency = new Vector3(4f, 4f, 0f);
+
+        // Fade in the generated tangram holder
+        bool isFadeComplete = false;
+        tangramHolderActorController.FadeToAlpha(1f, stageManager.generatedTangramFlickerDuration,
+            (() => isFadeComplete = true));
+        // Wait until the fade is finished
+        yield return new WaitUntil(() => isFadeComplete);
+        
+        // Wait for a short time before starting the animation
+        yield return new WaitForSeconds(1.0f);
+        
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
+        }
+
+        // Wait for the fade-out to complete
+        yield return new WaitUntil(() => isFadeOutComplete);
+        Debug.Log("Fade out complete");
+        blackScreenImage.SetActive(false);
+
+        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 1
+        var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
+        if (tangramHolderSpriteRenderer != null)
+        {
+            tangramHolderSpriteRenderer.sortingLayerName = "Actors";
+            tangramHolderSpriteRenderer.sortingOrder = 7;
+        }
+        else
+        {
+            Debug.LogError("Tangram holder does not have a child with a SpriteRenderer component.");
+        }
+
+        // Move the generated tangram holder near the character
+        bool isMoveComplete = false;
+        Vector3 deltaPosition = new Vector3(5.0f, 2.0f, 0.0f);
+        float duration = 2.0f;
+        tangramHolderActorController.MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; },
+            usePathOffset: true, settleDuration: 0.5f);
+
+        // Scale up the generated tangram holder
+        Vector3 targetScale = new Vector3(2.0f, 2.0f, 1.0f);
+        bool isTangramScaleFinished = false;
+        tangramHolderActorController.ScaleTo(targetScale, duration, () => { isTangramScaleFinished = true; });
+
+        yield return new WaitUntil(() => isMoveComplete && isTangramScaleFinished);
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(2.0f);
     }
 }
