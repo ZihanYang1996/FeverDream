@@ -54,6 +54,9 @@ public class StageManager : MonoBehaviour
     [Header("Gameplay Timing")]
     [SerializeField] private float countdownDuration = 30f;
 
+    [SerializeField] public float generatedTangramFlickerDuration = 2.0f;
+    [SerializeField] public int generatedTangramFlickerCount = 2;
+
     private float countdownTimer;
     private bool puzzleCompleted = false;
     [SerializeField] private TMPro.TextMeshProUGUI countdownText;
@@ -597,8 +600,8 @@ public class StageManager : MonoBehaviour
         }
 
         // Step 2: Flicker all workspaceArea children (2 full flickers, then one fade out)
-        int flickerCount = 2;
-        float flickerDuration = 2.0f;
+        int flickerCount = generatedTangramFlickerCount;
+        float flickerDuration = generatedTangramFlickerDuration;
         float minAlpha = 0.0f;
 
         // Prepare canvas groups
@@ -681,19 +684,19 @@ public class StageManager : MonoBehaviour
             sr.sortingLayerName = "AboveCurtain";
 
             // Fade in the sprite using Mathf.Sin for a smooth ease
-            float fadeInDuration = flickerDuration / 2f;
-            float fadeElapsed = 0f;
-            while (fadeElapsed < fadeInDuration)
-            {
-                float t = fadeElapsed / fadeInDuration;
-                float alpha = Mathf.Sin(t * Mathf.PI * 0.5f); // 0→1, sin(0→π/2): 0→1
-                Color newColor = sr.color;
-                newColor.a = alpha;
-                sr.color = newColor;
-                fadeElapsed += Time.deltaTime;
-                yield return null;
-            }
-            sr.color = new Color(1f, 1f, 1f, 1f); // Ensure fully opaque
+            // float fadeInDuration = flickerDuration / 2f;
+            // float fadeElapsed = 0f;
+            // while (fadeElapsed < fadeInDuration)
+            // {
+            //     float t = fadeElapsed / fadeInDuration;
+            //     float alpha = Mathf.Sin(t * Mathf.PI * 0.5f); // 0→1, sin(0→π/2): 0→1
+            //     Color newColor = sr.color;
+            //     newColor.a = alpha;
+            //     sr.color = newColor;
+            //     fadeElapsed += Time.deltaTime;
+            //     yield return null;
+            // }
+            // sr.color = new Color(1f, 1f, 1f, 1f); // Ensure fully opaque
         }
         // Step 4: Disable puzzle panel
         puzzlePanel.SetActive(false);
