@@ -214,7 +214,8 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        boatController.MoveToPosition(targetPosition, moveAndScaleDuration, () => { isBoatMovementFinished = true; });
+        boatController.MoveToPosition(targetPosition, moveAndScaleDuration, () => { isBoatMovementFinished = true; },
+            null, true, false, 1.0f);
 
         // Scale down the boat at the same time
         Vector3 targetScale = new Vector3(0.45f, 0.45f, 1.0f);
@@ -339,6 +340,10 @@ public class GameLevel1SceneManager : MonoBehaviour
         tangramHolderFloatingMotion.seed = 65;
         tangramHolderFloatingMotion.amplitude = new Vector3(1.5f, 0.2f, 0f);
         tangramHolderFloatingMotion.frequency = new Vector3(0.5f, 2f, 0f);
+        // Add FloatingPathOffset component to the generated tangram holder
+        var tangramHolderFloatingPathOffset = generatedTangramHolder.AddComponent<FloatingPathOffset>();
+        tangramHolderFloatingPathOffset.amplitude = new Vector3(0.2f, 0.2f, 0f);
+        tangramHolderFloatingPathOffset.frequency = new Vector3(4f, 4f, 0f);
         // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 1
         var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
         if (tangramHolderSpriteRenderer != null)
@@ -355,7 +360,8 @@ public class GameLevel1SceneManager : MonoBehaviour
         bool isMoveComplete = false;
         Vector3 deltaPosition = new Vector3(-10.0f, 2.0f, 0.0f);
         float duration = 2.0f;
-        tangramHolderActorController.MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; });
+        tangramHolderActorController.MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; },
+            usePathOffset: true, settleDuration: 0.5f);
         yield return new WaitUntil(() => isMoveComplete);
 
         // Wait a short time before starting the next animation
@@ -397,7 +403,8 @@ public class GameLevel1SceneManager : MonoBehaviour
         isMoveComplete = false;
         deltaPosition = new Vector3(3.0f, -1.0f, 0.0f);
         duration = 1.0f;
-        tangramHolderActorController.MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; });
+        tangramHolderActorController.MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; },
+            usePathOffset: true, settleDuration: 0.5f);
 
         // Wait until the move is finished
         yield return new WaitUntil(() => isMoveComplete);
