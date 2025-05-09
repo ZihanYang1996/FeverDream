@@ -32,6 +32,9 @@ public class GameLevel1SceneManager : MonoBehaviour
     [SerializeField] private string dialogueFileName6;
     [SerializeField] private string dialogueFileName7;
     [SerializeField] private string dialogueFileName8;
+    [SerializeField] private string dialogueFileName9;
+    [SerializeField] private string dialogueFileName10;
+
 
     [SerializeField] private DialogueManager dialogueManager;
 
@@ -319,7 +322,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         generatedTangramHolder.transform.position = new Vector3(4.44000006f, -2.24000001f, -5.06389952f);
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
-        
+
         // Add FloatingPathOffset component to the generated tangram holder
         var tangramHolderFloatingPathOffset = generatedTangramHolder.AddComponent<FloatingPathOffset>();
         tangramHolderFloatingPathOffset.amplitude = new Vector3(0.2f, 0.2f, 0f);
@@ -349,13 +352,13 @@ public class GameLevel1SceneManager : MonoBehaviour
         yield return new WaitUntil(() => isFadeOutComplete);
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
-        
+
         // Add FloatingMotion component to the generated tangram holder, so it do the floating animation
         var tangramHolderFloatingMotion = generatedTangramHolder.AddComponent<FloatingMotion>();
         tangramHolderFloatingMotion.seed = 65;
         tangramHolderFloatingMotion.amplitude = new Vector3(1.5f, 0.2f, 0f);
         tangramHolderFloatingMotion.frequency = new Vector3(0.5f, 2f, 0f);
-        
+
         // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 1
         var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
         if (tangramHolderSpriteRenderer != null)
@@ -538,7 +541,7 @@ public class GameLevel1SceneManager : MonoBehaviour
     private IEnumerator PlayCatAnimationCoroutine(System.Action onFinish)
     {
         // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(4.51000023f,-1.47000003f,-5.06389952f);
+        generatedTangramHolder.transform.position = new Vector3(4.51000023f, -1.47000003f, -5.06389952f);
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
 
@@ -548,10 +551,10 @@ public class GameLevel1SceneManager : MonoBehaviour
             (() => isFadeComplete = true));
         // Wait until the fade is finished
         yield return new WaitUntil(() => isFadeComplete);
-        
+
         // Wait for a short time before starting the animation
         yield return new WaitForSeconds(1.0f);
-        
+
         // Fade out the black screen
         bool isFadeOutComplete = false;
         float fadeDuration = 1.0f;
@@ -579,14 +582,20 @@ public class GameLevel1SceneManager : MonoBehaviour
             Debug.LogError("Tangram holder does not have a child with a SpriteRenderer component.");
         }
 
-        // Move the generated tangram holder near the character
+        // Add CatMotion component to the cat
+        var tangramHolderFloatingMotion = generatedTangramHolder.AddComponent<CatMotion>();
+        tangramHolderFloatingMotion.seed = 65;
+        tangramHolderFloatingMotion.swayAmplitude = new Vector3(0.1f, 0.1f, 0f);
+        tangramHolderFloatingMotion.swayFrequency = new Vector3(5f, 5f, 0f);
+
+        // Move the cat to right
         bool isMoveComplete = false;
         Vector3 deltaPosition = new Vector3(5.0f, 2.0f, 0.0f);
         float duration = 2.0f;
         tangramHolderActorController.MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; },
             usePathOffset: true, settleDuration: 0.5f);
 
-        // Scale up the generated tangram holder
+        // Scale up the cat
         Vector3 targetScale = new Vector3(2.0f, 2.0f, 1.0f);
         bool isTangramScaleFinished = false;
         tangramHolderActorController.ScaleTo(targetScale, duration, () => { isTangramScaleFinished = true; });
@@ -595,5 +604,88 @@ public class GameLevel1SceneManager : MonoBehaviour
 
         // Wait a short time before starting the next animation
         yield return new WaitForSeconds(2.0f);
+
+        // Play Dialogue 9
+        bool isDialogueFinished = false;
+        var dialogueAsset9 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName9);
+        if (dialogueAsset9 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName9}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset9, Language.ZH, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+
+        // Cat leans to the left
+        bool isRotateComplete = false;
+        isMoveComplete = false;
+        Vector3 targetPosition = new Vector3(5.5999999f, -2.51999998f, 0);
+        float targetRotation = 35.7799873f;
+        duration = 2.0f;
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, () => { isMoveComplete = true; });
+        tangramHolderActorController.RotateInPlace(targetRotation, duration, () => { isRotateComplete = true; });
+        yield return new WaitUntil(() => isRotateComplete && isMoveComplete);
+
+        // Wait a short time before starting the next animation
+        // yield return new WaitForSeconds(0.3f);
+
+        // Play Dialogue 10
+        isDialogueFinished = false;
+        var dialogueAsset10 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName10);
+        if (dialogueAsset10 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName10}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset10, Language.ZH, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+
+        // Move down the sea and character, as if the cat is drinking the sea
+        bool isSeaMoveComplete = false;
+        bool isCharacterMoveComplete = false;
+        Vector3 deltaSeaPosition = new Vector3(0.0f, -2.0f, 0.0f);
+        duration = 1.0f;
+        int repeatCount = 3;
+        while (repeatCount > 0)
+        {
+            sea.GetComponent<ActorController>()
+                .MoveByDelta(deltaSeaPosition, duration, () => { isSeaMoveComplete = true; });
+        
+            characterWithWood.GetComponent<ActorController>()
+                .MoveByDelta(deltaSeaPosition, duration, () => { isCharacterMoveComplete = true; });
+            yield return new WaitUntil(() => isSeaMoveComplete && isCharacterMoveComplete);
+            isSeaMoveComplete = false;
+            isCharacterMoveComplete = false;
+            // Wait a short time before starting the next animation
+            yield return new WaitForSeconds(1.0f);
+            repeatCount--;
+        }
+        
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+
+        // Wait for a short time before going to the next scene
+        yield return new WaitForSeconds(GameManager.Instance.blackScreenStayDuration);
+
+        // Call the onComplete action after the animation is finished
+        onFinish?.Invoke();
+
+        
     }
 }
