@@ -433,6 +433,8 @@ MonoBehaviour:
   exportFileName: playerMask
   normalizationResolution: 256
   countdownDuration: 90
+  generatedTangramFlickerDuration: 2
+  generatedTangramFlickerCount: 2
   countdownText: {fileID: 634579253}
   screenFlashImage: {fileID: 18061305}
   flashDuration: 0.2
@@ -453,7 +455,7 @@ MonoBehaviour:
   startPuzzleButton: {fileID: 851939033}
   stageManager: {fileID: 866684090}
   NormalStageId: Boat
-  SecretStageId: Camel
+  SecretStageId: Cat
   sky: {fileID: 2999157383234666458}
   sea: {fileID: 5597989352929425873}
   largeBoat: {fileID: 6244771975663294430}
@@ -1286,10 +1288,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2494790167541153436, guid: bda52b5162c644f9491b2bcac7dc08d4, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2631697292664648529, guid: bda52b5162c644f9491b2bcac7dc08d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -1463,14 +1461,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 433978261114779265, guid: 838201dd8053d411ba1b23bf913e594f, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 974108336358229609, guid: 838201dd8053d411ba1b23bf913e594f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.85
-      objectReference: {fileID: 0}
     - target: {fileID: 974108336358229609, guid: 838201dd8053d411ba1b23bf913e594f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.04
@@ -1687,14 +1677,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 639651249205849720, guid: 91b3d6cb6cf594e5283526d53a334ecd, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 639651249205849720, guid: 91b3d6cb6cf594e5283526d53a334ecd, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2396309975469935917, guid: 91b3d6cb6cf594e5283526d53a334ecd, type: 3}
       propertyPath: m_Name
       value: Whale

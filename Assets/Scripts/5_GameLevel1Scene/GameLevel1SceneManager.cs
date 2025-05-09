@@ -541,11 +541,6 @@ public class GameLevel1SceneManager : MonoBehaviour
         generatedTangramHolder.transform.position = new Vector3(4.51000023f,-1.47000003f,-5.06389952f);
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
-        
-        // Add FloatingPathOffset component to the generated tangram holder
-        var tangramHolderFloatingPathOffset = generatedTangramHolder.AddComponent<FloatingPathOffset>();
-        tangramHolderFloatingPathOffset.amplitude = new Vector3(0.2f, 0.2f, 0f);
-        tangramHolderFloatingPathOffset.frequency = new Vector3(4f, 4f, 0f);
 
         // Fade in the generated tangram holder
         bool isFadeComplete = false;
