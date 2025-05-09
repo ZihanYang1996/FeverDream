@@ -472,6 +472,8 @@ MonoBehaviour:
   dialogueFileName6: 5_GameLevel1Scene/Game_Level_1_Scene_006
   dialogueFileName7: 5_GameLevel1Scene/Game_Level_1_Scene_007
   dialogueFileName8: 5_GameLevel1Scene/Game_Level_1_Scene_008
+  dialogueFileName9: 5_GameLevel1Scene/Game_Level_1_Scene_009
+  dialogueFileName10: 5_GameLevel1Scene/Game_Level_1_Scene_010
   dialogueManager: {fileID: 866684092}
   sproutMoveCurve:
     serializedVersion: 2
@@ -1288,6 +1290,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 31223617428964161, guid: bda52b5162c644f9491b2bcac7dc08d4, type: 3}
+      propertyPath: amplitude.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 31223617428964161, guid: bda52b5162c644f9491b2bcac7dc08d4, type: 3}
+      propertyPath: frequency.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 31223617428964161, guid: bda52b5162c644f9491b2bcac7dc08d4, type: 3}
+      propertyPath: frequency.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2631697292664648529, guid: bda52b5162c644f9491b2bcac7dc08d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -1774,6 +1788,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6521952361440287202, guid: f6175a086218f40c79a743bfdc2545c4, type: 3}
+      propertyPath: amplitude.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521952361440287202, guid: f6175a086218f40c79a743bfdc2545c4, type: 3}
+      propertyPath: amplitude.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521952361440287202, guid: f6175a086218f40c79a743bfdc2545c4, type: 3}
+      propertyPath: frequency.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521952361440287202, guid: f6175a086218f40c79a743bfdc2545c4, type: 3}
+      propertyPath: frequency.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7904545080919035754, guid: f6175a086218f40c79a743bfdc2545c4, type: 3}
       propertyPath: m_Name
       value: Sea
@@ -1781,13 +1811,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7904545080919035754, guid: f6175a086218f40c79a743bfdc2545c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5597989352929425878}
   m_SourcePrefab: {fileID: 100100000, guid: f6175a086218f40c79a743bfdc2545c4, type: 3}
 --- !u!1 &5597989352929425873 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7904545080919035754, guid: f6175a086218f40c79a743bfdc2545c4, type: 3}
   m_PrefabInstance: {fileID: 5597989352929425872}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5597989352929425878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5597989352929425873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda24ec02fb974c10bebce05f8bd28e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMoveDuration: 1
 --- !u!1001 &6244771975663294429
 PrefabInstance:
   m_ObjectHideFlags: 0

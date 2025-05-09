@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3903777449307502468}
   - component: {fileID: 5567021690146494630}
   - component: {fileID: 317496403766228243}
+  - component: {fileID: 6521952361440287202}
   m_Layer: 0
   m_Name: Sea
   m_TagString: Untagged
@@ -104,3 +105,19 @@ MonoBehaviour:
   frequency: {x: 0, y: 1, z: 0}
   seed: 4
   useRandomOffset: 1
+--- !u!114 &6521952361440287202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904545080919035754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389ada15de46d4b8f8980577fa1033f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: {x: 0, y: 0.5, z: 0}
+  frequency: {x: 0, y: 1, z: 0}
+  seed: 0
+  useRandomOffset: 0

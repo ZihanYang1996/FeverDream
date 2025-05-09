@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5399738154074463609}
   - component: {fileID: 8134284513418560860}
   - component: {fileID: 350785614287935532}
+  - component: {fileID: 31223617428964161}
   m_Layer: 0
   m_Name: ActorA
   m_TagString: Untagged
@@ -119,6 +120,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultMoveDuration: 1
+--- !u!114 &31223617428964161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738025718493184643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389ada15de46d4b8f8980577fa1033f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: {x: 0, y: 0.5, z: 0}
+  frequency: {x: 0, y: 1, z: 0}
+  seed: 0
+  useRandomOffset: 0
 --- !u!1 &6617810646788792622
 GameObject:
   m_ObjectHideFlags: 0
