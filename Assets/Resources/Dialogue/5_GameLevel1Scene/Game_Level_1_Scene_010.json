@@ -1,0 +1,22 @@
+{
+  "dialogueId": "Game_Level_1_Scene_010",
+  "lines": [
+    {
+      "speaker": "我",
+      "zh": "诶？！等等！你，你别！",
+      "en": "Hey?! Wait! D-Don’t!"
+    },
+    {
+      "speaker": "",
+      "zh": "（它在？）",
+      "en": "(Is it...?)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（喝水？！）",
+      "en": "(...drinking water?!)",
+      "isThought": true
+    }
+  ]
+}
