@@ -205,6 +205,8 @@ public class StageManager : MonoBehaviour
         // Hide the start button
         if (startPuzzleButton != null)
         {
+            // Disable the button to prevent multiple clicks
+            startPuzzleButton.interactable = false;
             startPuzzleButton.gameObject.SetActive(false);
         }
         BeginCountdown();
@@ -215,6 +217,8 @@ public class StageManager : MonoBehaviour
     /// </summary>
     public void ValidatePuzzle()
     {
+        // Disable the button to prevent multiple clicks
+        validateButton.interactable = false;
         // Clone workspace pieces into off-screen capture canvas
         List<GameObject> clones = new List<GameObject>();
         foreach (Transform orig in workspaceArea)
