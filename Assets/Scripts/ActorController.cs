@@ -12,22 +12,22 @@ public class ActorController : MonoBehaviour
     /// <summary>
     /// 移动到目标世界坐标位置。
     /// </summary>
-    public void MoveToPosition(Vector3 targetPosition, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false, bool useLocalSpace = false)
+    public void MoveToPosition(Vector3 targetPosition, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false, bool useLocalSpace = false, float settleDuration = -1f)
     {
         if (currentMoveCoroutine != null)
             StopCoroutine(currentMoveCoroutine);
 
-        currentMoveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration < 0 ? defaultMoveDuration : duration, onComplete, curve, usePathOffset, useLocalSpace));
+        currentMoveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration < 0 ? defaultMoveDuration : duration, onComplete, curve, usePathOffset, useLocalSpace, settleDuration));
     }
 
     /// <summary>
     /// 相对当前位置移动一定的偏移。
     /// </summary>
-    public void MoveByDelta(Vector3 delta, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false, bool useLocalSpace = false)
+    public void MoveByDelta(Vector3 delta, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false, bool useLocalSpace = false, float settleDuration = -1f)
     {
         Vector3 basePosition = useLocalSpace ? transform.localPosition : transform.position;
         Vector3 targetPosition = basePosition + delta;
-        MoveToPosition(targetPosition, duration, onComplete, curve, usePathOffset, useLocalSpace);
+        MoveToPosition(targetPosition, duration, onComplete, curve, usePathOffset, useLocalSpace, settleDuration);
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ public class ActorController : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false, bool useLocalSpace = false)
+    private IEnumerator MoveRoutine(Vector3 targetPosition, float duration, System.Action onComplete = null, AnimationCurve curve = null, bool usePathOffset = false, bool useLocalSpace = false, float settleDuration = -1f)
     {
         // 如果有 motion，就停止 motion
         var motion = GetComponent<IActorMotion>();
@@ -132,26 +132,29 @@ public class ActorController : MonoBehaviour
             transform.position = targetPosition + finalOffset;
 
         // Settle motion back to exact targetPosition
-        float settleDuration = 0.2f;
-        float settleElapsed = 0f;
-        Vector3 settleStart = useLocalSpace ? transform.localPosition : transform.position;
-        while (settleElapsed < settleDuration)
+        float settleTime = (usePathOffset && settleDuration > 0f) ? settleDuration : 0f;
+        if (settleTime > 0f)
         {
-            float t = settleElapsed / settleDuration;
-            Vector3 settlePos = Vector3.Lerp(settleStart, targetPosition, t);
+            float settleElapsed = 0f;
+            Vector3 settleStart = useLocalSpace ? transform.localPosition : transform.position;
+            while (settleElapsed < settleTime)
+            {
+                float t = settleElapsed / settleTime;
+                Vector3 settlePos = Vector3.Lerp(settleStart, targetPosition, t);
+                if (useLocalSpace)
+                    transform.localPosition = settlePos;
+                else
+                    transform.position = settlePos;
+
+                settleElapsed += Time.deltaTime;
+                yield return null;
+            }
+
             if (useLocalSpace)
-                transform.localPosition = settlePos;
+                transform.localPosition = targetPosition;
             else
-                transform.position = settlePos;
-
-            settleElapsed += Time.deltaTime;
-            yield return null;
+                transform.position = targetPosition;
         }
-
-        if (useLocalSpace)
-            transform.localPosition = targetPosition;
-        else
-            transform.position = targetPosition;
 
         // 如果有 motion，就恢复 motion
         if (motion != null)
@@ -160,7 +163,7 @@ public class ActorController : MonoBehaviour
             motion.StartMotion(pos);
         }
 
-        currentMoveCoroutine = null;
+        currentMoveCoroutine = null;  // Maybe will be moved before the settling !!!!
         onComplete?.Invoke();
     }
 
