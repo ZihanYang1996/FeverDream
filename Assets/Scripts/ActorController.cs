@@ -283,4 +283,23 @@ public class ActorController : MonoBehaviour
         euler.y = facingRight ? 0f : 180f;
         transform.localEulerAngles = euler;
     }
+    
+    /// <summary>
+    /// 立即将角色传送到指定位置。
+    /// </summary>
+    public void TeleportToPosition(Vector3 targetPosition, bool useLocalSpace = false)
+    {
+        if (useLocalSpace)
+            transform.localPosition = targetPosition;
+        else
+            transform.position = targetPosition;
+
+        // 传送后，若有 motion 组件，则重新开始 motion
+        var motion = GetComponent<IActorMotion>();
+        if (motion != null)
+        {
+            Vector3 pos = useLocalSpace ? transform.localPosition : transform.position;
+            motion.StartMotion(pos);
+        }
+    }
 }
