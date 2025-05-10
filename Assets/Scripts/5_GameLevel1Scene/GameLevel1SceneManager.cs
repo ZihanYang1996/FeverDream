@@ -359,7 +359,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         tangramHolderFloatingMotion.amplitude = new Vector3(1.5f, 0.2f, 0f);
         tangramHolderFloatingMotion.frequency = new Vector3(0.5f, 2f, 0f);
 
-        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 1
+        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 7
         var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
         if (tangramHolderSpriteRenderer != null)
         {
@@ -567,7 +567,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
 
-        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 1
+        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 7
         var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
         if (tangramHolderSpriteRenderer != null)
         {
@@ -624,7 +624,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         float targetRotation = 35.7799873f;
         duration = 2.0f;
         tangramHolderActorController.MoveToPosition(targetPosition, duration, () => { isMoveComplete = true; });
-        tangramHolderActorController.RotateInPlace(targetRotation, duration, () => { isRotateComplete = true; });
+        tangramHolderActorController.RotateTo(targetRotation, duration, () => { isRotateComplete = true; });
         yield return new WaitUntil(() => isRotateComplete && isMoveComplete);
 
         // Wait a short time before starting the next animation

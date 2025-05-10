@@ -241,7 +241,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
 
-        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 1
+        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 7
         var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
         if (tangramHolderSpriteRenderer != null)
         {
@@ -262,7 +262,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
         float targetRotation = -55f;
         Vector3 targetScale = new Vector3(2f, 2f, 2f);
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => isMoveComplete = true));
-        tangramHolderActorController.RotateInPlace(targetRotation, duration, (() => isRotateComplete = true));
+        tangramHolderActorController.RotateTo(targetRotation, duration, (() => isRotateComplete = true));
         tangramHolderActorController.ScaleTo(targetScale, duration, (() => isScaleComplete = true));
         yield return new WaitUntil(() => isMoveComplete && isRotateComplete && isScaleComplete);
 
