@@ -44,7 +44,7 @@ public class ActorController : MonoBehaviour
     /// <summary>
     /// 原地旋转到目标角度（世界旋转）。
     /// </summary>
-    public void RotateInPlace(float targetAngle, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, Vector3 axis = default, bool useLocalSpace = false)
+    public void RotateTo(float targetAngle, float duration = -1f, System.Action onComplete = null, AnimationCurve curve = null, Vector3 axis = default, bool useLocalSpace = false)
     {
         if (currentRotateCoroutine != null)
             StopCoroutine(currentRotateCoroutine);
