@@ -6,6 +6,7 @@ public class ButtonEntranceEffect : MonoBehaviour
 {
     [Header("Animation Settings")]
     [SerializeField] private float fadeInDuration = 1.0f;
+
     [SerializeField] private float pulseScale = 1.2f;
     [SerializeField] private float pulseDuration = 0.3f;
     [SerializeField] private int pulseCount = 2;
@@ -24,18 +25,18 @@ public class ButtonEntranceEffect : MonoBehaviour
         {
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
+
         button.interactable = false;
     }
 
-    public void PlayEntranceAnimation()
+    public void PlayEntranceAnimation(System.Action onComplete = null)
     {
-
         rectTransform.anchoredPosition = GameManager.Instance.defaultStartPuzzelButtonPosition;
         canvasGroup.alpha = 0f; // Start fully transparent
-        StartCoroutine(AnimateEntrance());
+        StartCoroutine(AnimateEntrance(onComplete));
     }
 
-    private IEnumerator AnimateEntrance()
+    private IEnumerator AnimateEntrance(System.Action onComplete = null)
     {
         // Fade in
         float timer = 0f;
@@ -74,5 +75,8 @@ public class ButtonEntranceEffect : MonoBehaviour
 
         // Enable interaction after animation
         button.interactable = true;
+
+        // Call the completion callback if provided
+        onComplete?.Invoke();
     }
 }
