@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ActorController : MonoBehaviour
 {
+    private bool facingRight = true;
     [SerializeField] private float defaultMoveDuration = 1f;
 
     private Coroutine currentMoveCoroutine;
@@ -269,5 +270,17 @@ public class ActorController : MonoBehaviour
     public void FadeToAlpha(float targetAlpha, float duration, System.Action onComplete = null, AnimationCurve curve = null)
     {
         StartCoroutine(FadeToAlphaRoutine(targetAlpha, duration, onComplete, curve));
+    }
+    
+    /// <summary>
+    /// 水平翻转角色。
+    /// </summary>
+    public void FlipActor()
+    {
+        facingRight = !facingRight;
+
+        Vector3 euler = transform.localEulerAngles;
+        euler.y = facingRight ? 0f : 180f;
+        transform.localEulerAngles = euler;
     }
 }
