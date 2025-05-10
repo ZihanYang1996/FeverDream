@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7421402197661058987
+--- !u!1 &2279898429815267493
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1636579625190298729}
-  - component: {fileID: 1196788296128945274}
-  - component: {fileID: 7676973629273143289}
+  - component: {fileID: 8635510301148496880}
+  - component: {fileID: 3715585949620076131}
   m_Layer: 0
-  m_Name: BlackScreenImage
+  m_Name: Boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1636579625190298729
+  m_IsActive: 1
+--- !u!4 &8635510301148496880
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7421402197661058987}
+  m_GameObject: {fileID: 2279898429815267493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 10.5, y: 2.4, z: 0}
+  m_LocalScale: {x: 1.24, y: 1.24, z: 1.24}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1196788296128945274
+--- !u!212 &3715585949620076131
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7421402197661058987}
+  m_GameObject: {fileID: 2279898429815267493}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,31 +73,17 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1691667021
-  m_SortingLayer: 4
+  m_SortingLayerID: 1141977631
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7138814675767545699, guid: 02809c07eb99444c3aa506b7cc574f11, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9607843}
+  m_Sprite: {fileID: -5219355397542431506, guid: da1db0c4d4c734424a944c253b9a0f68, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 18.9056, y: 9.470001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7676973629273143289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7421402197661058987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a4e846c010ff43c2b7918f055fbd7a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneTransitionFadeDuration: 1
-  targetAlpha: 1

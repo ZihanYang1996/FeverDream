@@ -1,0 +1,22 @@
+{
+  "dialogueId": "Game_Level_1_Hidden_Scene_002",
+  "lines": [
+    {
+      "speaker": "我",
+      "zh": "嗯？",
+      "en": "Huh?"
+    },
+    {
+      "speaker": "",
+      "zh": "（七巧板又有反应了）",
+      "en": "(The tangram is reacting again.)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（话说为什么我会随身带着七巧板啊!）",
+      "en": "(Also, why am I even carrying a tangram around?!)",
+      "isThought": true
+    }
+  ]
+}

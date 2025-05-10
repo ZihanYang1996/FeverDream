@@ -1,0 +1,23 @@
+{
+  "dialogueId": "Game_Level_1_Hidden_Scene_003",
+  "lines": [
+    {
+      "speaker": "",
+      "zh": "（这。。。这火箭不会是样子货吧）",
+      "en": "(Th-this rocket isn’t just for show, is it?)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（真的能飞吗？）",
+      "en": "(Can it really fly?)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（算了，上去看看吧）",
+      "en": "(Whatever... I’ll just climb in and see.)",
+      "isThought": true
+    }
+  ]
+}

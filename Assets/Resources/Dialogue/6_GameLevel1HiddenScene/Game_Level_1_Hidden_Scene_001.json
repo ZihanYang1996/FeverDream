@@ -1,0 +1,35 @@
+{
+  "dialogueId": "Game_Level_1_Hidden_Scene_001",
+  "lines": [
+    {
+      "speaker": "",
+      "zh": "（这是。。。海底？！）",
+      "en": "(Is this... the seafloor?!)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（刚才那个只猫把，不对，那只怪兽把海水喝光了？）",
+      "en": "(Did that cat just—wait, that monster drink up all the seawater?)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（嗯。。。。。。）",
+      "en": "(Hmm...)",
+      "isThought": true
+    },   
+    {
+      "speaker": "",
+      "zh": "（早知道尝一口海水好了，说不定是甜的呢。）",
+      "en": "(I should’ve tasted the seawater while I had the chance. What if it was sweet?)",
+      "isThought": true
+    },
+    {
+      "speaker": "",
+      "zh": "（不过我要怎么离开这里啊？）",
+      "en": "(But... how am I supposed to get out of here?)",
+      "isThought": true
+    }
+  ]
+}
