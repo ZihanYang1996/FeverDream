@@ -17,8 +17,8 @@ MonoBehaviour:
   - condition: TimeOut
     nextSceneName: WakeUpScene
   - condition: NormalSolved
-    nextSceneName: WakeUpScene
+    nextSceneName: GameLevel3Scene
   - condition: SecretSolved
-    nextSceneName: WakeUpScene
+    nextSceneName: GameLevel2HiddenScene
   - condition: WrongSolved
     nextSceneName: WakeUpScene

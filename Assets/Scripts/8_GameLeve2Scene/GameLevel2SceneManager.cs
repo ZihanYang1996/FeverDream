@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using DialogueSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -15,6 +16,7 @@ public class GameLevel2SceneManager : MonoBehaviour
 
     [Header("Actors")]
     [SerializeField] private GameObject character;
+    [SerializeField] private GameObject mushroomHouse;
 
     [SerializeField] private GameObject mainCamera;
 
@@ -38,6 +40,7 @@ public class GameLevel2SceneManager : MonoBehaviour
     {
         // Set the initial state of the scene
         character.SetActive(true);
+        mushroomHouse.SetActive(false);
 
         // Increment the current level index
         GameManager.Instance.IncrementCurrentLevelIndex();
@@ -156,7 +159,7 @@ public class GameLevel2SceneManager : MonoBehaviour
             // Play the secret stage post-puzzle animation
             Debug.Log($"Playing post-puzzle animation for Secret Stage: {stageID}");
             // Add your animation logic here
-            // StartCoroutine(PlayButterflyAnimationCoroutine((() => { onComplete?.Invoke(); })));
+            StartCoroutine(PlayButterflyAnimationCoroutine((() => { onComplete?.Invoke(); })));
         }
         else
         {
@@ -319,7 +322,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         StartPuzzle();
     }
 
-    private IEnumerator PlaySwordAnimationCoroutine(System.Action onComplete)
+    private IEnumerator PlaySwordAnimationCoroutine(System.Action onFinish)
     {
         // Set the Tangram holder's position
         generatedTangramHolder.transform.position = new Vector3(-59.5200005f, -13.4899998f, -5.06389952f);
@@ -475,5 +478,25 @@ public class GameLevel2SceneManager : MonoBehaviour
             .MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }), usePathOffset: true,
                 settleDuration: 0.5f);
         yield return new WaitUntil(() => isMoveComplete);
+        
+        
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+
+        // Call the onComplete action after the animation is finished
+        onFinish?.Invoke();
+    }
+
+    private IEnumerator PlayButterflyAnimationCoroutine(System.Action onComplete)
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 }
