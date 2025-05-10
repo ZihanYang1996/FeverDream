@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskCamera: {fileID: 1428787248}
   maskRT: {fileID: 8400000, guid: c618bda3366ec448c9ef5fe611e63499, type: 2}
-  outputFolder: StageData/5_GameLevel1Scene
-  baseFileName: Cat_Mask
+  outputFolder: StageData/8_GameLeve2Scene
+  baseFileName: Sword_Mask
 --- !u!4 &77276911
 Transform:
   m_ObjectHideFlags: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7232521027535748977, guid: fa0f5f2c7e2e7462b9fb475cf4f95cb6, type: 3}
+  m_Sprite: {fileID: 712035800519618848, guid: 3d24f207e98ab47d7b3f59c61b035c8d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

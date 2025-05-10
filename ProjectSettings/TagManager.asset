@@ -50,6 +50,9 @@ TagManager:
   - name: Actors
     uniqueID: 1141977631
     locked: 0
+  - name: Frontstage
+    uniqueID: 916462989
+    locked: 0
   - name: Curtain
     uniqueID: 2603300275
     locked: 0

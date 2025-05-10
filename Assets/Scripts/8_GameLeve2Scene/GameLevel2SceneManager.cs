@@ -5,7 +5,9 @@ using UnityEngine.Serialization;
 
 public class GameLevel2SceneManager : MonoBehaviour
 {
-    [FormerlySerializedAs("showPuzzleButton")] public GameObject startPuzzleButton;
+    [FormerlySerializedAs("showPuzzleButton")]
+    public GameObject startPuzzleButton;
+
     [SerializeField] private StageManager stageManager;
 
     [SerializeField] private string NormalStageId = "Sword";
@@ -252,7 +254,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         float characterDuration = 5.0f;
         float lagDuration = 0.5f;
         float cameraDuration = characterDuration - lagDuration;
-        
+
         // Set character's move offset frequency
         character.GetComponent<WalkingPathOffset>().frequency = 20;
 
@@ -273,10 +275,10 @@ public class GameLevel2SceneManager : MonoBehaviour
         characterDuration = 5.0f;
         lagDuration = 1.5f;
         cameraDuration = characterDuration - lagDuration;
-        
+
         // Flip the character
         character.GetComponent<ActorController>().FlipActor();
-        
+
         isCharacterMoveComplete = false;
         isCameraMoveComplete = false;
         characterTargetPosition = new Vector3(-90f, -16f, 0);
@@ -294,7 +296,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         characterDuration = 2.0f;
         lagDuration = 0.7f;
         cameraDuration = characterDuration - lagDuration;
-        
+
         // Flip the character
         character.GetComponent<ActorController>().FlipActor();
         // Set character's move offset frequency
@@ -320,9 +322,11 @@ public class GameLevel2SceneManager : MonoBehaviour
     private IEnumerator PlaySwordAnimationCoroutine(System.Action onComplete)
     {
         // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(4.51000023f, -1.47000003f, -5.06389952f);
-        // Add ActorController component to the generated tangram holder
+        generatedTangramHolder.transform.position = new Vector3(-59.5200005f, -13.4899998f, -5.06389952f);
+        // Add ActorController component to the generated tangram holder 
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
+        // Add TreeCutDetector component to the generated tangram holder
+        var treeCutDetector = generatedTangramHolder.AddComponent<TreeCutDetector>();
 
         // Fade in the generated tangram holder
         bool isFadeComplete = false;
@@ -357,5 +361,119 @@ public class GameLevel2SceneManager : MonoBehaviour
         {
             Debug.LogError("Tangram holder does not have a child with a SpriteRenderer component.");
         }
+
+        // Move the sword close to the character
+        // Move the generated tangram holder to the target position: Vector3(-66.2799988,-15.29,0)
+        // Rotate the generated tangram holder to the target rotation: 132
+        // Scale the generated tangram holder to the target scale: Vector3(0.159999996,0.297142833,0.159999996)
+        bool isMoveComplete = false;
+        bool isRotateComplete = false;
+        bool isScaleComplete = false;
+        float duration = 1.0f;
+        Vector3 targetPosition = new Vector3(-66.2799988f, -15.29f, 0f);
+        float targetRotation = 135f;
+        Vector3 targetScale = new Vector3(0.159999996f, 0.297142833f, 0.159999996f);
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }));
+        tangramHolderActorController.RotateTo(targetRotation, duration, (() => { isRotateComplete = true; }));
+        tangramHolderActorController.ScaleTo(targetScale, duration, (() => { isScaleComplete = true; }));
+        yield return new WaitUntil(() => isMoveComplete && isRotateComplete && isScaleComplete);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // The sword fly up
+        // Move the generated tangram holder to the target position: Vector3(-64.2300034,-14.3100004,-5.06389952)
+        isMoveComplete = false;
+        duration = 0.3f;
+        targetPosition = new Vector3(-64.2300034f, -14.3100004f, -5.06389952f);
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
+            curve: cameraSwordCurve);
+        yield return new WaitUntil(() => isMoveComplete);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // The sword ratate
+        // Rotate the generated tangram holder to the target rotation: -270 (delta is -420) (split into several steps)
+        float deltaRotation = -90f;
+        duration = 0.2f;
+        isRotateComplete = false;
+        tangramHolderActorController.RotateByDelta(deltaRotation, duration, (() => { isRotateComplete = true; }));
+        yield return new WaitUntil(() => isRotateComplete);
+        deltaRotation = -90f;
+        duration = 0.2f;
+        isRotateComplete = false;
+        tangramHolderActorController.RotateByDelta(deltaRotation, duration, (() => { isRotateComplete = true; }));
+        yield return new WaitUntil(() => isRotateComplete);
+        deltaRotation = -90f;
+        duration = 0.2f;
+        isRotateComplete = false;
+        tangramHolderActorController.RotateByDelta(deltaRotation, duration, (() => { isRotateComplete = true; }));
+        yield return new WaitUntil(() => isRotateComplete);
+        deltaRotation = -90f;
+        duration = 0.2f;
+        isRotateComplete = false;
+        tangramHolderActorController.RotateByDelta(deltaRotation, duration, (() => { isRotateComplete = true; }));
+        yield return new WaitUntil(() => isRotateComplete);
+        deltaRotation = -45f;
+        duration = 0.2f;
+        isRotateComplete = false;
+        tangramHolderActorController.RotateByDelta(deltaRotation, duration, (() => { isRotateComplete = true; }));
+        yield return new WaitUntil(() => isRotateComplete);
+
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+
+        // The sword launch to the right
+        // Make the sword start cutting the tree
+        treeCutDetector.StartCutting();
+        // Make the camera follow the generated tangram holder
+        mainCamera.GetComponent<CameraController>().FollowTarget(generatedTangramHolder.transform, 0.1f);
+        // Move the generated tangram holder to the target position: Vector3(50.0999985,-14.3100004,-5.06389952)
+        duration = 2f;
+        isMoveComplete = false;
+        targetPosition = new Vector3(50.0999985f, -14.3100004f, -5.06389952f);
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }));
+        yield return new WaitUntil(() => isMoveComplete);
+        
+        // Deactivate the generated tangram holder
+        generatedTangramHolder.SetActive(false);
+
+        // Stop the camera from following the generated tangram holder
+        mainCamera.GetComponent<CameraController>().StopFollowing();
+
+
+        // Wait for a moment
+        yield return new WaitForSeconds(2f);
+
+        // Teleport the character to the place on the left side of the screen (out of the screen)
+        // Teleport the chacter to the target position: Vector3(15,-16,0)
+        targetPosition = new Vector3(15f, -16f, 0f);
+        character.GetComponent<ActorController>().TeleportToPosition(targetPosition);
+
+        // Character move into the screen
+        // Move the character to the target position: Vector3(37,-16,0)
+        duration = 1.0f;
+        isMoveComplete = false;
+        targetPosition = new Vector3(37f,-16f,0f);
+        character.GetComponent<ActorController>()
+            .MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }), usePathOffset: true,
+                settleDuration: 0.5f);
+        yield return new WaitUntil(() => isMoveComplete);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
+        // Character move out of the screen on right
+        // // Move the character to the target position: Vector3(46,-16,0)
+        duration = 1.0f;
+        isMoveComplete = false;
+        targetPosition = new Vector3(46f, -16f, 0f);
+        character.GetComponent<ActorController>()
+            .MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }), usePathOffset: true,
+                settleDuration: 0.5f);
+        yield return new WaitUntil(() => isMoveComplete);
     }
 }
