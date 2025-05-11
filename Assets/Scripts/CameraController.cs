@@ -9,8 +9,9 @@ public class CameraController : MonoBehaviour
 
     [Header("Follow Settings")]
     [SerializeField] private Transform followTarget;
-    [SerializeField] private float followDamping = 0.1f;
+    public float followDamping = 0.1f;
     [SerializeField] private bool enableFollow = false;
+    [SerializeField] private Vector3 followAxis = new Vector3(1, 1, 0); // 1 = follow, 0 = ignore axis
 
     [Header("Bounds (Optional)")]
     [SerializeField] private bool useBounds = false;
@@ -29,9 +30,13 @@ public class CameraController : MonoBehaviour
         if (enableFollow && followTarget != null)
         {
             Vector3 targetPos = followTarget.position;
-            targetPos.z = transform.position.z; // 保持 Z 不变
 
-            Vector3 smoothPos = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, followDamping);
+            Vector3 maskedTarget = new Vector3(
+                followAxis.x == 1 ? targetPos.x : transform.position.x,
+                followAxis.y == 1 ? targetPos.y : transform.position.y,
+                transform.position.z
+            );
+            Vector3 smoothPos = Vector3.SmoothDamp(transform.position, maskedTarget, ref velocity, followDamping);
             smoothPos += shakeOffset;
 
             if (useBounds)
@@ -44,11 +49,12 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void FollowTarget(Transform target, float damping = 0.1f)
+    public void FollowTarget(Transform target, float damping = 0.1f, Vector3? axis = null)
     {
         followTarget = target;
         followDamping = damping;
         enableFollow = true;
+        followAxis = axis ?? new Vector3(1, 1, 0);
     }
 
     public void StopFollowing()
@@ -69,6 +75,22 @@ public class CameraController : MonoBehaviour
         Vector3 targetPosition = targetActor.position;
         targetPosition.z = transform.position.z; // 保持相机 Z 不变
         MoveTo(targetPosition, duration, curve, onComplete);
+    }
+
+    public void MoveToAndFollowActor(Transform targetActor, float duration, AnimationCurve curve = null, Action onComplete = null, Vector3? axis = null)
+    {
+        Vector3 targetPosition = targetActor.position;
+        targetPosition.z = transform.position.z; // 保持 Z 不变
+
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+
+        moveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration, curve, () =>
+        {
+            SnapTo(targetPosition); // 确保位置对齐，避免抖动
+            FollowTarget(targetActor, followDamping, axis); // 使用指定轴
+            onComplete?.Invoke();
+        }));
     }
 
     public void MoveBy(Vector3 delta, float duration, AnimationCurve curve = null, Action onComplete = null)
@@ -163,5 +185,10 @@ public class CameraController : MonoBehaviour
     public void ClearBounds()
     {
         useBounds = false;
+    }
+
+    public void SetFollowAxis(Vector3 axis)
+    {
+        followAxis = axis;
     }
 }
