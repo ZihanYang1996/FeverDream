@@ -47,6 +47,10 @@ public class CameraController : MonoBehaviour
 
             transform.position = smoothPos;
         }
+        else if (shakeOffset != Vector3.zero)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z) + shakeOffset;
+        }
     }
 
     public void FollowTarget(Transform target, float damping = 0.1f, Vector3? axis = null)
@@ -153,27 +157,31 @@ public class CameraController : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    public void Shake(float intensity, float duration, float frequency = 25f)
+    public void Shake(float intensity, float duration, float frequency = 25f, System.Action onComplete = null)
     {
         if (shakeCoroutine != null)
             StopCoroutine(shakeCoroutine);
-        shakeCoroutine = StartCoroutine(ShakeRoutine(intensity, duration, frequency));
+        shakeCoroutine = StartCoroutine(ShakeRoutine(intensity, duration, frequency, onComplete));
     }
 
-    private IEnumerator ShakeRoutine(float intensity, float duration, float frequency)
+    private IEnumerator ShakeRoutine(float intensity, float duration, float frequency, System.Action onComplete)
     {
         float elapsed = 0f;
+        float seedX = UnityEngine.Random.value * 100f;
+        float seedY = UnityEngine.Random.value * 100f;
 
         while (elapsed < duration)
         {
-            float x = Mathf.PerlinNoise(Time.time * frequency, 0f) * 2 - 1;
-            float y = Mathf.PerlinNoise(0f, Time.time * frequency) * 2 - 1;
+            float x = Mathf.Sin(Mathf.PerlinNoise(seedX, Time.time * frequency) * Mathf.PI * 2f);
+            float y = Mathf.Sin(Mathf.PerlinNoise(seedY, Time.time * frequency) * Mathf.PI * 2f);
             shakeOffset = new Vector3(x, y, 0f) * intensity;
+
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         shakeOffset = Vector3.zero;
+        onComplete?.Invoke();
     }
 
     public void SnapTo(Vector3 position)
