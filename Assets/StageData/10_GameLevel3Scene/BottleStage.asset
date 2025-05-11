@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83d3034ad797470e9e66b08afae8153, type: 3}
+  m_Name: BottleStage
+  m_EditorClassIdentifier: 
+  id: Bottle
+  outlineSprite: {fileID: 8386993860404153061, guid: fa8d29e5721da492ea33cf0300a74e27, type: 3}
+  maskTexture: {fileID: 2800000, guid: 907b9488c4ad640d4b058c9752e2b627, type: 3}
+  solutionSprite: {fileID: 4145100776150910970, guid: a53d1ca4195174b4bbab14164a53d595, type: 3}
+  iouThreshold: 0.9

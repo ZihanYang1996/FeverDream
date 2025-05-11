@@ -117,6 +117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialoguePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 37466084142555504, guid: 72b11745a274840168ca5e995028f982, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5807807848821898758, guid: 72b11745a274840168ca5e995028f982, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -323,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4090838051494097084, guid: 61accc7e71b6b4e7894fa6e800e8e72f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8344886896116293758, guid: 61accc7e71b6b4e7894fa6e800e8e72f, type: 3}
       propertyPath: m_Pivot.x

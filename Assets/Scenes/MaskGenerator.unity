@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskCamera: {fileID: 1428787248}
   maskRT: {fileID: 8400000, guid: c618bda3366ec448c9ef5fe611e63499, type: 2}
-  outputFolder: StageData/9_GameLevel2HiddenScene
-  baseFileName: Heart_Mask
+  outputFolder: StageData/11_GameLevel3HiddenScene
+  baseFileName: Tree_Mask
 --- !u!4 &77276911
 Transform:
   m_ObjectHideFlags: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4606908045521496030, guid: 46c5411512ede4c378628c810199e6bc, type: 3}
+  m_Sprite: {fileID: 5629372615036235299, guid: a123a127762934ed2a75493e3c6fddd4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

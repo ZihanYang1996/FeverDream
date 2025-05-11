@@ -38,6 +38,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/10_GameLevel3Scene/GameLevel3Scene.unity
     guid: fddff547a79b64543a62ee21cab90055
+  - enabled: 1
+    path: Assets/Scenes/11_GameLevel3HiddenScene/GameLevel3HiddenScene.unity
+    guid: addbc43e18ffe43e8ab592a994f2e3e6
+  - enabled: 1
+    path: Assets/Scenes/12_TrueEndingScene/TrueEndingScene.unity
+    guid: cd7a89449c438489294684dc9fdb271c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

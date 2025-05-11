@@ -13,6 +13,8 @@ public class GameLevel3SceneManager : MonoBehaviour
     [Header("Actors")]
     [SerializeField] private GameObject character;
 
+    [SerializeField] private GameObject water;
+
     [SerializeField] private GameObject mainCamera;
 
     [SerializeField] private GameObject blackScreenImage;
@@ -20,6 +22,8 @@ public class GameLevel3SceneManager : MonoBehaviour
 
     [Header("AnimationCurves")]
     [SerializeField] private AnimationCurve cameraFocusCurve;
+    [SerializeField] private AnimationCurve bottleSlipCurve;
+    [SerializeField] private AnimationCurve bottleDropCurve;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +31,7 @@ public class GameLevel3SceneManager : MonoBehaviour
     {
         // Set the initial state of the scene
         character.SetActive(false);
+        water.SetActive(false);
         mainCamera.GetComponent<CameraController>().SnapTo(new Vector3(4f, 22f, -10f));
         mainCamera.GetComponent<CameraController>().ZoomInstantlyTo(28f);
 
@@ -148,7 +153,7 @@ public class GameLevel3SceneManager : MonoBehaviour
             // Play the secret stage post-puzzle animation
             Debug.Log($"Playing post-puzzle animation for Secret Stage: {stageID}");
             // Add your animation logic here
-            // StartCoroutine(PlayBottleAnimationCoroutine((() => { onComplete?.Invoke(); })));
+            StartCoroutine(PlayBottleAnimationCoroutine((() => { onComplete?.Invoke(); })));
         }
         else
         {
@@ -251,7 +256,6 @@ public class GameLevel3SceneManager : MonoBehaviour
         }
 
         // Move the generated tangram holder to the target position: Vector3(0.360000014,-0.49000001,-5.06389952)
-        // Scale it to Vector3(2.45000005,2.45000005,2.45000005)
         bool isMoveComplete = false;
         float duration = 1.0f;
         Vector3 targetPosition = new Vector3(-14.8000002f, 30.1599998f, -5.06389952f);
@@ -300,5 +304,194 @@ public class GameLevel3SceneManager : MonoBehaviour
 
         // Call the onComplete action after the animation is finished
         onComplete?.Invoke();
+    }
+
+    private IEnumerator PlayBottleAnimationCoroutine(System.Action onComplete)
+    {
+        // Set the Tangram holder's position
+        generatedTangramHolder.transform.position = new Vector3(-9.53999996f, 30.4799995f, -5.06389952f);
+        // Add ActorController component to the generated tangram holder
+        var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
+        // Add WalkingPathOffset component to the generated tangram holder
+        var walkingPathOffset = generatedTangramHolder.AddComponent<WalkingPathOffset>();
+        walkingPathOffset.amplitude = 0.7f;
+        walkingPathOffset.frequency = 6f;
+        walkingPathOffset.horizontalSway = 0.1f;
+
+
+        // Fade in the generated tangram holder
+        bool isFadeComplete = false;
+        tangramHolderActorController.FadeToAlpha(1f, stageManager.generatedTangramFlickerDuration,
+            (() => isFadeComplete = true));
+        // Wait until the fade is finished
+        yield return new WaitUntil(() => isFadeComplete);
+
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
+        }
+
+        // Wait for the fade-out to complete
+        yield return new WaitUntil(() => isFadeOutComplete);
+        Debug.Log("Fade out complete");
+        blackScreenImage.SetActive(false);
+
+        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 7
+        var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
+        if (tangramHolderSpriteRenderer != null)
+        {
+            tangramHolderSpriteRenderer.sortingLayerName = "Actors";
+            tangramHolderSpriteRenderer.sortingOrder = 7;
+        }
+        else
+        {
+            Debug.LogError("Tangram holder does not have a child with a SpriteRenderer component.");
+        }
+
+        // Move the generated tangram holder to the target position: Vector3(-18.7600002,29.3099995,0)
+        // Scale it to Vector3(0.15f,0.15f,0.15f)
+        bool isMoveComplete = false;
+        bool isScaleComplete = false;
+        float duration = 1.0f;
+        Vector3 targetPosition = new Vector3(-18.7600002f, 29.3099995f, 0f);
+        Vector3 targetScale = new Vector3(0.15f, 0.15f, 0.15f);
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, () => { isMoveComplete = true; });
+        tangramHolderActorController.ScaleTo(targetScale, duration, (() => { isScaleComplete = true; }));
+        yield return new WaitUntil(() => isScaleComplete && isMoveComplete);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // Bottle slipped out of the hand
+        // Move it to Vector3(-18.4699993,28.8999996,0)
+        // Rotate it to -20
+        isMoveComplete = false;
+        bool isRotateComplete = false;
+        targetPosition = new Vector3(-18.4699993f, 28.8999996f, 0f);
+        float targetRotation = -20f;
+        duration = 3f;
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, () => { isMoveComplete = true; },
+            bottleSlipCurve);
+        tangramHolderActorController.RotateTo(targetRotation, duration,
+            (() => { isRotateComplete = true; }), bottleSlipCurve);
+        
+        // Dialogue before the bottle drop
+        
+        yield return new WaitUntil(() => isMoveComplete && isRotateComplete);
+
+
+        // Drop the bottle on the ground
+        // Move it to Vector3(-18.4699993,27,0)
+        // Rotate it to -35
+        isMoveComplete = false;
+        isRotateComplete = false;
+        targetPosition = new Vector3(-18.4699993f, 27f, 0f);
+        targetRotation = -35f;
+        duration = 0.5f;
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, () => { isMoveComplete = true; },
+            bottleDropCurve);
+        tangramHolderActorController.RotateTo(targetRotation, duration, (() => { isRotateComplete = true; }),
+            bottleDropCurve);
+        yield return new WaitUntil(() => isRotateComplete && isMoveComplete);
+
+        // Bottle bounce up
+        // Move it to Vector3(-18.2000008,28,0)
+        // Rotate it to -55
+        isMoveComplete = false;
+        isRotateComplete = false;
+        targetPosition = new Vector3(-18.2000008f, 28f, 0f);
+        targetRotation = -55f;
+        duration = 0.2f;
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, () => { isMoveComplete = true; });
+        tangramHolderActorController.RotateTo(targetRotation, duration, (() => { isRotateComplete = true; }));
+        yield return new WaitUntil(() => isRotateComplete && isMoveComplete);
+        // Bottle land on the ground
+        // Move it to Vector3(-17.7999992,27,0)
+        // Rotate it to -95
+        isMoveComplete = false;
+        isRotateComplete = false;
+        targetPosition = new Vector3(-17.7999992f, 27f, 0f);
+        targetRotation = -95f;
+        duration = 0.2f;
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, () => { isMoveComplete = true; });
+        tangramHolderActorController.RotateTo(targetRotation, duration, (() => { isRotateComplete = true; }));
+        yield return new WaitUntil(() => isRotateComplete && isMoveComplete);
+
+
+        // Water start to leak
+        // Ensure it at Vector3(-17.5650005,26.6490002,0)
+        // Ensure the scale is Vector3(0.0700000003,0.0700000003,0.0700000003)
+        // Ensure the alpha is 0
+        water.SetActive(true);
+        water.transform.position = targetPosition;
+        water.transform.localScale = targetScale;
+        water.GetComponent<ActorController>().SetAlphaInstantly(0f);
+        // Water fade in
+        bool isFadeInComplete = false;
+        duration = 2.0f;
+        water.GetComponent<ActorController>().FadeToAlpha(1f, duration,
+            (() => { isFadeInComplete = true; }));
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(0.5f);
+
+        // Water get bigger
+        // Scale it to Vector3(0.159999996,0.159999996,0.159999996)
+        // Move to the right a bit
+        isScaleComplete = false;
+        isMoveComplete = false;
+        targetScale = new Vector3(0.159999996f, 0.159999996f, 0.159999996f);
+        Vector3 deltaPosition = new Vector3(0.1f, 0f, 0f);
+        duration = 1.0f;
+        water.GetComponent<ActorController>().ScaleTo(targetScale, duration,
+            (() => { isScaleComplete = true; }));
+        water.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration,
+            (() => { isMoveComplete = true; }));
+        // Wait for the scale to complete
+        yield return new WaitUntil(() => isScaleComplete && isMoveComplete);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(0.5f);
+
+        // Water get bigger
+        // Scale it ot Vector3(0.280000001,0.280000001,0.280000001)
+        isScaleComplete = false;
+        isMoveComplete = false;
+        targetScale = new Vector3(0.280000001f, 0.280000001f, 0.280000001f);
+        deltaPosition = new Vector3(1f, 0f, 0f);
+        duration = 1.0f;
+        water.GetComponent<ActorController>().ScaleTo(targetScale, duration,
+            (() => { isScaleComplete = true; }));
+        water.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration,
+            (() => { isMoveComplete = true; }));
+        // Wait for the scale to complete
+        yield return new WaitUntil(() => isScaleComplete && isMoveComplete);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(0.5f);
+
+        // Water get bigger
+        // Scale it to Vector3(0.550000012,0.550000012,0.550000012)
+        isScaleComplete = false;
+        isMoveComplete = false;
+        targetScale = new Vector3(0.550000012f, 0.550000012f, 0.550000012f);
+        deltaPosition = new Vector3(1.5f, 0f, 0f);
+        duration = 1.0f;
+        water.GetComponent<ActorController>().ScaleTo(targetScale, duration,
+            (() => { isScaleComplete = true; }));
+        water.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration,
+            (() => { isMoveComplete = true; }));
+        // Wait for the scale to complete
+        yield return new WaitUntil(() => isScaleComplete && isMoveComplete);
+        
+
+        // Black screen fade in
     }
 }

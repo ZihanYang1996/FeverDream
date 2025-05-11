@@ -49,25 +49,25 @@ MonoBehaviour:
   justFinishedTutorial: 0
   tutorialStage: {fileID: 11400000, guid: 2a2aaff86b0da475e9fb4639a16f4cbf, type: 2}
   mainStages:
+  - {fileID: 11400000, guid: 804fd4b41eeb04aacad25959aeaab236, type: 2}
+  - {fileID: 11400000, guid: 01a7702472c864192a21e81706e75ea6, type: 2}
+  - {fileID: 11400000, guid: 65a9771a2e8294e42acdf82d04d137c9, type: 2}
   - {fileID: 11400000, guid: 17873fe9826284a2f9c938cdbd4b8e47, type: 2}
+  - {fileID: 11400000, guid: ae32585153b774059a00acd756bb2b36, type: 2}
   - {fileID: 11400000, guid: 4f9225f634bf04f9abe2ce2797342054, type: 2}
   - {fileID: 11400000, guid: c0bb8d585653d46158978e019f35d7ef, type: 2}
-  - {fileID: 11400000, guid: dbbc02ef914774b73bb3f3a20b5f5c00, type: 2}
   - {fileID: 11400000, guid: 1ee36aa6c27a24241b56185f31f2753b, type: 2}
-  - {fileID: 11400000, guid: 804fd4b41eeb04aacad25959aeaab236, type: 2}
-  - {fileID: 11400000, guid: 65a9771a2e8294e42acdf82d04d137c9, type: 2}
-  - {fileID: 11400000, guid: ae32585153b774059a00acd756bb2b36, type: 2}
-  - {fileID: 11400000, guid: 01a7702472c864192a21e81706e75ea6, type: 2}
+  - {fileID: 11400000, guid: 7750466e3fdb0492891bc12c84dc8d7b, type: 2}
   blackScreenAlphaForPuzzle: 245
   currentLanguage: 0
   defaultStyle:
-    fontStyle: 0
-    fontColor: {r: 1, g: 1, b: 1, a: 1}
-    fontSize: 36
+    fontStyle: 1
+    fontColor: {r: 0.50980395, g: 0.28627452, b: 0.2784314, a: 1}
+    fontSize: 40
   thoughtStyle:
     fontStyle: 2
-    fontColor: {r: 1, g: 1, b: 1, a: 0.6}
-    fontSize: 36
+    fontColor: {r: 0.50980395, g: 0.28627452, b: 0.2784314, a: 1}
+    fontSize: 40
   narratorStyle:
     fontStyle: 0
     fontColor: {r: 1, g: 0.95, b: 0.8, a: 1}
@@ -99,3 +99,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e1ccdbe15caa4c64a0f5ecf5d60b917, type: 2}
   - {fileID: 11400000, guid: 8e5a612efcabc4164a6a2613d77adba5, type: 2}
   - {fileID: 11400000, guid: 8e13b9cc40954466ab5ae965f9b7993d, type: 2}
+  - {fileID: 11400000, guid: 3baacb2a91dd54b82a17b78b4a862298, type: 2}
