@@ -127,6 +127,13 @@ public class CameraController : MonoBehaviour
     {
         ZoomTo(targetCamera.orthographicSize + deltaSize, duration, curve, onComplete);
     }
+    
+    public void ZoomInstantlyTo(float targetSize)
+    {
+        if (zoomCoroutine != null)
+            StopCoroutine(zoomCoroutine);
+        targetCamera.orthographicSize = targetSize;
+    }
 
     private IEnumerator ZoomRoutine(float targetSize, float duration, AnimationCurve curve, Action onComplete)
     {
