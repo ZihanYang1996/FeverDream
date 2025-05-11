@@ -436,6 +436,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4802442702068572051, guid: 127e7c1e3357a4053a5c4b4789a55503, type: 3}
   m_PrefabInstance: {fileID: 642656290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &813039794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 729524898952520180, guid: f955218231f234661885290204d3ffd8, type: 3}
+  m_PrefabInstance: {fileID: 7892923315130055927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &866684087
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +531,7 @@ MonoBehaviour:
   character: {fileID: 1730128520}
   mushroomHouse: {fileID: 12119947}
   mainCamera: {fileID: 1979736622}
+  sandStorm: {fileID: 813039794}
   blackScreenImage: {fileID: 1979736625}
   generatedTangramHolder: {fileID: 642656292}
   dialogueFileName1: 
@@ -2080,6 +2086,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dc834aab05354a0881e51c5b0c06da2, type: 3}
+--- !u!1001 &7892923315130055927
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 729524898952520180, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_Name
+      value: SandStorm
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.060006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -16.29663
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011865477111978533, guid: f955218231f234661885290204d3ffd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f955218231f234661885290204d3ffd8, type: 3}
 --- !u!1001 &8032236886397416467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2196,3 +2259,4 @@ SceneRoots:
   - {fileID: 1405943126299626818}
   - {fileID: 1522929996}
   - {fileID: 1292655366843951960}
+  - {fileID: 7892923315130055927}

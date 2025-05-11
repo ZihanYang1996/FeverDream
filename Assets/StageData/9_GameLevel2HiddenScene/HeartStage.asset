@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83d3034ad797470e9e66b08afae8153, type: 3}
+  m_Name: HeartStage
+  m_EditorClassIdentifier: 
+  id: Heart
+  outlineSprite: {fileID: 3334733551868229801, guid: eeea47a021c634b38aef3740186b2d32, type: 3}
+  maskTexture: {fileID: 2800000, guid: ebec4b91c9e75465c8993edac162fe24, type: 3}
+  solutionSprite: {fileID: 4606908045521496030, guid: 46c5411512ede4c378628c810199e6bc, type: 3}
+  iouThreshold: 0.9

@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 804fd4b41eeb04aacad25959aeaab236, type: 2}
   - {fileID: 11400000, guid: 65a9771a2e8294e42acdf82d04d137c9, type: 2}
   - {fileID: 11400000, guid: ae32585153b774059a00acd756bb2b36, type: 2}
+  - {fileID: 11400000, guid: 01a7702472c864192a21e81706e75ea6, type: 2}
   blackScreenAlphaForPuzzle: 245
   currentLanguage: 0
   defaultStyle:
