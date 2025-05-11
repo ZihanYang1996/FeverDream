@@ -16,6 +16,7 @@ public class GameLevel2SceneManager : MonoBehaviour
 
     [Header("Actors")]
     [SerializeField] private GameObject character;
+
     [SerializeField] private GameObject mushroomHouse;
 
     [SerializeField] private GameObject mainCamera;
@@ -440,7 +441,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         targetPosition = new Vector3(50.0999985f, -14.3100004f, -5.06389952f);
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }));
         yield return new WaitUntil(() => isMoveComplete);
-        
+
         // Deactivate the generated tangram holder
         generatedTangramHolder.SetActive(false);
 
@@ -460,15 +461,15 @@ public class GameLevel2SceneManager : MonoBehaviour
         // Move the character to the target position: Vector3(37,-16,0)
         duration = 1.0f;
         isMoveComplete = false;
-        targetPosition = new Vector3(37f,-16f,0f);
+        targetPosition = new Vector3(37f, -16f, 0f);
         character.GetComponent<ActorController>()
             .MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }), usePathOffset: true,
                 settleDuration: 0.5f);
         yield return new WaitUntil(() => isMoveComplete);
-        
+
         // Wait for a moment
         yield return new WaitForSeconds(1f);
-        
+
         // Character move out of the screen on right
         // // Move the character to the target position: Vector3(46,-16,0)
         duration = 1.0f;
@@ -478,8 +479,8 @@ public class GameLevel2SceneManager : MonoBehaviour
             .MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }), usePathOffset: true,
                 settleDuration: 0.5f);
         yield return new WaitUntil(() => isMoveComplete);
-        
-        
+
+
         // Fade in the black screen
         bool isFadeInComplete = false;
         if (blackScreenImage != null)
@@ -497,6 +498,152 @@ public class GameLevel2SceneManager : MonoBehaviour
 
     private IEnumerator PlayButterflyAnimationCoroutine(System.Action onComplete)
     {
-        yield return new WaitForSeconds(0.5f);
+        // Set the Tangram holder's position
+        generatedTangramHolder.transform.position = new Vector3(-59.5200005f, -13.4899998f, -5.06389952f);
+        // Add ActorController component to the generated tangram holder 
+        var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
+
+        // Add ButterflyPathOffset component to the generated tangram holder
+        var butterflyPathOffset = generatedTangramHolder.AddComponent<ButterflyPathOffset>();
+        butterflyPathOffset.horizontalAmplitude = 0.25f;
+        butterflyPathOffset.verticalAmplitude = 0.25f;
+        butterflyPathOffset.horizontalFrequency = 5f;
+        butterflyPathOffset.verticalFrequency = 5f;
+
+        // Fade in the generated tangram holder
+        bool isFadeComplete = false;
+        tangramHolderActorController.FadeToAlpha(1f, stageManager.generatedTangramFlickerDuration,
+            (() => isFadeComplete = true));
+        // Wait until the fade is finished
+        yield return new WaitUntil(() => isFadeComplete);
+
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
+        }
+
+        // Wait for the fade-out to complete
+        yield return new WaitUntil(() => isFadeOutComplete);
+        Debug.Log("Fade out complete");
+        blackScreenImage.SetActive(false);
+
+        // Add ButterflyMotion component to the generated tangram holder
+        var butterflyMotion = generatedTangramHolder.AddComponent<ButterflyMotion>();
+        butterflyMotion.moveSpeed = 3f;
+
+        // Activate the mushroom house
+        mushroomHouse.SetActive(true);
+
+        // Set the child object of the generated tangram's sprite to the "Actor" sorting layer and set the order to 7
+        var tangramHolderSpriteRenderer = generatedTangramHolder.GetComponentInChildren<SpriteRenderer>();
+        if (tangramHolderSpriteRenderer != null)
+        {
+            tangramHolderSpriteRenderer.sortingLayerName = "Actors";
+            tangramHolderSpriteRenderer.sortingOrder = 7;
+        }
+        else
+        {
+            Debug.LogError("Tangram holder does not have a child with a SpriteRenderer component.");
+        }
+
+        // Scale the generated tangram holder to the target scale: Vector3(0.200000003,0.200000003,0.200000003)
+        bool isScaleComplete = false;
+        float duration = 1.0f;
+        Vector3 targetScale = new Vector3(0.200000003f, 0.200000003f, 0.200000003f);
+        tangramHolderActorController.ScaleTo(targetScale, duration, () => { isScaleComplete = true; });
+        yield return new WaitUntil(() => isScaleComplete);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // Move the butterfly close to the character
+        // Move the generated tangram holder to the target position: Vector3(-64.8000031,-13.8999996,-5.5501132)
+        bool isMoveComplete = false;
+        Vector3 targetPosition = new Vector3(-65f, -14f, 0f);
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
+            usePathOffset: true, settleDuration: 0.5f);
+        yield return new WaitUntil(() => isMoveComplete);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // The butterfly fly to the right then hover Vector3(-54f, -14f, 0f)
+        isMoveComplete = false;
+        targetPosition = new Vector3(-54f, -14f, 0f);
+        tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
+            usePathOffset: true, settleDuration: 0.5f);
+        yield return new WaitUntil(() => isMoveComplete);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // Butterfly fly to the right to the mushroom house Vector3(13,-14.5,0)
+        // Change the butterfly's path offset frequency
+        butterflyPathOffset.horizontalFrequency = 20f;
+        butterflyPathOffset.verticalFrequency = 20f;
+        bool isButterflyMoveComplete = false;
+        duration = 10.0f;
+        targetPosition = new Vector3(13f, -14.5f, 0f);
+        tangramHolderActorController.MoveToPosition(targetPosition, duration,
+            (() => { isButterflyMoveComplete = true; }),
+            usePathOffset: true, settleDuration: 0.5f);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // Camera move to the character's position then start following the character
+        bool isCameraMoveComplete = false;
+        duration = 1.0f;
+        mainCamera.GetComponent<CameraController>().MoveToActor(character.transform, duration, cameraFocusCurve,
+            (() => { isCameraMoveComplete = true; }));
+        yield return new WaitUntil(() => isCameraMoveComplete);
+        mainCamera.GetComponent<CameraController>().FollowTarget(character.transform, 0.1f);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // Character move to the mushroom house Vector3(7,-16,0)
+        // Change the character's path offset frequency
+        character.GetComponent<WalkingPathOffset>().frequency = 30f;
+        bool isCharacterMoveComplete = false;
+        duration = 7.0f;
+        targetPosition = new Vector3(7f, -16f, 0f);
+        character.GetComponent<ActorController>()
+            .MoveToPosition(targetPosition, duration, (() => { isCharacterMoveComplete = true; }), usePathOffset: true,
+                settleDuration: 0.5f);
+
+        yield return new WaitUntil(() => isCharacterMoveComplete && isButterflyMoveComplete);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+
+        // Butterfly disappear
+        isFadeComplete = false;
+        duration = 0.5f;
+        tangramHolderActorController.FadeToAlpha(0f, duration,
+            (() => isFadeComplete = true));
+        yield return new WaitUntil(() => isFadeComplete);
+        // Deactivate the generated tangram holder
+        generatedTangramHolder.SetActive(false);
+
+        // Character move to the mushroom house Vector3(13.0600004,-14.8999996,0)
+        // Character disappear at the same time
+        // Change the character's path offset frequency
+        character.GetComponent<WalkingPathOffset>().frequency = 3f;
+        isMoveComplete = false;
+        isFadeComplete = false;
+        duration = 1f;
+        targetPosition = new Vector3(13.0600004f, -14.8999996f, 0f);
+        character.GetComponent<ActorController>()
+            .MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }), usePathOffset: true,
+                settleDuration: 0.5f);
+        character.GetComponent<ActorController>()
+            .FadeToAlpha(0f, duration, (() => { isFadeComplete = true; }));
+        yield return new WaitUntil(() => isMoveComplete && isFadeComplete);
     }
 }
