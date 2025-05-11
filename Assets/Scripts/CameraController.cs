@@ -149,7 +149,8 @@ public class CameraController : MonoBehaviour
 
     public void SnapTo(Vector3 position)
     {
-        transform.position = position;
+        Vector3 newPos = new Vector3(position.x, position.y, transform.position.z);
+        transform.position = newPos;
     }
 
     public void SetBounds(Vector2 min, Vector2 max)
