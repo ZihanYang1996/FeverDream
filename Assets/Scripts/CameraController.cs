@@ -64,6 +64,13 @@ public class CameraController : MonoBehaviour
         moveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration, curve, onComplete));
     }
 
+    public void MoveToActor(Transform targetActor, float duration, AnimationCurve curve = null, Action onComplete = null)
+    {
+        Vector3 targetPosition = targetActor.position;
+        targetPosition.z = transform.position.z; // 保持相机 Z 不变
+        MoveTo(targetPosition, duration, curve, onComplete);
+    }
+
     public void MoveBy(Vector3 delta, float duration, AnimationCurve curve = null, Action onComplete = null)
     {
         MoveTo(transform.position + delta, duration, curve, onComplete);
