@@ -20,6 +20,8 @@ public class GameLevel2SceneManager : MonoBehaviour
     [SerializeField] private GameObject mushroomHouse;
 
     [SerializeField] private GameObject mainCamera;
+    
+    [SerializeField] private GameObject sandStorm;
 
     [SerializeField] private GameObject blackScreenImage;
     [SerializeField] private GameObject generatedTangramHolder;
@@ -42,6 +44,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         // Set the initial state of the scene
         character.SetActive(true);
         mushroomHouse.SetActive(false);
+        sandStorm.SetActive(false);
 
         // Increment the current level index
         GameManager.Instance.IncrementCurrentLevelIndex();
@@ -562,12 +565,13 @@ public class GameLevel2SceneManager : MonoBehaviour
         bool isMoveComplete = false;
         Vector3 targetPosition = new Vector3(-65f, -14f, 0f);
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
-            usePathOffset: true, settleDuration: 0.5f);
+            usePathOffset: true, settleDuration: 0.1f);
         yield return new WaitUntil(() => isMoveComplete);
         
         // Add ButterflyMotion component to the generated tangram holder
         var butterflyMotion = generatedTangramHolder.AddComponent<ButterflyMotion>();
         butterflyMotion.moveSpeed = 3f;
+        butterflyMotion.moveRadius = 1f; 
 
         // Wait for a moment
         yield return new WaitForSeconds(3f);
@@ -576,7 +580,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         isMoveComplete = false;
         targetPosition = new Vector3(-54f, -14f, 0f);
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
-            usePathOffset: true, settleDuration: 1f);
+            usePathOffset: true, settleDuration: 0.1f);
         yield return new WaitUntil(() => isMoveComplete);
 
         // Wait for a moment
@@ -587,7 +591,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         butterflyPathOffset.horizontalFrequency = 20f;
         butterflyPathOffset.verticalFrequency = 20f;
         bool isButterflyMoveComplete = false;
-        duration = 9.0f;
+        duration = 8.5f;
         targetPosition = new Vector3(13f, -14.5f, 0f);
         tangramHolderActorController.MoveToPosition(targetPosition, duration,
             (() => { isButterflyMoveComplete = true; }),
@@ -604,7 +608,7 @@ public class GameLevel2SceneManager : MonoBehaviour
             (() => { isCameraMoveComplete = true; }), axisToFollow);
 
         // Wait for a moment
-        yield return new WaitForSeconds(1f);
+        yield return new WaitUntil((() => isCameraMoveComplete));
 
         // Character move to the mushroom house Vector3(7,-16,0)
         // Change the character's path offset frequency
@@ -647,6 +651,15 @@ public class GameLevel2SceneManager : MonoBehaviour
         
         // Wait for a moment
         yield return new WaitForSeconds(1f);
+        
+        // Start the sandstorm
+        sandStorm.SetActive(true);
+        fadeDuration = 3f;
+        sandStorm.GetComponent<ScrollEffect>().StartScroll(true, fadeDuration);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(5f);
+        
         
         // Fade in the black screen
         bool isFadeInComplete = false;
