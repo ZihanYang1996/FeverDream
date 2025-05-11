@@ -442,57 +442,9 @@ public class StageManager : MonoBehaviour
         // 3) Compute centroid of scaled mask
         Vector2 centroid = ComputeCentroid(scaled);
 
-        // 4) Compute PCA orientation (variance covariance)
-        float meanX = 0, meanY = 0, count = 0;
-        for (int y = 0; y < normalizationResolution; y++)
-        for (int x = 0; x < normalizationResolution; x++)
-            if (scaled.GetPixel(x, y).r > 0.5f)
-            {
-                meanX += x;
-                meanY += y;
-                count++;
-            }
-
-        meanX /= count;
-        meanY /= count;
-        float covXX = 0, covYY = 0, covXY = 0;
-        for (int y = 0; y < normalizationResolution; y++)
-        for (int x = 0; x < normalizationResolution; x++)
-            if (scaled.GetPixel(x, y).r > 0.5f)
-            {
-                float dx = x - meanX, dy = y - meanY;
-                covXX += dx * dx;
-                covYY += dy * dy;
-                covXY += dx * dy;
-            }
-
-        // principal angle
-        float theta = 0.5f * Mathf.Atan2(2 * covXY, covXX - covYY) * Mathf.Rad2Deg;
-
-        // 5) Rotate the scaled mask around its center by -theta
-        Texture2D rotated =
-            new Texture2D(normalizationResolution, normalizationResolution, TextureFormat.RGBA32, false);
-        Vector2 center = new Vector2(normalizationResolution / 2f, normalizationResolution / 2f);
-        for (int y = 0; y < normalizationResolution; y++)
-        {
-            for (int x = 0; x < normalizationResolution; x++)
-            {
-                // inverse rotate pixel
-                float dx = x - center.x, dy = y - center.y;
-                float rad = -theta * Mathf.Deg2Rad;
-                int sx = Mathf.RoundToInt(center.x + dx * Mathf.Cos(rad) - dy * Mathf.Sin(rad));
-                int sy = Mathf.RoundToInt(center.y + dx * Mathf.Sin(rad) + dy * Mathf.Cos(rad));
-                Color c = (sx >= 0 && sx < normalizationResolution && sy >= 0 && sy < normalizationResolution &&
-                           scaled.GetPixel(sx, sy).r > 0.5f)
-                    ? Color.white
-                    : Color.black;
-                rotated.SetPixel(x, y, c);
-            }
-        }
-
-        rotated.Apply();
-
-        return rotated;
+        // 4) PCA orientation and 5) rotation removed for consistency.
+        // Return the scaled mask directly.
+        return scaled;
     }
 
     private IEnumerator CountdownTimer()
