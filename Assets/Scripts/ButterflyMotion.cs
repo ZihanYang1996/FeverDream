@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ButterflyMotion : MonoBehaviour
+public class ButterflyMotion : MonoBehaviour, IActorMotion
 {
     [Header("Motion Settings")]
     public float moveRadius = 2f;          // 飞行范围半径
