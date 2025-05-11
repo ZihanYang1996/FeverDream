@@ -507,8 +507,8 @@ public class GameLevel2SceneManager : MonoBehaviour
         var butterflyPathOffset = generatedTangramHolder.AddComponent<ButterflyPathOffset>();
         butterflyPathOffset.horizontalAmplitude = 0.25f;
         butterflyPathOffset.verticalAmplitude = 0.25f;
-        butterflyPathOffset.horizontalFrequency = 5f;
-        butterflyPathOffset.verticalFrequency = 5f;
+        butterflyPathOffset.horizontalFrequency = 3f;
+        butterflyPathOffset.verticalFrequency = 3f;
 
         // Fade in the generated tangram holder
         bool isFadeComplete = false;
@@ -531,10 +531,6 @@ public class GameLevel2SceneManager : MonoBehaviour
         yield return new WaitUntil(() => isFadeOutComplete);
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
-
-        // Add ButterflyMotion component to the generated tangram holder
-        var butterflyMotion = generatedTangramHolder.AddComponent<ButterflyMotion>();
-        butterflyMotion.moveSpeed = 3f;
 
         // Activate the mushroom house
         mushroomHouse.SetActive(true);
@@ -568,41 +564,44 @@ public class GameLevel2SceneManager : MonoBehaviour
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
             usePathOffset: true, settleDuration: 0.5f);
         yield return new WaitUntil(() => isMoveComplete);
+        
+        // Add ButterflyMotion component to the generated tangram holder
+        var butterflyMotion = generatedTangramHolder.AddComponent<ButterflyMotion>();
+        butterflyMotion.moveSpeed = 3f;
 
         // Wait for a moment
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         // The butterfly fly to the right then hover Vector3(-54f, -14f, 0f)
         isMoveComplete = false;
         targetPosition = new Vector3(-54f, -14f, 0f);
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
-            usePathOffset: true, settleDuration: 0.5f);
+            usePathOffset: true, settleDuration: 1f);
         yield return new WaitUntil(() => isMoveComplete);
 
         // Wait for a moment
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         // Butterfly fly to the right to the mushroom house Vector3(13,-14.5,0)
         // Change the butterfly's path offset frequency
         butterflyPathOffset.horizontalFrequency = 20f;
         butterflyPathOffset.verticalFrequency = 20f;
         bool isButterflyMoveComplete = false;
-        duration = 10.0f;
+        duration = 9.0f;
         targetPosition = new Vector3(13f, -14.5f, 0f);
         tangramHolderActorController.MoveToPosition(targetPosition, duration,
             (() => { isButterflyMoveComplete = true; }),
-            usePathOffset: true, settleDuration: 0.5f);
+            usePathOffset: true, settleDuration: 1f);
 
         // Wait for a moment
         yield return new WaitForSeconds(1f);
 
-        // Camera move to the character's position then start following the character
+        // Camera move to the character's position then start following the character (but don't follow y axis)
         bool isCameraMoveComplete = false;
         duration = 1.0f;
-        mainCamera.GetComponent<CameraController>().MoveToActor(character.transform, duration, cameraFocusCurve,
-            (() => { isCameraMoveComplete = true; }));
-        yield return new WaitUntil(() => isCameraMoveComplete);
-        mainCamera.GetComponent<CameraController>().FollowTarget(character.transform, 0.1f);
+        Vector3 axisToFollow = new Vector3(1, 0, 0);
+        mainCamera.GetComponent<CameraController>().MoveToAndFollowActor(character.transform, duration, cameraFocusCurve,
+            (() => { isCameraMoveComplete = true; }), axisToFollow);
 
         // Wait for a moment
         yield return new WaitForSeconds(1f);
@@ -611,7 +610,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         // Change the character's path offset frequency
         character.GetComponent<WalkingPathOffset>().frequency = 30f;
         bool isCharacterMoveComplete = false;
-        duration = 7.0f;
+        duration = 8.0f;
         targetPosition = new Vector3(7f, -16f, 0f);
         character.GetComponent<ActorController>()
             .MoveToPosition(targetPosition, duration, (() => { isCharacterMoveComplete = true; }), usePathOffset: true,
@@ -645,5 +644,22 @@ public class GameLevel2SceneManager : MonoBehaviour
         character.GetComponent<ActorController>()
             .FadeToAlpha(0f, duration, (() => { isFadeComplete = true; }));
         yield return new WaitUntil(() => isMoveComplete && isFadeComplete);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+
+        // Call the onComplete action after the animation is finished
+        onComplete?.Invoke();
     }
 }
