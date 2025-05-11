@@ -85,7 +85,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             Debug.LogWarning("ShowPuzzleButton is not assigned in the inspector.");
         }
 
-        StageManager stageManager = FindAnyObjectByType<StageManager>();
+        // StageManager stageManager = FindAnyObjectByType<StageManager>();
         if (stageManager != null)
         {
             var mainStages = GameManager.Instance.GetMainStages();
