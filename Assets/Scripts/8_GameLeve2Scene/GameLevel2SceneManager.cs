@@ -20,7 +20,7 @@ public class GameLevel2SceneManager : MonoBehaviour
     [SerializeField] private GameObject mushroomHouse;
 
     [SerializeField] private GameObject mainCamera;
-    
+
     [SerializeField] private GameObject sandStorm;
 
     [SerializeField] private GameObject blackScreenImage;
@@ -143,8 +143,12 @@ public class GameLevel2SceneManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("[Game Leve 1] Puzzle failed.");
-            GoToNextScene("TimeOut");
+            Debug.Log("[Game Leve 2] Puzzle failed.");
+            StartCoroutine(PlayFailedAnimationCoroutine(() =>
+            {
+                // After the animation is finished, go to the next scene
+                GoToNextScene("TimeOut");
+            }));
         }
     }
 
@@ -167,7 +171,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No specific post-puzzle animation for stage: {stageID}");
+            StartCoroutine(PlayFailedAnimationCoroutine((() => { onComplete?.Invoke(); })));
         }
     }
 
@@ -556,7 +560,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         Vector3 targetScale = new Vector3(0.200000003f, 0.200000003f, 0.200000003f);
         tangramHolderActorController.ScaleTo(targetScale, duration, () => { isScaleComplete = true; });
         yield return new WaitUntil(() => isScaleComplete);
-        
+
         // Wait for a moment
         yield return new WaitForSeconds(1f);
 
@@ -567,11 +571,11 @@ public class GameLevel2SceneManager : MonoBehaviour
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
             usePathOffset: true, settleDuration: 0.1f);
         yield return new WaitUntil(() => isMoveComplete);
-        
+
         // Add ButterflyMotion component to the generated tangram holder
         var butterflyMotion = generatedTangramHolder.AddComponent<ButterflyMotion>();
         butterflyMotion.moveSpeed = 3f;
-        butterflyMotion.moveRadius = 1f; 
+        butterflyMotion.moveRadius = 1f;
 
         // Wait for a moment
         yield return new WaitForSeconds(3f);
@@ -604,7 +608,8 @@ public class GameLevel2SceneManager : MonoBehaviour
         bool isCameraMoveComplete = false;
         duration = 1.0f;
         Vector3 axisToFollow = new Vector3(1, 0, 0);
-        mainCamera.GetComponent<CameraController>().MoveToAndFollowActor(character.transform, duration, cameraFocusCurve,
+        mainCamera.GetComponent<CameraController>().MoveToAndFollowActor(character.transform, duration,
+            cameraFocusCurve,
             (() => { isCameraMoveComplete = true; }), axisToFollow);
 
         // Wait for a moment
@@ -648,19 +653,19 @@ public class GameLevel2SceneManager : MonoBehaviour
         character.GetComponent<ActorController>()
             .FadeToAlpha(0f, duration, (() => { isFadeComplete = true; }));
         yield return new WaitUntil(() => isMoveComplete && isFadeComplete);
-        
+
         // Wait for a moment
         yield return new WaitForSeconds(1f);
-        
+
         // Start the sandstorm
         sandStorm.SetActive(true);
         fadeDuration = 3f;
         sandStorm.GetComponent<ScrollEffect>().StartScroll(true, fadeDuration);
-        
+
         // Wait for a moment
         yield return new WaitForSeconds(5f);
-        
-        
+
+
         // Fade in the black screen
         bool isFadeInComplete = false;
         if (blackScreenImage != null)
@@ -674,5 +679,57 @@ public class GameLevel2SceneManager : MonoBehaviour
 
         // Call the onComplete action after the animation is finished
         onComplete?.Invoke();
+    }
+
+    private IEnumerator PlayFailedAnimationCoroutine(System.Action onComplete)
+    {
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
+        }
+
+        // Wait for the fade-out to complete
+        yield return new WaitUntil(() => isFadeOutComplete);
+        Debug.Log("Fade out complete");
+        blackScreenImage.SetActive(false);
+
+        // Play dialogue saying nothing happened
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+        
+        // Move the sandstorm to the character's position Vector3(-66.5999985,-11.6999998,0)
+        // then play the sandstorm animation
+        sandStorm.SetActive(true);
+        sandStorm.transform.position = new Vector3(-66.5999985f, -11.6999998f, 0f);
+        fadeDuration = 3f;
+        sandStorm.GetComponent<ScrollEffect>().StartScroll(true, fadeDuration);
+
+        // Wait for a moment
+        yield return new WaitForSeconds(5f);
+
+
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+        
+        // Play the dialogue
+
+        // Call the onComplete action after the animation is finished
+        onComplete?.Invoke();
+        
+        
     }
 }
