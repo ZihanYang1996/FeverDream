@@ -154,7 +154,12 @@ public class GameLevel1SceneManager : MonoBehaviour
         else
         {
             Debug.Log("[Game Leve 1] Puzzle failed.");
-            GoToNextScene("TimeOut");
+            // Play the failed animation
+            StartCoroutine(PlayFailedAnimationCoroutine(() =>
+            {
+                // After the animation is finished, go to the next scene
+                GoToNextScene("TimeOut");
+            }));
         }
     }
 
@@ -312,7 +317,7 @@ public class GameLevel1SceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No specific post-puzzle animation for stage: {stageID}");
+            StartCoroutine(PlayFailedAnimationCoroutine((() => { onComplete?.Invoke(); })));
         }
     }
 
@@ -679,5 +684,59 @@ public class GameLevel1SceneManager : MonoBehaviour
 
         // Call the onComplete action after the animation is finished
         onFinish?.Invoke();
+    }
+
+    private IEnumerator PlayFailedAnimationCoroutine(System.Action onComplete)
+    {
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
+        }
+
+        // Wait for the fade-out to complete
+        yield return new WaitUntil(() => isFadeOutComplete);
+        Debug.Log("Fade out complete");
+        blackScreenImage.SetActive(false);
+
+        // Play dialogue saying nothing happened
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+
+        // Sink the character with wood
+        // Set the alpha of the character with wood to 0
+        // Move the character with wood to the bottom of the screen
+        bool isCharacterFadeFinished = false;
+        bool isCharacterMoveFinished = false;
+        Vector3 deltaPosition = new Vector3(0.0f, -7.0f, 0.0f);
+        float fadeAndMoveDuration = 2.0f;
+        characterWithWood.GetComponent<ActorController>()
+            .FadeToAlpha(0f, fadeAndMoveDuration, () => { isCharacterFadeFinished = true; });
+        characterWithWood.GetComponent<ActorController>().MoveByDelta(deltaPosition, fadeAndMoveDuration,
+            () => { isCharacterMoveFinished = true; });
+        // Wait until both fade and move are finished
+        yield return new WaitUntil(() => isCharacterFadeFinished && isCharacterMoveFinished);
+        
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+        
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+
+        // Call the onComplete action after the animation is finished
+        onComplete?.Invoke();
     }
 }
