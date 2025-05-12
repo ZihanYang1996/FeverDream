@@ -56,6 +56,7 @@ public class UICurtain : MonoBehaviour
         }
 
         Color c = curtainImage.color;
+        c.a = 1f;
 
         for (float t = 0f; t < fadeOutDuration; t += Time.deltaTime)
         {

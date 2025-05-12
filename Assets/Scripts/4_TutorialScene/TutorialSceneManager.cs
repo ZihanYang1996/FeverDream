@@ -18,8 +18,12 @@ public class TutorialSceneManager : MonoBehaviour
     [SerializeField] private float buttonPulseDuration = 0.2f;
     [SerializeField] private StageManager stageManager;
     [SerializeField] private GameObject generatedTangramHolder;
-    
+
+    [SerializeField] private UICurtain uiCurtain;
+
     [Header("Background Images")]
+    [SerializeField] public Sprite backgroundImage1;
+
     [SerializeField] public Sprite backgroundImage2;
 
     [SerializeField] public Sprite backgroundImage3;
@@ -151,14 +155,10 @@ public class TutorialSceneManager : MonoBehaviour
     private IEnumerator PlayPrePuzzleAnimation1()
     {
         // Fade out the black screen
-        bool isFadeOutComplete = false;
-        if (blackScreenImage != null)
-        {
-            blackScreenImage.GetComponent<BlackScreenController>()?.SceneStartFadeOut();
-        }
+        yield return uiCurtain.FadeOut();
 
         // Play the first background image (Black screen)
-        backgroundImage.sprite = null;
+        backgroundImage.sprite = backgroundImage1;
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
         // Play Dialogue
@@ -169,25 +169,31 @@ public class TutorialSceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset1, Language.ZH, () =>
-        {
-            if (animationCoroutine != null)
-            {
-                StopCoroutine(animationCoroutine);
-                animationCoroutine = null;
-            }
+        bool isDialogueComplete = false;
+        dialogueManager.PlayDialogue(dialogueAsset1, Language.ZH, () => { isDialogueComplete = true; });
+        yield return new WaitUntil(() => isDialogueComplete);
 
-            // Start the second animation
-            animationCoroutine = StartCoroutine(PlayPrePuzzleAnimation2());
-        });
+        // Fade in the black screen
+        yield return uiCurtain.FadeIn();
+
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+            animationCoroutine = null;
+        }
+
+        // Start the second animation
+        animationCoroutine = StartCoroutine(PlayPrePuzzleAnimation2());
     }
 
     private IEnumerator PlayPrePuzzleAnimation2()
     {
-        // Small delay before starting the animation
-        yield return new WaitForSeconds(0.5f);
         // Play the first background image
         backgroundImage.sprite = backgroundImage2;
+
+        // Fade out the curtain
+        yield return uiCurtain.FadeOut();
+
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
         // Play Dialogue
@@ -198,25 +204,34 @@ public class TutorialSceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset2, Language.ZH, () =>
-        {
-            if (animationCoroutine != null)
-            {
-                StopCoroutine(animationCoroutine);
-                animationCoroutine = null;
-            }
+        bool isDialogueComplete = false;
+        dialogueManager.PlayDialogue(dialogueAsset2, Language.ZH, () => { isDialogueComplete = true; });
+        yield return new WaitUntil(() => isDialogueComplete);
 
-            // Start the second animation
-            animationCoroutine = StartCoroutine(PlayPrePuzzleAnimation3());
-        });
+        // Fade in the curtain
+        yield return uiCurtain.FadeIn();
+
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+            animationCoroutine = null;
+        }
+
+        // Start the second animation
+        animationCoroutine = StartCoroutine(PlayPrePuzzleAnimation3());
     }
 
     private IEnumerator PlayPrePuzzleAnimation3()
     {
-        // Small delay before starting the animation
-        yield return new WaitForSeconds(0.5f);
+        // Show the puzzle button
+        StartPuzzle();
+        
         // Play the first background image
         backgroundImage.sprite = backgroundImage3;
+        
+        // Fade out the curtain
+        yield return uiCurtain.FadeOut();
+        
         // Activate the button
         startPuzzleButton.SetActive(true);
         // Wait for a moment before dialogue
@@ -229,19 +244,19 @@ public class TutorialSceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset3, Language.ZH, () =>
-        {
-            // Show the puzzle button
-            StartPuzzle();
-            if (animationCoroutine != null)
-            {
-                StopCoroutine(animationCoroutine);
-                animationCoroutine = null;
-            }
+        bool isDialogueComplete = false;
+        dialogueManager.PlayDialogue(dialogueAsset3, Language.ZH, () => { isDialogueComplete = true; });
+        yield return new WaitUntil(() => isDialogueComplete);
 
-            // Start the button move animation
-            animationCoroutine = StartCoroutine(MoveButton());
-        });
+ 
+        if (animationCoroutine != null)
+        {
+            StopCoroutine(animationCoroutine);
+            animationCoroutine = null;
+        }
+
+        // Start the button move animation
+        animationCoroutine = StartCoroutine(MoveButton());
     }
 
     private IEnumerator MoveButton()
@@ -294,15 +309,15 @@ public class TutorialSceneManager : MonoBehaviour
     private IEnumerator PlayPostPuzzleAnimation1(bool success)
     {
         // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(4.5f,-1.48000002f,-5.06389952f);
+        generatedTangramHolder.transform.position = new Vector3(4.5f, -1.48000002f, -5.06389952f);
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
-        
+
         // Fade in the generated tangram holder
         bool isFadeComplete = false;
         tangramHolderActorController.FadeToAlpha(1f, stageManager.generatedTangramFlickerDuration,
             (() => isFadeComplete = true));
-        
+
         // Wait until the fade is finished
         yield return new WaitUntil(() => isFadeComplete);
 
@@ -321,8 +336,8 @@ public class TutorialSceneManager : MonoBehaviour
 
         // Small delay before starting the animation
         yield return new WaitForSeconds(0.5f);
-        // Play the first background image (Black screen for now)
-        backgroundImage.sprite = null;
+        // Play the first background image
+        backgroundImage.sprite = backgroundImage1;
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
         // Play Dialogue
@@ -334,17 +349,26 @@ public class TutorialSceneManager : MonoBehaviour
             yield break;
         }
 
+        bool isDialogueComplete = false;
         dialogueManager.PlayDialogue(dialogueAsset4, Language.ZH,
-            () => { StartCoroutine(PlayPostPuzzleAnimation2()); });
+            () => { isDialogueComplete = true; });
+        yield return new WaitUntil(() => isDialogueComplete);
+
+        // Fade in the black screen
+        yield return uiCurtain.FadeOut();
+
+        StartCoroutine(PlayPostPuzzleAnimation2());
     }
 
     private IEnumerator PlayPostPuzzleAnimation2()
     {
-        // Small delay before starting the animation
-        yield return new WaitForSeconds(1.0f);
-        
+
         // Play the first background image (Black screen)
-        backgroundImage.sprite = null;
+        backgroundImage.sprite = backgroundImage1;
+        
+        // Fade out the black screen
+        yield return uiCurtain.FadeOut();
+        
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
         // Play Dialogue
@@ -358,20 +382,10 @@ public class TutorialSceneManager : MonoBehaviour
         bool isDialogueComplete = false;
         dialogueManager.PlayDialogue(dialogueAsset5, Language.ZH, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
-        
-        // Fade in the black screen
-        bool isFadeInComplete = false;
-        if (blackScreenImage != null)
-        {
-            blackScreenImage.GetComponent<BlackScreenController>()
-                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
-        }
 
-        yield return new WaitUntil(() => isFadeInComplete);
-        
-        // Small delay before starting the transition
-        yield return new WaitForSeconds(GameManager.Instance.blackScreenStayDuration);
-        
+        // Fade in the black screen
+        yield return uiCurtain.FadeIn();
+
         // Return to the day scene
         ReturnToDayScene();
     }
