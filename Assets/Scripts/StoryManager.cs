@@ -13,6 +13,7 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private RawImage videoBackground;
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private Image curtain;
 
     [Header("Story Settings")]
     [SerializeField] private float frameRate = 10f; // 帧动画播放速度
@@ -29,6 +30,8 @@ public class StoryManager : MonoBehaviour
     private void Start()
     {
         videoPlayer.loopPointReached += OnVideoFinished;
+        // Deactivate backgroundImage
+        backgroundImage.gameObject.SetActive(false);
     }
 
     public void Play(StoryStep[] steps, Action onComplete = null)
@@ -38,10 +41,10 @@ public class StoryManager : MonoBehaviour
         storyIndex = 0;
         onStoryFinished = onComplete;
 
-        LoadCurrentStory();
+        StartCoroutine(TransitionAndLoadStep());
     }
 
-    private void LoadCurrentStory()
+    private void LoadCurrentStoryContent()
     {
         if (storySteps == null || storySteps.Length == 0)
         {
@@ -84,6 +87,41 @@ public class StoryManager : MonoBehaviour
         }
     }
 
+    private IEnumerator TransitionAndLoadStep()
+    {
+        yield return StartCoroutine(FadeInCurtain());
+        LoadCurrentStoryContent();
+        yield return StartCoroutine(FadeOutCurtain());
+    }
+
+    private IEnumerator FadeInCurtain(float duration = 0.5f)
+    {
+        Color c = curtain.color;
+        // Set the initial alpha to 1
+        c.a = 1;
+        for (float t = 0; t <= duration; t += Time.deltaTime)
+        {
+            c.a = Mathf.Lerp(0, 1, t / duration);
+            curtain.color = c;
+            yield return null;
+        }
+        c.a = 1;
+        curtain.color = c;
+    }
+
+    private IEnumerator FadeOutCurtain(float duration = 0.5f)
+    {
+        Color c = curtain.color;
+        for (float t = 0; t <= duration; t += Time.deltaTime)
+        {
+            c.a = Mathf.Lerp(1, 0, t / duration);
+            curtain.color = c;
+            yield return null;
+        }
+        c.a = 0;
+        curtain.color = c;
+    }
+
     // No longer used; logic handled in WaitAndShowDialogue completion callback
 
     private IEnumerator WaitAndShowDialogue()
@@ -103,7 +141,7 @@ public class StoryManager : MonoBehaviour
                 storyIndex++;
                 if (storyIndex < storySteps.Length)
                 {
-                    LoadCurrentStory();
+                    StartCoroutine(TransitionAndLoadStep());
                 }
                 else
                 {
@@ -116,7 +154,7 @@ public class StoryManager : MonoBehaviour
             storyIndex++;
             if (storyIndex < storySteps.Length)
             {
-                LoadCurrentStory();
+                StartCoroutine(TransitionAndLoadStep());
             }
             else
             {
