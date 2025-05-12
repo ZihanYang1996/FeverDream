@@ -220,6 +220,13 @@ public class StageManager : MonoBehaviour
     /// </summary>
     public void ValidatePuzzle()
     {
+        if (currentStage == null)
+        {
+            Debug.LogWarning("[StageManager] No stage loaded.");
+            // Flash red to indicate failure
+            StartCoroutine(FlashRedEffect());
+            return;
+        }
         // Clone workspace pieces into off-screen capture canvas
         List<GameObject> clones = new List<GameObject>();
         foreach (Transform orig in workspaceArea)
