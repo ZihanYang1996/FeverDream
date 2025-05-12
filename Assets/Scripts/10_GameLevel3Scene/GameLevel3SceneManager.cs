@@ -95,7 +95,7 @@ public class GameLevel3SceneManager : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log($"[Game Leve 1] Puzzle '{stage.id}' completed!");
+            Debug.Log($"[Game Level 3] Puzzle '{stage.id}' completed!");
             GameManager.Instance.RegisterCompletedStage(stage);
 
             // Determine the scene transition condition based on the stage ID
@@ -133,8 +133,12 @@ public class GameLevel3SceneManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("[Game Leve 1] Puzzle failed.");
-            GoToNextScene("TimeOut");
+            Debug.Log("[Game Level 3] Puzzle failed.");
+            StartCoroutine(PlayFailedAnimationCoroutine(() =>
+            {
+                // After the animation is finished, go to the next scene
+                GoToNextScene("TimeOut");
+            }));
         }
     }
 
@@ -157,7 +161,7 @@ public class GameLevel3SceneManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No specific post-puzzle animation for stage: {stageID}");
+            StartCoroutine(PlayFailedAnimationCoroutine((() => { onComplete?.Invoke(); })));
         }
     }
 
@@ -492,6 +496,59 @@ public class GameLevel3SceneManager : MonoBehaviour
         yield return new WaitUntil(() => isScaleComplete && isMoveComplete);
         
 
-        // Black screen fade in
+        // Fade in the black screen
+        isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+
+        // Call the onComplete action after the animation is finished
+        onComplete?.Invoke();
+    }
+    
+    private IEnumerator PlayFailedAnimationCoroutine(System.Action onComplete)
+    {
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
+        }
+
+        // Wait for the fade-out to complete
+        yield return new WaitUntil(() => isFadeOutComplete);
+        Debug.Log("Fade out complete");
+        blackScreenImage.SetActive(false);
+
+        // Play dialogue saying nothing happened
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+        
+        // Play the dialogue
+
+        // Call the onComplete action after the animation is finished
+        onComplete?.Invoke();
+        
+        
     }
 }
