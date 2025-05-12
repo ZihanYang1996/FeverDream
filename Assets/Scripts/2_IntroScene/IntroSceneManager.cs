@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -5,6 +6,7 @@ public class IntroSceneManager : MonoBehaviour
 {
     [SerializeField] private TypingEffect typingEffect;
     [SerializeField] private GameObject pressEnterText;
+    [SerializeField] private UICurtain uiCurtain;
 
     private bool canProceed = false;
 
@@ -20,7 +22,7 @@ public class IntroSceneManager : MonoBehaviour
     {
         if (canProceed && Input.GetKeyDown(KeyCode.Return))
         {
-            GameManager.Instance.GoToNextScene(SceneTransitionConditions.Default);
+            StartCoroutine(GoToNextSceneCoroutine());
         }
     }
 
@@ -28,5 +30,13 @@ public class IntroSceneManager : MonoBehaviour
     {
         canProceed = true;
         pressEnterText.SetActive(true);
+    }
+    
+    private IEnumerator GoToNextSceneCoroutine()
+    {
+        bool isFadeInComplete = false;
+        yield return uiCurtain.FadeIn((() => { isFadeInComplete = true; }));
+        yield return new WaitUntil(() => isFadeInComplete);
+        GameManager.Instance.GoToNextScene(SceneTransitionConditions.Default);
     }
 }
