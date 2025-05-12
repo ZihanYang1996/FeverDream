@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 105814560}
   - component: {fileID: 105814561}
   - component: {fileID: 105814562}
+  - component: {fileID: 105814563}
   m_Layer: 0
   m_Name: DaySceneManager
   m_TagString: Untagged
@@ -242,7 +243,7 @@ MonoBehaviour:
   videoBackground: {fileID: 31199486}
   videoPlayer: {fileID: 2053818738}
   dialogueManager: {fileID: 105814562}
-  curtain: {fileID: 741627268}
+  uiCurtain: {fileID: 105814563}
   frameRate: 5
   delayBetweenBackgroundAndDialogue: 1
 --- !u!114 &105814561
@@ -288,6 +289,22 @@ MonoBehaviour:
   dialogueText: {fileID: 878540566}
   pressEnterText: {fileID: 858215573}
   delayBetweenSpeakerAndDialogueText: 0.3
+--- !u!114 &105814563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105814558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51cda76b13e0244bfafb19dc430a0f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curtainImage: {fileID: 741627268}
+  fadeInDuration: 0.5
+  fadeOutDuration: 0.5
+  blackScreenPauseDuration: 0
 --- !u!1 &442599852
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +392,7 @@ GameObject:
   - component: {fileID: 741627269}
   - component: {fileID: 741627268}
   m_Layer: 5
-  m_Name: BackgroundFadeOverlay
+  m_Name: Curtain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

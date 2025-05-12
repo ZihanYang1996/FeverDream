@@ -13,7 +13,7 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private RawImage videoBackground;
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private DialogueManager dialogueManager;
-    [SerializeField] private Image curtain;
+    [SerializeField] private UICurtain uiCurtain;
 
     [Header("Story Settings")]
     [SerializeField] private float frameRate = 10f; // 帧动画播放速度
@@ -41,7 +41,7 @@ public class StoryManager : MonoBehaviour
         storyIndex = 0;
         onStoryFinished = onComplete;
 
-        StartCoroutine(TransitionAndLoadStep());
+        StartCoroutine(PlayStepWithCurtain());
     }
 
     private void LoadCurrentStoryContent()
@@ -87,39 +87,11 @@ public class StoryManager : MonoBehaviour
         }
     }
 
-    private IEnumerator TransitionAndLoadStep()
+    private IEnumerator PlayStepWithCurtain()
     {
-        yield return StartCoroutine(FadeInCurtain());
+        yield return uiCurtain.FadeIn();
         LoadCurrentStoryContent();
-        yield return StartCoroutine(FadeOutCurtain());
-    }
-
-    private IEnumerator FadeInCurtain(float duration = 0.5f)
-    {
-        Color c = curtain.color;
-        // Set the initial alpha to 1
-        c.a = 1;
-        for (float t = 0; t <= duration; t += Time.deltaTime)
-        {
-            c.a = Mathf.Lerp(0, 1, t / duration);
-            curtain.color = c;
-            yield return null;
-        }
-        c.a = 1;
-        curtain.color = c;
-    }
-
-    private IEnumerator FadeOutCurtain(float duration = 0.5f)
-    {
-        Color c = curtain.color;
-        for (float t = 0; t <= duration; t += Time.deltaTime)
-        {
-            c.a = Mathf.Lerp(1, 0, t / duration);
-            curtain.color = c;
-            yield return null;
-        }
-        c.a = 0;
-        curtain.color = c;
+        yield return uiCurtain.FadeOut();
     }
 
     // No longer used; logic handled in WaitAndShowDialogue completion callback
@@ -141,7 +113,7 @@ public class StoryManager : MonoBehaviour
                 storyIndex++;
                 if (storyIndex < storySteps.Length)
                 {
-                    StartCoroutine(TransitionAndLoadStep());
+                    StartCoroutine(PlayStepWithCurtain());
                 }
                 else
                 {
@@ -154,7 +126,7 @@ public class StoryManager : MonoBehaviour
             storyIndex++;
             if (storyIndex < storySteps.Length)
             {
-                StartCoroutine(TransitionAndLoadStep());
+                StartCoroutine(PlayStepWithCurtain());
             }
             else
             {
