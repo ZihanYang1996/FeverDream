@@ -261,10 +261,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a70cf2057dd0049dabeb57b521a5849e, type: 2}
   - {fileID: 11400000, guid: 99045688ef7994d36b55066d6ebe0e11, type: 2}
   - {fileID: 11400000, guid: 4c6e32199f9a94319b0ec1d245241380, type: 2}
+  - {fileID: 11400000, guid: 4c6e32199f9a94319b0ec1d245241380, type: 2}
   step2: {fileID: 11400000, guid: ee3346a9faf4a42858123ea64a520575, type: 2}
   step3:
   - {fileID: 11400000, guid: 24053b27a72e74b03a71df72cb9f7dc8, type: 2}
   - {fileID: 11400000, guid: dafaf537ba097424192c7479c8fd7645, type: 2}
+  - {fileID: 11400000, guid: 4b16c79d39314433da22f50aac3eebb9, type: 2}
   - {fileID: 11400000, guid: 4b16c79d39314433da22f50aac3eebb9, type: 2}
   step4: {fileID: 11400000, guid: 5de1891a7c82549e98f89e463e97d65c, type: 2}
   part2Steps:

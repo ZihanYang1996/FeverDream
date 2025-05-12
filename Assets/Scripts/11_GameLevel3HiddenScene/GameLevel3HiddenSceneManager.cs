@@ -102,8 +102,14 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("[Game Leve 1] Puzzle failed.");
-            GoToNextScene("TimeOut");
+            Debug.Log("[Game Leve 3 Hidden] Puzzle failed.");
+            StartCoroutine(PlayFailedAnimationCoroutine(() =>
+            {
+                // Set the current time to 5AM
+                GameManager.Instance.currentTime = "5AM";
+                // After the animation is finished, go to the next scene
+                GoToNextScene("TimeOut");
+            }));
         }
     }
 
@@ -285,6 +291,43 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
         // Wait for a few seconds
         yield return new WaitForSeconds(1.0f);
 
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+
+        // Call the onComplete action after the animation is finished
+        onComplete?.Invoke();
+    }
+    
+    private IEnumerator PlayFailedAnimationCoroutine(System.Action onComplete)
+    {
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
+        }
+
+        // Wait for the fade-out to complete
+        yield return new WaitUntil(() => isFadeOutComplete);
+        Debug.Log("Fade out complete");
+        blackScreenImage.SetActive(false);
+
+        // Play dialogue saying nothing happened
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+        
         // Fade in the black screen
         bool isFadeInComplete = false;
         if (blackScreenImage != null)

@@ -106,6 +106,8 @@ public class GameLevel3SceneManager : MonoBehaviour
                 // Play the post-puzzle animation
                 PlayPostPuzzleAnimation(stage.id, () =>
                 {
+                    // Set the current time to 7AM
+                    GameManager.Instance.currentTime = "7AM";
                     // After the animation is finished, go to the next scene
                     GoToNextScene("NormalSolved");
                 });
@@ -126,6 +128,8 @@ public class GameLevel3SceneManager : MonoBehaviour
                 // Play the post-puzzle animation
                 PlayPostPuzzleAnimation(stage.id, () =>
                 {
+                    // Set the current time to 5AM
+                    GameManager.Instance.currentTime = "5AM";
                     // After the animation is finished, go to the next scene
                     GoToNextScene("WrongSolved");
                 });
@@ -136,6 +140,8 @@ public class GameLevel3SceneManager : MonoBehaviour
             Debug.Log("[Game Level 3] Puzzle failed.");
             StartCoroutine(PlayFailedAnimationCoroutine(() =>
             {
+                // Set the current time to 5AM
+                GameManager.Instance.currentTime = "5AM";
                 // After the animation is finished, go to the next scene
                 GoToNextScene("TimeOut");
             }));

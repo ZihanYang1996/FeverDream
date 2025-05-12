@@ -8,6 +8,7 @@ public class WakeUpSceneManager : MonoBehaviour
     private int currentLevelIndex;
     private int numOfCompletedLevel;
     private int numOfCompletedHiddenLevel;
+    private string currentTime;
     void Start()
     {
         currentLevelIndex = GameManager.Instance.currentLevelIndex;
@@ -18,6 +19,8 @@ public class WakeUpSceneManager : MonoBehaviour
         
         numOfCompletedHiddenLevel = GameManager.Instance.numOfCompletedHiddenLevel;
         Debug.Log($"Completed {numOfCompletedHiddenLevel} hidden levels");
+        
+        currentTime = GameManager.Instance.currentTime;
 
         // Bind the continue button to the ContinueGame method
         if (continueButton != null)
@@ -28,16 +31,24 @@ public class WakeUpSceneManager : MonoBehaviour
 
     void ContinueGame()
     {
-        if (currentLevelIndex == 1)
+        if (currentTime == "1AM")
         {
-            GameManager.Instance.GoToNextScene("AtLevel1");
+            GameManager.Instance.GoToNextScene("1AM");
         }
-        else if (currentLevelIndex == 2)
+        else if (currentTime == "3AM")
+        {
+            GameManager.Instance.GoToNextScene("3AM");
+        }
+        else if (currentTime == "5AM")
+        {
+            GameManager.Instance.GoToNextScene("5AM");
+        }
+        else if (currentTime == "7AM")
         {
             // At the last level of the game, for now.
             // Will loop back to DayScene, but reset the game state first.
             GameManager.Instance.ResetForNewLoop();
-            GameManager.Instance.GoToNextScene("AtLevel2");
+            GameManager.Instance.GoToNextScene("7AM");
         }
     }
 }

@@ -146,6 +146,8 @@ public class GameLevel1SceneManager : MonoBehaviour
                 // Play the post-puzzle animation
                 PlayPostPuzzleAnimation(stage.id, () =>
                 {
+                    // Set the current time to 1AM
+                    GameManager.Instance.currentTime = "1AM";
                     // After the animation is finished, go to the next scene
                     GoToNextScene("WrongSolved");
                 });
@@ -157,8 +159,11 @@ public class GameLevel1SceneManager : MonoBehaviour
             // Play the failed animation
             StartCoroutine(PlayFailedAnimationCoroutine(() =>
             {
+                // Set the current time to 1AM
+                GameManager.Instance.currentTime = "1AM";
                 // After the animation is finished, go to the next scene
                 GoToNextScene("TimeOut");
+                
             }));
         }
     }

@@ -124,6 +124,8 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             Debug.Log("[Game Level 1 Hidden] Puzzle failed.");
             StartCoroutine(PlayFailedAnimationCoroutine(() =>
             {
+                // Set the current time to 1AM
+                GameManager.Instance.currentTime = "1AM";
                 // After the animation is finished, go to the next scene
                 GoToNextScene("TimeOut");
             }));

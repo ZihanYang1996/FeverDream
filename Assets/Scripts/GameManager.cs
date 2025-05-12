@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     public int numOfCompletedLevelLastLoop { get; private set; } = 0; // Number of completed level in the last loop
     public int numOfCompletedHiddenLevelLastLoop { get; private set; } = 0; // Number of completed hidden level in the last loop
     
+    public string currentTime = "1AM"; // Current time in the game, used by Wake Up Scene
+    
     [SerializeField] public Vector3 defaultStartPuzzelButtonPosition = new Vector3(750f, -350f, 0f); // Start puzzle button position in the scene
     
     public void IncrementCompletedLevel()
@@ -108,6 +110,9 @@ public class GameManager : MonoBehaviour
         
         // Reset the current scene index
         currentLevelIndex = 0;
+        
+        // Reset the current time
+        currentTime = "1AM";
     }
     
     private static void SetupInstance()

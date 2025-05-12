@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScene: WakeUpScene
   transitions:
-  - condition: AtLevel1
+  - condition: 1AM
     nextSceneName: GameLevel2Scene
-  - condition: AtLevel2
+  - condition: 3AM
+    nextSceneName: GameLevel3Scene
+  - condition: 5AM
+    nextSceneName: DayScene
+  - condition: 7AM
     nextSceneName: DayScene
