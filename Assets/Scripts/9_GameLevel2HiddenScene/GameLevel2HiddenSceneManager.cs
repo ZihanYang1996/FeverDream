@@ -104,7 +104,11 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
         else
         {
             Debug.Log("[Game Level 2 Hidden] Puzzle failed.");
-            GoToNextScene("TimeOut");
+            StartCoroutine(PlayFailedAnimationCoroutine(() =>
+            {
+                // After the animation is finished, go to the next scene
+                GoToNextScene("TimeOut");
+            }));
         }
     }
 
@@ -261,6 +265,43 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
         
         // Wait for a moment
         yield return new WaitForSeconds(1f);
+        
+        // Fade in the black screen
+        bool isFadeInComplete = false;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.SceneEndFadeIn((() => { isFadeInComplete = true; }));
+        }
+
+        // Wait for the fade-in to complete
+        yield return new WaitUntil(() => isFadeInComplete);
+
+        // Call the onComplete action after the animation is finished
+        onComplete?.Invoke();
+    }
+    
+    private IEnumerator PlayFailedAnimationCoroutine(System.Action onComplete)
+    {
+        // Fade out the black screen
+        bool isFadeOutComplete = false;
+        float fadeDuration = 1.0f;
+        if (blackScreenImage != null)
+        {
+            blackScreenImage.SetActive(true);
+            blackScreenImage.GetComponent<BlackScreenController>()
+                ?.StartFadeOut(fadeDuration, (() => { isFadeOutComplete = true; }));
+        }
+
+        // Wait for the fade-out to complete
+        yield return new WaitUntil(() => isFadeOutComplete);
+        Debug.Log("Fade out complete");
+        blackScreenImage.SetActive(false);
+
+        // Play dialogue saying nothing happened
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
         
         // Fade in the black screen
         bool isFadeInComplete = false;
