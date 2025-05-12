@@ -105,7 +105,7 @@ public class GameLevel2SceneManager : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log($"[Game Leve 1] Puzzle '{stage.id}' completed!");
+            Debug.Log($"[Game Level 2] Puzzle '{stage.id}' completed!");
             GameManager.Instance.RegisterCompletedStage(stage);
 
             // Determine the scene transition condition based on the stage ID
@@ -143,7 +143,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("[Game Leve 2] Puzzle failed.");
+            Debug.Log("[Game Level 2] Puzzle failed.");
             StartCoroutine(PlayFailedAnimationCoroutine(() =>
             {
                 // After the animation is finished, go to the next scene

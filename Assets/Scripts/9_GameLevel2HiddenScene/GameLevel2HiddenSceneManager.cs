@@ -86,7 +86,7 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log($"[Game Leve 1] Puzzle '{stage.id}' completed!");
+            Debug.Log($"[Game Level 2 Hidden] Puzzle '{stage.id}' completed!");
             GameManager.Instance.RegisterCompletedStage(stage);
 
             // Determine the scene transition condition based on the stage ID
@@ -103,7 +103,7 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("[Game Leve 1] Puzzle failed.");
+            Debug.Log("[Game Level 2 Hidden] Puzzle failed.");
             GoToNextScene("TimeOut");
         }
     }
