@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class UICurtain : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class UICurtain : MonoBehaviour
     /// <summary>
     /// 淡入（从透明变黑）+ 可选停留黑屏一段时间
     /// </summary>
-    public IEnumerator FadeIn()
+    public IEnumerator FadeIn(Action onComplete = null)
     {
         if (curtainImage == null)
         {
@@ -39,12 +40,14 @@ public class UICurtain : MonoBehaviour
 
         if (blackScreenPauseDuration > 0f)
             yield return new WaitForSeconds(blackScreenPauseDuration);
+
+        onComplete?.Invoke();
     }
 
     /// <summary>
     /// 淡出（从黑变透明）
     /// </summary>
-    public IEnumerator FadeOut()
+    public IEnumerator FadeOut(Action onComplete = null)
     {
         if (curtainImage == null)
         {
@@ -63,5 +66,7 @@ public class UICurtain : MonoBehaviour
         c.a = 0f;
         curtainImage.color = c;
         curtainImage.gameObject.SetActive(false);
+
+        onComplete?.Invoke();
     }
 }
