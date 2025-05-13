@@ -108,7 +108,7 @@ public class StoryManager : MonoBehaviour
                 yield break;
             }
 
-            dialogueManager.PlayDialogue(dialogueAsset, Language.ZH, () =>
+            dialogueManager.PlayDialogue(dialogueAsset,  () =>
             {
                 storyIndex++;
                 if (storyIndex < storySteps.Length)

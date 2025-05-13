@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Day_Scene_001_004",
+  "lines": [
+    {
+      "speaker": "",
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（一觉睡到天亮！神清气爽！！！）",
+      "en": "..."
+    },
+    {
+      "speaker": "",
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "..."
+    }
+  ]
+}

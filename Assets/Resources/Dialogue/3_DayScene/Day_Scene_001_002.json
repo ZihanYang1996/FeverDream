@@ -2,20 +2,28 @@
   "dialogueId": "Day_Scene_001_002",
   "lines": [
     {
-      "speaker": "火车",
-      "zh": "轰隆隆，轰隆隆，轰隆隆",
-      "en": "Rumble, rumble, rumble"
+      "speaker": "",
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（昨晚还是没睡好，今天得多喝两杯咖啡了！）",
+      "en": "..."
     },
     {
       "speaker": "",
-      "zh": "（昨晚还是没睡好，今天得多喝两杯咖啡了）",
-      "en": "(Still didn’t sleep well last night… I’ll need a couple extra cups of coffee today.)",
-      "isThought": true
-    },
-    {
-      "speaker": "火车",
-      "zh": "轰隆隆，轰隆隆，轰隆隆",
-      "en": "Rumble, rumble, rumble"
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "..."
     }
   ]
 }

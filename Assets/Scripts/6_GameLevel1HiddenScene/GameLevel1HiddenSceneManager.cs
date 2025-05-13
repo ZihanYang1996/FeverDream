@@ -175,7 +175,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset1, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset1, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait a short time before starting the next dialogue
@@ -204,7 +204,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset2, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Make the puzzle button interactable
@@ -282,7 +282,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset3, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait for a short time before starting the next animation
@@ -310,7 +310,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset4, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset4, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait for a short time before starting the next animation
@@ -339,7 +339,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
             yield break;
         }
-        dialogueManager.PlayDialogue(dialogueAsset5, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueFinished = true; });
         
         // Keep shaking until the dialogue is finished
         while (!isDialogueFinished)
@@ -382,7 +382,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             Debug.LogError($"Failed to load dialogue: {dialogueFileName6}");
             yield break;
         }
-        dialogueManager.PlayDialogue(dialogueAsset6, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset6, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
         
         // Fade in the black screen

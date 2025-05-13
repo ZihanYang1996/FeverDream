@@ -3,18 +3,27 @@
   "lines": [
     {
       "speaker": "Winston",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
       "zh": "小A啊，我看你今天，喝了快十几杯咖啡了，是不是最近工作量太大了啊。要是忙不过来的话，一定和我说啊。",
-      "en": "Xiao A, I noticed you’ve had like ten cups of coffee today. Is your workload getting too heavy? If it’s too much, make sure to let me know."
+      "en": "..."
     },
     {
-      "speaker": "我",
-      "zh": "没事，没事，我就是昨晚没睡好，最近确实有点失眠，但是应该很快就好了。<3",
-      "en": "No worries, really. I just didn’t sleep well last night. I’ve been having some insomnia lately, but it should get better soon. <3"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "还好，还好。就是最近总是半夜做梦会醒，所以总是睡不够。喝点咖啡就好了。",
+      "en": "..."
     },
     {
       "speaker": "Winston",
-      "zh": "失眠也不是小事啊，这样吧，下周那个报表你就别管了，我来想办法。可不能让你把公司的咖啡都喝光了啊:D",
-      "en": "Insomnia’s no small thing. Tell you what—don’t worry about that report next week, I’ll handle it. We can’t let you drink up the whole company’s coffee supply! :D"
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "别给自己太大压力，这样吧，下周那个报表你就别管了，我来想办法。可不能让你把公司的咖啡都喝光了啊，哈哈哈哈！",
+      "en": "..."
     }
   ]
 }

@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public bool hasSeenTutorial = false;
     public bool justFinishedTutorial = false;  // Whether the game just finished the tutorial (used in DayScene)
 
+    [Header("Game Settings")]
+    public Language currentLanguage = Language.ZH;
+    
     [Header("Stage Management")]
     [SerializeField] private StageData tutorialStage;
     [SerializeField] private List<StageData> mainStages;
@@ -19,8 +22,6 @@ public class GameManager : MonoBehaviour
     private HashSet<string> completedStageIds = new HashSet<string>();
     
     [Header("Dialogue Settings")]
-    public Language currentLanguage = Language.ZH;
-
     [SerializeField] public StyleSettings defaultStyle;
     [SerializeField] public StyleSettings thoughtStyle;
     [SerializeField] public  StyleSettings narratorStyle;

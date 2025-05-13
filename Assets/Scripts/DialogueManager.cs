@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace DialogueSystem
 {
@@ -28,10 +29,14 @@ namespace DialogueSystem
         [SerializeField] private GameObject pressEnterText;
         [SerializeField] private float delayBetweenSpeakerAndDialogueText = 0.3f;
 
+        [SerializeField] private Image portraitImage;
+        private const string PortraitRootPath = "Portraits";
 
         private StyleSettings defaultStyle;
         private StyleSettings thoughtStyle;
         private StyleSettings narratorStyle;
+
+        private Dictionary<(DialogueRole, bool), StyleSettings> styleMap;
 
         private TypingEffect typingEffect;
         private BlinkingText blinkingText;
@@ -39,7 +44,6 @@ namespace DialogueSystem
         private List<DialogueLine> lines;
         private int index = 0;
         private Action onComplete;
-        private Language currentLanguage = Language.ZH;
 
         private void Awake()
         {
@@ -52,6 +56,15 @@ namespace DialogueSystem
             defaultStyle = GameManager.Instance.defaultStyle;
             thoughtStyle = GameManager.Instance.thoughtStyle;
             narratorStyle = GameManager.Instance.narratorStyle;
+
+            styleMap = new Dictionary<(DialogueRole, bool), StyleSettings>
+            {
+                { (DialogueRole.Character, false), defaultStyle },
+                { (DialogueRole.Character, true), thoughtStyle },
+                { (DialogueRole.Narrator, false), narratorStyle },
+                { (DialogueRole.Narrator, true), narratorStyle },
+                { (DialogueRole.SoundEffect, false), narratorStyle }
+            };
         }
 
         private void Update()
@@ -82,7 +95,7 @@ namespace DialogueSystem
             }
         }
 
-        public void PlayDialogue(DialogueAsset asset, Language language, Action onComplete = null)
+        public void PlayDialogue(DialogueAsset asset, Action onComplete = null)
         {
             if (asset == null || asset.lines == null || asset.lines.Count == 0)
             {
@@ -93,31 +106,48 @@ namespace DialogueSystem
             this.lines = asset.lines;
             this.index = 0;
             this.onComplete = onComplete;
-            this.currentLanguage = language;
 
             dialoguePanel.SetActive(true);
             pressEnterText.SetActive(false);
             ShowLine();
         }
 
+
         private void ShowLine()
         {
             DialogueLine line = lines[index];
-            string speakerPrefix =
-                (string.IsNullOrEmpty(line.speaker) || line.speaker == "旁白") ? "" : line.speaker + "：";
-            string text = currentLanguage == Language.ZH ? line.zh : line.en;
+            string text = GameManager.Instance.currentLanguage == Language.ZH ? line.zh : line.en;
+            // Assume JSON already includes parentheses if needed
+            // if (line.isThought) text = $"（{text}）";
 
-            StyleSettings currentStyle;
+            // No longer display speaker name explicitly in text
+            string speakerPrefix = "";
 
-            if (line.isThought)
+            // Load portrait
+            if (line.role == DialogueRole.Character && !string.IsNullOrEmpty(line.speaker))
             {
-                currentStyle = thoughtStyle;
-            }
-            else if (line.speaker == "旁白")
-            {
-                currentStyle = narratorStyle;
+                string status = string.IsNullOrEmpty(line.portraitStatus) ? "Normal" : line.portraitStatus;
+                string path = $"{PortraitRootPath}/{line.speaker}/{status}";
+                Sprite sprite = Resources.Load<Sprite>(path);
+
+                if (sprite != null)
+                {
+                    portraitImage.sprite = sprite;
+                    portraitImage.gameObject.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning($"[DialogueManager] Portrait not found: {path}");
+                    portraitImage.gameObject.SetActive(false);
+                }
             }
             else
+            {
+                portraitImage.gameObject.SetActive(false);
+            }
+
+            // Apply style
+            if (!styleMap.TryGetValue((line.role, line.isThought), out var currentStyle))
             {
                 currentStyle = defaultStyle;
             }
@@ -126,7 +156,7 @@ namespace DialogueSystem
             dialogueText.color = currentStyle.fontColor;
             dialogueText.fontSize = currentStyle.fontSize;
 
-            dialogueText.text = speakerPrefix; // 立即显示说话人
+            dialogueText.text = speakerPrefix;
             typingEffect.Play(text, () => { pressEnterText.SetActive(true); }, append: true, speakerPrefix,
                 delayBeforeTyping: delayBetweenSpeakerAndDialogueText);
         }

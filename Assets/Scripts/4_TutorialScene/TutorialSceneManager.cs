@@ -170,7 +170,7 @@ public class TutorialSceneManager : MonoBehaviour
         }
 
         bool isDialogueComplete = false;
-        dialogueManager.PlayDialogue(dialogueAsset1, Language.ZH, () => { isDialogueComplete = true; });
+        dialogueManager.PlayDialogue(dialogueAsset1, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
         // Fade in the black screen
@@ -205,7 +205,7 @@ public class TutorialSceneManager : MonoBehaviour
         }
 
         bool isDialogueComplete = false;
-        dialogueManager.PlayDialogue(dialogueAsset2, Language.ZH, () => { isDialogueComplete = true; });
+        dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
         // Fade in the curtain
@@ -245,7 +245,7 @@ public class TutorialSceneManager : MonoBehaviour
         }
 
         bool isDialogueComplete = false;
-        dialogueManager.PlayDialogue(dialogueAsset3, Language.ZH, () => { isDialogueComplete = true; });
+        dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
  
@@ -348,7 +348,7 @@ public class TutorialSceneManager : MonoBehaviour
         }
 
         bool isDialogueComplete = false;
-        dialogueManager.PlayDialogue(dialogueAsset4, Language.ZH,
+        dialogueManager.PlayDialogue(dialogueAsset4,
             () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
@@ -378,7 +378,7 @@ public class TutorialSceneManager : MonoBehaviour
         }
 
         bool isDialogueComplete = false;
-        dialogueManager.PlayDialogue(dialogueAsset5, Language.ZH, () => { isDialogueComplete = true; });
+        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
         // Fade in the black screen

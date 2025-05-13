@@ -2,15 +2,20 @@
   "dialogueId": "Day_Scene_005",
   "lines": [
     {
-      "speaker": "",
-      "zh": "（晚安了，这个世界。）",
-      "en": "(Good night, world.)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（该睡觉了，晚安啦。。。）",
+      "en": "..."
     },
     {
-      "speaker": "我",
-      "zh": "呼噜呼噜呼噜。。。。",
-      "en": "Snore... snore... snore..."
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "呼噜。。。呼噜。。。呼噜。。。",
+      "en": "..."
     }
   ]
 }

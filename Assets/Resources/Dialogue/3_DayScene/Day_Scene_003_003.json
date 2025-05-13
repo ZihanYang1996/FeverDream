@@ -3,18 +3,27 @@
   "lines": [
     {
       "speaker": "Winston",
-      "zh": "小A啊，今天会上的提案讲的很棒啊，细节考虑的很全面，非常精彩。而且今天感觉你精神状态也很好啊，看来昨晚睡得不错啊。",
-      "en": "Xiao A, your presentation in the meeting today was excellent—the details were well thought out and very impressive. You also seemed in great shape today, looks like you slept well last night!"
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "小A啊，今天看你额头青了一块，怎么受伤了呢？",
+      "en": "..."
     },
     {
-      "speaker": "我",
-      "zh": "谢谢，谢谢。确实昨晚睡得不错，虽然一直在做梦，但是早上起来莫名的很精神。哈哈<3",
-      "en": "Thanks, thanks. I actually did sleep pretty well last night. I kept dreaming, but somehow still woke up feeling really refreshed. Haha <3"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "竟然有这么明显吗！昨晚没太睡好，今早晕晕的。一不小心头磕到火车的门上了。。。",
+      "en": "..."
     },
     {
       "speaker": "Winston",
-      "zh": "哈哈，看来是做了美梦啊，真好。那就继续保持这个状态吧，今天晚上早点休息哦。",
-      "en": "Haha, sounds like you had some sweet dreams—nice! Keep that energy up, and get to bed early tonight too."
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "要当心啊！今天不是很忙，要不你早点下班回去补补觉吧！",
+      "en": "..."
     }
   ]
 }

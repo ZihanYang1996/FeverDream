@@ -2,21 +2,92 @@
   "dialogueId": "Day_Scene_004",
   "lines": [
     {
-      "speaker": "火车",
-      "zh": "轰隆隆，轰隆隆，轰隆隆",
-      "en": "Rumble, rumble, rumble"
+      "speaker": "",
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（终于下班了，又是忙碌的一天。）",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（可是。。。）",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（尽管做着一份大家都说不错的工作。）",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（尽管周围有不少朋友。）",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（尽管生活也没什么压力。）",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（尽管。。。尽管。。。）",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（可为什么总感觉少些什么。。。）",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（总感觉，此刻的生活，此刻这样循规蹈矩的生活，并不是我想要的。。。）",
+      "en": "..."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（。。。。。。）",
+      "en": "..."
     },
     {
       "speaker": "",
-      "zh": "（终于下班了，又度过了一天。今天回去要早点休息。）",
-      "en": "(Finally off work. Another day done. I should try to get some rest tonight.)",
-      "isThought": true
-    },
-    {
-      "speaker": "",
-      "zh": "（可是，这样的日子，真的是我想要的吗？）",
-      "en": "(But… is this really the kind of life I want?)",
-      "isThought": true
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "..."
     }
   ]
 }

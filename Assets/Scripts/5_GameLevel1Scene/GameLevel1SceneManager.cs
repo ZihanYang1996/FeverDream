@@ -195,7 +195,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset1, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset1, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait a short time before starting the next dialogue
@@ -210,7 +210,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset2, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait a short time before starting the animation
@@ -264,7 +264,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset3, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished);
 
         // Sink the boat
@@ -296,7 +296,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset4, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset4, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished);
 
         // Display the puzzle button (start puzzle)
@@ -399,7 +399,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset5, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished);
 
         // Wait a short time before starting the next animation
@@ -443,7 +443,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset6, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset6, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished);
 
         // Wait a short time before starting the next animation
@@ -458,7 +458,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset7, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset7, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished);
 
         // Wait a short time before starting the next animation
@@ -514,7 +514,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset8, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset8, () => { isDialogueFinished = true; });
 
         // Wait for a short time before starting the next animation
         yield return new WaitForSeconds(1.0f);
@@ -617,7 +617,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset9, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset9, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait a short time before starting the next animation
@@ -645,7 +645,7 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield break;
         }
 
-        dialogueManager.PlayDialogue(dialogueAsset10, Language.ZH, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset10, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait a short time before starting the next animation

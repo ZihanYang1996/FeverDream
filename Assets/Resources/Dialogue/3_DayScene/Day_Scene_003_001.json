@@ -3,18 +3,27 @@
   "lines": [
     {
       "speaker": "Winston",
-      "zh": "小A啊，你今天开会怎么状态不对啊，昨晚没睡好吗，是不是最近压力太大了啊？要不要请几天假去放松一下，组里的工作你不用担心，我来安排。",
-      "en": "Xiao A, you didn’t seem quite yourself in the meeting today. Didn’t sleep well last night? Feeling too stressed lately? If you need a few days off to relax, just take them. Don’t worry about the team—I’ll handle things."
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "小A啊，你今天开会怎么状态不太对呀，看起来就快睡着了似的，昨晚没睡好吗，是不是最近压力太大了啊？要不要请几天假去放松一下，组里的工作你不用担心，我来安排。",
+      "en": "..."
     },
     {
-      "speaker": "我",
-      "zh": "没事，没事，我就是昨晚没睡好，最近确实有点失眠，但是应该很快就好了。<3",
-      "en": "It's nothing, really. I just didn’t sleep well last night. I’ve been dealing with a bit of insomnia lately, but it should pass soon. <3"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "多谢关心，我就是这几天一直睡不好，总失眠。或许我该找个医生看看了。。。",
+      "en": "..."
     },
     {
       "speaker": "Winston",
-      "zh": "好吧，要多注意身体，得把握好平衡，想请假的话随时和我说。",
-      "en": "Alright then. Take care of yourself—gotta find the right balance. Let me know anytime you want to take a break."
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "失眠可不是小事啊，要多注意身体，请假的话随时和我说。",
+      "en": "..."
     }
   ]
 }

@@ -3,8 +3,11 @@
   "lines": [
     {
       "speaker": "",
-      "zh": "滴滴。。。",
-      "en": "Beep beep..."
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "滴滴。。。。",
+      "en": "..."
     }
   ]
 }
