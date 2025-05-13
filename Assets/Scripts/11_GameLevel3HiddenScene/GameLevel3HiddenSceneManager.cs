@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DialogueSystem;
 using UnityEngine;
 
 public class GameLevel3HiddenSceneManager : MonoBehaviour
@@ -23,6 +24,19 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
     
     [Header("AnimationCurves")]
     [SerializeField] private AnimationCurve treeGrowCurve;
+    
+    [Header("Dialogue")]
+    [SerializeField] private string dialogueFileName1;
+
+    [SerializeField] private string dialogueFileName2;
+    [SerializeField] private string dialogueFileName3;
+    [SerializeField] private string dialogueFileName4;
+    [SerializeField] private string dialogueFileName5;
+    [SerializeField] private string dialogueFileName6;
+    [SerializeField] private string dialogueFileName7;
+    [SerializeField] private string dialogueFileName8;
+
+    [SerializeField] private DialogueManager dialogueManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -131,10 +145,19 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
 
     private IEnumerator PlayPrePuzzleAnimationCoroutine()
     {
-        // Play dialogue about drinking water
-
-        // Wait for a few seconds
+        // Wait for a short time
         yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 1
+        bool isDialogueFinished = false;
+        var dialogueAsset1 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName1);
+        if (dialogueAsset1 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName1}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset1, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Start with black screen fade out
         if (blackScreenImage != null)
@@ -150,6 +173,20 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
         }
 
         // Delay before starting the animation
+        yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 2
+        isDialogueFinished = false;
+        var dialogueAsset2 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName2);
+        if (dialogueAsset2 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName2}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a few seconds
         yield return new WaitForSeconds(1.0f);
 
         // Display the puzzle button (start puzzle)
@@ -203,6 +240,23 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
             (() => { isTreeMoveComplete = true; }));
         // Wait until the tree move is finished
         yield return new WaitUntil(() => isTreeMoveComplete);
+        
+        // Wait for a few seconds
+        yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 3
+        bool isDialogueFinished = false;
+        var dialogueAsset3 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName3);
+        if (dialogueAsset3 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName3}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a few seconds
+        yield return new WaitForSeconds(1.0f);
 
         // Character climbs the tree
         // Character moves to the tree: Vector3(50.2330017,-9.11200047,0)
@@ -215,16 +269,37 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
         yield return new WaitUntil(() => isCharacterMoveComplete);
 
         // Wait for a few seconds
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
-        // Character climbs the tree: Vector3(50.2330017,-8,0)
+        // Character climbs the tree: Vector3(50.2330017,-8,0) (add some horizontal sway)
+        character.GetComponent<WalkingPathOffset>().amplitude = 0;
+        character.GetComponent<WalkingPathOffset>().frequency = 2f;
+        character.GetComponent<WalkingPathOffset>().horizontalSway = 0.08f;
+        
         isCharacterMoveComplete = false;
         duration = 1.0f;
         characterTargetPosition = new Vector3(50.2330017f, -8, 0);
         character.GetComponent<ActorController>().MoveToPosition(characterTargetPosition, duration,
-            (() => { isCharacterMoveComplete = true; }));
+            (() => { isCharacterMoveComplete = true; }), usePathOffset: true, settleDuration: 0.5f);
         // Wait until the character move is finished
         yield return new WaitUntil(() => isCharacterMoveComplete);
+        
+        // Wait for a few seconds
+        yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 4
+        isDialogueFinished = false;
+        var dialogueAsset4 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName4);
+        if (dialogueAsset4 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName4}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset4, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a few seconds
+        yield return new WaitForSeconds(1.0f);
 
         // Camera shake
         bool isCameraShakeComplete = false;
@@ -233,6 +308,16 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
         float frequency = 20f;
         mainCamera.GetComponent<CameraController>()
             .Shake(intensity, duration, frequency, () => { isCameraShakeComplete = true; });
+        
+        // Play Dialogue 5
+        isDialogueFinished = false;
+        var dialogueAsset5 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName5);
+        if (dialogueAsset5 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueFinished = true; });
 
         // Tree grows, move to Vector3(51.2000008,70,-5.06389952), scale to Vector3(60,60,60)
         isTreeMoveComplete = false;
@@ -281,6 +366,9 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
 
         // Wait until the camera move and zoom are finished
         yield return new WaitUntil(() => isCameraMoveComplete && isCameraZoomComplete);
+        
+        // Wait until the dialogue is finished
+        yield return new WaitUntil(() => isDialogueFinished); 
 
         // Wait for a few seconds
         yield return new WaitForSeconds(1.0f);
@@ -317,7 +405,19 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
 
-        // Play dialogue saying nothing happened
+        // Wait for a few seconds
+        yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 6
+        bool isDialogueFinished = false;
+        var dialogueAsset6 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName6);
+        if (dialogueAsset6 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName6}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset6, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait a short time before starting the next animation
         yield return new WaitForSeconds(1.0f);

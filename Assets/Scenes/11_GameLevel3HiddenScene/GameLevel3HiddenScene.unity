@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 856272372}
   - component: {fileID: 856272373}
   - component: {fileID: 856272374}
+  - component: {fileID: 856272375}
   m_Layer: 0
   m_Name: GameLeve3HiddenSceneManager
   m_TagString: Untagged
@@ -725,6 +726,32 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dialogueFileName1: 11_GameLevel3HiddenScene/Game_Level_3_Hidden_Scene_001
+  dialogueFileName2: 11_GameLevel3HiddenScene/Game_Level_3_Hidden_Scene_002
+  dialogueFileName3: 11_GameLevel3HiddenScene/Game_Level_3_Hidden_Scene_003
+  dialogueFileName4: 11_GameLevel3HiddenScene/Game_Level_3_Hidden_Scene_004
+  dialogueFileName5: 11_GameLevel3HiddenScene/Game_Level_3_Hidden_Scene_005
+  dialogueFileName6: 11_GameLevel3HiddenScene/Game_Level_3_Hidden_Scene_006
+  dialogueFileName7: 11_GameLevel3HiddenScene/Game_Level_3_Hidden_Scene_007
+  dialogueFileName8: 11_GameLevel3HiddenScene/Game_Level_3_Hidden_Scene_008
+  dialogueManager: {fileID: 856272375}
+--- !u!114 &856272375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856272371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4876a91f89aa54df385485caec9126fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 1866071837}
+  dialogueText: {fileID: 1866071836}
+  pressEnterText: {fileID: 1866071835}
+  delayBetweenSpeakerAndDialogueText: 0.3
+  portraitImage: {fileID: 1866071834}
 --- !u!1001 &882095280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1093,6 +1120,38 @@ Camera:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4802442702068572051, guid: 127e7c1e3357a4053a5c4b4789a55503, type: 3}
   m_PrefabInstance: {fileID: 1056972293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866071834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 219373143403389421, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 48918393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1866071835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1249181145470930362, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 48918393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866071836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4295813207994399450, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 48918393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1866071837 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3682420525217618360, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 48918393}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1889820344
 PrefabInstance:
