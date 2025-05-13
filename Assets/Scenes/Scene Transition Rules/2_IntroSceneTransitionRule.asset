@@ -15,4 +15,4 @@ MonoBehaviour:
   currentScene: IntroScene
   transitions:
   - condition: __DEFAULT__
-    nextSceneName: Dayscene
+    nextSceneName: PrestoryScene

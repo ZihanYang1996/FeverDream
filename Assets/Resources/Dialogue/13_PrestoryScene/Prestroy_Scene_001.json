@@ -1,0 +1,26 @@
+{
+  "dialogueId": "Prestroy_Scene_001",
+  "lines": [
+    {
+      "speaker": "",
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。"
+    },
+    {
+      "speaker": "",
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。"
+    },
+    {
+      "speaker": "",
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。"
+    }
+  ]
+}

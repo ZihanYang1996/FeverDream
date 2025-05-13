@@ -1,0 +1,103 @@
+{
+  "dialogueId": "Prestroy_Scene_002",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "喂？"
+    },
+    {
+      "speaker": "Mom",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "在干嘛呢？"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "刚洗完澡，在擦头。"
+    },
+    {
+      "speaker": "Mom",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "还不睡！还不睡！你怎么最近总是后半夜还在发朋友圈啊？有心事？"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": true,
+      "zh": "（完蛋了，忘记屏蔽她了。。。）"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "没啥，就是最近有些失眠，估计是工作上的事儿太多了吧。忙完这段估计就好了。"
+    },
+    {
+      "speaker": "Mom",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "好吧，多注意休息啊，睡不着就数羊吧！就是想告诉你，我这两天打算给你寄个包裹，都是你爱吃的，还有你说上次说想吃的绿豆糕。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "好啊！"
+    },
+    {
+      "speaker": "Mom",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "哦对了，最近和你爸在收拾老房子，翻出来一堆你以前那些零七八碎，也不知道你还想不想留着。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": false,
+      "zh": "都有什么啊？要不你们看着办吧。"
+    },
+    {
+      "speaker": "Mom",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "那我可该扔就扔了啊。别到时候又怪我没给你留着。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "好。。。"
+    },
+    {
+      "speaker": "Mom",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "早点睡吧！记得下次回家的时候给小咪带些新玩具，旧的那些都让她玩坏了。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "好。。。爱你爱你，拜拜拜拜。。。"
+    }
+  ]
+}

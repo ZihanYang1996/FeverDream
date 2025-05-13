@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/12_TrueEndingScene/TrueEndingScene.unity
     guid: cd7a89449c438489294684dc9fdb271c
+  - enabled: 1
+    path: Assets/Scenes/13_PrestoryScene/PrestoryScene.unity
+    guid: 67e8f738b8fac44b8b35e8b9ebec184b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

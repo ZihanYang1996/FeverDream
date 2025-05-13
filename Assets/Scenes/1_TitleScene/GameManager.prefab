@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSeenTutorial: 0
   justFinishedTutorial: 0
+  currentLanguage: 0
   tutorialStage: {fileID: 11400000, guid: 2a2aaff86b0da475e9fb4639a16f4cbf, type: 2}
   mainStages:
   - {fileID: 11400000, guid: 804fd4b41eeb04aacad25959aeaab236, type: 2}
@@ -59,7 +60,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1ee36aa6c27a24241b56185f31f2753b, type: 2}
   - {fileID: 11400000, guid: 7750466e3fdb0492891bc12c84dc8d7b, type: 2}
   blackScreenAlphaForPuzzle: 245
-  currentLanguage: 0
   defaultStyle:
     fontStyle: 1
     fontColor: {r: 0.50980395, g: 0.28627452, b: 0.2784314, a: 1}
@@ -75,6 +75,7 @@ MonoBehaviour:
   sceneFlowController: {fileID: 7859278791685369596}
   blackScreenFadeDuration: 1
   blackScreenStayDuration: 1
+  currentTime: 1AM
   defaultStartPuzzelButtonPosition: {x: 750, y: -350, z: 0}
 --- !u!114 &7859278791685369596
 MonoBehaviour:
@@ -100,3 +101,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e5a612efcabc4164a6a2613d77adba5, type: 2}
   - {fileID: 11400000, guid: 8e13b9cc40954466ab5ae965f9b7993d, type: 2}
   - {fileID: 11400000, guid: 3baacb2a91dd54b82a17b78b4a862298, type: 2}
+  - {fileID: 11400000, guid: 7bf949f639b9f472bb4ef223767c392d, type: 2}
