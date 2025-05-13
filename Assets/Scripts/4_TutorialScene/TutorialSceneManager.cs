@@ -225,13 +225,13 @@ public class TutorialSceneManager : MonoBehaviour
     {
         // Show the puzzle button
         StartPuzzle();
-        
+
         // Play the first background image
         backgroundImage.sprite = backgroundImage3;
-        
+
         // Fade out the curtain
         yield return uiCurtain.FadeOut();
-        
+
         // Activate the button
         startPuzzleButton.SetActive(true);
         // Wait for a moment before dialogue
@@ -248,7 +248,7 @@ public class TutorialSceneManager : MonoBehaviour
         dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
- 
+
         if (animationCoroutine != null)
         {
             StopCoroutine(animationCoroutine);
@@ -311,13 +311,17 @@ public class TutorialSceneManager : MonoBehaviour
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
 
-        // Fade in the generated tangram holder
-        bool isFadeComplete = false;
-        tangramHolderActorController.FadeToAlpha(1f, stageManager.generatedTangramFlickerDuration,
-            (() => isFadeComplete = true));
+        // Fade in the generated tangram holder, if success
+        if (success)
+        {
+            bool isFadeComplete = false;
+            tangramHolderActorController.FadeToAlpha(1f, stageManager.generatedTangramFlickerDuration,
+                (() => isFadeComplete = true));
 
-        // Wait until the fade is finished
-        yield return new WaitUntil(() => isFadeComplete);
+            // Wait until the fade is finished
+            yield return new WaitUntil(() => isFadeComplete);
+        }
+
 
         // Fade in the black screen
         bool isFadeInComplete = false;
@@ -360,13 +364,12 @@ public class TutorialSceneManager : MonoBehaviour
 
     private IEnumerator PlayPostPuzzleAnimation2()
     {
-
         // Play the first background image (Black screen)
         backgroundImage.sprite = backgroundImage1;
-        
+
         // Fade out the black screen
         yield return uiCurtain.FadeOut();
-        
+
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
         // Play Dialogue
