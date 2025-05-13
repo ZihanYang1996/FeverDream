@@ -117,7 +117,8 @@ public class StoryManager : MonoBehaviour
                 }
                 else
                 {
-                    onStoryFinished?.Invoke();
+                    // One final fade in before finishing
+                    StartCoroutine(uiCurtain.FadeIn((() => {onStoryFinished?.Invoke();})));
                 }
             });
         }
@@ -130,6 +131,8 @@ public class StoryManager : MonoBehaviour
             }
             else
             {
+                // One final fade in before finishing
+                yield return uiCurtain.FadeIn();
                 onStoryFinished?.Invoke();
             }
         }

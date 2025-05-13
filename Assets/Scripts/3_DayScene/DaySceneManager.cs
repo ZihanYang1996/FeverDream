@@ -128,7 +128,8 @@ public class DaySceneManager : MonoBehaviour
 
     private void PlayRemainingPart()
     {
-        storyManager.Play(part2Steps, onComplete: () => { GoToFirstLevel(); });
+        Debug.Log("Test0");
+        storyManager.Play(part2Steps, onComplete: () => { Debug.Log("Test1"); GoToFirstLevel(); });
     }
 
     // This method is called when the story is finished, to load the first level

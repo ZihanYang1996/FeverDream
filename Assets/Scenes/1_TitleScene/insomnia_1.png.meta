@@ -3,8 +3,8 @@ guid: 3a45d2e1dd1c243be966a703fbcb1d0a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8776337157583058736
-    second: insomnia_1_0
+      213: 9010660111070102008
+    second: Insomnia_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: insomnia_1_0
+      name: Insomnia_1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 260
+        y: 0
         width: 3000
-        height: 2598
+        height: 1688
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 037bcc25520dbc970800000000000000
-      internalID: 8776337157583058736
+      spriteID: 8f18d1861ab4c0d70800000000000000
+      internalID: 9010660111070102008
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      insomnia_1_0: 8776337157583058736
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

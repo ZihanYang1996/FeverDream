@@ -18,6 +18,7 @@ public class UICurtain : MonoBehaviour
     /// </summary>
     public IEnumerator FadeIn(Action onComplete = null)
     {
+        Debug.Log("FadeIn");
         if (curtainImage == null)
         {
             Debug.LogWarning("Curtain Image not assigned.");
@@ -49,6 +50,7 @@ public class UICurtain : MonoBehaviour
     /// </summary>
     public IEnumerator FadeOut(Action onComplete = null)
     {
+        Debug.Log("FadeOut");
         if (curtainImage == null)
         {
             Debug.LogWarning("Curtain Image not assigned.");
