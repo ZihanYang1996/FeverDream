@@ -735,6 +735,8 @@ public class StageManager : MonoBehaviour
         sr.sprite = spriteToUse;
         sr.sortingLayerName = "AboveCurtain";
         sr.sortingOrder = 10;
+        // Make sure the sprite is transparent
+        sr.color = new Color(1f, 1f, 1f, 0f);
 
         go.transform.SetParent(generatedTangramHolder, false);
         go.transform.localScale = CalculateSpriteScaleToFit(workspaceArea.GetComponent<RectTransform>(), spriteToUse);
