@@ -265,6 +265,9 @@ MonoBehaviour:
   dialogueFileName4: 6_GameLevel1HiddenScene/Game_Level_1_Hidden_Scene_004
   dialogueFileName5: 6_GameLevel1HiddenScene/Game_Level_1_Hidden_Scene_005
   dialogueFileName6: 6_GameLevel1HiddenScene/Game_Level_1_Hidden_Scene_006
+  dialogueFileName7: 6_GameLevel1HiddenScene/Game_Level_1_Hidden_Scene_007
+  dialogueFileName8: 6_GameLevel1HiddenScene/Game_Level_1_Hidden_Scene_008
+  dialogueFileName9: 6_GameLevel1HiddenScene/Game_Level_1_Hidden_Scene_009
   dialogueManager: {fileID: 866684092}
   rocketFlyCurve:
     serializedVersion: 2

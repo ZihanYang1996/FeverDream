@@ -28,6 +28,9 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
     [SerializeField] private string dialogueFileName4;
     [SerializeField] private string dialogueFileName5;
     [SerializeField] private string dialogueFileName6;
+    [SerializeField] private string dialogueFileName7;
+    [SerializeField] private string dialogueFileName8;
+    [SerializeField] private string dialogueFileName9;
 
     [SerializeField] private DialogueManager dialogueManager;
 
@@ -180,6 +183,20 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
 
         // Wait a short time before starting the next dialogue
         yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 2
+        isDialogueFinished = false;
+        var dialogueAsset2 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName2);
+        if (dialogueAsset2 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName2}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait a short time
+        yield return new WaitForSeconds(1.0f);
 
         // Display the puzzle button (start puzzle)
         StartPuzzle();
@@ -194,17 +211,16 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
         {
             Debug.LogWarning("StartPuzzleButton is not assigned in the inspector.");
         }
-
-        // Play Dialogue 2
+        
+        // Play Dialogue 3
         isDialogueFinished = false;
-        var dialogueAsset2 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName2);
-        if (dialogueAsset2 == null)
+        var dialogueAsset3 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName3);
+        if (dialogueAsset3 == null)
         {
-            Debug.LogError($"Failed to load dialogue: {dialogueFileName2}");
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName3}");
             yield break;
         }
-
-        dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Make the puzzle button interactable
@@ -273,16 +289,15 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
         // Wait for a short time before starting the next dialogue
         yield return new WaitForSeconds(1.0f);
 
-        // Play Dialogue 3
+        // Play Dialogue 4
         bool isDialogueFinished = false;
-        var dialogueAsset3 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName3);
-        if (dialogueAsset3 == null)
+        var dialogueAsset4 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName4);
+        if (dialogueAsset4 == null)
         {
-            Debug.LogError($"Failed to load dialogue: {dialogueFileName3}");
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName4}");
             yield break;
         }
-
-        dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset4, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait for a short time before starting the next animation
@@ -301,20 +316,31 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
         // Wait for a short time before starting the next dialogue
         yield return new WaitForSeconds(1.0f);
 
-        // Play Dialogue 4
+        // Play Dialogue 5
         isDialogueFinished = false;
-        var dialogueAsset4 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName4);
-        if (dialogueAsset4 == null)
+        var dialogueAsset5 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName5);
+        if (dialogueAsset5 == null)
         {
-            Debug.LogError($"Failed to load dialogue: {dialogueFileName4}");
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
             yield break;
         }
-
-        dialogueManager.PlayDialogue(dialogueAsset4, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
-        // Wait for a short time before starting the next animation
+        // Wait for a short time ( character does something but nothing happened)
         yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 6
+        isDialogueFinished = false;
+        var dialogueAsset6 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName6);
+        if (dialogueAsset6 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName6}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset6, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
 
         // Play the rocket fly animation (but failed)
         // Step 1: 摇晃（位置轻微抖动）
@@ -331,15 +357,15 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             yield return null;
         }
         
-        // Play next dialogue
+        // Play Dialogue 7
         isDialogueFinished = false;
-        var dialogueAsset5 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName5);
-        if (dialogueAsset5 == null)
+        var dialogueAsset7 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName7);
+        if (dialogueAsset7 == null)
         {
-            Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName7}");
             yield break;
         }
-        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset7, () => { isDialogueFinished = true; });
         
         // Keep shaking until the dialogue is finished
         while (!isDialogueFinished)
@@ -374,15 +400,15 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
         }, curve:rocketFlyCurve);
         while (!step3Done) yield return null;
         
-        // Play next dialogue
+        // Play Dialogue 8
         isDialogueFinished = false;
-        var dialogueAsset6 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName6);
-        if (dialogueAsset6 == null)
+        var dialogueAsset8 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName8);
+        if (dialogueAsset8 == null)
         {
-            Debug.LogError($"Failed to load dialogue: {dialogueFileName6}");
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName8}");
             yield break;
         }
-        dialogueManager.PlayDialogue(dialogueAsset6, () => { isDialogueFinished = true; });
+        dialogueManager.PlayDialogue(dialogueAsset8, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
         
         // Fade in the black screen
@@ -416,7 +442,16 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
 
-        // Play dialogue saying nothing happened
+        // Play Dialogue 9
+        bool isDialogueFinished = false;
+        var dialogueAsset9 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName9);
+        if (dialogueAsset9 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName9}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset9, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait a short time before starting the next animation
         yield return new WaitForSeconds(1.0f);
