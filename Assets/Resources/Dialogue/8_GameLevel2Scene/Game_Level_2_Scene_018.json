@@ -6,16 +6,14 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "（睁不开眼了。。。）",
-      "en": "(睁不开眼了。。。)"
+      "zh": "睁不开眼了。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "不。。。不行了。。。",
-      "en": "不。。。不行了。。。"
+      "zh": "不。。。不行了。。。"
     }
   ]
 }

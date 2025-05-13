@@ -6,8 +6,14 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "啊！手滑了！！！",
-      "en": "啊！手滑了！！！"
+      "zh": "水！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "太好了，至少暂时不会渴死了！"
     }
   ]
 }

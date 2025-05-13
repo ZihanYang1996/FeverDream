@@ -6,8 +6,14 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "我！的！天！啊！",
-      "en": "我！的！天！啊！"
+      "zh": "我！的！天！啊！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "直接变成沙漠了？！"
     }
   ]
 }

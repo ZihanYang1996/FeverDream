@@ -6,32 +6,28 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "（怎么感觉木板要撑不住了！）",
-      "en": "(怎么感觉木板要撑不住了！)"
+      "zh": "怎么感觉木板要撑不住了！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "不。。。。。。",
-      "en": "不。。。。。。"
+      "zh": "不。。。。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "咕噜。。。咕噜。。。咕噜。。。",
-      "en": "咕噜。。。咕噜。。。咕噜。。。"
+      "zh": "咕噜。。。咕噜。。。咕噜。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "不要啊。。。",
-      "en": "不要啊。。。"
+      "zh": "不要啊。。。"
     }
   ]
 }

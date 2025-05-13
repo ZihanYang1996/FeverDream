@@ -2,28 +2,11 @@
   "dialogueId": "Game_Level_3_Scene_007",
   "lines": [
     {
-      "speaker": "",
-      "role": "Narrator",
-      "portraitStatus": null,
-      "isThought": false,
-      "zh": "无事发生————————————",
-      "en": "无事发生————————————"
-    },
-    {
       "speaker": "A",
       "role": "Character",
-      "portraitStatus": "Dizzy",
+      "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "不。。。不行了。。。",
-      "en": "不。。。不行了。。。"
-    },
-    {
-      "speaker": "A",
-      "role": "Character",
-      "portraitStatus": "Dizzy",
-      "isThought": false,
-      "zh": "到此为止了吗。。。。。。",
-      "en": "到此为止了吗。。。。。。"
+      "zh": "啊？？？"
     }
   ]
 }

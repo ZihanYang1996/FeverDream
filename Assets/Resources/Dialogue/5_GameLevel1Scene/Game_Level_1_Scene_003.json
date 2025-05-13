@@ -5,17 +5,15 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（。。。。。。）",
-      "en": "(。。。。。。)"
+      "isThought": false,
+      "zh": "。。。。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（还好，还好抓到一块木板。。。）",
-      "en": "(还好，还好抓到一块木板。。。)"
+      "isThought": false,
+      "zh": "还好，还好抓到一块木板。。。"
     }
   ]
 }

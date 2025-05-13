@@ -1,5 +1,5 @@
 {
-  "dialogueId": "Game_Level_3_Hidden_Scene_006",
+  "dialogueId": "Game_Level_3_Scene_008",
   "lines": [
     {
       "speaker": "",
@@ -13,14 +13,14 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "失败了。。。。。。"
+      "zh": "不。。。不行了。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "难道真的出不去了吗。。。。。"
+      "zh": "到此为止了吗。。。。。。"
     }
   ]
 }

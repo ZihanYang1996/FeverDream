@@ -2,10 +2,11 @@
   "dialogueId": "Tutorial_Scene_002",
   "lines": [
     {
-      "speaker": "",
-      "zh": "（诶？这么快就寄到了吗。）",
-      "en": "(Huh? It arrived already?)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": false,
+      "zh": "诶？这么快就寄到了吗？"
     }
   ]
 }

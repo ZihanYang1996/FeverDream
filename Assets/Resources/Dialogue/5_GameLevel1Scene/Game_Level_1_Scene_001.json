@@ -6,40 +6,35 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "今天的风浪好大啊",
-      "en": "今天的风浪好大啊"
+      "zh": "今天的风浪好大啊"
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "咔嚓。。。咔嚓。。。咔嚓。。。",
-      "en": "咔嚓。。。咔嚓。。。咔嚓。。。"
+      "zh": "咔嚓。。。咔嚓。。。咔嚓。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "怎么满地是水啊？哪里漏水了吗？",
-      "en": "怎么满地是水啊？哪里漏水了吗？"
+      "zh": "怎么满地是水啊？哪里漏水了吗？"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "真的漏水了！得快点把洞堵上。",
-      "en": "真的漏水了！得快点把洞堵上。"
+      "zh": "真的漏水了！得快点把洞堵上。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "工具，工具在哪？",
-      "en": "工具，工具在哪？"
+      "zh": "工具，工具在哪？"
     }
   ]
 }

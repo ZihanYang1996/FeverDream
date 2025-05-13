@@ -6,32 +6,28 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "啊？！",
-      "en": "啊？！"
+      "zh": "啊？！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "闹钟都还没响呢。。。要不再眯一会儿吧。。。",
-      "en": "闹钟都还没响呢。。。要不再眯一会儿吧。。。"
+      "zh": "闹钟都还没响呢。。。要不再眯一会儿吧。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "算了，要是睡过头可就糟糕了。。。",
-      "en": "算了，要是睡过头可就糟糕了。。。"
+      "zh": "算了，要是睡过头可就糟糕了。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "起来吧。。。",
-      "en": "起来吧。。。"
+      "zh": "起来吧。。。"
     }
   ]
 }

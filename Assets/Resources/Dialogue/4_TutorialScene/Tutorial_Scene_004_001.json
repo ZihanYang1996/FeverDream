@@ -2,10 +2,18 @@
   "dialogueId": "Tutorial_Scene_004_001",
   "lines": [
     {
-      "speaker": "",
-      "zh": "（哇，拼出来了！不愧是我，看来小的时候没白玩）",
-      "en": "(Wow, I did it! Not bad—guess all that playing as a kid paid off!)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "拼出来了！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "不愧是我！这么多年了都还记得怎么拼！"
     }
   ]
 }

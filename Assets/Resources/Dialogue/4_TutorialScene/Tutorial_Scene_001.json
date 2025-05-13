@@ -2,16 +2,18 @@
   "dialogueId": "Tutorial_Scene_001",
   "lines": [
     {
-      "speaker": "",
-      "zh": "（总算到家了）",
-      "en": "(Finally home.)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "总算到家了。"
     },
     {
-      "speaker": "",
-      "zh": "（今晚吃啥呢？）",
-      "en": "(What should I eat tonight?)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "今晚吃什么呢？"
     }
   ]
 }

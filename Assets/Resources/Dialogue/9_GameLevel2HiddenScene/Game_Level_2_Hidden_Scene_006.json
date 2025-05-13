@@ -6,32 +6,28 @@
       "role": "Narrator",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "无事发生————————————",
-      "en": "无事发生————————————"
+      "zh": "无事发生————————————"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（咳咳。。。咳咳。。。）",
-      "en": "(咳咳。。。咳咳。。。)"
+      "isThought": false,
+      "zh": "咳咳。。。咳咳。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（沙子吹进来了。。。）",
-      "en": "(沙子吹进来了。。。)"
+      "isThought": false,
+      "zh": "沙子吹进来了。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（不能呼吸了。。。）",
-      "en": "(不能呼吸了。。。)"
+      "isThought": false,
+      "zh": "不能呼吸了。。。"
     }
   ]
 }

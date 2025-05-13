@@ -6,48 +6,42 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "（难道说。。。刚才那只猫把海水喝光了？！）",
-      "en": "(难道说。。。刚才那只猫把海水喝光了？！)"
+      "zh": "难道说。。。刚才那只猫把海水喝光了？！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（嗯。。。）",
-      "en": "(嗯。。。)"
+      "zh": "嗯。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（早知道尝一口海水好了，说不定是甜的呢。）",
-      "en": "(早知道尝一口海水好了，说不定是甜的呢。)"
+      "zh": "早知道尝一口海水好了，说不定是甜的呢。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（不过话说回来。。。）",
-      "en": "(不过话说回来。。。)"
+      "zh": "不过话说回来。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（虽然不至于淹死了，但是。。。）",
-      "en": "(虽然不至于淹死了，但是。。。)"
+      "zh": "虽然不至于淹死了，但是。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "（我要怎么离开这里啊！！！）",
-      "en": "(我要怎么离开这里啊！！！)"
+      "zh": "我要怎么离开这里啊！！！"
     }
   ]
 }

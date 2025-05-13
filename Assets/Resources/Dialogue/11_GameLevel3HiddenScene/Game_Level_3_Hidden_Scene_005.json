@@ -6,16 +6,14 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "诶？诶？诶？？？？？？",
-      "en": "诶？诶？诶？？？？？？"
+      "zh": "诶？诶？诶？？？？？？"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "啊啊啊啊啊啊！！！！！！",
-      "en": "啊啊啊啊啊啊！！！！！！"
+      "zh": "啊啊啊啊啊啊！！！！！！"
     }
   ]
 }

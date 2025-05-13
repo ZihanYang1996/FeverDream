@@ -6,24 +6,21 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "（这下可怎么办啊。。。）",
-      "en": "(这下可怎么办啊。。。)"
+      "zh": "这下可怎么办啊。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
-      "isThought": true,
-      "zh": "（奇怪？！）",
-      "en": "(奇怪？！)"
+      "isThought": false,
+      "zh": "奇怪？！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
-      "isThought": true,
-      "zh": "（这是什么？）",
-      "en": "(这是什么？)"
+      "isThought": false,
+      "zh": "这是什么？"
     }
   ]
 }

@@ -6,16 +6,14 @@
       "role": "Narrator",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "无事发生————————————",
-      "en": "无事发生————————————"
+      "zh": "无事发生————————————"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "什么嘛。。。",
-      "en": "什么嘛。。。"
+      "zh": "什么嘛。。。"
     }
   ]
 }

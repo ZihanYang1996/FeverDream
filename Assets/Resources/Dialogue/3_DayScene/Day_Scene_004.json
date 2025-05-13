@@ -6,88 +6,77 @@
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
-      "en": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "（终于下班了，又是忙碌的一天。）",
-      "en": "(终于下班了，又是忙碌的一天。)"
+      "zh": "终于下班了，又是忙碌的一天。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（可是。。。）",
-      "en": "(可是。。。)"
+      "zh": "可是。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（尽管做着一份大家都说不错的工作。）",
-      "en": "(尽管做着一份大家都说不错的工作。)"
+      "zh": "尽管做着一份大家都说不错的工作。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（尽管周围有不少朋友。）",
-      "en": "(尽管周围有不少朋友。)"
+      "zh": "尽管周围有不少朋友。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（尽管生活也没什么压力。）",
-      "en": "(尽管生活也没什么压力。)"
+      "zh": "尽管生活也没什么压力。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（尽管。。。尽管。。。）",
-      "en": "(尽管。。。尽管。。。)"
+      "zh": "尽管。。。尽管。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（可为什么总感觉少些什么。。。）",
-      "en": "(可为什么总感觉少些什么。。。)"
+      "zh": "可为什么总感觉少些什么。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（总感觉，此刻的生活，此刻这样循规蹈矩的生活，并不是我想要的。。。）",
-      "en": "(总感觉，此刻的生活，此刻这样循规蹈矩的生活，并不是我想要的。。。)"
+      "zh": "总感觉，此刻的生活，此刻这样循规蹈矩的生活，并不是我想要的。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（。。。。。。）",
-      "en": "(。。。。。。)"
+      "zh": "。。。。。。"
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
-      "en": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
     }
   ]
 }

@@ -6,16 +6,14 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "水！",
-      "en": "水！"
+      "zh": "得救啦！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "太好了，至少暂时不会渴死了！",
-      "en": "太好了，至少暂时不会渴死了！"
+      "zh": "靠你了，带我离开这里吧！"
     }
   ]
 }

@@ -5,17 +5,22 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
-      "isThought": true,
-      "zh": "（走。。。走出来了。。。）",
-      "en": "(走。。。走出来了。。。)"
+      "isThought": false,
+      "zh": "走。。。走出来了。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "（可。。。前面那是！！！）",
-      "en": "(可。。。前面那是！！！)"
+      "zh": "好厉害得剑！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": true,
+      "zh": "可。。。前面那是！！！"
     }
   ]
 }

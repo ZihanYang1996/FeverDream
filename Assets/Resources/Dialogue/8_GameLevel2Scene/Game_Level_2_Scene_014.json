@@ -5,17 +5,15 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
-      "isThought": true,
-      "zh": "（要我跟进去吗？）",
-      "en": "(要我跟进去吗？)"
+      "isThought": false,
+      "zh": "要我跟进去吗？"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
-      "isThought": true,
-      "zh": "（来都来了，那就进去看看吧。）",
-      "en": "(来都来了，那就进去看看吧。)"
+      "isThought": false,
+      "zh": "来都来了，那就进去看看吧。"
     }
   ]
 }

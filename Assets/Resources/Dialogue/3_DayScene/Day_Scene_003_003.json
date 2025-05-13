@@ -6,24 +6,21 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "小A啊，今天看你额头青了一块，怎么受伤了呢？",
-      "en": "小A啊，今天看你额头青了一块，怎么受伤了呢？"
+      "zh": "小A啊，今天看你额头青了一块，怎么受伤了呢？"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "竟然有这么明显吗！昨晚没太睡好，今早晕晕的。一不小心头磕到火车的门上了。。。",
-      "en": "竟然有这么明显吗！昨晚没太睡好，今早晕晕的。一不小心头磕到火车的门上了。。。"
+      "zh": "竟然有这么明显吗！昨晚没太睡好，今早晕晕的。一不小心头磕到火车的门上了。。。"
     },
     {
       "speaker": "Winston",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "要当心啊！今天不是很忙，要不你早点下班回去补补觉吧！",
-      "en": "要当心啊！今天不是很忙，要不你早点下班回去补补觉吧！"
+      "zh": "要当心啊！今天不是很忙，要不你早点下班回去补补觉吧！"
     }
   ]
 }

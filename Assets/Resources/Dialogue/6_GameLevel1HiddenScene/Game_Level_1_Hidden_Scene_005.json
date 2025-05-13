@@ -5,17 +5,15 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
-      "isThought": true,
-      "zh": "（让我看看啊。。。）",
-      "en": "(让我看看啊。。。)"
+      "isThought": false,
+      "zh": "让我看看啊。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
-      "isThought": true,
-      "zh": "（是这个吗？）",
-      "en": "(是这个吗？)"
+      "isThought": false,
+      "zh": "是这个吗？"
     }
   ]
 }

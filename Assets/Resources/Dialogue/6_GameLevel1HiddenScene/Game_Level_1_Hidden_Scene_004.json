@@ -6,16 +6,14 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（这个火箭它靠不靠谱啊？真的能飞吗？）",
-      "en": "(这个火箭它靠不靠谱啊？真的能飞吗？)"
+      "zh": "这个火箭它靠不靠谱啊？真的能飞吗？"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
-      "isThought": true,
-      "zh": "（管他呢，先上去看看吧。）",
-      "en": "(管他呢，先上去看看吧。)"
+      "isThought": false,
+      "zh": "管他呢，先上去看看吧。"
     }
   ]
 }

@@ -5,41 +5,29 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（好热。。。）",
-      "en": "(好热。。。)"
+      "isThought": false,
+      "zh": "好热。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（好渴。。。）",
-      "en": "(好渴。。。)"
+      "isThought": false,
+      "zh": "好渴。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（还有多久才到头啊！）",
-      "en": "(还有多久才到头啊！)"
+      "isThought": false,
+      "zh": "还有多久才到头啊！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（快坚持不住了。。。）",
-      "en": "(快坚持不住了。。。)"
-    },
-    {
-      "speaker": "A",
-      "role": "Character",
-      "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（再试试七巧板吧。。。）",
-      "en": "(再试试七巧板吧。。。)"
+      "isThought": false,
+      "zh": "快坚持不住了。。。"
     }
   ]
 }

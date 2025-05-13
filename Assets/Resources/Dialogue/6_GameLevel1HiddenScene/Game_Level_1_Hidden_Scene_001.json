@@ -6,16 +6,14 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "（这里是。。。）",
-      "en": "(这里是。。。)"
+      "zh": "这里是。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "海底?!!!",
-      "en": "海底?!!!"
+      "zh": "海底?!!!"
     }
   ]
 }

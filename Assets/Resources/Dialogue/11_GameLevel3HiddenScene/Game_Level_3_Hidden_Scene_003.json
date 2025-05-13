@@ -5,25 +5,22 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
-      "isThought": true,
-      "zh": "（树？）",
-      "en": "(树？)"
+      "isThought": false,
+      "zh": "树？"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "（是棵。。。椰子树？！）",
-      "en": "(是棵。。。椰子树？！)"
+      "zh": "是棵。。。椰子树？！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "（让我看看能不能把椰子弄下来。）",
-      "en": "(让我看看能不能把椰子弄下来。)"
+      "zh": "让我看看能不能把椰子弄下来。"
     }
   ]
 }

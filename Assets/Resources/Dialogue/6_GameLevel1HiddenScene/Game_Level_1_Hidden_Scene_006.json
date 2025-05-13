@@ -5,17 +5,15 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
-      "isThought": true,
-      "zh": "（不对。。。没有反应。。。）",
-      "en": "(不对。。。没有反应。。。)"
+      "isThought": false,
+      "zh": "不对。。。没有反应。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
-      "isThought": true,
-      "zh": "（难道是这个？）",
-      "en": "(难道是这个？)"
+      "isThought": false,
+      "zh": "难道是这个？"
     }
   ]
 }

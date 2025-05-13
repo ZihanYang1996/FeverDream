@@ -5,17 +5,15 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
-      "isThought": true,
-      "zh": "（到处都是树。。。还全都长得一个样。。。）",
-      "en": "(到处都是树。。。还全都长得一个样。。。)"
+      "isThought": false,
+      "zh": "到处都是树。。。还全都长得一个样。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "（彻底迷路了。。。）",
-      "en": "(彻底迷路了。。。)"
+      "zh": "彻底迷路了。。。"
     }
   ]
 }

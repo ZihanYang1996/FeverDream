@@ -5,17 +5,22 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
-      "isThought": true,
-      "zh": "（这把剑。。。）",
-      "en": "(这把剑。。。)"
+      "isThought": false,
+      "zh": "嗯？！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "（难道叫我拿来砍树吗？）",
-      "en": "(难道叫我拿来砍树吗？)"
+      "zh": "这把剑。。。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "难道叫我拿来砍树吗？"
     }
   ]
 }

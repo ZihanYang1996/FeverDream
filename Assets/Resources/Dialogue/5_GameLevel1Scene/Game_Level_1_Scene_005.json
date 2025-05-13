@@ -5,25 +5,22 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
-      "isThought": true,
-      "zh": "（啊？！）",
-      "en": "(啊？！)"
+      "isThought": false,
+      "zh": "啊？！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
-      "isThought": true,
-      "zh": "（竟然真的变成船了。。。）",
-      "en": "(竟然真的变成船了。。。)"
+      "isThought": false,
+      "zh": "竟然真的变成船了。。。"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
-      "isThought": true,
-      "zh": "（不管了，得快点爬上去！）",
-      "en": "(不管了，得快点爬上去！)"
+      "isThought": false,
+      "zh": "不管了，得快点爬上去！"
     }
   ]
 }

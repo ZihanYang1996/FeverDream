@@ -476,7 +476,6 @@ MonoBehaviour:
   dialogueFileName4:
   - 4_TutorialScene/Tutorial_Scene_004_001
   - 4_TutorialScene/Tutorial_Scene_004_002
-  dialogueFileName5: 4_TutorialScene/Tutorial_Scene_005
   dialogueManager: {fileID: 866684091}
 --- !u!114 &866684090
 MonoBehaviour:

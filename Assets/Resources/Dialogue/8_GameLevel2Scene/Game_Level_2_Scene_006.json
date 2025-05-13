@@ -5,17 +5,15 @@
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
-      "isThought": true,
-      "zh": "（对了！）",
-      "en": "(对了！)"
+      "isThought": false,
+      "zh": "对了！"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
-      "isThought": true,
-      "zh": "（试试七巧板吧！）",
-      "en": "(试试七巧板吧！)"
+      "isThought": false,
+      "zh": "试试七巧板吧！"
     }
   ]
 }
