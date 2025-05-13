@@ -29,10 +29,28 @@ public class GameLevel2SceneManager : MonoBehaviour
     [Header("Dialogue")]
     [SerializeField] private string dialogueFileName1;
 
+    [SerializeField] private string dialogueFileName2;
+    [SerializeField] private string dialogueFileName3;
+    [SerializeField] private string dialogueFileName4;
+    [SerializeField] private string dialogueFileName5;
+    [SerializeField] private string dialogueFileName6;
+    [SerializeField] private string dialogueFileName7;
+    [SerializeField] private string dialogueFileName8;
+    [SerializeField] private string dialogueFileName9;
+    [SerializeField] private string dialogueFileName10;
+    [SerializeField] private string dialogueFileName11;
+    [SerializeField] private string dialogueFileName12;
+    [SerializeField] private string dialogueFileName13;
+    [SerializeField] private string dialogueFileName14;
+    [SerializeField] private string dialogueFileName15;
+    [SerializeField] private string dialogueFileName16;
+    [SerializeField] private string dialogueFileName17;
+    [SerializeField] private string dialogueFileName18;
+
     [SerializeField] private DialogueManager dialogueManager;
 
     [Header("AnimationCurves")]
-    [SerializeField] private AnimationCurve cameraSwordCurve;
+    [SerializeField] private AnimationCurve swordFlyCurve;
 
     [SerializeField] private AnimationCurve cameraFocusCurve;
 
@@ -197,6 +215,20 @@ public class GameLevel2SceneManager : MonoBehaviour
 
         // Delay before starting the animation
         yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 1
+        bool isDialogueFinished = false;
+        var dialogueAsset1 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName1);
+        if (dialogueAsset1 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName1}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset1, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1.0f);
 
         // Character fall from the sky
         bool isMoveComplete = false;
@@ -240,6 +272,20 @@ public class GameLevel2SceneManager : MonoBehaviour
         // Wait for a moment
         yield return new WaitForSeconds(1.0f);
 
+        // Play Dialogue 2
+        isDialogueFinished = false;
+        var dialogueAsset2 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName2);
+        if (dialogueAsset2 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName2}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1.0f);
+        
         // Character stand up (rotate to -5 degree)
         duration = 1.0f;
         isRotateComplete = false;
@@ -252,17 +298,44 @@ public class GameLevel2SceneManager : MonoBehaviour
         isMoveComplete = false;
         character.GetComponent<ActorController>()
             .MoveByDelta(deltaPosition, duration, (() => { isMoveComplete = true; }));
-
-
+        
         yield return new WaitUntil(() => isRotateComplete && isMoveComplete);
-
-
+        
         // Camera move up a liittle bit
         isMoveComplete = false;
         targetPosition = new Vector3(-91f, -12f, -10f);
         mainCamera.GetComponent<CameraController>()
             .MoveTo(targetPosition, duration, cameraFocusCurve, (() => { isMoveComplete = true; }));
         yield return new WaitUntil(() => isMoveComplete);
+        
+        // Play Dialogue 3
+        isDialogueFinished = false;
+        var dialogueAsset3 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName3);
+        if (dialogueAsset3 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName3}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 4
+        isDialogueFinished = false;
+        var dialogueAsset4 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName4);
+        if (dialogueAsset4 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName4}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset4, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1.0f);
+        
 
         // Actor and Camera move right, then left, then right (stop on the left side of the screen)
         // Move right
@@ -307,6 +380,17 @@ public class GameLevel2SceneManager : MonoBehaviour
                 onComplete: (() => { isCameraMoveComplete = true; }));
         yield return new WaitUntil(() => isCharacterMoveComplete && isCameraMoveComplete);
 
+        // Play Dialogue 5
+        isDialogueFinished = false;
+        var dialogueAsset5 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName5);
+        if (dialogueAsset5 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
         // Move right
         characterDuration = 2.0f;
         lagDuration = 0.7f;
@@ -329,7 +413,21 @@ public class GameLevel2SceneManager : MonoBehaviour
             .MoveTo(cameraTargetPosition, cameraDuration,
                 onComplete: (() => { isCameraMoveComplete = true; }));
         yield return new WaitUntil(() => isCharacterMoveComplete && isCameraMoveComplete);
-
+        
+        // Play Dialogue 6
+        isDialogueFinished = false;
+        var dialogueAsset6 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName6);
+        if (dialogueAsset6 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName6}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset6, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1.0f);
+        
         // Display the puzzle button (start puzzle)
         StartPuzzle();
     }
@@ -393,16 +491,45 @@ public class GameLevel2SceneManager : MonoBehaviour
 
         // Wait for a moment
         yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 7
+        bool isDialogueFinished = false;
+        var dialogueAsset7 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName7);
+        if (dialogueAsset7 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName7}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset7, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
 
         // The sword fly up
         // Move the generated tangram holder to the target position: Vector3(-64.2300034,-14.3100004,-5.06389952)
         isMoveComplete = false;
-        duration = 0.3f;
+        duration = 2f;
         targetPosition = new Vector3(-64.2300034f, -14.3100004f, -5.06389952f);
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
-            curve: cameraSwordCurve);
-        yield return new WaitUntil(() => isMoveComplete);
-
+            curve: swordFlyCurve);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(0.8f);
+        
+        // Play Dialogue 8
+        isDialogueFinished = false;
+        var dialogueAsset8 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName8);
+        if (dialogueAsset8 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName8}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset8, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        yield return new WaitUntil(() => isMoveComplete);  // Wait until the sword fly up is complete
+        
         // Wait for a moment
         yield return new WaitForSeconds(1f);
 
@@ -479,6 +606,20 @@ public class GameLevel2SceneManager : MonoBehaviour
         // Wait for a moment
         yield return new WaitForSeconds(1f);
 
+        // Play Dialogue 9
+        isDialogueFinished = false;
+        var dialogueAsset9 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName9);
+        if (dialogueAsset9 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName9}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset9, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
         // Character move out of the screen on right
         // // Move the character to the target position: Vector3(46,-16,0)
         duration = 1.0f;
@@ -571,6 +712,9 @@ public class GameLevel2SceneManager : MonoBehaviour
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
             usePathOffset: true, settleDuration: 0.1f);
         yield return new WaitUntil(() => isMoveComplete);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(0.5f);
 
         // Add ButterflyMotion component to the generated tangram holder
         var butterflyMotion = generatedTangramHolder.AddComponent<ButterflyMotion>();
@@ -578,7 +722,35 @@ public class GameLevel2SceneManager : MonoBehaviour
         butterflyMotion.moveRadius = 1f;
 
         // Wait for a moment
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 10
+        bool isDialogueFinished = false;
+        var dialogueAsset10 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName10);
+        if (dialogueAsset10 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName10}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset10, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 11
+        isDialogueFinished = false;
+        var dialogueAsset11 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName11);
+        if (dialogueAsset11 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName11}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset11, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1.5f);
 
         // The butterfly fly to the right then hover Vector3(-54f, -14f, 0f)
         isMoveComplete = false;
@@ -586,10 +758,24 @@ public class GameLevel2SceneManager : MonoBehaviour
         tangramHolderActorController.MoveToPosition(targetPosition, duration, (() => { isMoveComplete = true; }),
             usePathOffset: true, settleDuration: 0.1f);
         yield return new WaitUntil(() => isMoveComplete);
-
+        
         // Wait for a moment
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
+        // Play Dialogue 12
+        isDialogueFinished = false;
+        var dialogueAsset12 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName12);
+        if (dialogueAsset12 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName12}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset12, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
         // Butterfly fly to the right to the mushroom house Vector3(13,-14.5,0)
         // Change the butterfly's path offset frequency
         butterflyPathOffset.horizontalFrequency = 20f;
@@ -629,6 +815,20 @@ public class GameLevel2SceneManager : MonoBehaviour
 
         // Wait for a moment
         yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 13
+        isDialogueFinished = false;
+        var dialogueAsset13 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName13);
+        if (dialogueAsset13 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName13}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset13, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
 
         // Butterfly disappear
         isFadeComplete = false;
@@ -638,6 +838,20 @@ public class GameLevel2SceneManager : MonoBehaviour
         yield return new WaitUntil(() => isFadeComplete);
         // Deactivate the generated tangram holder
         generatedTangramHolder.SetActive(false);
+        
+        // Play Dialogue 14
+        isDialogueFinished = false;
+        var dialogueAsset14 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName14);
+        if (dialogueAsset14 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName14}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset14, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
 
         // Character move to the mushroom house Vector3(13.0600004,-14.8999996,0)
         // Character disappear at the same time
@@ -655,7 +869,7 @@ public class GameLevel2SceneManager : MonoBehaviour
         yield return new WaitUntil(() => isMoveComplete && isFadeComplete);
 
         // Wait for a moment
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         // Start the sandstorm
         sandStorm.SetActive(true);
@@ -698,7 +912,30 @@ public class GameLevel2SceneManager : MonoBehaviour
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
 
-        // Play dialogue saying nothing happened
+        // Play Dialogue 15
+        bool isDialogueFinished = false;
+        var dialogueAsset15 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName15);
+        if (dialogueAsset15 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName15}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset15, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 16
+        isDialogueFinished = false;
+        var dialogueAsset16 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName16);
+        if (dialogueAsset16 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName16}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset16, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
         // Wait a short time before starting the next animation
         yield return new WaitForSeconds(1.0f);
@@ -710,10 +947,34 @@ public class GameLevel2SceneManager : MonoBehaviour
         fadeDuration = 3f;
         sandStorm.GetComponent<ScrollEffect>().StartScroll(true, fadeDuration);
 
+        // Play Dialogue 17
+        isDialogueFinished = false;
+        var dialogueAsset17 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName17);
+        if (dialogueAsset17 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName17}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset17, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
         // Wait for a moment
-        yield return new WaitForSeconds(5f);
-
-
+        yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 18
+        isDialogueFinished = false;
+        var dialogueAsset18 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName18);
+        if (dialogueAsset18 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName18}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset18, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
         // Fade in the black screen
         bool isFadeInComplete = false;
         if (blackScreenImage != null)
@@ -729,7 +990,5 @@ public class GameLevel2SceneManager : MonoBehaviour
 
         // Call the onComplete action after the animation is finished
         onComplete?.Invoke();
-        
-        
     }
 }

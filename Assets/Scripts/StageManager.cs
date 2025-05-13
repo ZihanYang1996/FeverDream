@@ -645,7 +645,7 @@ public class StageManager : MonoBehaviour
         workspaceArea.gameObject.SetActive(false);
 
         // Step 3: Create new solution sprite as a child of generatedTangramHolder and center it
-        if (currentStage != null && currentStage.solutionSprite != null && generatedTangramHolder != null)
+        if (currentStage != null && currentStage.solutionSprite != null && generatedTangramHolder != null && puzzleCompleted)
         {
             SpawnSpriteAtWorkspace(currentStage.solutionSprite);
 

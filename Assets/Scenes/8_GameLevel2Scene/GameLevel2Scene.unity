@@ -534,9 +534,26 @@ MonoBehaviour:
   sandStorm: {fileID: 813039794}
   blackScreenImage: {fileID: 1979736625}
   generatedTangramHolder: {fileID: 642656292}
-  dialogueFileName1: 
+  dialogueFileName1: 8_GameLevel2Scene/Game_Level_2_Scene_001
+  dialogueFileName2: 8_GameLevel2Scene/Game_Level_2_Scene_002
+  dialogueFileName3: 8_GameLevel2Scene/Game_Level_2_Scene_003
+  dialogueFileName4: 8_GameLevel2Scene/Game_Level_2_Scene_004
+  dialogueFileName5: 8_GameLevel2Scene/Game_Level_2_Scene_005
+  dialogueFileName6: 8_GameLevel2Scene/Game_Level_2_Scene_006
+  dialogueFileName7: 8_GameLevel2Scene/Game_Level_2_Scene_007
+  dialogueFileName8: 8_GameLevel2Scene/Game_Level_2_Scene_008
+  dialogueFileName9: 8_GameLevel2Scene/Game_Level_2_Scene_009
+  dialogueFileName10: 8_GameLevel2Scene/Game_Level_2_Scene_010
+  dialogueFileName11: 8_GameLevel2Scene/Game_Level_2_Scene_011
+  dialogueFileName12: 8_GameLevel2Scene/Game_Level_2_Scene_012
+  dialogueFileName13: 8_GameLevel2Scene/Game_Level_2_Scene_013
+  dialogueFileName14: 8_GameLevel2Scene/Game_Level_2_Scene_014
+  dialogueFileName15: 8_GameLevel2Scene/Game_Level_2_Scene_015
+  dialogueFileName16: 8_GameLevel2Scene/Game_Level_2_Scene_016
+  dialogueFileName17: 8_GameLevel2Scene/Game_Level_2_Scene_017
+  dialogueFileName18: 8_GameLevel2Scene/Game_Level_2_Scene_018
   dialogueManager: {fileID: 866684092}
-  cameraSwordCurve:
+  swordFlyCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -548,6 +565,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.18362686
+      value: 0.6956644
+      inSlope: 0.91925937
+      outSlope: 0.91925937
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.48280025
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
@@ -624,6 +650,7 @@ MonoBehaviour:
   dialogueText: {fileID: 489923638}
   pressEnterText: {fileID: 489923636}
   delayBetweenSpeakerAndDialogueText: 0.3
+  portraitImage: {fileID: 2506501550786763440}
 --- !u!1001 &936738808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1815,6 +1842,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+--- !u!114 &2506501550786763440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 219373143403389421, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 2506501550786763439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2558511664548922213
 PrefabInstance:
   m_ObjectHideFlags: 0
