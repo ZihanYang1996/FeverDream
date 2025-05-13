@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bottle_Mask_Outline_0: 2243479512867143021
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

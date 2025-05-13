@@ -158,12 +158,6 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
 
     private IEnumerator PlayTreeAnimationCoroutine(System.Action onComplete)
     {
-        // Set the Tangram holder's position
-        // Move the generated tangram holder to the target position: Vector3(52.9399986,-8.97999954,-5.06389952)
-        // Scale it to Vector3(0.310000002,0.310000002,0.310000002)
-        generatedTangramHolder.transform.position = new Vector3(52.9399986f, -8.97999954f, -5.06389952f);
-        generatedTangramHolder.transform.localScale = new Vector3(0.310000002f, 0.310000002f, 0.310000002f);
-
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
 

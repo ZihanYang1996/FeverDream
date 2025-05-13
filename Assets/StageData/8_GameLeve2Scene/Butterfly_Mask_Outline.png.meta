@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Butterfly_Mask_Outline_0: 2577401775327210613
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

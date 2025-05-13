@@ -220,8 +220,6 @@ public class GameLevel3SceneManager : MonoBehaviour
 
     private IEnumerator PlayCamelAnimationCoroutine(System.Action onComplete)
     {
-        // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(-9.53999996f, 30.4799995f, -5.06389952f);
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
         // Add WalkingPathOffset component to the generated tangram holder
@@ -318,8 +316,6 @@ public class GameLevel3SceneManager : MonoBehaviour
 
     private IEnumerator PlayBottleAnimationCoroutine(System.Action onComplete)
     {
-        // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(-9.53999996f, 30.4799995f, -5.06389952f);
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
         // Add WalkingPathOffset component to the generated tangram holder

@@ -336,8 +336,6 @@ public class GameLevel2SceneManager : MonoBehaviour
 
     private IEnumerator PlaySwordAnimationCoroutine(System.Action onFinish)
     {
-        // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(-59.5200005f, -13.4899998f, -5.06389952f);
         // Add ActorController component to the generated tangram holder 
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
         // Add TreeCutDetector component to the generated tangram holder
@@ -509,8 +507,6 @@ public class GameLevel2SceneManager : MonoBehaviour
 
     private IEnumerator PlayButterflyAnimationCoroutine(System.Action onComplete)
     {
-        // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(-59.5200005f, -13.4899998f, -5.06389952f);
         // Add ActorController component to the generated tangram holder 
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
 

@@ -230,7 +230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &238768457
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -619,7 +619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &704967024
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -899,8 +899,8 @@ Canvas:
   m_GameObject: {fileID: 1142109842}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 859735649}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -1133,6 +1133,8 @@ MonoBehaviour:
   exportFileName: playerMask
   normalizationResolution: 256
   countdownDuration: 30
+  generatedTangramFlickerDuration: 2
+  generatedTangramFlickerCount: 2
   countdownText: {fileID: 0}
   screenFlashImage: {fileID: 0}
   flashDuration: 0.2
@@ -1399,6 +1401,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1035439810973270788, guid: 4307de2cfa988489689aaa5c478b6edb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -358.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035439810973270788, guid: 4307de2cfa988489689aaa5c478b6edb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -406.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1534685773639955571, guid: 4307de2cfa988489689aaa5c478b6edb, type: 3}
+      propertyPath: orthographic size
+      value: 2.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8993361710280222870, guid: 4307de2cfa988489689aaa5c478b6edb, type: 3}
       propertyPath: m_Name
       value: MaskCameraHolder
@@ -1419,6 +1433,10 @@ PrefabInstance:
     - target: {fileID: 4090838051494097084, guid: 61accc7e71b6b4e7894fa6e800e8e72f, type: 3}
       propertyPath: m_Name
       value: PuzzlePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090838051494097084, guid: 61accc7e71b6b4e7894fa6e800e8e72f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8344886896116293758, guid: 61accc7e71b6b4e7894fa6e800e8e72f, type: 3}
       propertyPath: m_Pivot.x

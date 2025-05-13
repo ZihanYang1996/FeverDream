@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4604989870406987561, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 142735973}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -466,6 +470,11 @@ Transform:
 --- !u!1 &142735968 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 827801694942194731, guid: dae0c7aa5353c4a9a853a9b1360d5a3a, type: 3}
+  m_PrefabInstance: {fileID: 882095280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &142735973 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8076345428356842749, guid: dae0c7aa5353c4a9a853a9b1360d5a3a, type: 3}
   m_PrefabInstance: {fileID: 882095280}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &558241420 stripped

@@ -220,8 +220,6 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
 
     private IEnumerator PlayRocketAnimationCoroutine(System.Action onFinish)
     {
-        // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(4.51000023f, -1.47000003f, -5.06389952f);
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
 

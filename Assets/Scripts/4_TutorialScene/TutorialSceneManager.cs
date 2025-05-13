@@ -308,8 +308,6 @@ public class TutorialSceneManager : MonoBehaviour
 
     private IEnumerator PlayPostPuzzleAnimation1(bool success)
     {
-        // Set the Tangram holder's position
-        generatedTangramHolder.transform.position = new Vector3(4.5f, -1.48000002f, -5.06389952f);
         // Add ActorController component to the generated tangram holder
         var tangramHolderActorController = generatedTangramHolder.AddComponent<ActorController>();
 
