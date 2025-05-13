@@ -234,12 +234,12 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
         mainCamera.GetComponent<CameraController>()
             .Shake(intensity, duration, frequency, () => { isCameraShakeComplete = true; });
 
-        // Tree grows, move to Vector3(51.2000008,67.1999969,-5.06389952), scale to Vector3(18,18,18)
+        // Tree grows, move to Vector3(51.2000008,70,-5.06389952), scale to Vector3(60,60,60)
         isTreeMoveComplete = false;
         bool isTreeScaleComplete = false;
         duration = 12.0f;
-        treeTargetPosition = new Vector3(51.2000008f, 67.1999969f, -5.06389952f);
-        Vector3 treeTrgetScale = new Vector3(18, 18, 18);
+        treeTargetPosition = new Vector3(51.2000008f, 70, -5.06389952f);
+        Vector3 treeTrgetScale = new Vector3(60, 60, 60);
         tangramHolderActorController.MoveToPosition(treeTargetPosition, duration,
             (() => { isTreeMoveComplete = true; }), treeGrowCurve);
         tangramHolderActorController.ScaleTo(treeTrgetScale, duration,

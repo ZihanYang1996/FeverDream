@@ -336,6 +336,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1259167790}
   pressEnterText: {fileID: 1259167779}
   delayBetweenSpeakerAndDialogueText: 0.3
+  portraitImage: {fileID: 1843257895}
 --- !u!1001 &1039867754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -963,6 +964,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 6146315446707565235, guid: ce2ed69ab661e4444b8384b4fc3679f5, type: 3}
   m_PrefabInstance: {fileID: 1780967829}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1843257895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 219373143403389421, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 1259167777}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1051791243555159075
 PrefabInstance:
   m_ObjectHideFlags: 0
