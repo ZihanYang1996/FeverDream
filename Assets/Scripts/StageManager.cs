@@ -12,18 +12,22 @@ public class StageManager : MonoBehaviour
 
     [Header("UI References")]
     public GameObject puzzlePanel; // PuzzlePanel object
+
     [SerializeField] private GameObject blackScreenGameObject;
 
     public Image workspaceOutlineImage; // Image in WorkspaceArea to display selected outline
     public Transform workspaceArea; // WorkspaceArea container
     public Button validateButton; // ValidateButton
     public Button startPuzzleButton; // Start button to open puzzle panel
-    [FormerlySerializedAs("generatedTangramParent")] [SerializeField] private Transform generatedTangramHolder;
+
+    [FormerlySerializedAs("generatedTangramParent")] [SerializeField]
+    private Transform generatedTangramHolder;
 
     [Header("Render Config")]
     public Camera captureCamera; // MaskCamera
+
     public RenderTexture captureRT; // Mask_RT
-    
+
 
     [Header("Stage Data (Don't modify)")]
     public StageData currentStage; // Your StageData asset
@@ -65,9 +69,10 @@ public class StageManager : MonoBehaviour
     [SerializeField] private float flashDuration = 0.2f;
 
     private Texture2D playerMask;
-    
+
     [Header("Testing")]
     [SerializeField] private Button testSuccessButton;
+
     [SerializeField] private Button testFailButton;
 
     void Start()
@@ -84,16 +89,10 @@ public class StageManager : MonoBehaviour
         // Permanently direct captureCamera to render into captureRT
         captureCamera.targetTexture = captureRT;
         countdownTimer = countdownDuration;
-        
+
         // Test buttons for success/fail
-        testSuccessButton.onClick.AddListener(() =>
-        {
-            HandlePuzzleResult(true);
-        });
-        testFailButton.onClick.AddListener(() =>
-        {
-            HandlePuzzleResult(false);
-        });
+        testSuccessButton.onClick.AddListener(() => { HandlePuzzleResult(true); });
+        testFailButton.onClick.AddListener(() => { HandlePuzzleResult(false); });
     }
 
     /// <summary>
@@ -140,6 +139,7 @@ public class StageManager : MonoBehaviour
             {
                 img.sprite = sd.solutionSprite;
             }
+
             Button btn = btnGO.GetComponent<Button>();
             string stageId = sd.id;
             btn.onClick.AddListener(() => SelectStageById(stageId));
@@ -160,6 +160,7 @@ public class StageManager : MonoBehaviour
         {
             workspaceOutlineImage.sprite = stage.solutionSprite;
         }
+
         // clear previous pieces
         // Return all pieces to their original positions and parents
         for (int i = workspaceArea.childCount - 1; i >= 0; i--)
@@ -200,11 +201,16 @@ public class StageManager : MonoBehaviour
         {
             blackScreenGameObject.SetActive(true);
             // Get and set the alpha to the desired value for the puzzle from GameManager
-            blackScreenGameObject.GetComponent<BlackScreenController>().SetAlphaInstantly(GameManager.Instance.blackScreenAlphaForPuzzle/255f);
+            blackScreenGameObject.GetComponent<BlackScreenController>()
+                .SetAlphaInstantly(GameManager.Instance.blackScreenAlphaForPuzzle / 255f);
         }
+
         // Show the puzzle panel
         puzzlePanel.SetActive(true);
-        
+
+        // Align the capture camera to the workspace area
+        AlignCaptureCameraToWorkspace();
+
         // Hide the start button
         if (startPuzzleButton != null)
         {
@@ -227,6 +233,7 @@ public class StageManager : MonoBehaviour
             StartCoroutine(FlashRedEffect());
             return;
         }
+
         // Clone workspace pieces into off-screen capture canvas
         List<GameObject> clones = new List<GameObject>();
         foreach (Transform orig in workspaceArea)
@@ -288,7 +295,7 @@ public class StageManager : MonoBehaviour
         {
             // Disable the button to prevent multiple clicks
             validateButton.interactable = false;
-            
+
             HandlePuzzleResult(true);
         }
         else if (!success)
@@ -492,11 +499,9 @@ public class StageManager : MonoBehaviour
         {
             StartCoroutine(FlashRedEffect());
         }
+
         puzzleCompleted = success;
-        StartCoroutine(PlayPuzzleSuccessVisualEffect(() =>
-        {
-            OnPuzzleComplete?.Invoke(success, currentStage);
-        }));
+        StartCoroutine(PlayPuzzleSuccessVisualEffect(() => { OnPuzzleComplete?.Invoke(success, currentStage); }));
     }
 
     private IEnumerator FlashRedEffect()
@@ -513,8 +518,8 @@ public class StageManager : MonoBehaviour
         screenFlashImage.color = originalColor;
     }
 
-    
-        /// <summary>
+
+    /// <summary>
     /// Plays a synchronized visual effect: fade in black screen, fade out outline, flicker workspaceArea children, then fade out them.
     /// </summary>
     public IEnumerator PlayPuzzleSuccessVisualEffect(Action onComplete = null)
@@ -528,6 +533,7 @@ public class StageManager : MonoBehaviour
             Debug.Log(g.name);
             graphicsToFade.Add(g);
         }
+
         // Also add workspaceArea's own Graphic if present
         Graphic workspaceGraphic = workspaceArea.GetComponent<Graphic>();
         if (workspaceGraphic != null)
@@ -548,6 +554,7 @@ public class StageManager : MonoBehaviour
                 c.a = alpha;
                 g.color = c;
             }
+
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -572,6 +579,7 @@ public class StageManager : MonoBehaviour
             {
                 group = workspaceArea.GetChild(i).gameObject.AddComponent<CanvasGroup>();
             }
+
             group.alpha = 1f;
         }
 
@@ -590,9 +598,11 @@ public class StageManager : MonoBehaviour
                 {
                     child.GetComponent<CanvasGroup>().alpha = alpha;
                 }
+
                 fadeOutElapsed += Time.deltaTime;
                 yield return null;
             }
+
             // Fade in
             float fadeInElapsed = 0f;
             while (fadeInElapsed < halfFlicker)
@@ -604,10 +614,12 @@ public class StageManager : MonoBehaviour
                 {
                     child.GetComponent<CanvasGroup>().alpha = alpha;
                 }
+
                 fadeInElapsed += Time.deltaTime;
                 yield return null;
             }
         }
+
         // Third flicker: fade out only, do not fade back in, use Mathf.Sin for smooth fade
         float finalFadeDuration = flickerDuration / 2f;
         float finalFadeElapsed = 0f;
@@ -619,6 +631,7 @@ public class StageManager : MonoBehaviour
             {
                 child.GetComponent<CanvasGroup>().alpha = alpha;
             }
+
             finalFadeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -627,21 +640,14 @@ public class StageManager : MonoBehaviour
         {
             child.GetComponent<CanvasGroup>().alpha = 0f;
         }
+
         // Disable workspaceArea
         workspaceArea.gameObject.SetActive(false);
 
         // Step 3: Create new solution sprite as a child of generatedTangramHolder and center it
         if (currentStage != null && currentStage.solutionSprite != null && generatedTangramHolder != null)
         {
-            GameObject solutionGO = new GameObject("GeneratedTangram");
-            SpriteRenderer sr = solutionGO.AddComponent<SpriteRenderer>();
-            sr.sprite = currentStage.solutionSprite;
-            sr.color = new Color(1f, 1f, 1f, 0f); // Start transparent
-            solutionGO.transform.SetParent(generatedTangramHolder, false);
-            solutionGO.transform.localPosition = Vector3.zero;
-            solutionGO.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            // Set the sorting layer
-            sr.sortingLayerName = "AboveCurtain";
+            SpawnSpriteAtWorkspace(currentStage.solutionSprite);
 
             // Fade in the sprite using Mathf.Sin for a smooth ease
             // float fadeInDuration = flickerDuration / 2f;
@@ -658,9 +664,10 @@ public class StageManager : MonoBehaviour
             // }
             // sr.color = new Color(1f, 1f, 1f, 1f); // Ensure fully opaque
         }
+
         // Step 4: Disable puzzle panel
         puzzlePanel.SetActive(false);
-        
+
         // Step 5: Invoke completion callback
         onComplete?.Invoke();
     }
@@ -678,5 +685,77 @@ public class StageManager : MonoBehaviour
         }
 
         StartCoroutine(CountdownTimer());
+    }
+
+    /// <summary>
+    /// Aligns the capture camera to frame the workspace area exactly.
+    /// </summary>
+    private void AlignCaptureCameraToWorkspace()
+    {
+        RectTransform workspaceRect = workspaceArea.GetComponent<RectTransform>();
+        Camera uiCamera = workspaceRect.GetComponentInParent<Canvas>().worldCamera;
+
+        // 1. 获取世界中心点
+        Vector3[] corners = new Vector3[4];
+        workspaceRect.GetWorldCorners(corners);
+        Vector3 centerWorld = (corners[0] + corners[2]) * 0.5f;
+
+        // 2. 将摄像机移动到这个中心上方
+        captureCamera.transform.position =
+            new Vector3(centerWorld.x, centerWorld.y, captureCamera.transform.position.z);
+
+        // 3. 设置合适的 orthographic size，使它刚好框住 workspace
+        float height = Vector3.Distance(corners[1], corners[2]);
+        float orthoSize = height * 0.5f;
+        captureCamera.orthographicSize = orthoSize;
+    }
+
+    /// <summary>
+    /// Returns the world-space center of a RectTransform.
+    /// </summary>
+    private Vector3 GetWorldCenterOfRect(RectTransform rectTransform)
+    {
+        Vector3[] corners = new Vector3[4];
+        rectTransform.GetWorldCorners(corners);
+        return (corners[0] + corners[2]) * 0.5f;
+    }
+
+    /// <summary>
+    /// Spawns a sprite at the center of the workspace area in world space.
+    /// </summary>
+    private void SpawnSpriteAtWorkspace(Sprite spriteToUse)
+    {
+        if (spriteToUse == null) return;
+
+        Vector3 worldCenter = GetWorldCenterOfRect(workspaceArea.GetComponent<RectTransform>());
+        generatedTangramHolder.position = worldCenter;
+
+        GameObject go = new GameObject("GeneratedTangram");
+        SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = spriteToUse;
+        sr.sortingLayerName = "AboveCurtain";
+        sr.sortingOrder = 10;
+
+        go.transform.SetParent(generatedTangramHolder, false);
+        go.transform.localScale = CalculateSpriteScaleToFit(workspaceArea.GetComponent<RectTransform>(), spriteToUse);
+    }
+
+    /// <summary>
+    /// Calculates a scale vector so that the sprite fits within the target RectTransform.
+    /// </summary>
+    private Vector3 CalculateSpriteScaleToFit(RectTransform targetRect, Sprite sprite)
+    {
+        Vector3[] corners = new Vector3[4];
+        targetRect.GetWorldCorners(corners);
+        float worldWidth = Vector3.Distance(corners[0], corners[3]);
+        float worldHeight = Vector3.Distance(corners[0], corners[1]);
+
+        Vector2 spriteSize = sprite.bounds.size;
+
+        float scaleX = worldWidth / spriteSize.x;
+        float scaleY = worldHeight / spriteSize.y;
+
+        float finalScale = Mathf.Min(scaleX, scaleY);
+        return Vector3.one * finalScale;
     }
 }
