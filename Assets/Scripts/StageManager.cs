@@ -509,7 +509,7 @@ public class StageManager : MonoBehaviour
         if (screenFlashImage == null) yield break;
 
         Color originalColor = screenFlashImage.color;
-        screenFlashImage.color = new Color(1f, 0f, 0f, 0.5f);
+        screenFlashImage.color = new Color(1f, 1, 1f, 0.5f);
         screenFlashImage.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(flashDuration);

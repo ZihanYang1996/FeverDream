@@ -116,10 +116,10 @@ TextureImporter:
       name: "\u64CD\u4F5C\u6307\u5357_0"
       rect:
         serializedVersion: 2
-        x: 190
-        y: 112
-        width: 2535
-        height: 1576
+        x: 158
+        y: 14
+        width: 1884
+        height: 649
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "\u64CD\u4F5C\u6307\u5357_0": 639857005300978777
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
