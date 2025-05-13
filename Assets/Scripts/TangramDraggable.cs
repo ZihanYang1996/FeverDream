@@ -18,6 +18,8 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     private bool isPointerDown = false;
 
+    private Vector3 dragOffset;
+
     void Awake()
     {
         canvas = GetComponentInParent<Canvas>();
@@ -47,13 +49,26 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         isDragging = true;
         canvasGroup.alpha = 0.8f;
         canvasGroup.blocksRaycasts = false;
-
         transform.SetParent(canvas.transform, true);
+
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            rectTransform, eventData.position, canvas.worldCamera, out Vector3 globalMousePos))
+        {
+            dragOffset = rectTransform.position - globalMousePos;
+        }
+        else
+        {
+            dragOffset = Vector3.zero;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            rectTransform, eventData.position, canvas.worldCamera, out Vector3 globalMousePos))
+        {
+            rectTransform.position = globalMousePos + dragOffset;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
