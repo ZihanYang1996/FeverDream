@@ -206,6 +206,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &38556293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 729524898952520180, guid: f955218231f234661885290204d3ffd8, type: 3}
+  m_PrefabInstance: {fileID: 1469385462}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &121887994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -737,7 +742,7 @@ MonoBehaviour:
   character: {fileID: 754396258}
   blackScreenImage: {fileID: 587866933}
   mainCamera: {fileID: 1009050485}
-  sandStrom: {fileID: 0}
+  sandStrom: {fileID: 38556293}
   generatedTangramHolder: {fileID: 1330610422}
   dialogueFileName1: 9_GameLevel2HiddenScene/Game_Level_2_Hidden_Scene_001
   dialogueFileName2: 9_GameLevel2HiddenScene/Game_Level_2_Hidden_Scene_002
