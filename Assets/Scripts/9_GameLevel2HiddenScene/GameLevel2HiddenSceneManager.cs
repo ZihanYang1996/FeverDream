@@ -20,10 +20,20 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
     [SerializeField] private GameObject blackScreenImage;
 
     [SerializeField] private GameObject mainCamera;
+    
+    [SerializeField] private GameObject sandStrom;
 
     [SerializeField] private GameObject generatedTangramHolder;
 
     [Header("Dialogue")]
+    [SerializeField] private string dialogueFileName1;
+
+    [SerializeField] private string dialogueFileName2;
+    [SerializeField] private string dialogueFileName3;
+    [SerializeField] private string dialogueFileName4;
+    [SerializeField] private string dialogueFileName5;
+    [SerializeField] private string dialogueFileName6;
+
     [SerializeField] private DialogueManager dialogueManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -149,6 +159,18 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         // Play Dialogue 1
+        bool isDialogueFinished = false;
+        var dialogueAsset1 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName1);
+        if (dialogueAsset1 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName1}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset1, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1.0f);
 
 
         // Display the puzzle button (start puzzle)
@@ -208,6 +230,42 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
 
         // Wait for a moment
         yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 2
+        bool isDialogueFinished = false;
+        var dialogueAsset2 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName2);
+        if (dialogueAsset2 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName2}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(3f);
+        
+        // Stop the Sandstorm
+        sandStrom.GetComponent<ScrollEffect>().StopScroll();
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 3
+        bool isDialogueFinished2 = false;
+        var dialogueAsset3 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName3);
+        if (dialogueAsset3 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName3}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueFinished2 = true; });
+        
+        // Wait until the dialogue is finished
+        yield return new WaitUntil(() => isDialogueFinished2);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
 
         // Fade in the black screen
         isFadeComplete = false;
@@ -230,9 +288,20 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
         character.SetActive(true);
         character.GetComponent<ActorController>().SetAlphaInstantly(0f);
 
+        // Play Dialogue 4
+        bool isDialogueFinished3 = false;
+        var dialogueAsset4 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName4);
+        if (dialogueAsset4 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName4}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset4, () => { isDialogueFinished3 = true; });
+        yield return new WaitUntil(() => isDialogueFinished3); // Wait until the dialogue is finished
+        
         // Wait for a moment
-        yield return new WaitForSeconds(3f);
-
+        yield return new WaitForSeconds(1f);
+        
         // Fade out the black screen
         isFadeComplete = false;
         fadeDuration = 1.0f;
@@ -246,7 +315,7 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
         yield return new WaitUntil(() => isFadeComplete);
 
         // Wait for a moment
-        yield return new WaitForSeconds(1f);
+        // yield return new WaitForSeconds(1f);
 
         // Fade in the character and move it to the target position: Vector3(-3.11999989,-30.8299999,0)
         isFadeComplete = false;
@@ -262,6 +331,20 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
         
         // Wait until the fade and move are finished
         yield return new WaitUntil(() => isFadeComplete && isMoveComplete);
+        
+        // Wait for a moment
+        yield return new WaitForSeconds(1f);
+        
+        // Play Dialogue 5
+        bool isDialogueFinished4 = false;
+        var dialogueAsset5 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName5);
+        if (dialogueAsset5 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueFinished4 = true; });
+        yield return new WaitUntil(() => isDialogueFinished4); // Wait until the dialogue is finished
         
         // Wait for a moment
         yield return new WaitForSeconds(1f);
@@ -298,10 +381,20 @@ public class GameLevel2HiddenSceneManager : MonoBehaviour
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
 
-        // Play dialogue saying nothing happened
+        // Play Dialogue 6
+        bool isDialogueFinished = false;
+        var dialogueAsset6 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName6);
+        if (dialogueAsset6 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName6}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset6, () => { isDialogueFinished = true; });
+        // Wait until the dialogue is finished
+        yield return new WaitUntil(() => isDialogueFinished);
 
         // Wait a short time before starting the next animation
-        yield return new WaitForSeconds(1.0f);
+        // yield return new WaitForSeconds(1.0f);
         
         // Fade in the black screen
         bool isFadeInComplete = false;

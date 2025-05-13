@@ -40,6 +40,26 @@ public class ScrollEffect : MonoBehaviour
         }
     }
 
+    public void StopScroll(bool triggerFadeOut = false, float? customFadeDuration = null)
+    {
+        scrolling = false;
+
+        if (triggerFadeOut)
+        {
+            if (customFadeDuration.HasValue)
+            {
+                float originalFadeDuration = fadeDuration;
+                fadeDuration = customFadeDuration.Value;
+                StartCoroutine(FadeOut());
+                fadeDuration = originalFadeDuration;
+            }
+            else
+            {
+                StartCoroutine(FadeOut());
+            }
+        }
+    }
+
     void Update()
     {
         if (!scrolling) return;
@@ -68,6 +88,28 @@ public class ScrollEffect : MonoBehaviour
         }
 
         color.a = 1f;
+        targetMaterial.color = color;
+    }
+
+    private IEnumerator FadeOut()
+    {
+        if (targetMaterial == null) yield break;
+
+        Color color = targetMaterial.color;
+        color.a = 1f;
+        targetMaterial.color = color;
+
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Clamp01(1f - (elapsed / fadeDuration));
+            color.a = alpha;
+            targetMaterial.color = color;
+            yield return null;
+        }
+
+        color.a = 0f;
         targetMaterial.color = color;
     }
 }

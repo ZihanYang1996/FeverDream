@@ -737,7 +737,14 @@ MonoBehaviour:
   character: {fileID: 754396258}
   blackScreenImage: {fileID: 587866933}
   mainCamera: {fileID: 1009050485}
+  sandStrom: {fileID: 0}
   generatedTangramHolder: {fileID: 1330610422}
+  dialogueFileName1: 9_GameLevel2HiddenScene/Game_Level_2_Hidden_Scene_001
+  dialogueFileName2: 9_GameLevel2HiddenScene/Game_Level_2_Hidden_Scene_002
+  dialogueFileName3: 9_GameLevel2HiddenScene/Game_Level_2_Hidden_Scene_003
+  dialogueFileName4: 9_GameLevel2HiddenScene/Game_Level_2_Hidden_Scene_004
+  dialogueFileName5: 9_GameLevel2HiddenScene/Game_Level_2_Hidden_Scene_005
+  dialogueFileName6: 9_GameLevel2HiddenScene/Game_Level_2_Hidden_Scene_006
   dialogueManager: {fileID: 931698074}
 --- !u!114 &931698074
 MonoBehaviour:
@@ -755,6 +762,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1233529987}
   pressEnterText: {fileID: 943046031}
   delayBetweenSpeakerAndDialogueText: 0.3
+  portraitImage: {fileID: 1505383236}
 --- !u!114 &931698075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,6 +1182,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+--- !u!114 &1505383236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 219373143403389421, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 1505383235}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1584531568 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5845824196080876937, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
