@@ -109,6 +109,9 @@ public class GameLevel3HiddenSceneManager : MonoBehaviour
                 GameManager.Instance.IncrementCompletedHiddenLevel();
                 PlayPostPuzzleAnimation(stage.id, () =>
                 {
+                    // Even if the puzzle is solved, we still need to set the current time, it will be 7AM
+                    GameManager.Instance.currentTime = "7AM";
+                    
                     // After the animation is finished, go to the next scene
                     GoToNextScene("CorrectSolved");
                 });

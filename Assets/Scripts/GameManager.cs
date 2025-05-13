@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SceneFlowController sceneFlowController;
     [SerializeField] public float blackScreenFadeDuration = 1f; // Duration for black screen fade in/out between scenes
     [SerializeField] public float blackScreenStayDuration = 1f; // Duration for black screen to stay before fading out
-    public int totalNumberOfLevel { get; private set;  } = 2; // Total number of level in the game
-    public int totalNumberOfHiddenLevel { get; private set;  } = 2; // Total number of hidden level in the game
+    public int totalNumberOfLevel { get; private set;  } = 3; // Total number of level in the game
+    public int totalNumberOfHiddenLevel { get; private set;  } = 3; // Total number of hidden level in the game
 
     public int currentLevelIndex { get; private set;  } = 0; // Current level index, used by Wake Up Scene
     public int numOfCompletedLevel { get; private set; } = 0; // Number of completed level in the current loop

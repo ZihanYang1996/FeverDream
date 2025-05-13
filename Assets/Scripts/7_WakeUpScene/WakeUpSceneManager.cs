@@ -51,6 +51,12 @@ public class WakeUpSceneManager : MonoBehaviour
 
     void ContinueGame()
     {
+        // First, check if the player has completed all Hidden Levels, which will lead to the True Ending
+        if (numOfCompletedHiddenLevel == GameManager.Instance.totalNumberOfHiddenLevel)
+        {
+            GameManager.Instance.GoToNextScene("TrueEnding");
+        }
+        
         if (currentTime == "1AM")
         {
             // Set the background1Am to active
