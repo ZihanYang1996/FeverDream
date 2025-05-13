@@ -36,7 +36,6 @@ public class TutorialSceneManager : MonoBehaviour
     [SerializeField] private string dialogueFileName2;
     [SerializeField] private string dialogueFileName3;
     [SerializeField] private string[] dialogueFileName4;
-    [SerializeField] private string dialogueFileName5;
     [SerializeField] private DialogueManager dialogueManager;
 
     private Coroutine animationCoroutine;
@@ -161,15 +160,15 @@ public class TutorialSceneManager : MonoBehaviour
         backgroundImage.sprite = backgroundImage1;
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
-        // Play Dialogue
+        
+        // Play Dialogue 1
+        bool isDialogueComplete = false;
         var dialogueAsset1 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName1);
         if (dialogueAsset1 == null)
         {
             Debug.LogError($"Failed to load dialogue: {dialogueFileName1}");
             yield break;
         }
-
-        bool isDialogueComplete = false;
         dialogueManager.PlayDialogue(dialogueAsset1, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
@@ -196,15 +195,15 @@ public class TutorialSceneManager : MonoBehaviour
 
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
-        // Play Dialogue
+        
+        // Play Dialogue 2
+        bool isDialogueComplete = false;
         var dialogueAsset2 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName2);
         if (dialogueAsset2 == null)
         {
             Debug.LogError($"Failed to load dialogue: {dialogueFileName2}");
             yield break;
         }
-
-        bool isDialogueComplete = false;
         dialogueManager.PlayDialogue(dialogueAsset2, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
@@ -236,15 +235,15 @@ public class TutorialSceneManager : MonoBehaviour
         startPuzzleButton.SetActive(true);
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
-        // Play Dialogue
+        
+        // Play Dialogue 3
+        bool isDialogueComplete = false;
         var dialogueAsset3 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName3);
         if (dialogueAsset3 == null)
         {
             Debug.LogError($"Failed to load dialogue: {dialogueFileName3}");
             yield break;
         }
-
-        bool isDialogueComplete = false;
         dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
@@ -342,7 +341,8 @@ public class TutorialSceneManager : MonoBehaviour
         backgroundImage.sprite = backgroundImage1;
         // Wait for a moment before dialogue
         yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
-        // Play Dialogue
+        // Play Dialogue 4
+        bool isDialogueComplete = false;
         string currentDialogueFileName = success ? dialogueFileName4[0] : dialogueFileName4[1];
         var dialogueAsset4 = DialogueLoader.LoadFromResources("Dialogue/" + currentDialogueFileName);
         if (dialogueAsset4 == null)
@@ -350,38 +350,8 @@ public class TutorialSceneManager : MonoBehaviour
             Debug.LogError($"Failed to load dialogue: {dialogueFileName4}");
             yield break;
         }
-
-        bool isDialogueComplete = false;
         dialogueManager.PlayDialogue(dialogueAsset4,
             () => { isDialogueComplete = true; });
-        yield return new WaitUntil(() => isDialogueComplete);
-
-        // Fade in the black screen
-        yield return uiCurtain.FadeOut();
-
-        StartCoroutine(PlayPostPuzzleAnimation2());
-    }
-
-    private IEnumerator PlayPostPuzzleAnimation2()
-    {
-        // Play the first background image (Black screen)
-        backgroundImage.sprite = backgroundImage1;
-
-        // Fade out the black screen
-        yield return uiCurtain.FadeOut();
-
-        // Wait for a moment before dialogue
-        yield return new WaitForSeconds(delayBetweenBackgroundAndDialogue);
-        // Play Dialogue
-        var dialogueAsset5 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName5);
-        if (dialogueAsset5 == null)
-        {
-            Debug.LogError($"Failed to load dialogue: {dialogueFileName5}");
-            yield break;
-        }
-
-        bool isDialogueComplete = false;
-        dialogueManager.PlayDialogue(dialogueAsset5, () => { isDialogueComplete = true; });
         yield return new WaitUntil(() => isDialogueComplete);
 
         // Fade in the black screen
