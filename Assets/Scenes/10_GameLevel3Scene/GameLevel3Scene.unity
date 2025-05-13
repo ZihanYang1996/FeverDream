@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 856272372}
   - component: {fileID: 856272373}
   - component: {fileID: 856272374}
+  - component: {fileID: 856272375}
   m_Layer: 0
   m_Name: GameLeve3SceneManager
   m_TagString: Untagged
@@ -721,26 +722,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2.3324099
-      outSlope: 2.3324099
+      inSlope: 2.640654
+      outSlope: 2.640654
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.37207776
-      value: 0.86783785
-      inSlope: 0.2964316
-      outSlope: 0.2964316
+      time: 0.26791108
+      value: 0.70746046
+      inSlope: 0.6008713
+      outSlope: 0.6008713
       tangentMode: 0
       weightedMode: 0
-      inWeight: 1
-      outWeight: 0.33333334
+      inWeight: 0.48487473
+      outWeight: 0.13736665
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.21047536
-      outSlope: 0.21047536
+      inSlope: 0.39959565
+      outSlope: 0.39959565
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -799,6 +800,32 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dialogueFileName1: 10_GameLevel3Scene/Game_Level_3_Scene_001
+  dialogueFileName2: 10_GameLevel3Scene/Game_Level_3_Scene_002
+  dialogueFileName3: 10_GameLevel3Scene/Game_Level_3_Scene_003
+  dialogueFileName4: 10_GameLevel3Scene/Game_Level_3_Scene_004
+  dialogueFileName5: 10_GameLevel3Scene/Game_Level_3_Scene_005
+  dialogueFileName6: 10_GameLevel3Scene/Game_Level_3_Scene_006
+  dialogueFileName7: 10_GameLevel3Scene/Game_Level_3_Scene_007
+  dialogueFileName8: 10_GameLevel3Scene/Game_Level_3_Scene_008
+  dialogueManager: {fileID: 856272375}
+--- !u!114 &856272375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856272371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4876a91f89aa54df385485caec9126fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 1303191095}
+  dialogueText: {fileID: 1303191094}
+  pressEnterText: {fileID: 1303191093}
+  delayBetweenSpeakerAndDialogueText: 0.3
+  portraitImage: {fileID: 1303191092}
 --- !u!1001 &882095280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1191,6 +1218,38 @@ PrefabInstance:
 Camera:
   m_CorrespondingSourceObject: {fileID: 1534685773639955571, guid: 4307de2cfa988489689aaa5c478b6edb, type: 3}
   m_PrefabInstance: {fileID: 1060839037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1303191092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 219373143403389421, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 48918393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1303191093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1249181145470930362, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 48918393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1303191094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4295813207994399450, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 48918393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1303191095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3682420525217618360, guid: ab177e68f5e5a4d98adbcc4ec82ec686, type: 3}
+  m_PrefabInstance: {fileID: 48918393}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1889820344
 PrefabInstance:
