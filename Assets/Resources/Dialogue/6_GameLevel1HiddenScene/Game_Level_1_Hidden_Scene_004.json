@@ -2,28 +2,20 @@
   "dialogueId": "Game_Level_1_Hidden_Scene_004",
   "lines": [
     {
-      "speaker": "",
-      "zh": "（让我看看啊。。。）",
-      "en": "(Let me see...)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（这个火箭它靠不靠谱啊？真的能飞吗？）",
+      "en": "(这个火箭它靠不靠谱啊？真的能飞吗？)"
     },
     {
-      "speaker": "",
-      "zh": "（这个吗？）",
-      "en": "(Is it this one?)",
-      "isThought": true
-    },
-    {
-      "speaker": "",
-      "zh": "（不对。。）",
-      "en": "(Nope...)",
-      "isThought": true
-    },
-    {
-      "speaker": "",
-      "zh": "（那是这个？）",
-      "en": "(Then is it this one?)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（管他呢，先上去看看吧。）",
+      "en": "(管他呢，先上去看看吧。)"
     }
   ]
 }

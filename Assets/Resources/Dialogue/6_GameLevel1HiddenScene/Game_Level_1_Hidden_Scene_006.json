@@ -2,9 +2,20 @@
   "dialogueId": "Game_Level_1_Hidden_Scene_006",
   "lines": [
     {
-      "speaker": "我",
-      "zh": "啊啊啊啊啊啊啊啊啊啊啊！",
-      "en": "Aaaaahhhhhhhhhh!"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（不对。。。没有反应。。。）",
+      "en": "(不对。。。没有反应。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（难道是这个？）",
+      "en": "(难道是这个？)"
     }
   ]
 }

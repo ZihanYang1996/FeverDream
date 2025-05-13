@@ -1,0 +1,13 @@
+{
+  "dialogueId": "Game_Level_2_Hidden_Scene_005",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（只能继续前进了。。。）",
+      "en": "(只能继续前进了。。。)"
+    }
+  ]
+}

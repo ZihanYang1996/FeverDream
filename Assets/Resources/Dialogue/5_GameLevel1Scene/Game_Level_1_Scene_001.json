@@ -2,24 +2,44 @@
   "dialogueId": "Game_Level_1_Scene_001",
   "lines": [
     {
-      "speaker": "船",
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "今天的风浪好大啊",
+      "en": "今天的风浪好大啊"
+    },
+    {
+      "speaker": "",
+      "role": "SoundEffect",
+      "portraitStatus": null,
+      "isThought": false,
       "zh": "咔嚓。。。咔嚓。。。咔嚓。。。",
-      "en": "Crack... crack... crack..."
+      "en": "咔嚓。。。咔嚓。。。咔嚓。。。"
     },
     {
-      "speaker": "船",
-      "zh": "咔嚓。。。咔嚓。。。咔嚓。。。",
-      "en": "Crack... crack... crack..."
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": false,
+      "zh": "怎么满地是水啊？哪里漏水了吗？",
+      "en": "怎么满地是水啊？哪里漏水了吗？"
     },
     {
-      "speaker": "我",
-      "zh": "怎么漏水了！",
-      "en": "Why is it leaking?! Hey—hey! Help! He—"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "真的漏水了！得快点把洞堵上。",
+      "en": "真的漏水了！得快点把洞堵上。"
     },
     {
-      "speaker": "我",
-      "zh": "等等！再这么下去。。。",
-      "en": "Wait! If this goes on...!"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "工具，工具在哪？",
+      "en": "工具，工具在哪？"
     }
   ]
 }

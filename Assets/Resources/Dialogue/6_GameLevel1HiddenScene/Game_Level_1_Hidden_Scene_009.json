@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Game_Level_1_Hidden_Scene_009",
+  "lines": [
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "无事发生————————————",
+      "en": "无事发生————————————"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "怎么会。。。",
+      "en": "怎么会。。。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "就这么结束了吗。。。",
+      "en": "就这么结束了吗。。。"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "dialogueId": "Game_Level_3_Scene_005",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "哦不。。。我的水。。。",
+      "en": "哦不。。。我的水。。。"
+    }
+  ]
+}

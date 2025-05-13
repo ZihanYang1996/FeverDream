@@ -286,6 +286,10 @@ MonoBehaviour:
   dialogueFileName8: 5_GameLevel1Scene/Game_Level_1_Scene_008
   dialogueFileName9: 5_GameLevel1Scene/Game_Level_1_Scene_009
   dialogueFileName10: 5_GameLevel1Scene/Game_Level_1_Scene_010
+  dialogueFileName11: 5_GameLevel1Scene/Game_Level_1_Scene_011
+  dialogueFileName12: 5_GameLevel1Scene/Game_Level_1_Scene_012
+  dialogueFileName13: 5_GameLevel1Scene/Game_Level_1_Scene_013
+  dialogueFileName14: 5_GameLevel1Scene/Game_Level_1_Scene_014
   dialogueManager: {fileID: 866684092}
   sproutMoveCurve:
     serializedVersion: 2

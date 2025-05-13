@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Wake_Up_Scene_001",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "啊？！",
+      "en": "啊？！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（吓醒了。。。）",
+      "en": "(吓醒了。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "我才刚睡一会儿啊。。。",
+      "en": "我才刚睡一会儿啊。。。"
+    }
+  ]
+}

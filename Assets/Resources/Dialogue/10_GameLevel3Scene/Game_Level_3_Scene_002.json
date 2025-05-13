@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Game_Level_3_Scene_002",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "得救啦！",
+      "en": "得救啦！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "靠你了，带我离开这里吧！",
+      "en": "靠你了，带我离开这里吧！"
+    }
+  ]
+}

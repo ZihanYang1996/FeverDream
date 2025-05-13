@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Game_Level_2_Hidden_Scene_003",
+  "lines": [
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "一段时间之后————————————",
+      "en": "一段时间之后————————————"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（外面安静下来了。）",
+      "en": "(外面安静下来了。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（出去看看吧！）",
+      "en": "(出去看看吧！)"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Game_Level_1_Scene_011",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（它在？？？）",
+      "en": "(它在？？？)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": true,
+      "zh": "（喝水？！！！）",
+      "en": "(喝水？！！！)"
+    }
+  ]
+}

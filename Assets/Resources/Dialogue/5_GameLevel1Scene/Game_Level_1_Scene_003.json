@@ -2,10 +2,20 @@
   "dialogueId": "Game_Level_1_Scene_003",
   "lines": [
     {
-      "speaker": "",
-      "zh": "（运气真好，竟然在最后时刻抓住一块木板）",
-      "en": "(Lucky me—I managed to grab a plank at the last second.)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（。。。。。。）",
+      "en": "(。。。。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（还好，还好抓到一块木板。。。）",
+      "en": "(还好，还好抓到一块木板。。。)"
     }
   ]
 }

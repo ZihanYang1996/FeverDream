@@ -1,0 +1,37 @@
+{
+  "dialogueId": "Game_Level_2_Hidden_Scene_006",
+  "lines": [
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "无事发生————————————",
+      "en": "无事发生————————————"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（咳咳。。。咳咳。。。）",
+      "en": "(咳咳。。。咳咳。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（沙子吹进来了。。。）",
+      "en": "(沙子吹进来了。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（不能呼吸了。。。）",
+      "en": "(不能呼吸了。。。)"
+    }
+  ]
+}

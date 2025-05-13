@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Game_Level_3_Scene_003",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "水！",
+      "en": "水！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "太好了，至少暂时不会渴死了！",
+      "en": "太好了，至少暂时不会渴死了！"
+    }
+  ]
+}

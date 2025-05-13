@@ -1,0 +1,13 @@
+{
+  "dialogueId": "Game_Level_2_Scene_010",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（好可爱的蝴蝶啊！）",
+      "en": "(好可爱的蝴蝶啊！)"
+    }
+  ]
+}

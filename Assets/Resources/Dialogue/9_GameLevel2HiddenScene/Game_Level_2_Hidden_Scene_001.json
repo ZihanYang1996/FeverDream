@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Game_Level_2_Hidden_Scene_001",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "哇，外面也太恐怖！！！",
+      "en": "哇，外面也太恐怖！！！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": true,
+      "zh": "（好在躲了进来，不然怕是要被活埋了。。。）",
+      "en": "(好在躲了进来，不然怕是要被活埋了。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": true,
+      "zh": "（得快些把洞口堵上！）",
+      "en": "(得快些把洞口堵上！)"
+    }
+  ]
+}

@@ -1,10 +1,21 @@
 {
-  "dialogueId": "Game_Level_1_Hidden_Scene_004",
+  "dialogueId": "Game_Level_1_Hidden_Scene_005",
   "lines": [
     {
-      "speaker": "我",
-      "zh": "成功啦！",
-      "en": "Got it!"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（让我看看啊。。。）",
+      "en": "(让我看看啊。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（是这个吗？）",
+      "en": "(是这个吗？)"
     }
   ]
 }

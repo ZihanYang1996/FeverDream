@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Wake_Up_Scene_004",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "好奇怪的梦！",
+      "en": "好奇怪的梦！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "不过还挺有趣的，刚好该起床了！",
+      "en": "不过还挺有趣的，刚好该起床了！"
+    }
+  ]
+}

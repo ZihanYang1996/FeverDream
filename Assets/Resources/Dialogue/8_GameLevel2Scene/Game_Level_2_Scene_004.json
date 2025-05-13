@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Game_Level_2_Scene_004",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（风好大啊！）",
+      "en": "(风好大啊！)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（好像不太对劲。。。得赶紧想办法离开这里！）",
+      "en": "(好像不太对劲。。。得赶紧想办法离开这里！)"
+    }
+  ]
+}

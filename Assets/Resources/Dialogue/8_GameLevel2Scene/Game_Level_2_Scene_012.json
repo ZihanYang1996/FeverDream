@@ -1,0 +1,13 @@
+{
+  "dialogueId": "Game_Level_2_Scene_012",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（难道你能带我离开这里？）",
+      "en": "(难道你能带我离开这里？)"
+    }
+  ]
+}

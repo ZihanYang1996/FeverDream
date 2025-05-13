@@ -1,0 +1,13 @@
+{
+  "dialogueId": "Game_Level_2_Scene_011",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": false,
+      "zh": "你是要和我玩吗？",
+      "en": "你是要和我玩吗？"
+    }
+  ]
+}

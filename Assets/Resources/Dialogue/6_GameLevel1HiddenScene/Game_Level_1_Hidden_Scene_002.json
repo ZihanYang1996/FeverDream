@@ -2,21 +2,52 @@
   "dialogueId": "Game_Level_1_Hidden_Scene_002",
   "lines": [
     {
-      "speaker": "我",
-      "zh": "嗯？",
-      "en": "Huh?"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": true,
+      "zh": "（难道说。。。刚才那只猫把海水喝光了？！）",
+      "en": "(难道说。。。刚才那只猫把海水喝光了？！)"
     },
     {
-      "speaker": "",
-      "zh": "（七巧板又有反应了）",
-      "en": "(The tangram is reacting again.)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（嗯。。。）",
+      "en": "(嗯。。。)"
     },
     {
-      "speaker": "",
-      "zh": "（话说为什么我会随身带着七巧板啊!）",
-      "en": "(Also, why am I even carrying a tangram around?!)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（早知道尝一口海水好了，说不定是甜的呢。）",
+      "en": "(早知道尝一口海水好了，说不定是甜的呢。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（不过话说回来。。。）",
+      "en": "(不过话说回来。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（虽然不至于淹死了，但是。。。）",
+      "en": "(虽然不至于淹死了，但是。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": true,
+      "zh": "（我要怎么离开这里啊！！！）",
+      "en": "(我要怎么离开这里啊！！！)"
     }
   ]
 }

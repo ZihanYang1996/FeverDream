@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Game_Level_3_Hidden_Scene_006",
+  "lines": [
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "无事发生————————————",
+      "en": "无事发生————————————"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "失败了。。。。。。",
+      "en": "失败了。。。。。。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "难道真的出不去了吗。。。。。",
+      "en": "难道真的出不去了吗。。。。。"
+    }
+  ]
+}

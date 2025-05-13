@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Game_Level_2_Scene_014",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（要我跟进去吗？）",
+      "en": "(要我跟进去吗？)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（来都来了，那就进去看看吧。）",
+      "en": "(来都来了，那就进去看看吧。)"
+    }
+  ]
+}

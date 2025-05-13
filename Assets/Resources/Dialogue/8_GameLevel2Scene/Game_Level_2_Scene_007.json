@@ -1,0 +1,21 @@
+{
+  "dialogueId": "Game_Level_2_Scene_007",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（这把剑。。。）",
+      "en": "(这把剑。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（难道叫我拿来砍树吗？）",
+      "en": "(难道叫我拿来砍树吗？)"
+    }
+  ]
+}

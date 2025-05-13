@@ -34,6 +34,10 @@ public class GameLevel1SceneManager : MonoBehaviour
     [SerializeField] private string dialogueFileName8;
     [SerializeField] private string dialogueFileName9;
     [SerializeField] private string dialogueFileName10;
+    [SerializeField] private string dialogueFileName11;
+    [SerializeField] private string dialogueFileName12;
+    [SerializeField] private string dialogueFileName13;
+    [SerializeField] private string dialogueFileName14;
 
 
     [SerializeField] private DialogueManager dialogueManager;
@@ -449,21 +453,6 @@ public class GameLevel1SceneManager : MonoBehaviour
         // Wait a short time before starting the next animation
         yield return new WaitForSeconds(1.0f);
 
-        // Play Dialogue 7
-        isDialogueFinished = false;
-        var dialogueAsset7 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName7);
-        if (dialogueAsset7 == null)
-        {
-            Debug.LogError($"Failed to load dialogue: {dialogueFileName7}");
-            yield break;
-        }
-
-        dialogueManager.PlayDialogue(dialogueAsset7, () => { isDialogueFinished = true; });
-        yield return new WaitUntil(() => isDialogueFinished);
-
-        // Wait a short time before starting the next animation
-        yield return new WaitForSeconds(1.0f);
-
         // Whale appears from the bottom of the screen and alpha from 0 to 1
         isMoveComplete = false;
         bool isFadeInComplete = false;
@@ -475,6 +464,21 @@ public class GameLevel1SceneManager : MonoBehaviour
         whale.GetComponent<ActorController>().MoveByDelta(deltaPosition, duration, () => { isMoveComplete = true; });
         // Wait until both fade and move are finished
         yield return new WaitUntil(() => isMoveComplete && isFadeInComplete);
+
+        // Wait a short time before starting the next animation
+        yield return new WaitForSeconds(1.0f);
+        
+        // Play Dialogue 7
+        isDialogueFinished = false;
+        var dialogueAsset7 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName7);
+        if (dialogueAsset7 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName7}");
+            yield break;
+        }
+
+        dialogueManager.PlayDialogue(dialogueAsset7, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished);
 
         // Wait a short time before starting the next animation
         yield return new WaitForSeconds(1.0f);
@@ -667,6 +671,34 @@ public class GameLevel1SceneManager : MonoBehaviour
             yield return new WaitUntil(() => isSeaMoveComplete && isCharacterMoveComplete);
             isSeaMoveComplete = false;
             isCharacterMoveComplete = false;
+            if (repeatCount == 3)
+            {
+                // Play Dialogue 11
+                isDialogueFinished = false;
+                var dialogueAsset11 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName11);
+                if (dialogueAsset11 == null)
+                {
+                    Debug.LogError($"Failed to load dialogue: {dialogueFileName11}");
+                    yield break;
+                }
+
+                dialogueManager.PlayDialogue(dialogueAsset11, () => { isDialogueFinished = true; });
+                yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+            }
+            else if (repeatCount == 2)
+            {
+                // Play Dialogue 12
+                isDialogueFinished = false;
+                var dialogueAsset12 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName12);
+                if (dialogueAsset12 == null)
+                {
+                    Debug.LogError($"Failed to load dialogue: {dialogueFileName12}");
+                    yield break;
+                }
+
+                dialogueManager.PlayDialogue(dialogueAsset12, () => { isDialogueFinished = true; });
+                yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+            }
             // Wait a short time before starting the next animation
             yield return new WaitForSeconds(1.0f);
             repeatCount--;
@@ -704,10 +736,34 @@ public class GameLevel1SceneManager : MonoBehaviour
         Debug.Log("Fade out complete");
         blackScreenImage.SetActive(false);
 
-        // Play dialogue saying nothing happened
+        // Play dialogue 13
+        bool isDialogueFinished = false;
+        var dialogueAsset13 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName13);
+        if (dialogueAsset13 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName13}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset13, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
 
-        // Wait a short time before starting the next animation
+        // Wait a short time before starting the next dialogue
         yield return new WaitForSeconds(1.0f);
+        
+        // Play dialogue 14
+        isDialogueFinished = false;
+        var dialogueAsset14 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName14);
+        if (dialogueAsset14 == null)
+        {
+            Debug.LogError($"Failed to load dialogue: {dialogueFileName14}");
+            yield break;
+        }
+        dialogueManager.PlayDialogue(dialogueAsset14, () => { isDialogueFinished = true; });
+        yield return new WaitUntil(() => isDialogueFinished); // Wait until the dialogue is finished
+        
+        // Wait a short time 
+        yield return new WaitForSeconds(1.0f);
+        
 
         // Sink the character with wood
         // Set the alpha of the character with wood to 0

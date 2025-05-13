@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Game_Level_2_Scene_015",
+  "lines": [
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "无事发生————————————",
+      "en": "无事发生————————————"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（竟然什么都没出现。。。）",
+      "en": "(竟然什么都没出现。。。)"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "（这下要怎么出去啊。。。）",
+      "en": "(这下要怎么出去啊。。。)"
+    }
+  ]
+}

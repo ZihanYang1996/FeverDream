@@ -1,0 +1,29 @@
+{
+  "dialogueId": "Game_Level_1_Scene_012",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "等等！！！",
+      "en": "等等！！！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "你别！！！",
+      "en": "你别！！！"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "快停下啊！！！",
+      "en": "快停下啊！！！"
+    }
+  ]
+}

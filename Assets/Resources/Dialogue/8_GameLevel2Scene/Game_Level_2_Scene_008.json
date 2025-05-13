@@ -1,0 +1,13 @@
+{
+  "dialogueId": "Game_Level_2_Scene_008",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "啊？！",
+      "en": "啊？！"
+    }
+  ]
+}

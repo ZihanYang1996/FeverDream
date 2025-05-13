@@ -2,22 +2,28 @@
   "dialogueId": "Game_Level_1_Hidden_Scene_003",
   "lines": [
     {
-      "speaker": "",
-      "zh": "（这。。。这火箭不会是样子货吧）",
-      "en": "(Th-this rocket isn’t just for show, is it?)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": false,
+      "zh": "嗯？！",
+      "en": "嗯？！"
     },
     {
-      "speaker": "",
-      "zh": "（真的能飞吗？）",
-      "en": "(Can it really fly?)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（七巧板又有反应了！）",
+      "en": "(七巧板又有反应了！)"
     },
     {
-      "speaker": "",
-      "zh": "（算了，上去看看吧）",
-      "en": "(Whatever... I’ll just climb in and see.)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": false,
+      "zh": "话说我为什么会带着七巧板啊！",
+      "en": "话说我为什么会带着七巧板啊！"
     }
   ]
 }

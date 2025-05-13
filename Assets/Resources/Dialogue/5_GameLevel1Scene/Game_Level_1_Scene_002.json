@@ -2,19 +2,44 @@
   "dialogueId": "Game_Level_1_Scene_002",
   "lines": [
     {
-      "speaker": "我",
-      "zh": "诶，诶，救命，救。。。",
-      "en": "Hey—hey! Help! He—"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": true,
+      "zh": "（不行了，水挡根本挡不住啊！）",
+      "en": "(不行了，水挡根本挡不住啊！)"
     },
     {
-      "speaker": "我",
-      "zh": "咕噜咕噜咕噜。。。",
-      "en": "Glug... glug... glug..."
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Shocked",
+      "isThought": false,
+      "zh": "救命！救。。。",
+      "en": "救命！救。。。"
     },
     {
-      "speaker": "我",
-      "zh": "谁来。。。咕噜咕噜咕噜。。。",
-      "en": "Someone... glug... glug..."
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "咕噜。。。咕噜。。。咕噜。。。",
+      "en": "咕噜。。。咕噜。。。咕噜。。。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "谁来救。。。",
+      "en": "谁来救。。。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "咕噜。。。咕噜。。。咕噜。。。",
+      "en": "咕噜。。。咕噜。。。咕噜。。。"
     }
   ]
 }

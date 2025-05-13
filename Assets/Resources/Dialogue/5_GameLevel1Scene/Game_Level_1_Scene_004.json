@@ -2,26 +2,28 @@
   "dialogueId": "Game_Level_1_Scene_004",
   "lines": [
     {
-      "speaker": "",
-      "zh": "（可是接下来该怎么办呢？）",
-      "en": "(But what do I do now?)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": true,
+      "zh": "（这下可怎么办啊。。。）",
+      "en": "(这下可怎么办啊。。。)"
     },
     {
-      "speaker": "",
-      "zh": "。。。。。。",
-      "en": "......"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（奇怪？！）",
+      "en": "(奇怪？！)"
     },
     {
-      "speaker": "",
-      "zh": "。。。。。。",
-      "en": "......"
-    },
-    {
-      "speaker": "",
-      "zh": "（奇怪？！这是什么？）",
-      "en": "(Weird?! What’s that?)",
-      "isThought": true
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "（这是什么？）",
+      "en": "(这是什么？)"
     }
   ]
 }
