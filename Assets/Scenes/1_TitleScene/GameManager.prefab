@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd286d5a57eed451fbb11cbfcdb2ad86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.5
   sceneMusicList:
   - sceneName: TitleScene
     bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}
@@ -141,4 +142,4 @@ MonoBehaviour:
   - sceneName: WakeUpScene
     bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}
   - sceneName: TrueEndingScene
-    bgmClip: {fileID: 8300000, guid: 4e261ad15a97c49f181c8759f27ed572, type: 3}
+    bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}

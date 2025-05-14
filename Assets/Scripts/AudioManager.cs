@@ -19,7 +19,9 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, AudioClip> sceneMusicDict = new Dictionary<string, AudioClip>();
 
     private AudioSource audioSource;
+    private AudioSource sfxSource;
     private string currentScene = "";
+    private AudioClip pendingClip = null;
 
     void Awake()
     {
@@ -31,6 +33,10 @@ public class AudioManager : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.loop = true;
             audioSource.playOnAwake = false;
+
+            sfxSource = gameObject.AddComponent<AudioSource>();
+            sfxSource.playOnAwake = false;
+            sfxSource.loop = false;
 
             foreach (var pair in sceneMusicList)
             {
@@ -117,5 +123,79 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
         audioSource.volume = startVolume;
+    }
+    
+    // Removed FadeOutCurrentAndPrepareNew. Use FadeOutCurrentBGM and PrepareNextBGM instead.
+
+    public void FadeOutCurrentBGM(float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeOutOnlyCoroutine(duration));
+    }
+
+    public void PrepareNextBGM(AudioClip newClip)
+    {
+        pendingClip = newClip;
+    }
+
+    public void PlaySFX(AudioClip clip, float volume = 1f)
+    {
+        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, volume);
+    }
+
+    public void PlaySFXInstant(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null)
+        {
+            Debug.LogWarning("No SFX clip provided.");
+            return;
+        }
+
+        sfxSource.clip = clip;
+        sfxSource.volume = volume;
+        sfxSource.Play();
+    }
+    
+    private IEnumerator FadeOutAndPrepareCoroutine(AudioClip newClip, float fadeDuration)
+    {
+        float startVolume = audioSource.volume;
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
+            yield return null;
+        }
+        audioSource.volume = 0f;
+        audioSource.Stop();
+        audioSource.clip = null;
+
+        pendingClip = newClip;
+    }
+
+    private IEnumerator FadeOutOnlyCoroutine(float fadeDuration)
+    {
+        float startVolume = audioSource.volume;
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
+            yield return null;
+        }
+        audioSource.volume = 0f;
+        audioSource.Stop();
+        audioSource.clip = null;
+    }
+
+    public void PlayPendingBGM()
+    {
+        if (pendingClip != null)
+        {
+            audioSource.clip = pendingClip;
+            audioSource.volume = 1f;
+            audioSource.Play();
+            pendingClip = null;
+        }
+        else
+        {
+            Debug.LogWarning("No pending BGM to play.");
+        }
     }
 }

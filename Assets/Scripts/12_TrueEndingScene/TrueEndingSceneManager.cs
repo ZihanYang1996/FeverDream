@@ -32,6 +32,10 @@ public class TrueEndingSceneManager : MonoBehaviour
     [Header("Animation Curve")]
     [SerializeField] private AnimationCurve zoomInAssignmentCurve;
     [SerializeField] private AnimationCurve strikethroughCurve;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip endingBGM;
+    [SerializeField] private AudioClip strikethroughSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -154,7 +158,13 @@ public class TrueEndingSceneManager : MonoBehaviour
 
         dialogueManager.PlayDialogue(dialogueAsset4, () => { isDialogueFinished4 = true; });
         yield return new WaitUntil(() => isDialogueFinished4); // Wait until the dialogue is finished
-
+        
+        // Fade out current BGM and prepare the next BGM
+        float bgmFadeDuration = 6f;
+        AudioManager.Instance.FadeOutCurrentBGM(bgmFadeDuration);
+        AudioManager.Instance.PrepareNextBGM(endingBGM);
+        
+        
         // Wait for a short time
         yield return new WaitForSeconds(3f);
 
@@ -187,7 +197,7 @@ public class TrueEndingSceneManager : MonoBehaviour
         yield return new WaitUntil(() => isDialogueFinished5); // Wait until the dialogue is finished
         
         // Wait for a short time
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         
         strikethrough.SetActive(true);
         // Set strikethrough's position to Vector3(-13.3900003f,-3.08999991f,0f);
@@ -200,6 +210,9 @@ public class TrueEndingSceneManager : MonoBehaviour
         strikethrough.transform.localScale = targetScale;
         strikethrough.transform.localRotation = Quaternion.Euler(targetRotation);
         
+        // Play strikethrough sound
+        AudioManager.Instance.PlaySFXInstant(strikethroughSound, 1f);
+        
         // Enlarge the strikethrough: Move it to Vector3(-13.3900003,-3.08999991,0)
         // scale it to Vector3(7,5,1)
         bool isStrikethroughScaleComplete = false;
@@ -210,7 +223,13 @@ public class TrueEndingSceneManager : MonoBehaviour
         yield return new WaitUntil(((() => isStrikethroughScaleComplete)));
         
         // Instant black screen after a very short time
-        yield return new WaitForSeconds(0.075f);
+        yield return new WaitForSeconds(0.2f);
         gameTitle.SetActive(true);
+        AudioManager.Instance.PlayPendingBGM();
+        
+        // Wait for some time then go back to title scene
+        yield return new WaitForSeconds(20f);
+        // Load the title scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
     }
 }
