@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler, ICanvasRaycastFilter
 {
+    private float minScrollSensitivity = 1f;
+    private float maxScrollSensitivity = 10f;
+    private float scrollSpeedAdaptation = 0.5f;
+    private float lastScrollTime = 0f;
     private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -39,7 +43,12 @@ public class TangramDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             float scroll = Input.mouseScrollDelta.y;
             if (Mathf.Abs(scroll) > 0.01f)
             {
-                rectTransform.Rotate(0, 0, scroll * 15f);
+                float timeSinceLast = Time.time - lastScrollTime;
+                float dynamicSensitivity = Mathf.Lerp(maxScrollSensitivity, minScrollSensitivity, timeSinceLast / scrollSpeedAdaptation);
+                dynamicSensitivity = Mathf.Clamp(dynamicSensitivity, minScrollSensitivity, maxScrollSensitivity);
+                float deltaAngle = Mathf.Clamp(scroll * dynamicSensitivity, -15f, 15f);
+                rectTransform.Rotate(0, 0, deltaAngle);
+                lastScrollTime = Time.time;
             }
         }
     }
