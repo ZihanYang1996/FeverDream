@@ -1,0 +1,12 @@
+{
+  "dialogueId": "True_Ending_Scene_005",
+  "lines": [
+    {
+      "speaker": "Teacher",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "安琪，愣在那干啥呢。"
+    }
+  ]
+}

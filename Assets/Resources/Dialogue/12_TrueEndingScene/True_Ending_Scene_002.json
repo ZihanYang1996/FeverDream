@@ -1,0 +1,26 @@
+{
+  "dialogueId": "True_Ending_Scene_003",
+  "lines": [
+    {
+      "speaker": "Teacher",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "这节课是学校组织的职业规划辅导。"
+    },
+    {
+      "speaker": "Teacher",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "让你们写的未来职业规划，都写好了吗？"
+    },
+    {
+      "speaker": "Teacher",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "第一批参加辅导的同学，拿着写好的东西到门口集合。"
+    }
+  ]
+}

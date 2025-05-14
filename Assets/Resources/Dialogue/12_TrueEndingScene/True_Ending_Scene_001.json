@@ -1,0 +1,33 @@
+{
+  "dialogueId": "True_Ending_Scene_001",
+  "lines": [
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "醒醒！！！"
+    },
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "喂！醒醒！！！"
+    },
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "打铃了！上课了！！！"
+    },
+    {
+      "speaker": "",
+      "role": "Narrator",
+      "portraitStatus": null,
+      "isThought": false,
+      "zh": "老师进来了！！！"
+    }
+  ]
+}

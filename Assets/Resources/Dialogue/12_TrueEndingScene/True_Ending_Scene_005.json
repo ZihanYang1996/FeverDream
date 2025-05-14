@@ -1,0 +1,12 @@
+{
+  "dialogueId": "True_Ending_Scene_005",
+  "lines": [
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "这真的是我想要的未来吗?"
+    }
+  ]
+}
