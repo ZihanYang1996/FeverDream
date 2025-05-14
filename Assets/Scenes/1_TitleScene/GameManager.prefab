@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4721664735935209725}
   - component: {fileID: 3332327428737157248}
   - component: {fileID: 7859278791685369596}
+  - component: {fileID: 7303489272855132516}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -102,3 +103,42 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e13b9cc40954466ab5ae965f9b7993d, type: 2}
   - {fileID: 11400000, guid: 3baacb2a91dd54b82a17b78b4a862298, type: 2}
   - {fileID: 11400000, guid: 7bf949f639b9f472bb4ef223767c392d, type: 2}
+--- !u!114 &7303489272855132516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019706281879445842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd286d5a57eed451fbb11cbfcdb2ad86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneMusicList:
+  - sceneName: TitleScene
+    bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}
+  - sceneName: IntroScene
+    bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}
+  - sceneName: PrestoryScene
+    bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}
+  - sceneName: DayScene
+    bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}
+  - sceneName: TutorialScene
+    bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}
+  - sceneName: GameLevel1Scene
+    bgmClip: {fileID: 8300000, guid: bdeded544bb904ab28da54a2c4e15039, type: 3}
+  - sceneName: GameLevel1HiddenScene
+    bgmClip: {fileID: 8300000, guid: bdeded544bb904ab28da54a2c4e15039, type: 3}
+  - sceneName: GameLevel2Scene
+    bgmClip: {fileID: 8300000, guid: 5ac9930ced368467580a82d571c4852d, type: 3}
+  - sceneName: GameLevel2HiddenScene
+    bgmClip: {fileID: 8300000, guid: 5ac9930ced368467580a82d571c4852d, type: 3}
+  - sceneName: GameLevel3Scene
+    bgmClip: {fileID: 8300000, guid: 0b7d0a956debe4e47891dda2416ed847, type: 3}
+  - sceneName: GameLevel3HiddenScene
+    bgmClip: {fileID: 8300000, guid: 0b7d0a956debe4e47891dda2416ed847, type: 3}
+  - sceneName: WakeUpScene
+    bgmClip: {fileID: 8300000, guid: 58825c1f8564b4fea92b44a76345228b, type: 3}
+  - sceneName: TrueEndingScene
+    bgmClip: {fileID: 8300000, guid: 4e261ad15a97c49f181c8759f27ed572, type: 3}

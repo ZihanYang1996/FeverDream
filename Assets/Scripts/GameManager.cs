@@ -36,9 +36,12 @@ public class GameManager : MonoBehaviour
     public int currentLevelIndex { get; private set;  } = 0; // Current level index, used by Wake Up Scene
     public int numOfCompletedLevel { get; private set; } = 0; // Number of completed level in the current loop
     public int numOfCompletedHiddenLevel { get; private set; } = 0; // Number of completed hidden level in the current loop
+    
+    public int numOfWakeUps { get; private set; } = 0; // Number of times the player has woken up
 
     public int numOfCompletedLevelLastLoop { get; private set; } = 0; // Number of completed level in the last loop
     public int numOfCompletedHiddenLevelLastLoop { get; private set; } = 0; // Number of completed hidden level in the last loop
+    public int numOfWakeUpsLastLoop { get; private set; } = 3; // Number of times the player has woken up in the last loop
     
     public string currentTime = "1AM"; // Current time in the game, used by Wake Up Scene
     
@@ -56,6 +59,11 @@ public class GameManager : MonoBehaviour
     public void IncrementCurrentLevelIndex()
     {
         currentLevelIndex++;
+    }
+    
+    public void IncrementWakeUps()
+    {
+        numOfWakeUps++;
     }
     
     public StageData GetTutorialStage() => tutorialStage;
@@ -108,6 +116,10 @@ public class GameManager : MonoBehaviour
         // Reset the completed hidden stages for the next loop
         numOfCompletedHiddenLevelLastLoop = numOfCompletedHiddenLevel;
         numOfCompletedHiddenLevel = 0;
+        
+        // Reset the number of wake-ups for the next loop
+        numOfWakeUpsLastLoop = numOfWakeUps;
+        numOfWakeUps = 0;
         
         // Reset the current scene index
         currentLevelIndex = 0;

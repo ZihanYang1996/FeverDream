@@ -43,6 +43,9 @@ public class WakeUpSceneManager : MonoBehaviour
 
         numOfCompletedHiddenLevel = GameManager.Instance.numOfCompletedHiddenLevel;
         Debug.Log($"Completed {numOfCompletedHiddenLevel} hidden levels");
+        
+        // Increment the number of wake-ups
+        GameManager.Instance.IncrementWakeUps();
 
         currentTime = GameManager.Instance.currentTime;
 

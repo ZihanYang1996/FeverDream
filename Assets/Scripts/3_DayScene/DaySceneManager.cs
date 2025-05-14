@@ -29,19 +29,19 @@ public class DaySceneManager : MonoBehaviour
         
         // Choose the Step 1 based on the game state
         List<StoryStep> tempPart1Steps = new List<StoryStep>(); // Before the tutorial
-        if (GameManager.Instance.numOfCompletedLevelLastLoop == 0)
+        if (GameManager.Instance.numOfWakeUpsLastLoop == 0)
         {
             tempPart1Steps.Add(step1[0]);
         }
-        else if (GameManager.Instance.numOfCompletedLevelLastLoop == 1)
+        else if (GameManager.Instance.numOfWakeUpsLastLoop == 1)
         {
             tempPart1Steps.Add(step1[1]);
         }
-        else if (GameManager.Instance.numOfCompletedLevelLastLoop == 2)
+        else if (GameManager.Instance.numOfWakeUpsLastLoop == 2)
         {
             tempPart1Steps.Add(step1[2]);
         }
-        else if (GameManager.Instance.numOfCompletedLevelLastLoop == 3)
+        else if (GameManager.Instance.numOfWakeUpsLastLoop == 3)
         {
             tempPart1Steps.Add(step1[3]);
         }
@@ -55,19 +55,19 @@ public class DaySceneManager : MonoBehaviour
         tempPart1Steps.Add(step2);
         
         // Choose the Step 3 based on the game state
-        if (GameManager.Instance.numOfCompletedLevelLastLoop == 0)
+        if (GameManager.Instance.numOfWakeUpsLastLoop == 0)
         {
             tempPart1Steps.Add(step3[0]);
         }
-        else if (GameManager.Instance.numOfCompletedLevelLastLoop == 1)
+        else if (GameManager.Instance.numOfWakeUpsLastLoop == 1)
         {
             tempPart1Steps.Add(step3[1]);
         }
-        else if (GameManager.Instance.numOfCompletedLevelLastLoop == 2)
+        else if (GameManager.Instance.numOfWakeUpsLastLoop == 2)
         {
             tempPart1Steps.Add(step3[2]);
         }
-        else if (GameManager.Instance.numOfCompletedLevelLastLoop == 3)
+        else if (GameManager.Instance.numOfWakeUpsLastLoop == 3)
         {
             tempPart1Steps.Add(step3[3]);
         }
