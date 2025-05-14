@@ -25,9 +25,23 @@
     {
       "speaker": "A",
       "role": "Character",
+      "portraitStatus": "Confused",
+      "isThought": true,
+      "zh": "瓶子里流出的水竟然多到变成了绿洲。。。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "总算是活过来了！"
+      "zh": "咕咚。。。咕咚。。。咕咚。。。"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "但不管怎么说，总算是活过来了！"
     },
     {
       "speaker": "A",

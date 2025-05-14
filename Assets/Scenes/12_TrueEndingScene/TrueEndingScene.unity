@@ -932,6 +932,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   endingBGM: {fileID: 8300000, guid: 4e261ad15a97c49f181c8759f27ed572, type: 3}
+  strikethroughSound: {fileID: 8300000, guid: 40ba80414b5814bb382aaabff13adf2e, type: 3}
 --- !u!4 &1841812694
 Transform:
   m_ObjectHideFlags: 0
