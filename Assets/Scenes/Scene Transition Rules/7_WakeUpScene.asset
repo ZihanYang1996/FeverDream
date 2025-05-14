@@ -23,4 +23,4 @@ MonoBehaviour:
   - condition: 7AM
     nextSceneName: DayScene
   - condition: TrueEnding
-    nextSceneName: TrueEnding
+    nextSceneName: TrueEndingScene
