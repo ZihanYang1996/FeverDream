@@ -265,16 +265,16 @@ public class StageManager : MonoBehaviour
         // Convert captured mask to pure black and white
         playerMask = BinarizeMask(playerMask);
 
-        // Export captured mask to Assets folder
-        string folderPath = Path.Combine(Application.dataPath, exportFolderName);
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
-
-        string filePath = Path.Combine(folderPath, exportFileName + ".png");
-        File.WriteAllBytes(filePath, playerMask.EncodeToPNG());
-        Debug.Log($"Player mask exported to: {filePath}");
+        // // Export captured mask to Assets folder
+        // string folderPath = Path.Combine(Application.dataPath, exportFolderName);
+        // if (!Directory.Exists(folderPath))
+        // {
+        //     Directory.CreateDirectory(folderPath);
+        // }
+        //
+        // string filePath = Path.Combine(folderPath, exportFileName + ".png");
+        // File.WriteAllBytes(filePath, playerMask.EncodeToPNG());
+        // Debug.Log($"Player mask exported to: {filePath}");
 
         // Cleanup RenderTexture binding
         RenderTexture.active = null;

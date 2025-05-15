@@ -229,6 +229,10 @@ public class TrueEndingSceneManager : MonoBehaviour
         
         // Wait for some time then go back to title scene
         yield return new WaitForSeconds(20f);
+        
+        
+        // Reset the game manager for a new loop
+        GameManager.Instance.ResetForNewLoop();
         // Load the title scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
     }

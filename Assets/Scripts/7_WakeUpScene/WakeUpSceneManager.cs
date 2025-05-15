@@ -43,9 +43,6 @@ public class WakeUpSceneManager : MonoBehaviour
 
         numOfCompletedHiddenLevel = GameManager.Instance.numOfCompletedHiddenLevel;
         Debug.Log($"Completed {numOfCompletedHiddenLevel} hidden levels");
-        
-        // Increment the number of wake-ups
-        GameManager.Instance.IncrementWakeUps();
 
         currentTime = GameManager.Instance.currentTime;
 
@@ -62,18 +59,26 @@ public class WakeUpSceneManager : MonoBehaviour
         
         if (currentTime == "1AM")
         {
+            // Increment the number of wake-ups
+            GameManager.Instance.IncrementWakeUps();
             // Set the background1Am to active
             background1Am.SetActive(true);
             StartCoroutine(PlayAnimationCoroutine((() => { GameManager.Instance.GoToNextScene("1AM"); })));
         }
         else if (currentTime == "3AM")
         {
+            // Increment the number of wake-ups
+            GameManager.Instance.IncrementWakeUps();
             // Set the background3Am to active
             background3Am.SetActive(true);
             StartCoroutine(PlayAnimationCoroutine((() => { GameManager.Instance.GoToNextScene("3AM"); })));
         }
         else if (currentTime == "5AM")
         {
+            // Increment the number of wake-ups
+            GameManager.Instance.IncrementWakeUps();
+            // Set current time to 7AM
+            GameManager.Instance.currentTime = "7AM";
             // Set the background5Am to active
             background5Am.SetActive(true);
             StartCoroutine(PlayAnimationCoroutine((() => { GameManager.Instance.GoToNextScene("5AM"); })));

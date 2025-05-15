@@ -167,12 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -711,6 +711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3332327428737157248, guid: 7d8369a0c2e604931b05994392deae36, type: 3}
+      propertyPath: currentLanguage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4721664735935209725, guid: 7d8369a0c2e604931b05994392deae36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 643.7757
@@ -764,6 +768,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 235288271}
     m_Modifications:
+    - target: {fileID: 2101928792217742551, guid: 6a1497f785c82451dbedee05cbfe2795, type: 3}
+      propertyPath: textChinese
+      value: "\u6309\u56DE\u8F66\u5F00\u59CB\u6E38\u620F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101928792217742551, guid: 6a1497f785c82451dbedee05cbfe2795, type: 3}
+      propertyPath: textEnglish
+      value: Press Enter To Start
+      objectReference: {fileID: 0}
     - target: {fileID: 3817017087511074538, guid: 6a1497f785c82451dbedee05cbfe2795, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

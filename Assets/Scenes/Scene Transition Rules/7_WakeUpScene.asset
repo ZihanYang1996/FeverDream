@@ -19,7 +19,7 @@ MonoBehaviour:
   - condition: 3AM
     nextSceneName: GameLevel3Scene
   - condition: 5AM
-    nextSceneName: DayScene
+    nextSceneName: WakeUpScene
   - condition: 7AM
     nextSceneName: DayScene
   - condition: TrueEnding

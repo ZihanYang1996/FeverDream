@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 669106874845012643}
   - component: {fileID: 2685335891234061895}
   - component: {fileID: -8152836705343196071}
+  - component: {fileID: 2101928792217742551}
   m_Layer: 5
   m_Name: PressEnterText
   m_TagString: Untagged
@@ -149,4 +150,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d317d0ded2f8b4090ba439bc0d0eca21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blinkInterval: 0.5
+  blinkSpeed: 2
+  fadeInDuration: 1
+  minAlpha: 0.2
+  maxAlpha: 1
+--- !u!114 &2101928792217742551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987170508562342363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734dcb15eb4ab475c9c3acb8c2214a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textChinese: 
+  textEnglish: 
