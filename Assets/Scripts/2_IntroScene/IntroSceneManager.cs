@@ -1,10 +1,13 @@
 using System.Collections;
+using DialogueSystem;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class IntroSceneManager : MonoBehaviour
 {
-    [SerializeField] private TypingEffect typingEffect;
+    [SerializeField] private GameObject textZH;
+    [SerializeField] private GameObject textEN;
     [SerializeField] private GameObject pressEnterText;
     [SerializeField] private UICurtain uiCurtain;
 
@@ -13,9 +16,19 @@ public class IntroSceneManager : MonoBehaviour
     private void Start()
     {
         pressEnterText.SetActive(false);
+        if (GameManager.Instance.currentLanguage == Language.ZH)
+        {
+            textZH.SetActive(true);
+            textZH.GetComponent<TypingEffect>().OnTypingComplete += OnTypingFinished;
+            textEN.SetActive(false);
+        }
+        else
+        {
+            textZH.SetActive(false);
+            textEN.SetActive(true);
+            textEN.GetComponent<TypingEffect>().OnTypingComplete += OnTypingFinished;
+        }
 
-        // Watch for the typing effect to finish
-        typingEffect.OnTypingComplete += OnTypingFinished;
     }
 
     private void Update()

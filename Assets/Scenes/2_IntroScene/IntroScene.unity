@@ -761,7 +761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ccba92c671145d1944ffea761cc328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingEffect: {fileID: 1525871626}
+  textZH: {fileID: 1478465786}
+  textEN: {fileID: 1525871621}
   pressEnterText: {fileID: 2120685413}
   uiCurtain: {fileID: 1543668915}
 --- !u!114 &1543668915
