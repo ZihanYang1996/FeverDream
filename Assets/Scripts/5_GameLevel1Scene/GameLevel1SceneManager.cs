@@ -253,12 +253,6 @@ public class GameLevel1SceneManager : MonoBehaviour
         bool isCharacterFadeFinished = false;
         characterController.FadeToAlpha(1.0f, fadeDuration, () => { isCharacterFadeFinished = true; });
 
-        // Wait until both movements are finished for the boat and the fade in is finished for the character
-        yield return new WaitUntil(() => isBoatMovementFinished && isBoatScaleFinished && isCharacterFadeFinished);
-
-        // Wait a short time before starting the next dialogue
-        yield return new WaitForSeconds(2.0f);
-
         // Play Dialogue 3
         isDialogueFinished = false;
         var dialogueAsset3 = DialogueLoader.LoadFromResources("Dialogue/" + dialogueFileName3);
@@ -270,6 +264,13 @@ public class GameLevel1SceneManager : MonoBehaviour
 
         dialogueManager.PlayDialogue(dialogueAsset3, () => { isDialogueFinished = true; });
         yield return new WaitUntil(() => isDialogueFinished);
+
+        
+        // Wait until both movements are finished for the boat and the fade in is finished for the character
+        yield return new WaitUntil(() => isBoatMovementFinished && isBoatScaleFinished && isCharacterFadeFinished);
+        
+        // Wait a short time before starting the next dialogue
+        yield return new WaitForSeconds(1.0f);
 
         // Sink the boat
         // Set the alpha of the large boat to 0
