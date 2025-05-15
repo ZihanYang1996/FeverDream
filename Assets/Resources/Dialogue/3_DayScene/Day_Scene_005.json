@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "得赶紧睡觉了，晚安啦。。。"
+      "zh": "得赶紧睡觉了，晚安啦。。。",
+      "en": "I really need to sleep, goodnight..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "呼噜。。。呼噜。。。呼噜。。。"
+      "zh": "呼噜。。。呼噜。。。呼噜。。。",
+      "en": "Snore... Snore... Snore..."
     }
   ]
 }

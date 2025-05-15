@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "总算到家了。"
+      "zh": "总算到家了。",
+      "en": "Finally home."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "今晚吃什么呢？"
+      "zh": "今晚吃什么呢？",
+      "en": "What should I have for dinner tonight?"
     }
   ]
 }

@@ -6,35 +6,40 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "今天的风浪好大啊"
+      "zh": "今天的风浪好大啊",
+      "en": "The waves are so strong today."
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "咔嚓。。。咔嚓。。。咔嚓。。。"
+      "zh": "咔嚓。。。咔嚓。。。咔嚓。。。",
+      "en": "Creak... Creak... Creak..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "怎么满地是水啊？哪里漏水了吗？"
+      "zh": "怎么满地是水啊？哪里漏水了吗？",
+      "en": "Why is there water all over the floor? Is there a leak somewhere?"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "真的漏水了！得快点把洞堵上。"
+      "zh": "真的漏水了！得快点把洞堵上。",
+      "en": "There really is a leak! I need to block the hole fast."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "工具，工具在哪？"
+      "zh": "工具，工具在哪？",
+      "en": "Where are the tools?"
     }
   ]
 }

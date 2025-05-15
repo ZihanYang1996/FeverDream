@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "让我看看啊。。。"
+      "zh": "让我看看啊。。。",
+      "en": "Let me take a look..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "是这个吗？"
+      "zh": "是这个吗？",
+      "en": "Is this the one?"
     }
   ]
 }

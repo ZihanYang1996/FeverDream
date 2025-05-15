@@ -6,21 +6,24 @@
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "昨晚又没怎么睡，今天开会可千万别睡着了！"
+      "zh": "昨晚又没怎么睡，今天开会可千万别睡着了！",
+      "en": "Didn’t sleep much last night, I better not fall asleep during the meeting today!"
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     }
   ]
 }

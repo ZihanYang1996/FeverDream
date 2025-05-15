@@ -154,7 +154,8 @@ public class StageManager : MonoBehaviour
         currentStage = stage;
         // set outline sprite
         workspaceOutlineImage.sprite = stage.outlineSprite;
-        workspaceOutlineImage.color = Color.white;
+        // Make if half transparent
+        workspaceOutlineImage.color = new Color(1f, 1f, 1f, 0.5f);
         // If completed and answerSprite is available, show answerSprite
         if (GameManager.Instance.HasCompletedStage(stage.id) && stage.solutionSprite != null)
         {

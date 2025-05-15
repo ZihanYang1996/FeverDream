@@ -6,21 +6,24 @@
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "昨晚还是没睡好，今天得多喝两杯咖啡了！"
+      "zh": "昨晚还是没睡好，今天得多喝两杯咖啡了！",
+      "en": "Didn’t sleep well again last night, I’ll need to drink a couple more cups of coffee today!"
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     }
   ]
 }

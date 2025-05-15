@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "这下可怎么办啊。。。"
+      "zh": "这下可怎么办啊。。。",
+      "en": "What should I do now..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "奇怪？！"
+      "zh": "奇怪？！",
+      "en": "Strange?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "这是什么？"
+      "zh": "这是什么？",
+      "en": "What is this?"
     }
   ]
 }

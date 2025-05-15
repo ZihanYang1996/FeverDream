@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "小A啊，我看你今天，喝了快十几杯咖啡了，是不是最近工作量太大了啊。要是忙不过来的话，一定和我说啊。"
+      "zh": "小A啊，我看你今天，喝了快十几杯咖啡了，是不是最近工作量太大了啊。要是忙不过来的话，一定和我说啊。",
+      "en": "Hey Amalgamia, I see you've had almost ten cups of coffee today. Has the workload been too heavy lately? If you’re overwhelmed, just let me know."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "还好，还好。就是最近总是半夜做梦会醒，所以总是睡不够。喝点咖啡就好了。"
+      "zh": "还好，还好。就是最近总是半夜做梦会醒，所以总是睡不够。喝点咖啡就好了。",
+      "en": "Not really, I'm doing ok. It’s just that I kept waking up in the middle of the night from dreams, so I couldn't get enough sleep. Coffee helps."
     },
     {
       "speaker": "Winston",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "别给自己太大压力，这样吧，下周那个报表你就别管了，我来想办法。可不能让你把公司的咖啡都喝光了啊，哈哈哈哈！"
+      "zh": "别给自己太大压力，这样吧，下周那个报表你就别管了，我来想办法。可不能让你把公司的咖啡都喝光了啊，哈哈哈哈！",
+      "en": "Don’t put too much pressure on yourself. Here’s the deal — don’t worry about the report next week, I’ll figure something out. We can’t have you drink up all the company’s coffee, haha!"
     }
   ]
 }

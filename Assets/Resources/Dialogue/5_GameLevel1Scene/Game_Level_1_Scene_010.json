@@ -6,7 +6,8 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "啊？你这是在干嘛？"
+      "zh": "啊？你这是在干嘛？",
+      "en": "Huh? What are you doing?"
     }
   ]
 }

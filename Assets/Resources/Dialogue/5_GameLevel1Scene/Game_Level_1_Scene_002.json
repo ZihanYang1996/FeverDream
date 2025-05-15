@@ -6,35 +6,40 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "不行了，水挡根本挡不住啊！"
+      "zh": "不行了，水挡根本挡不住啊！",
+      "en": "It’s no use, the water’s flooding in!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "救命！救。。。"
+      "zh": "救命！救。。。",
+      "en": "Help! Help..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "咕噜。。。咕噜。。。咕噜。。。"
+      "zh": "咕噜。。。咕噜。。。咕噜。。。",
+      "en": "Gurgle... Gurgle... Gurgle..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "谁来救。。。"
+      "zh": "谁来救。。。",
+      "en": "Someone help..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "咕噜。。。咕噜。。。咕噜。。。"
+      "zh": "咕噜。。。咕噜。。。咕噜。。。",
+      "en": "Gurgle... Gurgle... Gurgle..."
     }
   ]
 }

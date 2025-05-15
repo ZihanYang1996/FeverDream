@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "到处都是树。。。还全都长得一个样。。。"
+      "zh": "到处都是树。。。还全都长得一个样。。。",
+      "en": "There are trees everywhere... and they all look the same..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "彻底迷路了。。。"
+      "zh": "彻底迷路了。。。",
+      "en": "I’m completely lost..."
     }
   ]
 }

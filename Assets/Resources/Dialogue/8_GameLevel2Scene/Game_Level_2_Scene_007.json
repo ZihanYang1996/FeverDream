@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "嗯？！"
+      "zh": "嗯？！",
+      "en": "Huh?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "这把剑。。。"
+      "zh": "这把剑。。。",
+      "en": "This sword..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "难道叫我拿来砍树吗？"
+      "zh": "难道叫我拿来砍树吗？",
+      "en": "Does it want me to use it to cut down trees?"
     }
   ]
 }

@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "得救啦！"
+      "zh": "得救啦！",
+      "en": "I'm saved!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "靠你了，带我离开这里吧！"
+      "zh": "靠你了，带我离开这里吧！",
+      "en": "It’s up to you, take me out of here!"
     }
   ]
 }

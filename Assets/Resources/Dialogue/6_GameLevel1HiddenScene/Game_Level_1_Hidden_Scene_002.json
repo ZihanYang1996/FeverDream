@@ -6,42 +6,48 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "难道说。。。刚才那只猫把海水喝光了？！"
+      "zh": "难道说。。。刚才那只猫把海水喝光了？！",
+      "en": "Could it be... that cat drank all the seawater?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "嗯。。。"
+      "zh": "嗯。。。",
+      "en": "Hmm..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "早知道尝一口海水好了，说不定是甜的呢。"
+      "zh": "早知道尝一口海水好了，说不定是甜的呢。",
+      "en": "I should have tried the seawater, maybe it’s sweet."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "不过话说回来。。。"
+      "zh": "不过话说回来。。。",
+      "en": "But then again..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "虽然不至于淹死了，但是。。。"
+      "zh": "虽然不至于淹死了，但是。。。",
+      "en": "I might not drown, but..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "我要怎么离开这里啊！！！"
+      "zh": "我要怎么离开这里啊！！！",
+      "en": "How do I get out of here!!!"
     }
   ]
 }

@@ -6,21 +6,24 @@
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "怎么还是半夜会醒啊！晕晕晕。。。"
+      "zh": "怎么还是半夜会醒啊！晕晕晕。。。",
+      "en": "Why do I still wake up in the middle of the night! AH so dizzy..."
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     }
   ]
 }

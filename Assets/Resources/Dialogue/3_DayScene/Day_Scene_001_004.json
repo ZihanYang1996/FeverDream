@@ -6,21 +6,24 @@
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "一觉睡到天亮！神清气爽！！！"
+      "zh": "一觉睡到天亮！神清气爽！！！",
+      "en": "A full night’s sleep until dawn! Feeling refreshed!!!"
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     }
   ]
 }

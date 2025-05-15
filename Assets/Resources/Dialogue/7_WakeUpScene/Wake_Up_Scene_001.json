@@ -6,28 +6,32 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "啊？！"
+      "zh": "啊？！",
+      "en": "Huh?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "吓醒了。。。"
+      "zh": "吓醒了。。。",
+      "en": "I was scared awake..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "我才刚睡一会儿啊。。。"
+      "zh": "我才刚睡一会儿啊。。。",
+      "en": "I just fell asleep..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "烦死了，接着睡。。。"
+      "zh": "烦死了，接着睡。。。",
+      "en": "Ugh, I’ll just sleep some more..."
     }
   ]
 }

@@ -6,28 +6,32 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "怎么感觉木板要撑不住了！"
+      "zh": "怎么感觉木板要撑不住了！",
+      "en": "Why does it feel like the wood is about to break?"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "不。。。。。。"
+      "zh": "不。。。。。。",
+      "en": "No..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "咕噜。。。咕噜。。。咕噜。。。"
+      "zh": "咕噜。。。咕噜。。。咕噜。。。",
+      "en": "Gurgle... Gurgle... Gurgle..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "不要啊。。。"
+      "zh": "不要啊。。。",
+      "en": "Noooo..."
     }
   ]
 }

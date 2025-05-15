@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "走。。。走出来了。。。"
+      "zh": "走。。。走出来了。。。",
+      "en": "I... I made it out..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "好厉害的剑！"
+      "zh": "好厉害的剑！",
+      "en": "What a powerful sword!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "可。。。前面那是！！！"
+      "zh": "可。。。前面那是！！！",
+      "en": "But... what’s that ahead!!!"
     }
   ]
 }

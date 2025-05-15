@@ -6,28 +6,32 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "虽然好饿，但暂时不会渴死了。。。"
+      "zh": "虽然好饿，但暂时不会渴死了。。。",
+      "en": "I'm really hungry, but at least I won’t die of thirst..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "可这么大的沙漠，要怎么能离开啊。。。"
+      "zh": "可这么大的沙漠，要怎么能离开啊。。。",
+      "en": "But with such a big desert, how am I going to leave..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "......"
+      "zh": "......",
+      "en": "..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "或许。。。"
+      "zh": "或许。。。",
+      "en": "Maybe..."
     }
   ]
 }

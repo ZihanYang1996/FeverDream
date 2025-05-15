@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "嗯？！"
+      "zh": "嗯？！",
+      "en": "Huh?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "下面那是什么？"
+      "zh": "下面那是什么？",
+      "en": "What’s that below?"
     }
   ]
 }

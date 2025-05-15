@@ -6,28 +6,40 @@
       "role": "Narrator",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "醒醒！！！"
+      "zh": "醒醒！！！醒醒！！！上课了！！！",
+      "en": "Wake up!!! Wake up!!! Class is starting!!!"
     },
     {
       "speaker": "",
       "role": "Narrator",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "喂！醒醒！！！"
+      "zh": "喂！！！快醒醒！！！老师来了！！！",
+      "en": "Hey!!! Wake up!!! The teacher's coming!!!"
     },
     {
-      "speaker": "",
-      "role": "Narrator",
-      "portraitStatus": null,
-      "isThought": false,
-      "zh": "打铃了！上课了！！！"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "......",
+      "en": "......"
     },
     {
-      "speaker": "",
-      "role": "Narrator",
-      "portraitStatus": null,
-      "isThought": false,
-      "zh": "老师进来了！！！"
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "......",
+      "en": "......"
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": true,
+      "zh": "竟然睡了一整个午休。。。。。",
+      "en": "I actually slept through the entire lunch break..."
     }
   ]
 }

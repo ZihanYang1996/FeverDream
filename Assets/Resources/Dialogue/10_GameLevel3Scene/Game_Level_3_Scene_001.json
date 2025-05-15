@@ -6,28 +6,32 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "好热。。。"
+      "zh": "好热。。。",
+      "en": "It's so hot..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "好渴。。。"
+      "zh": "好渴。。。",
+      "en": "I'm so thirsty..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "还有多久才到头啊！"
+      "zh": "还有多久才到头啊！",
+      "en": "How much longer until I reach the end?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "快坚持不住了。。。"
+      "zh": "快坚持不住了。。。",
+      "en": "I can’t hold on much longer..."
     }
   ]
 }

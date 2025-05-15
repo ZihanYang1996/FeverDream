@@ -6,21 +6,24 @@
       "role": "Narrator",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "无事发生————————————"
+      "zh": "无事发生————————————",
+      "en": "Nothing happened ————————"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "失败了。。。。。。"
+      "zh": "失败了。。。。。。",
+      "en": "I failed..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "难道真的出不去了吗。。。。。"
+      "zh": "难道真的出不去了吗。。。。。",
+      "en": "Is it really impossible to leave...?"
     }
   ]
 }

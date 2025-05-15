@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "这节课是学校组织的职业规划辅导。"
+      "zh": "这节课是学校组织的职业规划辅导。",
+      "en": "This class is part of the school’s career planning program."
     },
     {
       "speaker": "Teacher",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "让你们写的未来职业规划，都写好了吗？"
+      "zh": "让你们写的未来职业规划，都写好了吗？",
+      "en": "Have you all finished writing your career plans?"
     },
     {
       "speaker": "Teacher",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "第一批参加辅导的同学，拿着写好的东西到门口集合。"
+      "zh": "第一批参加辅导的同学，拿着写好的东西到门口集合。",
+      "en": "The first group going for counseling, bring your plans and gather at the door."
     }
   ]
 }

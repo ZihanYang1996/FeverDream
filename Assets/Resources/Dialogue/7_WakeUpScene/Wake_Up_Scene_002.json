@@ -6,28 +6,32 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "啊？！"
+      "zh": "啊？！",
+      "en": "Huh?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": true,
-      "zh": "又醒了。。。"
+      "zh": "又醒了。。。",
+      "en": "Woke up again..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "这才几点啊。。。"
+      "zh": "这才几点啊。。。",
+      "en": "What time is it..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "嗯。。。赶紧再睡会儿。。。"
+      "zh": "嗯。。。赶紧再睡会儿。。。",
+      "en": "Hmm... I should sleep a bit more..."
     }
   ]
 }

@@ -6,77 +6,88 @@
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "终于下班了，又是忙碌的一天。"
+      "zh": "终于下班了，又是忙碌的一天。",
+      "en": "Finally off work, another busy day."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "可是。。。"
+      "zh": "可是。。。",
+      "en": "But..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "尽管做着一份大家都说不错的工作。"
+      "zh": "尽管做着一份大家都说不错的工作。",
+      "en": "Even though I’m doing a job everyone says is good."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "尽管周围有不少朋友。"
+      "zh": "尽管周围有不少朋友。",
+      "en": "Even though I have plenty of friends around."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "尽管生活也没什么压力。"
+      "zh": "尽管生活也没什么压力。",
+      "en": "Even though there’s no real pressure in life."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "尽管。。。尽管。。。"
+      "zh": "尽管。。。尽管。。。",
+      "en": "Even though... Even though..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "可为什么总感觉少些什么。。。"
+      "zh": "可为什么总感觉少些什么。。。",
+      "en": "But why do I always feel like something is missing..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "总感觉，此刻的生活，此刻这样循规蹈矩的生活，并不是我想要的。。。"
+      "zh": "总感觉，此刻的生活，此刻这样循规蹈矩的生活，并不是我想要的。。。",
+      "en": "I just feel like this life, this routine life, isn’t what I wanted..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "。。。。。。"
+      "zh": "。。。。。。",
+      "en": "........"
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。"
+      "zh": "轰隆隆。。。轰隆隆。。。轰隆隆。。。",
+      "en": "Click-clack... Click-clack... Click-clack..."
     }
   ]
 }

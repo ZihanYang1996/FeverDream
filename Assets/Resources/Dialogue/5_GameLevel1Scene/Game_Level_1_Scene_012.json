@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "等等！！！"
+      "zh": "等等！！！",
+      "en": "Wait!!!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "你别！！！"
+      "zh": "你别！！！",
+      "en": "Don’t!!!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "快停下啊！！！"
+      "zh": "快停下啊！！！",
+      "en": "Stop it!!!"
     }
   ]
 }

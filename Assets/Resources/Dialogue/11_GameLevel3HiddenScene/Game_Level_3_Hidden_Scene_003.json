@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "树？"
+      "zh": "树？",
+      "en": "A tree?"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "是棵。。。椰子树？！"
+      "zh": "是棵。。。椰子树？！",
+      "en": "Is that... a coconut tree?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "让我看看能不能把椰子弄下来。"
+      "zh": "让我看看能不能把椰子弄下来。",
+      "en": "Let me see if I can get the coconut down."
     }
   ]
 }

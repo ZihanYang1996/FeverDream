@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "啊？！"
+      "zh": "啊？！",
+      "en": "Huh?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "竟然真的变成船了。。。"
+      "zh": "竟然真的变成船了。。。",
+      "en": "It really turned into a boat..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "不管了，得快点爬上去！"
+      "zh": "不管了，得快点爬上去！",
+      "en": "No time to waste, I need to climb aboard quickly!"
     }
   ]
 }

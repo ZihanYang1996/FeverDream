@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "它在？？？"
+      "zh": "它在？？？",
+      "en": "What’s it doing???"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": true,
-      "zh": "喝水？！！！"
+      "zh": "喝水？！！！",
+      "en": "Drinking water?!!!"
     }
   ]
 }

@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "要我跟进去吗？"
+      "zh": "要我跟进去吗？",
+      "en": "Should I go inside?"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "来都来了，那就进去看看吧。"
+      "zh": "来都来了，那就进去看看吧。",
+      "en": "I’m here already, let’s go inside and see."
     }
   ]
 }

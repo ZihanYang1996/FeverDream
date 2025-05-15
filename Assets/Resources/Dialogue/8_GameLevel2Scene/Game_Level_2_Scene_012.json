@@ -6,7 +6,8 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "难道你能带我离开这里？"
+      "zh": "难道你能带我离开这里？",
+      "en": "Can you take me out of here?"
     }
   ]
 }

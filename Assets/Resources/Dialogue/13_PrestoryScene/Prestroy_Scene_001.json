@@ -6,21 +6,24 @@
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。"
+      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。",
+      "en": "Ring ring... Ring ring... Ring ring..."
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。"
+      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。",
+      "en": "Ring ring... Ring ring... Ring ring..."
     },
     {
       "speaker": "",
       "role": "SoundEffect",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。"
+      "zh": "叮铃铃。。。叮铃铃。。。叮铃铃。。。",
+      "en": "Ring ring... Ring ring... Ring ring..."
     }
   ]
 }

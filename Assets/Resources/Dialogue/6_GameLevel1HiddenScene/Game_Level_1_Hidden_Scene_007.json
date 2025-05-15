@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "有反应！"
+      "zh": "有反应！",
+      "en": "It’s reacting!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "成功咯！！！"
+      "zh": "成功咯！！！",
+      "en": "It worked!!!"
     }
   ]
 }

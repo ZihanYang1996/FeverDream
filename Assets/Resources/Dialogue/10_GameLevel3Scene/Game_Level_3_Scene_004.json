@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "水！"
+      "zh": "水！",
+      "en": "Water!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "太好了，至少暂时不会渴死了！"
+      "zh": "太好了，至少暂时不会渴死了！",
+      "en": "Thank goodness, at least I won't die of thirst for now!"
     }
   ]
 }

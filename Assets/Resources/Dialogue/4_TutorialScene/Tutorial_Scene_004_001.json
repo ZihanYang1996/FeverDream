@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "拼出来了！"
+      "zh": "拼出来了！",
+      "en": "Voila!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": true,
-      "zh": "不愧是我！这么多年了都还记得怎么拼！"
+      "zh": "不愧是我！这么多年了都还记得怎么拼！",
+      "en": "It's gotta be me! I still remember how to do it after all these years!"
     }
   ]
 }

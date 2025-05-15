@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "哇，外面也太恐怖！！！"
+      "zh": "哇，外面也太恐怖！！！",
+      "en": "Wow, it’s so terrifying outside!!!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "好在躲了进来，不然怕是要被活埋了。。。"
+      "zh": "好在躲了进来，不然怕是要被活埋了。。。",
+      "en": "I’m glad I made it inside, or I would have been buried alive..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "得快些把洞口堵上！"
+      "zh": "得快些把洞口堵上！",
+      "en": "I need to seal the opening quickly!"
     }
   ]
 }

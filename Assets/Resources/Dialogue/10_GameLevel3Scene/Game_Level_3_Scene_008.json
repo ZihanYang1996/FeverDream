@@ -6,21 +6,24 @@
       "role": "Narrator",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "无事发生————————————"
+      "zh": "无事发生————————————",
+      "en": "Nothing happened ————————"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "不。。。不行了。。。"
+      "zh": "不。。。不行了。。。",
+      "en": "No... I can't take it..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "到此为止了吗。。。。。。"
+      "zh": "到此为止了吗。。。。。。",
+      "en": "Is this the end...?"
     }
   ]
 }

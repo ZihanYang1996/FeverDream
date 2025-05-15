@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "哎呀，不应该啊。。。"
+      "zh": "哎呀，不应该啊。。。",
+      "en": "Oh no, this shouldn’t be that hard..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "怎么会拼不出来呢，一定是我饿了。。。不如今晚就吃鱼好了！"
+      "zh": "怎么会拼不出来呢，一定是我饿了。。。不如今晚就吃鱼好了！",
+      "en": "How come I couldn't figure it out? I must be hungry... Maybe I should have fish for dinner tonight!"
     }
   ]
 }

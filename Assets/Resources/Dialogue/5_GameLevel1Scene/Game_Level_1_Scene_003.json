@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "。。。。。。"
+      "zh": "。。。。。。",
+      "en": "...."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "还好，还好抓到一块木板。。。"
+      "zh": "还好，还好抓到一块木板。。。",
+      "en": "Fortunately, I grabbed a piece of wood..."
     }
   ]
 }

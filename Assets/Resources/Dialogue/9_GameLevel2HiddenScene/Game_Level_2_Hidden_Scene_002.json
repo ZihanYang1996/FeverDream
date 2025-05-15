@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "安全了，安全了。"
+      "zh": "安全了，安全了。",
+      "en": "I’m safe now, I’m safe."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "真是可怕。"
+      "zh": "真是可怕。",
+      "en": "That was really scary."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "不知道还要在这里等多久呢。。。"
+      "zh": "不知道还要在这里等多久呢。。。",
+      "en": "I wonder how much longer I’ll have to wait here..."
     }
   ]
 }

@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "不对。。。没有反应。。。"
+      "zh": "不对。。。没有反应。。。",
+      "en": "No... no reaction..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "难道是这个？"
+      "zh": "难道是这个？",
+      "en": "Could it be this one?"
     }
   ]
 }

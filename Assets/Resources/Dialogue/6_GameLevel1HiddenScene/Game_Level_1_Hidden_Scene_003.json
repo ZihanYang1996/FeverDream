@@ -6,21 +6,24 @@
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "嗯？！"
+      "zh": "嗯？！",
+      "en": "Huh?!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "七巧板又有反应了！"
+      "zh": "七巧板又有反应了！",
+      "en": "The tangram is reacting again!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "话说我为什么会带着七巧板啊！"
+      "zh": "话说我为什么会带着七巧板啊！",
+      "en": "Why did I even bring the tangram with me?"
     }
   ]
 }

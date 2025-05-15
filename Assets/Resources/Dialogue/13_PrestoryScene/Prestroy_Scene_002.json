@@ -6,98 +6,88 @@
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "喂？"
+      "zh": "喂？",
+      "en": "Hey mom"
     },
     {
       "speaker": "Mom",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "在干嘛呢？"
+      "zh": "在干嘛呢？",
+      "en": "What are you up to?"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "刚洗完澡，在擦头。"
+      "zh": "刚洗完澡，在擦头。咋了？",
+      "en": "Just got out of shower ane drying my hair now. What’s up?"
     },
     {
       "speaker": "Mom",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "还不睡！还不睡！你怎么最近总是后半夜还在发朋友圈啊？有心事？"
-    },
-    {
-      "speaker": "A",
-      "role": "Character",
-      "portraitStatus": "Shocked",
-      "isThought": true,
-      "zh": "完蛋了，忘记屏蔽她了。。。"
-    },
-    {
-      "speaker": "A",
-      "role": "Character",
-      "portraitStatus": "Normal",
-      "isThought": false,
-      "zh": "没啥，就是最近有些失眠，估计是工作上的事儿太多了吧。忙完这段估计就好了。"
-    },
-    {
-      "speaker": "Mom",
-      "role": "Character",
-      "portraitStatus": "Normal",
-      "isThought": false,
-      "zh": "好吧，多注意休息啊，睡不着就数羊吧！就是想告诉你，我这两天打算给你寄个包裹，都是你爱吃的，还有你说上次说想吃的绿豆糕。"
-    },
-    {
-      "speaker": "A",
-      "role": "Character",
-      "portraitStatus": "Normal",
-      "isThought": false,
-      "zh": "好啊！"
-    },
-    {
-      "speaker": "Mom",
-      "role": "Character",
-      "portraitStatus": "Normal",
-      "isThought": false,
-      "zh": "哦对了，最近和你爸在收拾老房子，翻出来一堆你以前那些零七八碎，也不知道你还想不想留着。"
-    },
-    {
-      "speaker": "A",
-      "role": "Character",
-      "portraitStatus": "Confused",
-      "isThought": false,
-      "zh": "都有什么啊？要不你们看着办吧。"
-    },
-    {
-      "speaker": "Mom",
-      "role": "Character",
-      "portraitStatus": "Normal",
-      "isThought": false,
-      "zh": "那我可该扔就扔了啊。别到时候又怪我没给你留着。"
+      "zh": "没啥事，就和你说一声，我做了些你爱吃的东西，过两天给你寄过去。",
+      "en": "Nothing much, just wanted to tell you that I made some of your favorite foods. I’ll mail it to you in a couple of days."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "好。。。"
+      "zh": "哦？好呀！那你顺便寄一些小咪爱吃的猫条吧，刚好快吃完了。",
+      "en": "Oh? Sounds great! Could you also send some of the cat treats that Mulberry likes? The pack from last time is almost finished."
     },
     {
       "speaker": "Mom",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "早点睡吧！记得下次回家的时候给小咪带些新玩具，旧的那些都让她玩坏了。"
+      "zh": "行。另外我和你爸最近在收拾老房子，有好些你以前的东西，你要不要看看有没有什么想留着的？",
+      "en": "Sure. Also, your dad and I have been cleaning up the old house. There are quite a few of your old things. Do you want to check if there’s anything you want to keep?"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "好。。。爱你爱你，拜拜拜拜。。。"
+      "zh": "嗯。。。你们看着办吧，估计也没啥贵重的。",
+      "en": "Hmm... You two can decide. I doubt there’s anything valuable."
+    },
+    {
+      "speaker": "Mom",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "那好。对了，失眠最近有好转吗？看你最近发的朋友圈，都无精打采的，要我说还是去看个医生吧。",
+      "en": "Alright. By the way, has your insomnia gotten any better? I saw your WeChat posts lately and you look so drained. I really think you should see a doctor."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "没事儿，没事儿，就是最近事情多。我这不是进了公司有几年了吗，也到了该晋升的时候了，所以有挺多事情要考虑呢。",
+      "en": "It’s nothing, really. Just a lot going on. I’ve been with the company for a few years now, and it’s about time for a promotion, so there’s a lot to think about."
+    },
+    {
+      "speaker": "Mom",
+      "role": "Character",
+      "portraitStatus": "Normal",
+      "isThought": false,
+      "zh": "那你照顾好自己。记得提前抢过年回家的机票，别再像去年一样差点回不来。",
+      "en": "Take care of yourself then. Don’t forget to book your ticket home for the New Year early. Don’t end up almost being stuck and not making it back like last year."
+    },
+    {
+      "speaker": "A",
+      "role": "Character",
+      "portraitStatus": "Dizzy",
+      "isThought": false,
+      "zh": "好嘞！晚安！",
+      "en": "Will do! Good night!"
     }
   ]
 }

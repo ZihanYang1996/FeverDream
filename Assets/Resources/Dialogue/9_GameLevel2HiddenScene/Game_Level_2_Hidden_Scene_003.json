@@ -6,21 +6,24 @@
       "role": "Narrator",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "一段时间之后————————————"
+      "zh": "一段时间之后————————————",
+      "en": "Some time later ————————"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "外面安静下来了。"
+      "zh": "外面安静下来了。",
+      "en": "It’s quiet outside now."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "出去看看吧！"
+      "zh": "出去看看吧！",
+      "en": "Let’s go outside and check!"
     }
   ]
 }

@@ -6,49 +6,56 @@
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "咕咚。。。咕咚。。。咕咚。。。"
+      "zh": "咕咚。。。咕咚。。。咕咚。。。",
+      "en": "Gulp... gulp... gulp..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "哇，水竟然是甜的！"
+      "zh": "哇，水竟然是甜的！",
+      "en": "Wow, the water is sweet!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "咕咚。。。咕咚。。。咕咚。。。"
+      "zh": "咕咚。。。咕咚。。。咕咚。。。",
+      "en": "Gulp... gulp... gulp..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": true,
-      "zh": "瓶子里流出的水竟然多到变成了绿洲。。。"
+      "zh": "瓶子里流出的水竟然多到变成了绿洲。。。",
+      "en": "The water flowing out of the bottle has turned into an oasis..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "咕咚。。。咕咚。。。咕咚。。。"
+      "zh": "咕咚。。。咕咚。。。咕咚。。。",
+      "en": "Gulp... gulp... gulp..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "但不管怎么说，总算是活过来了！"
+      "zh": "但不管怎么说，总算是活过来了！",
+      "en": "But anyway, I’ve survived!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "咕咚。。。咕咚。。。咕咚。。。"
+      "zh": "咕咚。。。咕咚。。。咕咚。。。",
+      "en": "Gulp... gulp... gulp..."
     }
   ]
 }

@@ -6,49 +6,56 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "哇，怎么寄来这么多东西！"
+      "zh": "哇，怎么寄来这么多东西！",
+      "en": "Wow, so many things in the parcel!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "好多吃的啊，看来最近都不用去超市了！"
+      "zh": "好多吃的啊，看来最近都不用去超市了！",
+      "en": "So much food! Looks like I won’t need to go to the supermarket for a while!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "让我看看。。。。。。"
+      "zh": "让我看看。。。。。。",
+      "en": "Let me see..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "诶？这是什么？"
+      "zh": "诶？这是什么？",
+      "en": "Huh? What’s this?"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "她怎么把七巧板寄过来了。。。在家里随便找个地方放就好了嘛！"
+      "zh": "她怎么把七巧板寄过来了。。。在家里随便找个地方放就好了嘛！",
+      "en": "Why did she send me a tangram... She could have just left it anywhere at home!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "不过，确实好久没见过它了。我记得小时候会拼好多图案呢！"
+      "zh": "不过，确实好久没见过它了。我记得小时候会拼好多图案呢！",
+      "en": "But indeed I haven’t seen a tangram in a while. I remember making so many patterns when I was a kid!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Normal",
       "isThought": false,
-      "zh": "要不拼个什么试试？"
+      "zh": "要不拼个什么试试？",
+      "en": "Maybe I should try making something with it?"
     }
   ]
 }

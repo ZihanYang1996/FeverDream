@@ -6,14 +6,16 @@
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "对了！"
+      "zh": "对了！",
+      "en": "That’s it!"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Shocked",
       "isThought": false,
-      "zh": "试试七巧板吧！"
+      "zh": "试试七巧板吧！",
+      "en": "Let’s try the tangram!"
     }
   ]
 }

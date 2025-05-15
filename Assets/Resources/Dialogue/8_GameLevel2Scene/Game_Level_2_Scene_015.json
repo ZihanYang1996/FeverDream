@@ -6,21 +6,24 @@
       "role": "Narrator",
       "portraitStatus": null,
       "isThought": false,
-      "zh": "无事发生————————————"
+      "zh": "无事发生————————————",
+      "en": "Nothing happened ————————"
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Confused",
       "isThought": false,
-      "zh": "竟然什么都没出现。。。"
+      "zh": "竟然什么都没出现。。。",
+      "en": "Nothing appeared after all..."
     },
     {
       "speaker": "A",
       "role": "Character",
       "portraitStatus": "Dizzy",
       "isThought": false,
-      "zh": "这下要怎么出去啊。。。"
+      "zh": "这下要怎么出去啊。。。",
+      "en": "How am I supposed to get out now..."
     }
   ]
 }
