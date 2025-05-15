@@ -506,7 +506,7 @@ MonoBehaviour:
   exportFolderName: Temp
   exportFileName: playerMask
   normalizationResolution: 256
-  countdownDuration: 90
+  countdownDuration: 120
   generatedTangramFlickerDuration: 2
   generatedTangramFlickerCount: 2
   countdownText: {fileID: 634579253}

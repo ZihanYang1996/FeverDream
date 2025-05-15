@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public Language currentLanguage = Language.ZH;
     
     [Header("Stage Management")]
+    [SerializeField] public float puzzleCountdownTimer = 120f; // Countdown time for the puzzle
+
+    [SerializeField] private float minPuzzleCountdownTime = 90f;
+    [SerializeField] private float maxPuzzleCountdownTime = 300f;
     [SerializeField] private StageData tutorialStage;
     [SerializeField] private List<StageData> mainStages;
     [SerializeField] public int blackScreenAlphaForPuzzle = 245; // Alpha value for the black screen when playing the puzzle
@@ -46,6 +50,18 @@ public class GameManager : MonoBehaviour
     public string currentTime = "1AM"; // Current time in the game, used by Wake Up Scene
     
     [SerializeField] public Vector3 defaultStartPuzzelButtonPosition = new Vector3(750f, -350f, 0f); // Start puzzle button position in the scene
+    
+    public void UpdatePuzzleCountdownTime(bool isIncrease)
+    {
+        if (isIncrease)
+        {
+            puzzleCountdownTimer = Mathf.Clamp(puzzleCountdownTimer + 10f, minPuzzleCountdownTime, maxPuzzleCountdownTime);
+        }
+        else
+        {
+            puzzleCountdownTimer = Mathf.Clamp(puzzleCountdownTimer - 10f, minPuzzleCountdownTime, maxPuzzleCountdownTime);
+        }
+    }
     
     public void IncrementCompletedLevel()
     {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.Serialization;
 using System.Collections;
+using DialogueSystem;
 
 public class StageManager : MonoBehaviour
 {
@@ -56,12 +57,14 @@ public class StageManager : MonoBehaviour
     [SerializeField] private int normalizationResolution = 256;
 
     [Header("Gameplay Timing")]
-    [SerializeField] private float countdownDuration = 30f;
+    private float countdownDuration;
+    private bool firstTimeSelecting = true;
 
     [SerializeField] public float generatedTangramFlickerDuration = 2.0f;
     [SerializeField] public int generatedTangramFlickerCount = 2;
 
     private float countdownTimer;
+    private float countdownTextSize = 100f;
     private bool puzzleCompleted = false;
     [SerializeField] private TMPro.TextMeshProUGUI countdownText;
 
@@ -88,6 +91,7 @@ public class StageManager : MonoBehaviour
         validateButton.onClick.AddListener(ValidatePuzzle);
         // Permanently direct captureCamera to render into captureRT
         captureCamera.targetTexture = captureRT;
+        countdownDuration = GameManager.Instance.puzzleCountdownTimer;
         countdownTimer = countdownDuration;
 
         // Test buttons for success/fail
@@ -177,6 +181,13 @@ public class StageManager : MonoBehaviour
 
         // show panel
         puzzlePanel.SetActive(true);
+        
+        // start countdown if first time selecting
+        if (firstTimeSelecting)
+        {
+            firstTimeSelecting = false;
+            BeginCountdown();
+        }
     }
 
 
@@ -209,6 +220,20 @@ public class StageManager : MonoBehaviour
 
         // Show the puzzle panel
         puzzlePanel.SetActive(true);
+        // Set the countdown text to "点击图案开始"
+        if (countdownText != null)
+        {
+            if (GameManager.Instance.currentLanguage == Language.EN)
+            {
+                countdownText.text = "Select a pattern to start";
+            }
+            else
+            {
+                countdownText.text = "点击图案开始";
+            }
+            // set the countdown text size to 50
+            countdownText.fontSize = 50;
+        }
 
         // Align the capture camera to the workspace area
         AlignCaptureCameraToWorkspace();
@@ -220,7 +245,6 @@ public class StageManager : MonoBehaviour
             startPuzzleButton.interactable = false;
             startPuzzleButton.gameObject.SetActive(false);
         }
-        BeginCountdown();
     }
 
     /// <summary>
@@ -503,6 +527,13 @@ public class StageManager : MonoBehaviour
         if (!success)
         {
             StartCoroutine(FlashRedEffect());
+            // Increment the countdown timer in GameManager
+            GameManager.Instance.UpdatePuzzleCountdownTime(true);
+        }
+        else if (success)
+        {
+            // Decrement the countdown timer in GameManager
+            GameManager.Instance.UpdatePuzzleCountdownTime(false);
         }
 
         puzzleCompleted = success;
@@ -687,6 +718,8 @@ public class StageManager : MonoBehaviour
         if (countdownText != null)
         {
             countdownText.text = Mathf.CeilToInt(countdownTimer).ToString();
+            // Set the countdown text size back to its original size
+            countdownText.fontSize = countdownTextSize;
         }
 
         StartCoroutine(CountdownTimer());
