@@ -652,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3332327428737157248, guid: 7d8369a0c2e604931b05994392deae36, type: 3}
       propertyPath: currentLanguage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4721664735935209725, guid: 7d8369a0c2e604931b05994392deae36, type: 3}
       propertyPath: m_LocalPosition.x

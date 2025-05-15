@@ -487,6 +487,9 @@ public class StageManager : MonoBehaviour
         {
             countdownText.text = "";
         }
+        
+        // Validate the puzzle after countdown
+        ValidatePuzzle();
 
         if (!puzzleCompleted)
         {

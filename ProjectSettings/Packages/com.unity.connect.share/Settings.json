@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/Volumes/External1T/Insomnia_EN_WebGL_Build;/Volumes/External1T/InsomniaWebGLChineseTestBuild;/Volumes/External1T/FeverDreamWebGLTestChineselBuild;/Volumes/External1T/FeverDreamWebGLTestChineseLocalBuild;/Volumes/External1T/FeverDreamWebGLTestBuild;;;;;\"}"
+                "value": "{\"m_Value\":\"/Volumes/External1T/Insomnia_CN_WebGL_Build;/Volumes/External1T/Insomnia_EN_WebGL_Build;/Volumes/External1T/InsomniaWebGLChineseTestBuild;/Volumes/External1T/FeverDreamWebGLTestChineselBuild;/Volumes/External1T/FeverDreamWebGLTestChineseLocalBuild;/Volumes/External1T/FeverDreamWebGLTestBuild;;;;\"}"
             }
         ]
     }
