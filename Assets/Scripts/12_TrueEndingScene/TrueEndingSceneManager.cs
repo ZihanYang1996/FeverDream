@@ -12,6 +12,9 @@ public class TrueEndingSceneManager : MonoBehaviour
 
     [SerializeField] public GameObject classroomWithTeacher;
     [SerializeField] public GameObject assignment;
+    [SerializeField] public GameObject credit_1;
+    [SerializeField] public GameObject credit_2;
+    [SerializeField] public GameObject credit_3;
     
     [Header("Actor")]
     [SerializeField] private GameObject strikethrough;
@@ -49,6 +52,9 @@ public class TrueEndingSceneManager : MonoBehaviour
         // Make classroomWithTeacher's sprite invisible
         classroomWithTeacher.GetComponent<ActorController>().SetAlphaInstantly(0f);
         assignment.SetActive(false);
+        credit_1.SetActive(false);
+        credit_2.SetActive(false);
+        credit_3.SetActive(false);
         
         strikethrough.SetActive(false);
         
@@ -222,14 +228,34 @@ public class TrueEndingSceneManager : MonoBehaviour
             .ScaleTo(targetScale, duration, () => { isStrikethroughScaleComplete = true; }, strikethroughCurve);
         yield return new WaitUntil(((() => isStrikethroughScaleComplete)));
         
-        // Instant black screen after a very short time
+        // Instant title after a very short time
         yield return new WaitForSeconds(0.2f);
         gameTitle.SetActive(true);
         AudioManager.Instance.PlayPendingBGM();
         
-        // Wait for some time then go back to title scene
-        yield return new WaitForSeconds(20f);
+        // Activeate the credits
+        credit_1.SetActive(true);
+        credit_2.SetActive(true);
+        credit_3.SetActive(true);
         
+        // Wait for a some tim then fade out game title and show credits
+        yield return new WaitForSeconds(10f);
+        gameTitle.GetComponent<ActorController>().FadeToAlpha(0f, 5f);
+        
+        // Wait for some time then fade out credit_2
+        yield return new WaitForSeconds(5+10f);
+        credit_1.GetComponent<ActorController>().FadeToAlpha(0f, 5f);
+        
+        // Wait for some time then fade out credit_2
+        yield return new WaitForSeconds(5+10f);
+        credit_2.GetComponent<ActorController>().FadeToAlpha(0f, 5f);
+        
+        // Wait for some time
+        yield return new WaitForSeconds(5+10f);
+        
+        // Fade in the title screen again
+        gameTitle.GetComponent<ActorController>().FadeToAlpha(1f, 5f);
+        yield return new WaitForSeconds(30f);
         
         // Reset the game manager for a new loop
         GameManager.Instance.ResetForNewLoop();
