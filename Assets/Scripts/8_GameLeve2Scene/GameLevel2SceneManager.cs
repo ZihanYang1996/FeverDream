@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DialogueSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,6 +14,9 @@ public class GameLevel2SceneManager : MonoBehaviour
 
     [SerializeField] private string NormalStageId = "Sword";
     [SerializeField] private string SecretStageId = "Butterfly";
+    
+    [SerializeField] private List<string> selectedStageIds = new List<string> { "Sword", "Butterfly", "Heart" };
+
 
     [Header("Actors")]
     [SerializeField] private GameObject character;
@@ -111,7 +115,10 @@ public class GameLevel2SceneManager : MonoBehaviour
         if (stageManager != null)
         {
             var mainStages = GameManager.Instance.GetMainStages();
-            stageManager.SetupStages(mainStages);
+            
+            // Filter the main stages to only include the correct stage
+            List<StageData> selectedStages = mainStages.Where(stage => selectedStageIds.Contains(stage.id)).ToList();
+            stageManager.SetupStages(selectedStages);
         }
         else
         {

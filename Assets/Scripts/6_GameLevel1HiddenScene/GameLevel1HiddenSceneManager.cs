@@ -94,7 +94,7 @@ public class GameLevel1SceneHiddenManager : MonoBehaviour
             var mainStages = GameManager.Instance.GetMainStages();
 
             // Filter the main stages to only include the correct stage
-            List<StageData> selectedStages = mainStages.Where(stage => correctStageId.Contains(stage.id)).ToList();
+            List<StageData> selectedStages = mainStages.Where(stage => selectedStageIds.Contains(stage.id)).ToList();
             stageManager.SetupStages(selectedStages);
         }
         else
